@@ -23,7 +23,7 @@
 	<main>
 		<h2>1. Projekt-Beschreibung</h2>
 		<p>Unser Projekt ist Black Jack. Black Jack ist das am meisten gespielte Kartenglückspiel. 
-		Gespielt wird mit 6 Decks mit 52 Karten, also insgesamt 312 Karten. 
+		Gespielt wird mit 6 Decks a 52 Karten, also insgesamt 312 Karten. 
 		Ziel des Spiels ist es, mit zwei oder mehr Karten an 21 Punkte heranzukommen und den Dealer (Bankhalter) zu überbieten. 
 		Erreicht der Spieler oder der Dealer genau 21 Punkte (Black Jack), so gewinnt dieser sofort.
         Kommt einer der beiden über 21 Punkte, so verliert er diese Runde.
@@ -39,10 +39,28 @@
 			<p>Spielregeln:
 			<ol>
 			<li>Kartenwertigkeit:</li>
-             Bildkarten (Bube, Dame, König): 10 Punkte	
-			 Ass: 1 oder 11 Punkte
-			 Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten
-			 <li>Regeln für das Ziehen einer Karte:</li>
+             <p>Bildkarten (Bube, Dame, König): 10 Punkte</p>	
+			 <p>Ass: 1 oder 11 Punkte</p>
+			 <p>Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten</p>
+			 <li>Deck</li>
+			 <p>Gespielt wird mit 6 Decks a 52 Karten, also insgesamt 312 Karten. Wurden nach einem Spielzug 2/3 vom Kartendeck verspielt, so wird ein neues Deck angefangen</p>
+			 <li>Busting (Überkaufen)</li>
+			 <p>Übersteigt die Hand eines Spielers oder Dealers insgesamt 21, so ist das Spiel automatisch verloren.</p>
+			 <li>Hit und Stay</li>
+			 <p>Beim Hit entscheidet der Spieler eine weitere Karte aufzunehmen. 
+			 Beim Stay nimmt der Spieler keine weitere Karte auf. Danach ist der Dealer noch ein Mal an der Reihe. Anschließend werden die Karten aufgedeckt und ausgewertet. </p>
+			 <li>Ausgabe der Karten</li>
+			 <p>Zu Beginn des Spiels erhalten der Dealer und der Spieler jeweils 2 Karten. Dabei ist eine Karte des Dealers verdeckt und wird erst bei der Auswertung aufgedeckt. 
+			 Der Spieler kann im Verlauf des Spiels so viele Karten aufnehmen, bis er sich überkauft. </p>
+			 <li>Regeln des Dealers</li>
+			  <p>Der Dealer muss eine Karte aufnehmen, wenn seine Hand weniger als 17 Punkte ergibt. Liegt er darüber, darf er keine aufnehmen.</p> 
+			 <li>Erweiterung: Splitten</li>	 
+			 <p>Wenn zwei gleiche Karten gezogen werden (z.B. zwei Buben oder zwei 8er), können diese gesplitted werden. 
+			 Beim Splitten muss für die gesplittete Karte der gleiche Einsatz abgegeben werden. Jede gesplittete Karte wird als einzelne Hand gespielt.
+			 Es muss zuerst eine Hand fertig gespielt werden, bevor mit der anderen begonnen wird. 
+			 Sondersituation beim Splitten von zwei Assen: Hierbei darf pro geteiltem Ass nur eine weitere Karte gezogen werden. </p>
+			 <li>Erweiterung: Einsatzverdopplung</li>
+			 <p>Der Einsatz darf nur einmal pro Runde, vor dem Ziehen einer dritten Karte, verdoppelt werden.</p>
 			 </ol>
 			<li>Welche Dienste werden angeboten?</li>
 			<p>Anlegen eines Spieleracconts mit Nickname und Passwort</p>
@@ -114,9 +132,11 @@
 				String name
 				String farbe
 				int index
+				int deck
 				int wert
 				int auspielung
 				mischen()
+				
 			}
 			class GUI {
 				

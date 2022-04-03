@@ -12,11 +12,12 @@
 		<h2>Semester: SS 2022</h2>
 		<b>Teammitglieder:5 </b>
 		<ul>
+			<li>Mario Kraupa (kraupama@hs-furtwangen.de) (Teamleiter)</li>
 			<li>Dominik Riegger (rieggerd@hs-furtwangen.de)</li>
 			<li>Jannik Wäschle (waeschlj@hs-furtwangen.de)</li>
 			<li>Paul Kammerer (kammerer@hs-furtwangen.de)</li>
 			<li>Julian Hermle (hermleju@hs-furtwangen.de)</li>
-			<li>Mario Kraupa (kraupama@hs-furtwangen.de)</li>
+			
 		</ul>
 	</header>
 	<main>
@@ -35,15 +36,33 @@
 		<p>TODO: Stellen Sie die aus Ihrer Sicht wichtigsten funktionalen Anforderungen (maximal 10) zusammen:</p>
 		<ul>
 			<li>Was soll Ihre Anwendung leisten?</li>
-			<p></p>
+			<p>Spielregeln:
+			<ol>
+			<li>Kartenwertigkeit:</li>
+             Bildkarten (Bube, Dame, König): 10 Punkte	
+			 Ass: 1 oder 11 Punkte
+			 Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten
+			 <li>Regeln für das Ziehen einer Karte:</li>
+			 </ol>
 			<li>Welche Dienste werden angeboten?</li>
-			<p></p>
+			<p>Anlegen eines Spieleracconts mit Nickname und Passwort</p>
 			<li>Welche Eingangsdaten sind erforderlich? Zu welchen Ausgaben werden diese verarbeitet?</li>
-			<p></p>
+
+			<p>Spielername und Passwort (wird zu einem Account verarbeitet)</p>
+			<p>Benutzername; Passwort werden zum einloggen benötigt. (Grafische Ausgabe)</p>
+			<p>Der Einsatz muss während eines Spielzuges vom Spieler festgelegt werden. (Grafische Ausgabe)</p>
+			<p>Mögliche Erweiterung:</p>
+			<p>Wenn die Möglichkeit des Spliten kommt wird der Spieler aufgefordert sich dafür oder dagegen zu entscheiden. (Grafische Ausgabe)</p>
+
 			<li>Wie soll sich das System in bestimmten Situationen verhalten?</li>
-			<p></p>
+			<p>Wenn der Spieler ein Black Jack gewinnt, kommt eine Meldung mit "Winner Winner Chicken Dinner".
+			Wenn der Spieler verliert, bzw. der Dealer gewinnt, kommt eine Meldung mit "Spielzug verloren, Einsatz ist verzockt".
+			Wenn der Spieler pleite ist, also sein Kontostand verspielt hat, kommt eine Meldung mit 
+			"Looser, du wurdest von dem Türsteher rausgeworfen, hast dir von deinem Kumpel 5000€ geliehen und schleichst dich wieder ins Casino"
+			und der Spieler bekommt die Möglichkeit sein Konto virituell wieder aufzuladen.
+			</p>
 			<li>Welche Daten sind dauerhaft zu speichern?</li>
-			<p></p>
+			<p>Benutzername; Passwort; Kontostand; Highscore</p>
 		</ul>
 		<p>TODO: Darüber hinaus sollen nicht-funktionale Anforderungen spezifiziert werden:</p>
 		<ul>
@@ -71,37 +90,61 @@
 			<li>Mit welchen Entwicklungswerkzeugen wird gearbeitet?</li>
 			<p>Eclipse IDE (Java)</p>
 		</ul>
-		<h2>3. Architektur</h2>
-		<p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
-		<p>Das Klassendiagramm kann mit Hilfe von Pseudo Code (siehe HTML Quelltext) erstellt werden <a href="https://mermaid-js.github.io/mermaid/#/classDiagram">(Hilfe)</a>.
+		
 
-		<div class="diagram">
+<h2>3. Architektur</h2>
+<p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
+<p>Das Klassendiagramm kann mit Hilfe von Pseudo Code (siehe HTML Quelltext) erstellt werden <a href="https://mermaid-js.github.io/mermaid/#/classDiagram">(Hilfe)</a>.
+
+<div class="diagram">
 			classDiagram
-			class Animal {
-				int age
-				String gender
-				isMammal()
-				mate()
+			class Blackjack {
+				int versionsnummer
+				spielen()
+				
 			}
-			class Duck {
-				String beakColor
-				swim()
-				quack()
+			class Spieler {
+				String nickname
+				String passwort
+				long kontostand
+				long highscore
+				
 			}
-			class Fish {
-				int sizeInFeet
-				canEat()
+			class Karten {
+				String name
+				String farbe
+				int index
+				int wert
+				int auspielung
+				mischen()
 			}
-			class Zebra {
-				bool is_wild
-				run()
+			class GUI {
+				
 			}
-			Animal <|-- Duck
-			Animal <|-- Fish
-			Animal <|-- Zebra
+			Blackjack <|-- Spieler
+			Blackjack <|-- Karten
+			Blackjack <|-- GUI
+			Karten <|--|> GUI
+			
+			
 		</div>
+
+			
+		
 		<h2>4. Aufwandsschätzung und Aufteilung</h2>
 		<p>TODO: Schätzen Sie den Aufwand der verschiedenen Teile Ihres Programms ab und legen Sie fest, wie die Aufteilung auf die Gruppenmitglieder aussehen soll.</p>
+		<p>Aufteilung der Arbeitsbereiche:</p>
+		<p>Background-Programmer: Dominik Riegger, Julian Hermle</p>
+		<p>Befassen sich mit den internen Programmabläufen (Umsetzung der Spielregeln, Ablauf der Spielzüge, dauerhafte Speicherung der Daten, Innitialisierung bei Programmstart, etc.)</p>
+		
+		<p>GUI-Programmer: Mario Kraupa, Jannik Wäschle</p>
+		<p>Befassen sich mit der Grafischen Oberfläche (Buttons, Spielkarten, Animationen, Eingabeelemente, etc.).</p>
+		
+		<p>Matching Manager: Paul Kammerer</p>
+		<p>Befasst und kummert sich um die Adaption zwischen den beiden Programmierbereichen.</p>
+		
+		<p>Wir behalten uns vor Änderungen vorzunehmen.</p>
+		
 		<h2>Optional: Verweis auf andere HTML Dateien</h2>
 		<p><a href="otherfile.html">Eine weitere HTML-Datei</a></p>
 	</main>
