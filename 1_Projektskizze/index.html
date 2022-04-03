@@ -98,28 +98,35 @@
 
 <div class="diagram">
 			classDiagram
-			class Animal {
-				int age
-				String gender
-				isMammal()
-				mate()
+			class Blackjack {
+				int versionsnummer
+				spielen()
+				
 			}
-			class Duck {
-				String beakColor
-				swim()
-				quack()
+			class Spieler {
+				String nickname
+				String passwort
+				long kontostand
+				long highscore
+				
 			}
-			class Fish {
-				int sizeInFeet
-				canEat()
+			class Karten {
+				String name
+				String farbe
+				int index
+				int wert
+				int auspielung
+				mischen()
 			}
-			class Zebra {
-				bool is_wild
-				run()
+			class GUI {
+				
 			}
-			Animal <|-- Duck
-			Animal <|-- Fish
-			Animal <|-- Zebra
+			Blackjack <|-- Spieler
+			Blackjack <|-- Karten
+			Blackjack <|-- GUI
+			Karten <|--|> GUI
+			
+			
 		</div>
 
 			
