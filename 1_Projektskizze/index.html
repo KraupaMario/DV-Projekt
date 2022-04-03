@@ -46,11 +46,23 @@
 			<li>Welche Dienste werden angeboten?</li>
 			<p>Anlegen eines Spieleracconts mit Nickname und Passwort</p>
 			<li>Welche Eingangsdaten sind erforderlich? Zu welchen Ausgaben werden diese verarbeitet?</li>
+<<<<<<< HEAD
 			<p>Spielername und Passwort (wird zu einem Account verarbeitet)</p>
+=======
+			<p>Benutzername; Passwort werden zum einloggen benötigt. (Grafische Ausgabe)
+			Der Einsatz muss während eines Spielzuges vom Spieler festgelegt werden. (Grafische Ausgabe)
+			Mögliche Erweiterung:
+			Wenn die Möglichkeit des Spliten kommt wird der Spieler aufgefordert sich dafür oder dagegen zu entscheiden. (Grafische Ausgabe)</p>
+>>>>>>> 6d7746071586f98f7206ea2713a9acaf287ed88b
 			<li>Wie soll sich das System in bestimmten Situationen verhalten?</li>
-			<p></p>
+			<p>Wenn der Spieler ein Black Jack gewinnt, kommt eine Meldung mit "Winner Winner Chicken Dinner".
+			Wenn der Spieler verliert, bzw. der Dealer gewinnt, kommt eine Meldung mit "Spielzug verloren, Einsatz ist verzockt".
+			Wenn der Spieler pleite ist, also sein Kontostand verspielt hat, kommt eine Meldung mit 
+			"Looser, du wurdest von dem Türsteher rausgeworfen, hast dir von deinem Kumpel 5000€ geliehen und schleichst dich wieder ins Casino"
+			und der Spieler bekommt die Möglichkeit sein Konto virituell wieder aufzuladen.
+			</p>
 			<li>Welche Daten sind dauerhaft zu speichern?</li>
-			<p></p>
+			<p>Benutzername; Passwort; Kontostand; Highscore</p>
 		</ul>
 		<p>TODO: Darüber hinaus sollen nicht-funktionale Anforderungen spezifiziert werden:</p>
 		<ul>
@@ -84,28 +96,30 @@
 
 		<div class="diagram">
 			classDiagram
-			class Animal {
-				int age
-				String gender
-				isMammal()
-				mate()
+			class Blackjack {
+				
 			}
-			class Duck {
-				String beakColor
-				swim()
-				quack()
+			class Spieler {
+				String nickname
+				String passwort
+				long kontostand
+				long highscore
+				
 			}
-			class Fish {
-				int sizeInFeet
-				canEat()
+			class Deck {
+				int wert
+				int [][][]index
+				mischen()
+				
 			}
-			class Zebra {
-				bool is_wild
-				run()
+			class GUI {
+				
+				
 			}
-			Animal <|-- Duck
-			Animal <|-- Fish
-			Animal <|-- Zebra
+			Blackjack <|-- Spieler
+			Blackjack <|-- Karten
+			Blackjack <|-- GUI
+			
 		</div>
 		<h2>4. Aufwandsschätzung und Aufteilung</h2>
 		<p>TODO: Schätzen Sie den Aufwand der verschiedenen Teile Ihres Programms ab und legen Sie fest, wie die Aufteilung auf die Gruppenmitglieder aussehen soll.</p>
