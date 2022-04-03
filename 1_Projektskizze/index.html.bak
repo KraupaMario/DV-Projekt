@@ -35,18 +35,11 @@
 		<p>TODO: Stellen Sie die aus Ihrer Sicht wichtigsten funktionalen Anforderungen (maximal 10) zusammen:</p>
 		<ul>
 			<li>Was soll Ihre Anwendung leisten?</li>
-			<p>Spielregeln:
-			<ol>
-			<li>Kartenwertigkeit:</li>
-             Bildkarten (Bube, Dame, König): 10 Punkte	
-			 Ass: 1 oder 11 Punkte
-			 Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten
-			 <li>Regeln für das Ziehen einer Karte:</li>
-			 </ol>
+			<p></p>
 			<li>Welche Dienste werden angeboten?</li>
-			<p>Anlegen eines Spieleracconts mit Nickname und Passwort</p>
+			<p></p>
 			<li>Welche Eingangsdaten sind erforderlich? Zu welchen Ausgaben werden diese verarbeitet?</li>
-			<p>Spielername und Passwort (wird zu einem Account verarbeitet)</p>
+			<p></p>
 			<li>Wie soll sich das System in bestimmten Situationen verhalten?</li>
 			<p></p>
 			<li>Welche Daten sind dauerhaft zu speichern?</li>
