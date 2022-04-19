@@ -92,11 +92,10 @@
 			<p>Bedienelemente: <p>
 			<p>Buttons in Design von Jetons, welche angeklickt werden können und dem Platzieren des Einsatzes dienen.</p> 
 			<p>Geben-Button, der signalisiert, dass der Spieler den Einsatz getätigt hat und die Karten ausgeteilt werden können. </p>
-			<p>Hit-Button, welcher signalisiert, dass eine weitere Karte aufgenommen werde möchte.</p>
-               		<p>Stay-Button, der signalisiert, dass der Spiel keine weitere Karten aufnehmen möchte.</p>
-               		<p>High-Score-Anzeige</p>
-			<p>Verlassen-Button, der Spieler kehrt zum Hauptmenü zurück.</p>
-			<p>Der Hintergrund soll einem Black-Jack Tisch nach empfunden sein</p> 
+			<p>Hit-Button, welcher signalisiert, dass eine weitere Karte aufgenommen werden möchte.</p>
+               		<p>Stay-Button, der signalisiert, dass der Spiel keine weitere Karte aufnehmen möchte.</p>
+               		<p>Verlassen-Button, der Spieler kehrt zum Hauptmenü zurück.</p>
+			<p>Der Hintergrund soll einem Black-Jack Tisch nachempfunden sein</p> 
 			   
 			
 			<li>In welcher Systemumgebung soll Ihr Programm lauffähig sein?</li>
@@ -105,14 +104,16 @@
 			<p>Eclipse IDE (Java)</p>
 		</ul>
 		
-
 <h2>3. Architektur</h2>
 <p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
 <p>Das Klassendiagramm kann mit Hilfe von Pseudo Code (siehe HTML Quelltext) erstellt werden <a href="https://mermaid-js.github.io/mermaid/#/classDiagram">(Hilfe)</a>.
 
 
 
-<div class="diagram">
+
+
+
+
 classDiagram
 class Blackjack {
 int versionsnummer
@@ -145,21 +146,22 @@ Blackjack <|-- GUI
 Karten <|--|> GUI
 
 
-</div>
-			
+	
 		
 		<h2>4. Aufwandsschätzung und Aufteilung</h2>
 		<p>TODO: Schätzen Sie den Aufwand der verschiedenen Teile Ihres Programms ab und legen Sie fest, wie die Aufteilung auf die Gruppenmitglieder aussehen soll.</p>
 		<p>Aufteilung der Arbeitsbereiche:</p>
-		<p>Background-Programmer: Dominik Riegger, Julian Hermle</p>
+<ul>
+		<li>Background-Programmer: Dominik Riegger, Julian Hermle</li>
 		<p>Befassen sich mit den internen Programmabläufen (Umsetzung der Spielregeln, Ablauf der Spielzüge, dauerhafte Speicherung der Daten, Innitialisierung bei Programmstart, etc.)</p>
-		
-		<p>GUI-Programmer: Mario Kraupa, Jannik Wäschle</p>
+		 
+
+		<li>GUI-Programmer: Mario Kraupa, Jannik Wäschle</li>
 		<p>Befassen sich mit der Grafischen Oberfläche (Buttons, Spielkarten, Animationen, Eingabeelemente, etc.).</p>
 		
-		<p>Matching Manager: Paul Kammerer</p>
+		<li>Server Manager: Paul Kammerer</li>
 		<p>Befasst sich um die Serialisierung sowie das Abspeichern und Abrufen der Daten auf einem Server. Zudem wird er die Adaption zwischen den beiden Programmierbereichen vornehmen.</p>
-		
+		</ul>
 		<p>Wir behalten uns vor Änderungen vorzunehmen.</p>
 		
 		<h2>Optional: Verweis auf andere HTML Dateien</h2>
