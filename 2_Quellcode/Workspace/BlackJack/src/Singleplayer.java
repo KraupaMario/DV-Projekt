@@ -1,5 +1,5 @@
 
-public class Singleplayer {
+public class Singleplayer extends Spiel {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
