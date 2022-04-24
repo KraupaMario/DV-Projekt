@@ -107,43 +107,43 @@
 <h2>3. Architektur</h2>
 <p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
 <p>Das Klassendiagramm kann mit Hilfe von Pseudo Code (siehe HTML Quelltext) erstellt werden <a href="https://mermaid-js.github.io/mermaid/#/classDiagram">(Hilfe)</a>.
-
-
-
-
-
-
-
-classDiagram
-class Blackjack {
-int versionsnummer
-spielen()
-
-}
-class Spieler {
-String nickname
-String passwort
-long kontostand
-long highscore
-
-}
-class Karten {
-String name
-String farbe
-int index
-int deck
-int wert
-int auspielung
-mischen()
-
-}
-class GUI {
-
-}
-Blackjack <|-- Spieler
-Blackjack <|-- Karten
-Blackjack <|-- GUI
-Karten <|--|> GUI
+<div class="diagram">
+			classDiagram
+			class Dealer {
+				int kartennummer
+				void hit()
+				void stay()
+				void act()
+			}
+			class Karten {
+				int anz_ausgespielt
+				int nummer
+				int wert
+				String name
+				static void austeilen()
+			}
+			class Multiplayer {
+				
+			}
+			class Singleplayer {
+				
+			}
+			class Spiel {
+				
+			}
+			class Spieler {
+				String name
+				String passwort
+				long kontostand
+				long highscore
+				int kartenwert
+				static Spieler_registrieren()
+				void hit
+				void stay
+				
+			}
+			
+		</div>
 
 
 	

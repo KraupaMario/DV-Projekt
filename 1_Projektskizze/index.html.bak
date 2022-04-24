@@ -23,7 +23,7 @@
 	<main>
 		<h2>1. Projekt-Beschreibung</h2>
 		<p>Unser Projekt ist Black Jack. Black Jack ist das am meisten gespielte Kartenglückspiel. 
-		Gespielt wird mit 6 Decks mit 52 Karten, also insgesamt 312 Karten. 
+		Gespielt wird mit 6 Decks a 52 Karten, also insgesamt 312 Karten. 
 		Ziel des Spiels ist es, mit zwei oder mehr Karten an 21 Punkte heranzukommen und den Dealer (Bankhalter) zu überbieten. 
 		Erreicht der Spieler oder der Dealer genau 21 Punkte (Black Jack), so gewinnt dieser sofort.
         Kommt einer der beiden über 21 Punkte, so verliert er diese Runde.
@@ -39,21 +39,39 @@
 			<p>Spielregeln:
 			<ol>
 			<li>Kartenwertigkeit:</li>
-             Bildkarten (Bube, Dame, König): 10 Punkte	
-			 Ass: 1 oder 11 Punkte
-			 Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten
-			 <li>Regeln für das Ziehen einer Karte:</li>
+             <p>Bildkarten (Bube, Dame, König): 10 Punkte</p>	
+			 <p>Ass: 1 oder 11 Punkte</p>
+			 <p>Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten</p>
+			 <li>Deck:</li>
+			 <p>Gespielt wird mit 6 Decks a 52 Karten, also insgesamt 312 Karten. Wurden nach einem Spielzug 2/3 vom Kartendeck verspielt, so wird ein neues Deck angefangen</p>
+			 <li>Busting (Überkaufen):</li>
+			 <p>Übersteigt die Hand eines Spielers oder Dealers insgesamt 21, so ist der Spielzug für ihn automatisch verloren.</p>
+			 <li>Hit and Stay (Schlagen oder Halten):</li>
+			 <p>Beim Hit entscheidet der Spieler eine weitere Karte aufzunehmen. 
+			 Beim Stay nimmt der Spieler keine weitere Karte auf. Danach sind die restlichen Spieler sowie der Dealer noch ein Mal an der Reihe. Anschließend werden die Karten aufgedeckt und ausgewertet. </p>
+			 <li>Ausgabe der Karten:</li>
+			 <p>Zu Beginn des Spiels erhalten der Dealer und die Spieler jeweils 2 Karten. Dabei ist eine Karte des Dealers verdeckt und wird erst bei der Auswertung aufgedeckt. 
+			 Der Spieler kann im Verlauf des Spiels so viele Karten aufnehmen, bis er sich überkauft oder ein anderer Spieler den Spielzug beendet hat. </p>
+			 <li>Regeln des Dealers:</li>
+			  <p>Der Dealer muss eine Karte aufnehmen, wenn seine Hand weniger als 17 Punkte ergibt. Liegt er darüber, darf er keine aufnehmen.</p> 
+			 <li>Mögliche Erweiterung: </li>
+	 		<p>Splitten:</p>
+			 <p>Wenn zwei gleiche Karten gezogen werden (z.B. zwei Buben oder zwei 8er), können diese gesplitted werden. 
+			 Beim Splitten muss für die gesplittete Karte der gleiche Einsatz abgegeben werden. Jede gesplittete Karte wird als einzelne Hand gespielt.
+			 Es muss zuerst eine Hand fertig gespielt werden, bevor mit der anderen begonnen wird. 
+			 Sondersituation beim Splitten von zwei Assen: Hierbei darf pro geteiltem Ass nur eine weitere Karte gezogen werden. </p>
+			<p>Wenn die Möglichkeit des Splitten kommt wird der Spieler aufgefordert sich dafür oder dagegen zu entscheiden. (Grafische Ausgabe)</p>
+			 <p>Einsatzverdopplung:</p>
+			 <p>Der Einsatz darf nur einmal pro Runde, vor dem Ziehen einer dritten Karte, verdoppelt werden.</p>
 			 </ol>
 			<li>Welche Dienste werden angeboten?</li>
-			<p>Anlegen eines Spieleracconts mit Nickname und Passwort</p>
+			<p>Zunächst muss ein Spieleraccount mit Nickname und Passwort erstellt werden. Dem Account wird ein Startkapital in Höhe von 5000$ zugewiesen.</p>
+			<p>Nach dem Login kommt er ins Hauptmenü. Im Hauptmenü muss der Spieler auswählen ob er alleine gegen den Dealer spielen will oder er online mit einem weiteren Zocker die Runde beginnen möchte. 
 			<li>Welche Eingangsdaten sind erforderlich? Zu welchen Ausgaben werden diese verarbeitet?</li>
-
 			<p>Spielername und Passwort (wird zu einem Account verarbeitet)</p>
-			<p>Benutzername; Passwort werden zum einloggen benötigt. (Grafische Ausgabe)</p>
-			<p>Der Einsatz muss während eines Spielzuges vom Spieler festgelegt werden. (Grafische Ausgabe)</p>
-			<p>Mögliche Erweiterung:</p>
-			<p>Wenn die Möglichkeit des Spliten kommt wird der Spieler aufgefordert sich dafür oder dagegen zu entscheiden. (Grafische Ausgabe)</p>
-
+			<p>Benutzername; Passwort werden zum einloggen benötigt. </p>
+			<p>Der Einsatz muss vor jedem Spielzuges von jedem Spieler getätigt werden. Danach werden erst die Karten ausgegeben.</p>
+			
 			<li>Wie soll sich das System in bestimmten Situationen verhalten?</li>
 			<p>Wenn der Spieler ein Black Jack gewinnt, kommt eine Meldung mit "Winner Winner Chicken Dinner".
 			Wenn der Spieler verliert, bzw. der Dealer gewinnt, kommt eine Meldung mit "Spielzug verloren, Einsatz ist verzockt".
@@ -62,87 +80,91 @@
 			und der Spieler bekommt die Möglichkeit sein Konto virituell wieder aufzuladen.
 			</p>
 			<li>Welche Daten sind dauerhaft zu speichern?</li>
-			<p>Benutzername; Passwort; Kontostand; Highscore</p>
+			<p>Spieleraccounts: Benutzername, Passwort, Kontostand, Highscore</p>
 		</ul>
 		<p>TODO: Darüber hinaus sollen nicht-funktionale Anforderungen spezifiziert werden:</p>
 		<ul>
 			<li>Wie soll die Bedieneroberfläche aussehen?</li>
-			<p>Nach dem Programmstart
-			   Übersicht über den Kontostand des Spielers
-			   Buttons in Design von Jetons, welche angeklickt werden können und dem Platzieren des Einsatzes dienen. 
-			   Geben-Button, wenn der Einsatz platziert ist. Hiermit werden die Karten ausgeteilt.
-			   Grafische Karten
-			   Karten des Spielers im unteren Sichtfeld, Karten des Spielers im oberen Sichtfeld.
-               Anzeige, Summe der Kartenwerte	
-               Hit-Button, weitere Karte aufnehmen
-               Stay-Button, keine weitere Karten aufnehmen
-               High-Score-Anzeige
-			   Verlassen-Button
-			   Hintergrund ist ein halbrunder, grüner Tisch, auf welchen die Karten ausgeteilt werden. 
+			<p>Nach dem Programmstart öffnet sich ein Loginfenster, bei dem sich der Spieler anmelden kann. Der Spieler gelangt nach einem erfolgreichen Login in</p>
+			<p>das Hauptmenü. Hier kann der Benutzer zwischen "Single-" und "Multiplayer" entscheiden.  </p>
+			<p>Im Spielmodus wird der aktuelle Kontostand des Spielers, sowie die Summe der Kartenwerte der eigenen Hand angezeigt.</p>	
+			<p>Die Karten der Spieler befinden sich im unteren Sichtfeld und die Karten des Dealers sind im oberen Sichtfeld dargestellt.</p>
+			<p>Bedienelemente: <p>
+			<p>Buttons in Design von Jetons, welche angeklickt werden können und dem Platzieren des Einsatzes dienen.</p> 
+			<p>Geben-Button, der signalisiert, dass der Spieler den Einsatz getätigt hat und die Karten ausgeteilt werden können. </p>
+			<p>Hit-Button, welcher signalisiert, dass eine weitere Karte aufgenommen werden möchte.</p>
+               		<p>Stay-Button, der signalisiert, dass der Spiel keine weitere Karte aufnehmen möchte.</p>
+               		<p>Verlassen-Button, der Spieler kehrt zum Hauptmenü zurück.</p>
+			<p>Der Hintergrund soll einem Black-Jack Tisch nachempfunden sein</p> 
 			   
-			   mögliche Erweiterungen:
-			   Split-Button, wenn die ersten beiden Karten gleich sind, kann der Spieler
-			   Verdoppeln des Einsatzes
-			   Kapitulieren
-			   </p>
+			
 			<li>In welcher Systemumgebung soll Ihr Programm lauffähig sein?</li>
 			<p>Windows 10</p>
 			<li>Mit welchen Entwicklungswerkzeugen wird gearbeitet?</li>
 			<p>Eclipse IDE (Java)</p>
 		</ul>
 		
-
 <h2>3. Architektur</h2>
 <p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
 <p>Das Klassendiagramm kann mit Hilfe von Pseudo Code (siehe HTML Quelltext) erstellt werden <a href="https://mermaid-js.github.io/mermaid/#/classDiagram">(Hilfe)</a>.
-
 <div class="diagram">
 			classDiagram
-			class Blackjack {
-				int versionsnummer
-				spielen()
+			class Dealer {
+				int kartennummer
+				void hit()
+				void stay()
+				void act()
+			}
+			class Karten {
+				int anz_ausgespielt
+				int nummer
+				int wert
+				String name
+				static void austeilen()
+			}
+			class Multiplayer {
 				
 			}
+			class Singleplayer {
+				
+			}
+			class Spiel {
+				bool is_wild
+				run()
+			}
 			class Spieler {
-				String nickname
+				String name
 				String passwort
 				long kontostand
 				long highscore
+				int kartenwert
+				static Spieler_registrieren()
+				void hit
+				void stay
 				
 			}
-			class Karten {
-				String name
-				String farbe
-				int index
-				int wert
-				int auspielung
-				mischen()
-			}
-			class GUI {
-				
-			}
-			Blackjack <|-- Spieler
-			Blackjack <|-- Karten
-			Blackjack <|-- GUI
-			Karten <|--|> GUI
-			
-			
+			Animal <|-- Duck
+			Animal <|-- Fish
+			Animal <|-- Zebra
 		</div>
 
-			
+
+	
 		
 		<h2>4. Aufwandsschätzung und Aufteilung</h2>
 		<p>TODO: Schätzen Sie den Aufwand der verschiedenen Teile Ihres Programms ab und legen Sie fest, wie die Aufteilung auf die Gruppenmitglieder aussehen soll.</p>
 		<p>Aufteilung der Arbeitsbereiche:</p>
-		<p>Background-Programmer: Dominik Riegger, Julian Hermle</p>
+<ul>
+		<li>Background-Programmer: Dominik Riegger, Julian Hermle</li>
 		<p>Befassen sich mit den internen Programmabläufen (Umsetzung der Spielregeln, Ablauf der Spielzüge, dauerhafte Speicherung der Daten, Innitialisierung bei Programmstart, etc.)</p>
-		
-		<p>GUI-Programmer: Mario Kraupa, Jannik Wäschle</p>
+		 
+
+		<li>GUI-Programmer: Mario Kraupa, Jannik Wäschle</li>
 		<p>Befassen sich mit der Grafischen Oberfläche (Buttons, Spielkarten, Animationen, Eingabeelemente, etc.).</p>
 		
-		<p>Matching Manager: Paul Kammerer</p>
-		<p>Befasst und kummert sich um die Adaption zwischen den beiden Programmierbereichen.</p>
-		
+		<li>Server Manager: Paul Kammerer</li>
+		<p>Befasst sich um die Serialisierung sowie das Abspeichern und Abrufen der Daten auf einem Server. Zudem wird er die Adaption zwischen den beiden Programmierbereichen vornehmen.</p>
+		</ul>
 		<p>Wir behalten uns vor Änderungen vorzunehmen.</p>
 		
 		<h2>Optional: Verweis auf andere HTML Dateien</h2>
