@@ -1,9 +1,10 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.awt.*;
 
 public class DemoFrame extends JFrame {
 	
-	public DemoFrame() {
+	public DemoFrame(ActionListener listener) {
 		setTitle("Layout demo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -44,6 +45,7 @@ public class DemoFrame extends JFrame {
 		buttonPanel.add(okButton);                                          //Hinzufügen des "OK" Buttons zum Panel "buttonPanel"
 		buttonPanel.add(closeButton);                                       //Hinzufügen des "Close" Buttons zum Panel "buttonPanel"
 		
+		okButton.addActionListener(listener);
 		
 		
 	
