@@ -13,7 +13,7 @@ public class Spieler {
 		
 	}
 	
-	static Spieler registrieren() {
+	static void registrieren() {
 		String n = JOptionPane.showInputDialog("Nickname:");
 		//Abfrage Doppelt?
 		String p = JOptionPane.showInputDialog("Passwort:");

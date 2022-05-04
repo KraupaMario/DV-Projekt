@@ -12,22 +12,21 @@
 		<h2>Semester: SS 2022</h2>
 		<b>Teammitglieder: </b>
 		<ul>
-			<li>Mario Kraupa (kraupama@hs-furtwangen.de) (Teamleiter)</li>
 			<li>Dominik Riegger (rieggerd@hs-furtwangen.de)</li>
 			<li>Jannik Wäschle (waeschlj@hs-furtwangen.de)</li>
 			<li>Paul Kammerer (kammerer@hs-furtwangen.de)</li>
 			<li>Julian Hermle (hermleju@hs-furtwangen.de)</li>
-			
+			<li>Mario Kraupa (kraupama@hs-furtwangen.de)</li>
 		</ul>
 	</header>
 	<main>
 		<h2>1. Projekt-Beschreibung</h2>
-		<p>Unser Projekt ist Black Jack. Black Jack ist das am meisten gespielte Kartenglückspiel. 
+		<p>Unser Datenverarbeitungsprojekt ist Black Jack. Black Jack ist das am meisten gespielte Kartenglückspiel. 
 		Gespielt wird mit 6 Decks a 52 Karten, also insgesamt 312 Karten. 
 		Ziel des Spiels ist es, mit zwei oder mehr Karten an 21 Punkte heranzukommen und den Dealer (Bankhalter) zu überbieten. 
 		Erreicht der Spieler oder der Dealer genau 21 Punkte (Black Jack), so gewinnt dieser sofort.
         Kommt einer der beiden über 21 Punkte, so verliert er diese Runde.
-        Wenn der Spieler gewinnt, erhält er den doppelten Einsatz, bei einem Black Jack den 2,5fachen Einsatz auf sein Konto. 
+        Wenn der Spieler gewinnt, erhält er seinen doppelten Einsatz, bei einem Black Jack seinen 2,5fachen Einsatz auf sein Konto zurück. 
         Verliert der Spieler, so erhält der Dealer (Bankhalter) den Einsatz.	
 		Haben beide die gleiche Punktzahl, so bleibt der Einsatz auf dem Tisch liegen. 
 		Vor dem Beginn einer Runde wird der Spieler aufgefordert einen Einsatz zu setzen.
@@ -40,10 +39,11 @@
 			<ol>
 			<li>Kartenwertigkeit:</li>
              <p>Bildkarten (Bube, Dame, König): 10 Punkte</p>	
+<<<<<<< Updated upstream
 			 <p>Ass: 1 oder 11 Punkte</p>
 			 <p>Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten</p>
 			 <li>Deck:</li>
-			 <p>Gespielt wird mit 6 Decks a 52 Karten, also insgesamt 312 Karten. Wurden nach einem Spielzug 2/3 vom Kartendeck verspielt, so wird ein neues Deck angefangen</p>
+			 <p>Gespielt wird mit 6 Decks a 52 Karten, also insgesamt 312 Karten. Wurden nach einem Spielzug 2/3 der Karten verspielt, so werden sie neu gemischt.</p>
 			 <li>Busting (Überkaufen):</li>
 			 <p>Übersteigt die Hand eines Spielers oder Dealers insgesamt 21, so ist der Spielzug für ihn automatisch verloren.</p>
 			 <li>Hit and Stay (Schlagen oder Halten):</li>
@@ -55,23 +55,45 @@
 			 <li>Regeln des Dealers:</li>
 			  <p>Der Dealer muss eine Karte aufnehmen, wenn seine Hand weniger als 17 Punkte ergibt. Liegt er darüber, darf er keine aufnehmen.</p> 
 			 <li>Mögliche Erweiterung: </li>
-	 		<p>Splitten:</p>
+	 		 <p>Einsatzverdopplung:</p>
+=======
+			 <p>Ass: 1 oder 11 Punkte<p>
+			 <p>Zahlenkarten (2 bis 10): jeweiliger Kartenwert in Punkten</p>
+			 <li>Busting (Überkaufen)</li>
+			 <p>Übersteigt die Hand eines Spielers oder Dealers insgesamt 21, so ist das Spiel automatisch verloren.</p>
+			 <li>Hit und Stay</li>
+			 <p>Beim Hit entscheidet der Spieler eine weitere Karte aufzunehmen. 
+			 Beim Stay nimmt der Spieler keine weitere Karte auf. Danach ist der Dealer noch ein Mal an der Reihe. Anschließend werden die Karten aufgedeckt und ausgewertet. </p>
+			 <li>Regeln des Dealers</li>
+			  <p>Der Dealer muss eine Karte aufnehmen, wenn seine Hand weniger als 17 Punkte ergibt. Liegt er darüber, darf er keine aufnehmen.</p> 
+			 <li>Busting (Überkaufen)</li>
+			 		 
 			 <p>Wenn zwei gleiche Karten gezogen werden (z.B. zwei Buben oder zwei 8er), können diese gesplitted werden. 
 			 Beim Splitten muss für die gesplittete Karte der gleiche Einsatz abgegeben werden. Jede gesplittete Karte wird als einzelne Hand gespielt.
 			 Es muss zuerst eine Hand fertig gespielt werden, bevor mit der anderen begonnen wird. 
 			 Sondersituation beim Splitten von zwei Assen: Hierbei darf pro geteiltem Ass nur eine weitere Karte gezogen werden. </p>
-			<p>Wenn die Möglichkeit des Splitten kommt wird der Spieler aufgefordert sich dafür oder dagegen zu entscheiden. (Grafische Ausgabe)</p>
-			 <p>Einsatzverdopplung:</p>
+			 <li>Einsatzverdopplung</li>
+>>>>>>> Stashed changes
 			 <p>Der Einsatz darf nur einmal pro Runde, vor dem Ziehen einer dritten Karte, verdoppelt werden.</p>
 			 </ol>
 			<li>Welche Dienste werden angeboten?</li>
-			<p>Zunächst muss ein Spieleraccount mit Nickname und Passwort erstellt werden. Dem Account wird ein Startkapital in Höhe von 5000$ zugewiesen.</p>
-			<p>Nach dem Login kommt er ins Hauptmenü. Im Hauptmenü muss der Spieler auswählen ob er alleine gegen den Dealer spielen will oder er online mit einem weiteren Zocker die Runde beginnen möchte. 
+			<p>Zunächst muss ein Spieleraccount mit Nickname erstellt werden. Dem Account wird ein Startkapital in Höhe von 5000$ zugewiesen.</p>
+			<p>Nach dem Login kommt er ins Hauptmenü. Es besteht die Möglichkeit alleine oder mit einem weiteren Spieler zu spielen.  
 			<li>Welche Eingangsdaten sind erforderlich? Zu welchen Ausgaben werden diese verarbeitet?</li>
-			<p>Spielername und Passwort (wird zu einem Account verarbeitet)</p>
-			<p>Benutzername; Passwort werden zum einloggen benötigt. </p>
+<<<<<<< Updated upstream
+			<p>Spielername (wird zu einem Account verarbeitet)</p>
 			<p>Der Einsatz muss vor jedem Spielzuges von jedem Spieler getätigt werden. Danach werden erst die Karten ausgegeben.</p>
 			
+=======
+<<<<<<< HEAD
+			<p>Spielername und Passwort (wird zu einem Account verarbeitet)</p>
+=======
+			<p>Benutzername; Passwort werden zum einloggen benötigt. (Grafische Ausgabe)
+			Der Einsatz muss während eines Spielzuges vom Spieler festgelegt werden. (Grafische Ausgabe)
+			Mögliche Erweiterung:
+			Wenn die Möglichkeit des Spliten kommt wird der Spieler aufgefordert sich dafür oder dagegen zu entscheiden. (Grafische Ausgabe)</p>
+>>>>>>> 6d7746071586f98f7206ea2713a9acaf287ed88b
+>>>>>>> Stashed changes
 			<li>Wie soll sich das System in bestimmten Situationen verhalten?</li>
 			<p>Wenn der Spieler ein Black Jack gewinnt, kommt eine Meldung mit "Winner Winner Chicken Dinner".
 			Wenn der Spieler verliert, bzw. der Dealer gewinnt, kommt eine Meldung mit "Spielzug verloren, Einsatz ist verzockt".
@@ -80,13 +102,14 @@
 			und der Spieler bekommt die Möglichkeit sein Konto virituell wieder aufzuladen.
 			</p>
 			<li>Welche Daten sind dauerhaft zu speichern?</li>
-			<p>Spieleraccounts: Benutzername, Passwort, Kontostand, Highscore</p>
+			<p>Spieleraccounts: Spielername, Kontostand, Highscore</p>
+			<p>Der Kontostand und Highscore wird unter dem Spielername auf dem Computer des Spielerstellers (Host) hinterlegt. Wollen die beiden Spieler das Spiel fortsetzen, können sie mit den zuletzt gespeicherten Daten weiterspielen.  </p>
 		</ul>
 		<p>TODO: Darüber hinaus sollen nicht-funktionale Anforderungen spezifiziert werden:</p>
 		<ul>
 			<li>Wie soll die Bedieneroberfläche aussehen?</li>
 			<p>Nach dem Programmstart öffnet sich ein Loginfenster, bei dem sich der Spieler anmelden kann. Der Spieler gelangt nach einem erfolgreichen Login in</p>
-			<p>das Hauptmenü. Hier kann der Benutzer zwischen "Single-" und "Multiplayer" entscheiden.  </p>
+			<p>das Hauptmenü. Hier kann der Spieler ein Spiel eröffnen oder einem Spiel beitreten.    </p>
 			<p>Im Spielmodus wird der aktuelle Kontostand des Spielers, sowie die Summe der Kartenwerte der eigenen Hand angezeigt.</p>	
 			<p>Die Karten der Spieler befinden sich im unteren Sichtfeld und die Karten des Dealers sind im oberen Sichtfeld dargestellt.</p>
 			<p>Bedienelemente: <p>
@@ -103,6 +126,7 @@
 			<li>Mit welchen Entwicklungswerkzeugen wird gearbeitet?</li>
 			<p>Eclipse IDE (Java)</p>
 		</ul>
+<<<<<<< Updated upstream
 		
 <h2>3. Architektur</h2>
 <p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
@@ -118,35 +142,48 @@
 			class Karten {
 				int anz_ausgespielt
 				int nummer
-				int wert
+				-int wert
 				String name
 				static void austeilen()
 			}
-			class Multiplayer {
-				
-			}
-			class Singleplayer {
-				
-			}
+			
 			class Spiel {
+				public static void main()
+			}
+			class Layout {
 				
+			}
+			class MyController {
+				+void startGUI()
+				+void actionPerformed()
 			}
 			class Spieler {
-				String name
-				String passwort
+				-String name
 				long kontostand
 				long highscore
 				int kartenwert
-				static Spieler_registrieren()
+				static void registrieren ()
 				void hit ()
 				void stay()
 				
 			}
 			class DataExchange {
 				void startServer()
-				void serverRun()
+				void ServerRun()
+			
 
 			}
+			Spiel <|--|> Spieler
+			Spiel <|--|> Dealer
+			Spiel <|--|> DataExchange
+			Karten <|--|> Dealer
+			Karten <|--|> Spieler
+			MyController <|--|> Spieler
+			MyController --|> Layout 
+			DataExchange <|--|> Spieler
+			DataExchange <|--|> Dealer
+			DataExchange <|--|> Karten
+			
 			
 		</div>
 
@@ -155,20 +192,59 @@
 		
 		<h2>4. Aufwandsschätzung und Aufteilung</h2>
 		<p>TODO: Schätzen Sie den Aufwand der verschiedenen Teile Ihres Programms ab und legen Sie fest, wie die Aufteilung auf die Gruppenmitglieder aussehen soll.</p>
+		
 		<p>Aufteilung der Arbeitsbereiche:</p>
 <ul>
 		<li>Background-Programmer: Dominik Riegger, Julian Hermle</li>
+		<p>Einschätzung des Aufwandes: 35%  </p>
 		<p>Befassen sich mit den internen Programmabläufen (Umsetzung der Spielregeln, Ablauf der Spielzüge, dauerhafte Speicherung der Daten, Innitialisierung bei Programmstart, etc.)</p>
 		 
 
 		<li>GUI-Programmer: Mario Kraupa, Jannik Wäschle</li>
+		<p>Einschätzung des Aufwandes: 40% </p>
 		<p>Befassen sich mit der Grafischen Oberfläche (Buttons, Spielkarten, Animationen, Eingabeelemente, etc.).</p>
 		
 		<li>Server Manager: Paul Kammerer</li>
+		<p>Einschätzung des Aufwandes: 25% </p>
 		<p>Befasst sich um die Serialisierung sowie das Abspeichern und Abrufen der Daten auf einem Server. Zudem wird er die Adaption zwischen den beiden Programmierbereichen vornehmen.</p>
 		</ul>
 		<p>Wir behalten uns vor Änderungen vorzunehmen.</p>
 		
+=======
+		<h2>3. Architektur</h2>
+		<p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
+		<p>Das Klassendiagramm kann mit Hilfe von Pseudo Code (siehe HTML Quelltext) erstellt werden <a href="https://mermaid-js.github.io/mermaid/#/classDiagram">(Hilfe)</a>.
+
+		<div class="diagram">
+			classDiagram
+			class Blackjack {
+				
+			}
+			class Spieler {
+				String nickname
+				String passwort
+				long kontostand
+				long highscore
+				
+			}
+			class Deck {
+				int wert
+				int [][][]index
+				mischen()
+				
+			}
+			class GUI {
+				
+				
+			}
+			Blackjack <|-- Spieler
+			Blackjack <|-- Karten
+			Blackjack <|-- GUI
+			
+		</div>
+		<h2>4. Aufwandsschätzung und Aufteilung</h2>
+		<p>TODO: Schätzen Sie den Aufwand der verschiedenen Teile Ihres Programms ab und legen Sie fest, wie die Aufteilung auf die Gruppenmitglieder aussehen soll.</p>
+>>>>>>> Stashed changes
 		<h2>Optional: Verweis auf andere HTML Dateien</h2>
 		<p><a href="otherfile.html">Eine weitere HTML-Datei</a></p>
 	</main>

@@ -1,3 +1,6 @@
 GitRepositoriesView.GitDirectories=C\:\\Users\\Jannik\\Documents\\GitHub\\DV-Projekt\\.git;
 GitRepositoriesView.GitDirectories.relative=C\:\\Users\\Jannik\\Documents\\GitHub\\DV-Projekt\\.git;
+RepositorySearchDialogDeepSearch=false
+RepositorySearchDialogSearchPath=C\:\\Users\\Jannik\\Documents\\GitHub\\DV-Projekt
+RepositorySearchDialogSkipHidden=true
 eclipse.preferences.version=1
