@@ -282,6 +282,7 @@ public class Onlinegame implements Runnable {
 	private void initializeServer() {
 		try {
 			serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ip));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
