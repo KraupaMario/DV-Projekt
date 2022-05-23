@@ -1,6 +1,7 @@
 
 import java.awt.Graphics; 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,7 +11,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class Hintergrundbild_1_Seite extends JFrame {
+public class Hintergrundbild_1_Seite extends JFrame  {
 	
 	public void paint (Graphics g) {
 		super.paint(g);
@@ -29,7 +30,7 @@ public class Hintergrundbild_1_Seite extends JFrame {
 		Hintergrundbild_1_Seite hintergrund = new Hintergrundbild_1_Seite(); 
 		hintergrund.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		hintergrund.setSize(1500,1300);
-		hintergrund.setVisible(true);
+		
 		hintergrund.setLocationRelativeTo(null);
 		hintergrund.setResizable(true);
 		hintergrund.setTitle("Hintergrund_1");
@@ -69,6 +70,10 @@ public class Hintergrundbild_1_Seite extends JFrame {
 		button3.addActionListener(new Benutzername_Passwort());
 		hintergrund.add(button3);
 		
+	
+			
+		
+		
 		JLabel success = new JLabel("");
 		success.setBounds(150,300,165,25);
 		hintergrund.add(success);
@@ -76,13 +81,17 @@ public class Hintergrundbild_1_Seite extends JFrame {
 		
 		frame.setVisible(true);
 		
+		hintergrund.setVisible(true);
+		
 		
 
 	}
 	
 	
+	}
+	
+	
 		
 
-	}
-
+	
 
