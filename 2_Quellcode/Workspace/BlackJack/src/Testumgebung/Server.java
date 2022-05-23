@@ -56,7 +56,7 @@ public class Server {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Server serv = new Server(8080);
+		Server serv = new Server(80);
 	}
 
 }

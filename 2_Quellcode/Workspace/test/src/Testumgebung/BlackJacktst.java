@@ -349,7 +349,6 @@ public class BlackJacktst implements Runnable {
 							e1.printStackTrace();
 						}
 
-						System.out.println("DATA WAS SENT");
 						checkForWin();
 						checkForTie();
 

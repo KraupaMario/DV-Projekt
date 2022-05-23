@@ -18,8 +18,10 @@ public class Spiel implements Runnable {
 	private String ip = "localhost";
 	private int port = 22222;
 	private Scanner scanner = new Scanner(System.in);
-	
+
 	private Thread thread;
+	
+	private boolean close = false; //Schließt wenn true
 
 
 	private Socket socket;
@@ -30,16 +32,15 @@ public class Spiel implements Runnable {
 
 
 
-	private String[] spaces = new String[9];
 
 	private boolean yourTurn = false; //bin ich an der Reihe?
-	private boolean client = true;	// Bin ich der Client?
+	//private boolean client = true;	// Bin ich der Client?
 	private boolean host = false; // Bin ich der Host?
 	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
 	private boolean unableToCommunicateWithOpponent = false; // Verbindung abgebrochen?
 	private boolean won = false; //ich habe den Spielzug gewonnen
 	private boolean dealerWon = false; // der Dealer hat gewonnen
-	
+
 
 
 	private int errors = 0;
@@ -64,24 +65,37 @@ public class Spiel implements Runnable {
 
 		if (!verbunden())
 			initialisiereServer();
-		
+
+		System.out.println("ok1");
+
 		thread = new Thread(this, "BlackJack");
+
+		System.out.println("ok2");
 		thread.start();
+
+		System.out.println("ok3");
 	}
-	
+
 	public void run() {
 		while (true) {
-			
+
 			//Programmcode welcher im "Thread" ausgeführt wird.
+
+			if (host && !accepted) {
+				wartenAufClient();
+				
+			}
+
 			aktion();
-			if (!host && !accepted) {
-				wartenAufServer();
+			
+			if (close) {
+				break;
 			}
 
 		}
 	}
 
-	private void wartenAufServer() {
+	private void wartenAufClient() {
 		Socket socket = null;
 		try {
 			socket = serverSocket.accept();
@@ -117,25 +131,25 @@ public class Spiel implements Runnable {
 		}
 		yourTurn = true;
 		host = true;
-		client = false;
+		//client = false;
 	}
-	
+
 	private void aktion()  {
-		String nachricht = "leer";
-		if (host && yourTurn) {
-			
-			/*
+		int nachricht = 9;
+
+
+		if (host && !yourTurn) {
 			try {
-				String nachricht = dis.readUTF();
+				nachricht = dis.readInt();
+				System.out.println(nachricht);
+				yourTurn = true;
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			System.out.println("nachricht");
-			}
-			*/
-			
-			
+		}
+		if (host && yourTurn) {
+
 			System.out.println("Ich bin der Host und bin an der Reihe. Gib eine Nachricht ein.");
 			int txt1 = Integer.parseInt(JOptionPane.showInputDialog("Nachricht (Ich bin der Host)"));
 			try {
@@ -145,17 +159,20 @@ public class Spiel implements Runnable {
 				e.printStackTrace();
 			}
 			yourTurn = false;
+			System.out.println("Host nicht mehr an der Reihe");
 
-		} else if (!host && yourTurn) {
-			
+		} 
+		if (!host && !yourTurn) {
 			try {
-				nachricht = dis.readUTF();
+				nachricht = dis.readInt();
+				System.out.println(nachricht);
+				yourTurn = true;
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			System.out.println(nachricht);
-			
+		}
+		if (!host && yourTurn) {
 			System.out.println("Ich bin der Client und bin an der Reihe. Gib eine Nachricht ein.");
 			int txt2 = Integer.parseInt(JOptionPane.showInputDialog("Nachricht (Ich bin der Client)"));
 			try {
@@ -166,8 +183,17 @@ public class Spiel implements Runnable {
 			}
 			yourTurn = false;
 		}
-
 		
+		if (host && nachricht == 999) {
+			try {
+				serverSocket.close();
+				close = true;
+				System.out.println("Close = true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public static void main(String[] args) {
