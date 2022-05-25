@@ -9,9 +9,11 @@ public class Spieler {
 	
 	int kartenwert;
 	
-	Spieler(){
+	public Spieler(String n, long kontostand, String passwort) {
 		
 	}
+		
+	
 	
 	static void registrieren() {
 		String n = JOptionPane.showInputDialog("Nickname:");

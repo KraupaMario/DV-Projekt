@@ -12,9 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-
-public class Spiel {
-
+public class Server implements Runnable{
 	private String ip = "localhost";
 	private int port = 22222;
 	private Scanner scanner = new Scanner(System.in);
@@ -40,8 +38,6 @@ public class Spiel {
 	private boolean won = false; //ich habe den Spielzug gewonnen
 	private boolean dealerWon = false; // der Dealer hat gewonnen
 	
-
-
 	private int errors = 0;
 
 
@@ -53,50 +49,77 @@ public class Spiel {
 	private String tieString = "Unentschieden!";
 
 	
-		
-		class Spiel{
-		    ArrayList<Karte> kartenDeck = new ArrayList<Karte>();
-		   
-		    	    
-		    
-		    public void createDeck(){
-		        String[] farben ={"Kreuz","Pik","Herz","Karo"};
-		        String[] werte ={"Ass","Koenig","Dame","Bube","10","9","8","7","6","5","4","3","2"};
-		        for(int y = 0; y < 6; y++){
-		            for(int i=0;i<farben.length;i++) {
-		                for(int j=0;j<werte.length;j++) {
-		                    kartenDeck.add(new Karte(werte[j],farben[i]));
-		                }
-		            }
-		        }
-		        
-		    }
-		    
-		    
-		    public Karte getKarte(){
-		        int random = (int)Math.random()*52*6;
-		        Karte test = kartenDeck.get(random);
-		        kartenDeck.remove(random);
-		        return test;
-		    }
-		    
-		    public void eigentlichesSpiel(){
-		        //...
-		        Karte test = getKarte();
-		        test.getXCord(); // bekommt wert
-		        // ...
-		    }
-		}
 	
-		
-		public void Geldsetzen(int mo) {
-			System.out.println("Wie viel Geld wollen sie setzen? "); // Port festlegen 8080?
-			mo = Integer.parseInt(JOptionPane.showInputDialog("mo?"));
-			while (mo < 1 || mo > 500001) {
-				System.out.println("Sie können nur bis zu 500000 Euro aufeinmal setzen! Probieren Sie es nochmal");
-				mo = Integer.parseInt(JOptionPane.showInputDialog("mo?")); // überprufen ob er genug auf dem Konto hat??
-			}
+
+
+
+	public Server() {
+		System.out.println("Bitte gib deine IP an: "); 
+		ip = JOptionPane.showInputDialog("IP Adresse");
+		System.out.println("Bitte gib einen Port an: "); // Port festlegen 8080?
+		port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
+		while (port < 1 || port > 65535) {
+			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
+			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
 		}
+
+		if (!verbunden())
+			initialisiereServer();
+		
+		thread = new Thread(this, "BlackJack");
+		thread.start();
+	}
+	
+	public void run() {
+		while (true) {
+			
+			//Programmcode welcher im "Thread" ausgeführt wird.
+			aktion();
+			if (!host && !accepted) {
+				wartenAufServer();
+			}
+
+		}
+	}
+
+	private void wartenAufServer() {
+		Socket socket = null;
+		try {
+			socket = serverSocket.accept();
+			dos = new DataOutputStream(socket.getOutputStream());
+			dis = new DataInputStream(socket.getInputStream());
+			accepted = true;
+			System.out.println("CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private boolean verbunden() {
+		try {
+			socket = new Socket(ip, port);
+			dos = new DataOutputStream(socket.getOutputStream());
+			dis = new DataInputStream(socket.getInputStream());
+			accepted = true;
+		} catch (IOException e) {
+			System.out.println("Meine IP Adresse und Port: " + ip + " : " + port + " | Eröffne einen Server.");
+			return false;
+		}
+		System.out.println("Erfolgreich mit dem Server verbunden.");
+		return true;
+	}
+
+	private void initialisiereServer() {
+		try {
+			serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ip));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		yourTurn = true;
+		host = true;
+		client = false;
+	}
 	
 	private void aktion()  {
 		String nachricht = "leer";
@@ -147,11 +170,15 @@ public class Spiel {
 
 		
 	}
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Spiel neu = new Spiel();
+		Server neu = new Server();
 
 	}
 
 }
+
+
+	
+
+
