@@ -1,8 +1,10 @@
 import java.awt.Font;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -26,6 +28,8 @@ public class Singleplayer implements Runnable {
 
 	private Socket socket;
 	private DataOutputStream dos;
+	private ObjectOutputStream oos;
+	private ByteArrayOutputStream baos;
 	private DataInputStream dis;
 
 	private ServerSocket serverSocket;
@@ -138,12 +142,12 @@ public class Singleplayer implements Runnable {
 	}
 
 	private void aktion()  {
-		int nachricht = 9;
+		String nachricht = "9";
 
 
 		if (host && !yourTurn) {
 			try {
-				nachricht = dis.readInt();
+				nachricht = dis.readUTF();
 				System.out.println(nachricht);
 				yourTurn = true;
 			} catch (IOException e1) {
@@ -154,9 +158,9 @@ public class Singleplayer implements Runnable {
 		if (host && yourTurn) {
 
 			System.out.println("Ich bin der Host und bin an der Reihe. Gib eine Nachricht ein.");
-			int txt1 = Integer.parseInt(JOptionPane.showInputDialog("Nachricht (Ich bin der Host)"));
+			String txt1 = (JOptionPane.showInputDialog("Nachricht (Ich bin der Host)"));
 			try {
-				dos.writeInt(txt1);
+				dos.writeUTF(txt1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -167,7 +171,7 @@ public class Singleplayer implements Runnable {
 		} 
 		if (!host && !yourTurn) {
 			try {
-				nachricht = dis.readInt();
+				nachricht = dis.readUTF();
 				System.out.println(nachricht);
 				yourTurn = true;
 			} catch (IOException e1) {
@@ -177,9 +181,9 @@ public class Singleplayer implements Runnable {
 		}
 		if (!host && yourTurn) {
 			System.out.println("Ich bin der Client und bin an der Reihe. Gib eine Nachricht ein.");
-			int txt2 = Integer.parseInt(JOptionPane.showInputDialog("Nachricht (Ich bin der Client)"));
+			String txt2 = (JOptionPane.showInputDialog("Nachricht (Ich bin der Client)"));
 			try {
-				dos.writeInt(txt2);
+				dos.writeUTF(txt2);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -187,7 +191,7 @@ public class Singleplayer implements Runnable {
 			yourTurn = false;
 		}
 		
-		if (host && nachricht == 999) {
+		/*if (host && nachricht == 999) {
 			try {
 				serverSocket.close();
 				close = true;
@@ -196,7 +200,7 @@ public class Singleplayer implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 	public static void main(String[] args) {

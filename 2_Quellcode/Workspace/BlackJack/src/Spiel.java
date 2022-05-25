@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -54,48 +55,42 @@ public class Spiel {
 
 	
 		
-		class Spiel{
-		    ArrayList<Karte> kartenDeck = new ArrayList<Karte>();
+	//	class Spiel{
+		    ArrayList<Karten> kartenDeck = new ArrayList<Karten>();
 		   
 		    	    
 		    
 		    public void createDeck(){
 		        String[] farben ={"Kreuz","Pik","Herz","Karo"};
-		        String[] werte ={"Ass","Koenig","Dame","Bube","10","9","8","7","6","5","4","3","2"};
-		        for(int y = 0; y < 6; y++){
+		        String[] name ={"Ass","Koenig","Dame","Bube","10","9","8","7","6","5","4","3","2"};
+		        int[] wert = {11,10,10,10,10,9,8,7,6,5,4,3,2};
+		        for(int y = 0; y < 6; y++) {
 		            for(int i=0;i<farben.length;i++) {
-		                for(int j=0;j<werte.length;j++) {
-		                    kartenDeck.add(new Karte(werte[j],farben[i]));
+		                for(int j=0;j<name.length;j++) {
+		                    kartenDeck.add(new Karten(wert[j], name[j],farben[i]));
 		                }
 		            }
 		        }
 		        
 		    }
+		    //public Karten( int w, String f, String n)
 		    
-		    
-		    public Karte getKarte(){
-		        int random = (int)Math.random()*52*6;
-		        Karte test = kartenDeck.get(random);
+		    public Karten getKarte(){
+		        //int random = (int)Math.random()*52*6;
+		    	int random = (int)Math.random()*kartenDeck.size(); //Passt sich den verbleibenden Anzahl an Karten an.
+		        Karten gezogeneKarte = kartenDeck.get(random);
 		        kartenDeck.remove(random);
-		        return test;
+		        return gezogeneKarte; //gibt die Gezogene Karte Weiter (Objekt)
 		    }
 		    
 		    public void eigentlichesSpiel(){
 		        //...
-		        Karte test = getKarte();
+		        Karten test = getKarte();
 		        test.getXCord(); // bekommt wert
 		        // ...
 		    }
-		}
-	
 		
-		public void Geldsetzen(int mo) {
-			System.out.println("Wie viel Geld wollen sie setzen? "); // Port festlegen 8080?
-			mo = Integer.parseInt(JOptionPane.showInputDialog("mo?"));
-			while (mo < 1 || mo > 500001) {
-				System.out.println("Sie können nur bis zu 500000 Euro aufeinmal setzen! Probieren Sie es nochmal");
-				mo = Integer.parseInt(JOptionPane.showInputDialog("mo?")); // überprufen ob er genug auf dem Konto hat??
-			}
+		
 		}
 	
 	private void aktion()  {
