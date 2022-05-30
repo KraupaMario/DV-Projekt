@@ -1,29 +1,28 @@
+import java.util.ArrayList;
 
 public class WieWirDieBilderAussuchen extends Spiel {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Cards herz2 = new Cards("2", "Herz");
+		ArrayList<Cards> kartenDeck = new ArrayList<Cards>();
+		kartenDeck.add(new Cards("2", "Herz"));
+		kartenDeck.add(new Cards("Q", "Herz"));
 		
-		String abf = herz2.farbe + herz2.name;
 		
-		System.out.println(abf);
+		String abfr = kartenDeck.get(1).farbe + kartenDeck.get(1).name;
 		
-		switch(abf){
-        case "herz2":
-            System.out.println("Herz 2"); //Hier Bitmap aufrufen
+		
+		//System.out.println(abfr);
+		
+		switch(abfr){
+        case "Herz2":
+            System.out.println("Ausgabe: Herz 2"); //Hier Bitmap aufrufen
             break;
-        case "herz3":
-            System.out.println("Herz 3");
-            break;
-        case 2:
-            System.out.println("i ist zwei");
-            break;
-        case 3:
-            System.out.println("i ist drei");
+        case "HerzQ":
+            System.out.println("Ausgabe: Herz Dame");
             break;
         default:
-            System.out.println("i liegt nicht zwischen null und drei");
+            System.out.println("Fehler");
             break;
         } 
 

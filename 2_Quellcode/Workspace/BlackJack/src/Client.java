@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-public class Server implements Runnable{
+public class Client implements Runnable{
 	private String ip = "localhost";
 	private int port = 22222;
 	private Scanner scanner = new Scanner(System.in);
@@ -54,7 +54,12 @@ public class Server implements Runnable{
 	
 
 
-	public Server() {
+	
+	
+
+
+
+	public Client() {
 		System.out.println("Bitte gib deine IP an: "); 
 		ip = JOptionPane.showInputDialog("IP Adresse");
 		System.out.println("Bitte gib einen Port an: "); // Port festlegen 8080?
@@ -124,136 +129,110 @@ public class Server implements Runnable{
 	
 	private void aktion()  {
 		//Spiel erstellen
-		Spiel server = new Spiel();
-		server.createDeck();
+		Spiel client = new Spiel();
+		
 		//Spieler erstellen
-		Spieler playerS = new Spieler("playerS", "1234");
-		//Geld setzen:
-		gesetztS = playerS.geldsetzen();
-		server.gesetztSpieler1 = gesetztS;
-		//gesetzter Betrag übermitteln.
+		Spieler playerC = new Spieler("playerC", "1234");
+		
+		//Gesetzter Betrag vom Server empfangen:
 		try {
-			dos.writeInt(gesetztS);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		//Gesetzter Betrag vom Client empfangen:
-		try {
-			gesetztC = dis.readInt();
+			gesetztS = dis.readInt();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//Karte für Spieler 1 ziehen:
-		server.DeckSpieler1.add(server.getKarte());
-		//Karte für Spieler 2 ziehen:
-		server.DeckSpieler2.add(server.getKarte());
-		//Karten für Dealer ziehen:
-		server.DeckDealer.add(server.getKarte());
-		//2. Karte:
-		server.DeckSpieler1.add(server.getKarte());
-		server.DeckSpieler2.add(server.getKarte());
-		server.DeckDealer.add(server.getKarte());
-		
-		//Gezogene Karten an Client übermitteln:
-		String card = server.DeckSpieler1.get(0).getFarbe()+server.DeckSpieler1.get(0).getName() ;
+				
+		//Geld setzen:
+		gesetztC = playerC.geldsetzen();
+		//gesetzter Betrag übermitteln.
 		try {
-			dos.writeUTF(card);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		card = server.DeckSpieler1.get(1).getFarbe()+server.DeckSpieler1.get(1).getName() ;
-		try {
-			dos.writeUTF(card);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//--
-		card = server.DeckSpieler2.get(0).getFarbe()+server.DeckSpieler2.get(0).getName() ;
-		try {
-			dos.writeUTF(card);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		card = server.DeckSpieler2.get(1).getFarbe()+server.DeckSpieler2.get(1).getName() ;
-		try {
-			dos.writeUTF(card);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//--
-		card = server.DeckDealer.get(0).getFarbe()+server.DeckDealer.get(0).getName() ;
-		try {
-			dos.writeUTF(card);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		card = server.DeckDealer.get(1).getFarbe()+server.DeckDealer.get(1).getName() ;
-		try {
-			dos.writeUTF(card);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		///---
-		
-		server.wertSpieler1 = server.wertSpieler1();
-		server.wertSpieler2 = server.wertSpieler2();
-		try {
-			dos.writeInt(server.wertSpieler2);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		server.wertDealer = server.wertDealer();
-		
-		server.checkSpieler1(server.wertSpieler1);
-		server.checkSpieler2(server.wertSpieler2);
-		server.checkDealer(server.wertDealer);
-
-		if (server.winSpieler1)
-			System.out.println("Spieler 1 hat gewonnen");	//Grafische Ausgabe
-		playerS.addMoney(gesetztS*2);
-		if (server.loseSpieler1)
-			System.out.println("Spieler 1 hat verloren");	//Grafische Ausgabe
-		if (server.winDealer)
-			System.out.println("Spieler 1 hat verloren");	//Grafische Ausgabe
-		gesetztS = 0;
-		server.gesetztSpieler1 = 0;
-		
-		//Ergebnisse vom Check des Client an Client schicken:
-		try {
-			dos.writeBoolean(server.winSpieler2);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			dos.writeBoolean(server.loseSpieler2);
+			dos.writeInt(gesetztC);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		//ausgeteilte Karten Spieler 1:
+		try {
+			System.out.println(dis.readUTF());
+			//Switch Case
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println(dis.readUTF());
+			//Switch Case
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//ausgeteilte Karten Spieler 2:
+		try {
+			System.out.println(dis.readUTF());
+			//Switch Case
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println(dis.readUTF());
+			//Switch Case
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//ausgeteilte Karten Dealer:
+		try {
+			System.out.println(dis.readUTF());
+			//Switch Case
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println(dis.readUTF());
+			//Switch Case
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-
+		//Wert der Hand von Spieler 2 (kommt vom Server als int)
+		try {
+			System.out.println(dis.readInt());
+			//zum Darstellen im GUI
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Ergebnisse des Checks:
+				try {
+					System.out.println(dis.readBoolean());
+					//win?
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					System.out.println(dis.readBoolean());
+					//lose?
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		
 		
 		
-
+		
+		
 		
 		
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Server neu = new Server();
+		Client neu = new Client();
 
 	}
 
