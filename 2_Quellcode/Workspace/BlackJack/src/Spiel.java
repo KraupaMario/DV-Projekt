@@ -52,11 +52,32 @@ public class Spiel {
 	private String wonString = "Du hast gewonnen!";
 	private String enemyWonString = "Dealer gewinnt!";
 	private String tieString = "Unentschieden!";
+	
+	int gesetztSpieler1;
+	int gesetztSpieler2;
 
+	int wertSpieler1;
+	int wertSpieler2;
+	int wertDealer;
+	
+	boolean winSpieler1 = false;
+	boolean winSpieler2 = false;
+	boolean winDealer = false;
+	
+	boolean loseSpieler1 = false;
+	boolean loseSpieler2 = false;
+	boolean loseDealer = false;
 	
 		
-	//	class Spiel{
+	//	class Spiel Variablen
 		    ArrayList<Karten> kartenDeck = new ArrayList<Karten>();
+		    ArrayList<Karten> DeckSpieler1 = new ArrayList<Karten>();
+		    ArrayList<Karten> DeckSpieler2 = new ArrayList<Karten>();
+		    ArrayList<Karten> DeckDealer = new ArrayList<Karten>();
+			
+		    
+
+	
 		   
 		    	    
 		    
@@ -77,71 +98,34 @@ public class Spiel {
 		    
 		    public Karten getKarte(){
 		        //int random = (int)Math.random()*52*6;
-		    	int random = (int)Math.random()*kartenDeck.size(); //Passt sich den verbleibenden Anzahl an Karten an.
+		    	int random = (int)Math.random()*(kartenDeck.size()-1); //Passt sich den verbleibenden Anzahl an Karten an. ?????????????????????? -1 oder nicht?????????
 		        Karten gezogeneKarte = kartenDeck.get(random);
 		        kartenDeck.remove(random);
-		        return gezogeneKarte; //gibt die Gezogene Karte Weiter (Objekt)
+		        return gezogeneKarte; //gibt die Gezogene Karte Weiter (als Objekt)
 		    }
 		    
-		    public void eigentlichesSpiel(){
-		        //...
-		        Karten test = getKarte();
-		        test.getXCord(); // bekommt wert
-		        // ...
+		    public int wertSpieler1(){
+				int w=0;
+		    	return w;
+		        //...Rechnet Wert aus Array List zusammen
+		        
 		    }
+		    
+		    // Checkt ob Blackjack oder Überkauft
+		    public void checkSpieler1(){
+		    	if (wertSpieler1 == 21) 
+		    		winSpieler1 = true;
+		    	if (wertSpieler1 > 21)
+		    		loseSpieler1 = true;
+		    }
+		    
+		    
+		 
 		
 		
-		}
+		
 	
-	private void aktion()  {
-		String nachricht = "leer";
-		if (host && yourTurn) {
-			
-			/*
-			try {
-				String nachricht = dis.readUTF();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			System.out.println("nachricht");
-			}
-			*/
-			
-			
-			System.out.println("Ich bin der Host und bin an der Reihe. Gib eine Nachricht ein.");
-			int txt1 = Integer.parseInt(JOptionPane.showInputDialog("Nachricht (Ich bin der Host)"));
-			try {
-				dos.writeInt(txt1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			yourTurn = false;
-
-		} else if (!host && yourTurn) {
-			
-			try {
-				nachricht = dis.readUTF();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			System.out.println(nachricht);
-			
-			System.out.println("Ich bin der Client und bin an der Reihe. Gib eine Nachricht ein.");
-			int txt2 = Integer.parseInt(JOptionPane.showInputDialog("Nachricht (Ich bin der Client)"));
-			try {
-				dos.writeInt(txt2);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			yourTurn = false;
-		}
-
-		
-	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
