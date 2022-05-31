@@ -71,19 +71,15 @@ public class Spiel {
 		
 	//	class Spiel Variablen
 		    ArrayList<Karten> kartenDeck = new ArrayList<Karten>();
-		    ArrayList<Karten> DeckSpieler1 = new ArrayList<Karten>();
-		    ArrayList<Karten> DeckSpieler2 = new ArrayList<Karten>();
-		    ArrayList<Karten> DeckDealer = new ArrayList<Karten>();
-			
 		    
-
+		    
+		    
+		  
 	
-		   
-		    	    
 		    
 		    public void createDeck(){
 		        String[] farben ={"Kreuz","Pik","Herz","Karo"};
-		        String[] name ={"Ass","Koenig","Dame","Bube","10","9","8","7","6","5","4","3","2"};
+		        String[] name ={"A","K","D","B","10","9","8","7","6","5","4","3","2"};
 		        int[] wert = {11,10,10,10,10,9,8,7,6,5,4,3,2};
 		        for(int y = 0; y < 6; y++) {
 		            for(int i=0;i<farben.length;i++) {
@@ -94,6 +90,9 @@ public class Spiel {
 		        }
 		        
 		    }
+		    
+		    int wertgez;
+		    
 		    //public Karten( int w, String f, String n)
 		    
 		    public Karten getKarte(){
@@ -101,18 +100,59 @@ public class Spiel {
 		    	int random = (int)Math.random()*(kartenDeck.size()-1); //Passt sich den verbleibenden Anzahl an Karten an. ?????????????????????? -1 oder nicht?????????
 		        Karten gezogeneKarte = kartenDeck.get(random);
 		        kartenDeck.remove(random);
+		        wertgez = gezogeneKarte.getWert();
 		        return gezogeneKarte; //gibt die Gezogene Karte Weiter (als Objekt)
 		    }
 		    
-		    public int wertSpieler1(){
-				int w=0;
-		    	return w;
-		        //...Rechnet Wert aus Array List zusammen
-		        
+		    
+		    ArrayList<Karten> DeckSpieler1 = new ArrayList<Karten>();
+		      
+		    ArrayList<Karten> DeckSpieler2 = new ArrayList<Karten>();
+		    ArrayList<Karten> DeckDealer = new ArrayList<Karten>();
+			
+		    public void abspeichernKarteSp1 () { //gezogene Karte wird über getKarte als Rückgabewert in KartenArraylist von jedem spieler
+		    	DeckSpieler1.add(getKarte());
+		    	
+		    }
+		    public void abspeichernKarteSp2 () {
+		    	DeckSpieler2.add(getKarte());
+		    	
+		    }
+		    
+		    public void abspeichernKarteDealer () {
+		    	DeckDealer.add(getKarte());
+		    	
+		    }
+		    int wert = 0;
+		    public int wertSpieler1() {				//aktueller Karten wert für jeden Spieler
+		    	for (int i = 0; i<DeckSpieler1.size();i++) {
+		    		int j = DeckSpieler1.get(i).getWert();
+		    		wert = wert + j;
+		
+		    	}
+		    	return wert;
+		    }
+	
+		    public int wertSpieler2() {
+		    	for (int i = 0; i<DeckSpieler2.size();i++) {
+		    		int j = DeckSpieler2.get(i).getWert();
+		    		wert = wert + j;
+		
+		    	}
+		    	return wert;
+		    }
+	
+		    public int wertDealer() {
+		    	for (int i = 0; i<DeckDealer.size();i++) {
+		    		int j = DeckDealer.get(i).getWert();
+		    		wert = wert + j;
+		
+		    	}
+		    	return wert;
 		    }
 		    
 		    // Checkt ob Blackjack oder Überkauft
-		    public void checkSpieler1(){
+		    public void checkBJSpieler1(){
 		    	if (wertSpieler1 == 21) 
 		    		winSpieler1 = true;
 		    	if (wertSpieler1 > 21)
@@ -120,11 +160,20 @@ public class Spiel {
 		    }
 		    
 		    
-		 
+		    public void checkBJSpieler2(){
+		    	if (wertSpieler2 == 21) 
+		    		winSpieler2 = true;
+		    	if (wertSpieler1 > 21)
+		    		loseSpieler2 = true;
+		    }
+			
 		
-		
-		
-	
+		    public void checkBJDealer(){
+		    	if (wertDealer == 21) 
+		    		winDealer = true;
+		    	if (wertDealer > 21)
+		    		loseDealer = true;
+		    }
 	
 
 	public static void main(String[] args) {
