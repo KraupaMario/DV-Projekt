@@ -8,6 +8,7 @@ public class Spieler {
 	private long highscore;
 
 	int kartenwert;
+	int Gewinnstatus;
 
 	public Spieler(String n, String passwort) {
 		//..
@@ -28,22 +29,24 @@ public class Spieler {
 		System.out.println("Wie viel Geld wollen sie setzen? "); // Port festlegen 8080?
 		int mony = Integer.parseInt(JOptionPane.showInputDialog("Wie viel Geld wollen sie setzen?"));
 		while ((mony < 1 || mony > 500001)&& mony<= kontostand) {
-			System.out.println("Sie können nur bis zu 500000 Euro auf einmal setzen! Probieren Sie es nochmal");
-			mony = Integer.parseInt(JOptionPane.showInputDialog("mo?")); // überprufen ob er genug auf dem Konto hat??
+			System.out.println("Sie kï¿½nnen nur bis zu 500000 Euro auf einmal setzen! Probieren Sie es nochmal");
+			mony = Integer.parseInt(JOptionPane.showInputDialog("mo?")); // ï¿½berprufen ob er genug auf dem Konto hat??
 		}
 		this.rmveMoney(mony);
 		return mony;
 	}
 	
-	void addMoney(int m) {
-		//Geld zum Konto hinzufügen
-		
-	}
-	
-	void rmveMoney(int m) {
-		kontostand = kontostand - m;
-	}
+	void changeKontostand(mony) {
+		//Geld zum Konto hinzufÃ¼gen oder abziehen
+			if (Gewinnstatus == 1) {
+				// wie kann man denn den "Gewinnstatus aus der Klasse Spiel herausziehen?"
+				kontostand = kontostand + mony*2.5;
+			}
+			else if (Gewinnstatus == 0) {
+				kontostand = kontostand - mony;
+			}
 
+		}
 
 
 	void hit() {
