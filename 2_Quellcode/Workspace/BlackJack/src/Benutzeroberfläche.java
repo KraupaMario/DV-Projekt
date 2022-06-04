@@ -23,10 +23,14 @@ public class Benutzeroberfläche extends JFrame  {
 	//Variablen
 
 	Client spiel;
-	
+
 	static JFrame frame = new JFrame();
 	static JPanel panel = new JPanel();
-	
+
+
+
+
+
 	//Label
 	static JLabel labelBenutzername = new JLabel ("Benutzername:");
 	static JLabel labelPasswort = new JLabel("Passwort:");
@@ -34,23 +38,36 @@ public class Benutzeroberfläche extends JFrame  {
 	static JLabel labelBenutzernameErstellen = new JLabel ("Benutzername:");
 	static JLabel labelPasswort1 = new JLabel("Passwort:");
 	static JLabel labelPasswort2 = new JLabel("Passwort:");
-	
-	
-	
+	static JLabel labelipadresse = new JLabel ("IP-Adresse:");
+	static JLabel labelport = new JLabel("Port:");
+
+
+
+
+
 	//Buttons
-	
+
+	static JButton buttonStartSpiel = new JButton ("Spiel starten"); 
+	static JButton buttonAbbrechenSpiel = new JButton ("Abbrechen"); 
 	static JButton buttonLogin = new JButton("Login");
 	static JButton buttonRegistrieren = new JButton("Registrieren");
 	static JButton buttonstart = new JButton("Start");
 	static JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
 	static JButton buttonZurück = new JButton("Zurück");
+	static JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
+	static JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
 	
+
+
+
 	// TextField
 	static JTextField userText = new JTextField(20);
 	static JTextField userRegistText = new JTextField(20);
 	static JPasswordField passwordText = new JPasswordField(); 
 	static JPasswordField passwordText1 = new JPasswordField(); 
 	static JPasswordField passwordText2 = new JPasswordField(); 
+	static JTextField ipadresseText = new JTextField(20); 
+	static JTextField portText = new JTextField(20);
 
 
 
@@ -70,12 +87,37 @@ public class Benutzeroberfläche extends JFrame  {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setBackground(new Color(0,81,0));
 
+		startfenster();
 		auswahlfenster();
 		anmeldefenster();
 		registrierfenster();
+		ipadressefenster(); 
+		portfenster();
 	}
 
 	//Startbildschirm
+	
+	public void startfenster() {
+		//Buttons: 
+		buttonStartSpiel.setBounds(600,550,165,25);
+		buttonStartSpiel.setFocusable(false);
+		buttonStartSpiel.setBorder(null);
+		buttonStartSpiel.setBackground(null);
+		buttonStartSpiel.setForeground(Color.white);
+		buttonStartSpiel.addActionListener(spiel.aHandler);
+		buttonStartSpiel.setVisible(true);
+		this.add(buttonStartSpiel);
+		
+		buttonAbbrechenSpiel.setBounds(800,550,165,25);
+		buttonAbbrechenSpiel.setFocusable(false);
+		buttonAbbrechenSpiel.setBorder(null);
+		buttonAbbrechenSpiel.setBackground(null);
+		buttonAbbrechenSpiel.setForeground(Color.white);
+		buttonAbbrechenSpiel.addActionListener(spiel.aHandler);
+		buttonAbbrechenSpiel.setVisible(true);
+		this.add(buttonAbbrechenSpiel);
+		
+	}
 	
 	
 	//Auswahlfenster
@@ -168,7 +210,7 @@ public class Benutzeroberfläche extends JFrame  {
 		ueberschrift.setBounds(400,100,1000,200);
 		Font schriftart = new Font ("Algerian",Font.PLAIN+Font.ITALIC,120);
 		ueberschrift.setFont(schriftart);
-		ueberschrift.setVisible(false);
+		ueberschrift.setVisible(true);
 		this.add(ueberschrift); 
 
 
@@ -230,7 +272,67 @@ public class Benutzeroberfläche extends JFrame  {
 		passwordText2.setBounds(800,550,165,25);
 		passwordText2.setVisible(false);
 		this.add(passwordText2);
+	}
 		
+		//ipadressefenster: 
+		
+		public void ipadressefenster() {
+			
+			
+			//Labels:
+			labelipadresse.setBounds(500,350,165,25);
+			labelipadresse.setFocusable(false);
+			labelipadresse.setBorder(null);
+			labelipadresse.setBackground(null);
+			labelipadresse.setForeground(Color.white);
+			labelipadresse.setVisible(false);
+			this.add(labelipadresse);
+			
+			// TextField: Benutzername:
+			ipadresseText.setBounds(800,350,165,25);
+			ipadresseText.setVisible(false);
+			this.add(ipadresseText);
+
+			//Buttons:	
+			buttonIPAdresseBestätigen.setBounds(800,550,165,25);
+			buttonIPAdresseBestätigen.setFocusable(false);
+			buttonIPAdresseBestätigen.setBorder(null);
+			buttonIPAdresseBestätigen.setBackground(null);
+			buttonIPAdresseBestätigen.setForeground(Color.white);
+			buttonIPAdresseBestätigen.addActionListener(spiel.aHandler);
+			buttonIPAdresseBestätigen.setVisible(true);
+			this.add(buttonIPAdresseBestätigen);
+		}
+
+		public void portfenster() {
+			
+			//Labels:
+			labelport.setBounds(500,350,165,25);
+			labelport.setFocusable(false);
+			labelport.setBorder(null);
+			labelport.setBackground(null);
+			labelport.setForeground(Color.white);
+			labelport.setVisible(false);
+			this.add(labelport);
+			
+			// TextField: Benutzername:
+			portText.setBounds(800,350,165,25);
+			portText.setVisible(false);
+			this.add(portText);
+
+			//Buttons:	
+			buttonPortBestätigen.setBounds(800,550,165,25);
+			buttonPortBestätigen.setFocusable(false);
+			buttonPortBestätigen.setBorder(null);
+			buttonPortBestätigen.setBackground(null);
+			buttonPortBestätigen.setForeground(Color.white);
+			buttonPortBestätigen.addActionListener(spiel.aHandler);
+			buttonPortBestätigen.setVisible(true);
+			this.add(buttonPortBestätigen);
+
+
+
+
 		
 		
 		//Überschrift: 

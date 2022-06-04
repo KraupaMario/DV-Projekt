@@ -18,8 +18,15 @@ public void actionPerformed(ActionEvent e) {
 		
 		
 		
+		
 		switch(command) {
 		
+		case "Spiel starten": 
+			spiel.startZuAuswahl();
+			break; 
+		case "Abbrechen": 
+			System.exit(0);
+			break; 
 		case "Login": 
 			spiel.auswahlZuLogin();
 			break;
@@ -27,8 +34,16 @@ public void actionPerformed(ActionEvent e) {
 			spiel.auswahlZuRegistrier();
 			break;
 		case "Zurück":
-			spiel.startbildschirm();
+			spiel.logRegZuAuswahl();
 			break;	
+		case "Start": 
+			spiel.loginZuIP(); 
+			break; 
+		case "Abschließen": 
+			spiel.loginZuIP(); 
+		case "IP Adresse bestätigen": 
+			spiel.ipZuPort(); 
+			
 			
 			
 		}
