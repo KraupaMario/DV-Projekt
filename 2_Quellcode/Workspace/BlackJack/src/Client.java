@@ -244,189 +244,271 @@ public class Client implements Runnable{
 	Benutzeroberfläche bo = new Benutzeroberfläche(this);
 
 	public void startZuAuswahl() {
-		Benutzeroberfläche.buttonStartSpiel.setVisible(false);
-		Benutzeroberfläche.buttonAbbrechenSpiel.setVisible(false);
+		bo.buttonStartSpiel.setVisible(false);
+		bo.buttonAbbrechenSpiel.setVisible(false);
 
 		//Startbildschirm
-		Benutzeroberfläche.buttonLogin.setVisible(true);
-		Benutzeroberfläche.buttonRegistrieren.setVisible(true);
+		bo.buttonLogin.setVisible(true);
+		bo.buttonRegistrieren.setVisible(true);
 
 		//Gemeinsame
-		Benutzeroberfläche.ueberschrift.setVisible(true);
-		Benutzeroberfläche.buttonZurück.setVisible(false);
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(false);
 
 		//Loginfenster
-		Benutzeroberfläche.labelBenutzername.setVisible(false);
-		Benutzeroberfläche.labelPasswort.setVisible(false);
-		Benutzeroberfläche.buttonstart.setVisible(false);
-		Benutzeroberfläche.userText.setVisible(false);
-		Benutzeroberfläche.passwordText.setVisible(false);
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
 
 
 		//Registrierfenster
-		Benutzeroberfläche.labelBenutzernameErstellen.setVisible(false);
-		Benutzeroberfläche.labelPasswort1.setVisible(false);
-		Benutzeroberfläche.labelPasswort2.setVisible(false);
-		Benutzeroberfläche.buttonRegistrierenAbschließen.setVisible(false);
-		Benutzeroberfläche.userRegistText.setVisible(false);
-		Benutzeroberfläche.passwordText1.setVisible(false);
-		Benutzeroberfläche.passwordText2.setVisible(false);
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
 
 	}
 	
 	public void auswahlZuLogin() {
 		//Startbildschirm
-		Benutzeroberfläche.buttonLogin.setVisible(false);
-		Benutzeroberfläche.buttonRegistrieren.setVisible(false);
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
 		
 		//Gemeinsame
-		Benutzeroberfläche.ueberschrift.setVisible(true);
-		Benutzeroberfläche.buttonZurück.setVisible(true);
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(true);
 		
 		//Loginfenster
-		Benutzeroberfläche.labelBenutzername.setVisible(true);
-		Benutzeroberfläche.labelPasswort.setVisible(true);
-		Benutzeroberfläche.buttonstart.setVisible(true);
-		Benutzeroberfläche.userText.setVisible(true);
-		Benutzeroberfläche.passwordText.setVisible(true);
-		Benutzeroberfläche.buttonZurück.setVisible(true);
+		bo.labelBenutzername.setVisible(true);
+		bo.labelPasswort.setVisible(true);
+		bo.buttonstart.setVisible(true);
+		bo.userText.setVisible(true);
+		bo.passwordText.setVisible(true);
+		bo.buttonZurück.setVisible(true);
 		
 		//Registrierfenster
-		Benutzeroberfläche.labelBenutzernameErstellen.setVisible(false);
-		Benutzeroberfläche.labelPasswort1.setVisible(false);
-		Benutzeroberfläche.labelPasswort2.setVisible(false);
-		Benutzeroberfläche.buttonRegistrierenAbschließen.setVisible(false);
-		Benutzeroberfläche.userRegistText.setVisible(false);
-		Benutzeroberfläche.passwordText1.setVisible(false);
-		Benutzeroberfläche.passwordText2.setVisible(false);
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
 		
 		
 	}
 	
 	public void auswahlZuRegistrier() {
 		//Startbildschirm
-		Benutzeroberfläche.buttonLogin.setVisible(false);
-		Benutzeroberfläche.buttonRegistrieren.setVisible(false);
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		Benutzeroberfläche.ueberschrift.setVisible(true);
-		Benutzeroberfläche.buttonZurück.setVisible(true);
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(true);
 
 		//Loginfenster
-		Benutzeroberfläche.labelBenutzername.setVisible(false);
-		Benutzeroberfläche.labelPasswort.setVisible(false);
-		Benutzeroberfläche.buttonstart.setVisible(false);
-		Benutzeroberfläche.userText.setVisible(false);
-		Benutzeroberfläche.passwordText.setVisible(false);
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
 
 		
 		//Registrierfenster
-		Benutzeroberfläche.labelBenutzernameErstellen.setVisible(true);
-		Benutzeroberfläche.labelPasswort1.setVisible(true);
-		Benutzeroberfläche.labelPasswort2.setVisible(true);
-		Benutzeroberfläche.buttonRegistrierenAbschließen.setVisible(true);
-		Benutzeroberfläche.userRegistText.setVisible(true);
-		Benutzeroberfläche.passwordText1.setVisible(true);
-		Benutzeroberfläche.passwordText2.setVisible(true);
+		bo.labelBenutzernameErstellen.setVisible(true);
+		bo.labelPasswort1.setVisible(true);
+		bo.labelPasswort2.setVisible(true);
+		bo.buttonRegistrierenAbschließen.setVisible(true);
+		bo.userRegistText.setVisible(true);
+		bo.passwordText1.setVisible(true);
+		bo.passwordText2.setVisible(true);
 	}
 	
 	public void logRegZuAuswahl () {
 		//Startbildschirm
-		Benutzeroberfläche.buttonLogin.setVisible(true);
-		Benutzeroberfläche.buttonRegistrieren.setVisible(true);
+		bo.buttonLogin.setVisible(true);
+		bo.buttonRegistrieren.setVisible(true);
 
 		//Gemeinsame
-		Benutzeroberfläche.ueberschrift.setVisible(true);
-		Benutzeroberfläche.buttonZurück.setVisible(false);
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(false);
 
 		//Loginfenster
-		Benutzeroberfläche.labelBenutzername.setVisible(false);
-		Benutzeroberfläche.labelPasswort.setVisible(false);
-		Benutzeroberfläche.buttonstart.setVisible(false);
-		Benutzeroberfläche.userText.setVisible(false);
-		Benutzeroberfläche.passwordText.setVisible(false);
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
 
 		
 		//Registrierfenster
-		Benutzeroberfläche.labelBenutzernameErstellen.setVisible(false);
-		Benutzeroberfläche.labelPasswort1.setVisible(false);
-		Benutzeroberfläche.labelPasswort2.setVisible(false);
-		Benutzeroberfläche.buttonRegistrierenAbschließen.setVisible(false);
-		Benutzeroberfläche.userRegistText.setVisible(false);
-		Benutzeroberfläche.passwordText1.setVisible(false);
-		Benutzeroberfläche.passwordText2.setVisible(false);
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
 	
 	}
 	public void loginZuIP() {
 		//Startbildschirm
-		Benutzeroberfläche.buttonLogin.setVisible(false);
-		Benutzeroberfläche.buttonRegistrieren.setVisible(false);
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		Benutzeroberfläche.ueberschrift.setVisible(true);
-		Benutzeroberfläche.buttonZurück.setVisible(false);
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(false);
 
 		//Loginfenster
-		Benutzeroberfläche.labelBenutzername.setVisible(false);
-		Benutzeroberfläche.labelPasswort.setVisible(false);
-		Benutzeroberfläche.buttonstart.setVisible(false);
-		Benutzeroberfläche.userText.setVisible(false);
-		Benutzeroberfläche.passwordText.setVisible(false);
-		Benutzeroberfläche.buttonZurück.setVisible(false);
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
 
 		//Registrierfenster
-		Benutzeroberfläche.labelBenutzernameErstellen.setVisible(false);
-		Benutzeroberfläche.labelPasswort1.setVisible(false);
-		Benutzeroberfläche.labelPasswort2.setVisible(false);
-		Benutzeroberfläche.buttonRegistrierenAbschließen.setVisible(false);
-		Benutzeroberfläche.userRegistText.setVisible(false);
-		Benutzeroberfläche.passwordText1.setVisible(false);
-		Benutzeroberfläche.passwordText2.setVisible(false);
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
 		
 		//IPAdressefenster:
-		Benutzeroberfläche.buttonIPAdresseBestätigen.setVisible(true);
-		Benutzeroberfläche.labelipadresse.setVisible(true);
-		Benutzeroberfläche.ipadresseText.setVisible(true);
+		bo.buttonIPAdresseBestätigen.setVisible(true);
+		bo.labelipadresse.setVisible(true);
+		bo.ipadresseText.setVisible(true);
 	}
 	public void ipZuPort() {
 		//Startbildschirm
-				Benutzeroberfläche.buttonLogin.setVisible(false);
-				Benutzeroberfläche.buttonRegistrieren.setVisible(false);
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
 
 				//Gemeinsame
-				Benutzeroberfläche.ueberschrift.setVisible(true);
-				Benutzeroberfläche.buttonZurück.setVisible(false);
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(false);
 
 				//Loginfenster
-				Benutzeroberfläche.labelBenutzername.setVisible(false);
-				Benutzeroberfläche.labelPasswort.setVisible(false);
-				Benutzeroberfläche.buttonstart.setVisible(false);
-				Benutzeroberfläche.userText.setVisible(false);
-				Benutzeroberfläche.passwordText.setVisible(false);
-				Benutzeroberfläche.buttonZurück.setVisible(false);
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
 
 				//Registrierfenster
-				Benutzeroberfläche.labelBenutzernameErstellen.setVisible(false);
-				Benutzeroberfläche.labelPasswort1.setVisible(false);
-				Benutzeroberfläche.labelPasswort2.setVisible(false);
-				Benutzeroberfläche.buttonRegistrierenAbschließen.setVisible(false);
-				Benutzeroberfläche.userRegistText.setVisible(false);
-				Benutzeroberfläche.passwordText1.setVisible(false);
-				Benutzeroberfläche.passwordText2.setVisible(false);
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
 				
 				//IPAdressefenster:
-				Benutzeroberfläche.buttonIPAdresseBestätigen.setVisible(false);
-				Benutzeroberfläche.labelipadresse.setVisible(false);
-				Benutzeroberfläche.ipadresseText.setVisible(false);
+		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.ipadresseText.setVisible(false);
 				
 				//Portfenster: 
-				Benutzeroberfläche.buttonPortBestätigen.setVisible(true);
-				Benutzeroberfläche.labelport.setVisible(true);
-				Benutzeroberfläche.portText.setVisible(true);
+		bo.buttonPortBestätigen.setVisible(true);
+		bo.labelport.setVisible(true);
+		bo.portText.setVisible(true);
 				
 		
 	}
+	
+	public void portZuEinsatz() {
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
 
+		//Gemeinsame
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
+		
+		//IPAdressefenster:
+		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.ipadresseText.setVisible(false);
+		
+		//Portfenster: 
+		bo.buttonPortBestätigen.setVisible(false);
+		bo.labelport.setVisible(false);
+		bo.portText.setVisible(false);
+		
+		//Spielfenster: 
+		bo.buttonEinsatz.setVisible(true);
+		
+	}
+	public void einsatzZuJetons() {
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		bo.ueberschrift.setVisible(true);
+		bo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
+		
+		//IPAdressefenster:
+		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.ipadresseText.setVisible(false);
+		
+		//Portfenster: 
+		bo.buttonPortBestätigen.setVisible(false);
+		bo.labelport.setVisible(false);
+		bo.portText.setVisible(false);
+		
+		//Spielfenster: 
+		bo.buttonEinsatz.setVisible(false);
+		bo.buttonJeton10.setVisible(true);
+		bo.buttonJeton25.setVisible(true);
+		bo.buttonJeton50.setVisible(true);
+		bo.buttonJeton100.setVisible(true);
+		
+}
 	
 	
 

@@ -24,50 +24,70 @@ public class Benutzeroberfläche extends JFrame  {
 
 	Client spiel;
 
-	static JFrame frame = new JFrame();
-	static JPanel panel = new JPanel();
+	 JFrame frame = new JFrame();
+	 JPanel panel = new JPanel();
+	
+	
 
 
 
 
 
 	//Label
-	static JLabel labelBenutzername = new JLabel ("Benutzername:");
-	static JLabel labelPasswort = new JLabel("Passwort:");
-	static JLabel ueberschrift = new JLabel("BLACK JACK"); 
-	static JLabel labelBenutzernameErstellen = new JLabel ("Benutzername:");
-	static JLabel labelPasswort1 = new JLabel("Passwort:");
-	static JLabel labelPasswort2 = new JLabel("Passwort:");
-	static JLabel labelipadresse = new JLabel ("IP-Adresse:");
-	static JLabel labelport = new JLabel("Port:");
+	 JLabel labelBenutzername = new JLabel ("Benutzername:");
+	 JLabel labelPasswort = new JLabel("Passwort:");
+	 JLabel ueberschrift = new JLabel("BLACK JACK"); 
+	 JLabel labelBenutzernameErstellen = new JLabel ("Benutzername:");
+	 JLabel labelPasswort1 = new JLabel("Passwort:");
+	 JLabel labelPasswort2 = new JLabel("Passwort:");
+	 JLabel labelipadresse = new JLabel ("IP-Adresse:");
+	 JLabel labelport = new JLabel("Port:");
 
-
-
+	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
+	 Icon jeton_25 = new ImageIcon(getClass().getResource("Jeton_25.PNG"));
+	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
+	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
 
 
 	//Buttons
 
-	static JButton buttonStartSpiel = new JButton ("Spiel starten"); 
-	static JButton buttonAbbrechenSpiel = new JButton ("Abbrechen"); 
-	static JButton buttonLogin = new JButton("Login");
-	static JButton buttonRegistrieren = new JButton("Registrieren");
-	static JButton buttonstart = new JButton("Start");
-	static JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
-	static JButton buttonZurück = new JButton("Zurück");
-	static JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
-	static JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
+	 JButton buttonStartSpiel = new JButton ("Spiel starten"); 
+	 JButton buttonAbbrechenSpiel = new JButton ("Abbrechen"); 
+	 JButton buttonLogin = new JButton("Login");
+	 JButton buttonRegistrieren = new JButton("Registrieren");
+	 JButton buttonstart = new JButton("Start");
+	 JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
+	  JButton buttonZurück = new JButton("Zurück");
+	 JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
+	 JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
+	 JButton buttonEinsatz = new JButton ("Einsatz");
+	 JButton buttonJeton10 = new JButton(jeton_10);
+	 JButton buttonJeton25 = new JButton(jeton_25);
+	 JButton buttonJeton50 = new JButton (jeton_50);
+	 JButton buttonJeton100 = new JButton(jeton_100);
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 
-
 	// TextField
-	static JTextField userText = new JTextField(20);
-	static JTextField userRegistText = new JTextField(20);
-	static JPasswordField passwordText = new JPasswordField(); 
-	static JPasswordField passwordText1 = new JPasswordField(); 
-	static JPasswordField passwordText2 = new JPasswordField(); 
-	static JTextField ipadresseText = new JTextField(20); 
-	static JTextField portText = new JTextField(20);
+	 JTextField userText = new JTextField(20);
+	 JTextField userRegistText = new JTextField(20);
+	 JPasswordField passwordText = new JPasswordField(); 
+	 JPasswordField passwordText1 = new JPasswordField(); 
+	 JPasswordField passwordText2 = new JPasswordField(); 
+	 JTextField ipadresseText = new JTextField(20); 
+	 JTextField portText = new JTextField(20);
+	
+	 //Icons
+	
+	
 
 
 
@@ -93,6 +113,9 @@ public class Benutzeroberfläche extends JFrame  {
 		registrierfenster();
 		ipadressefenster(); 
 		portfenster();
+		einsatzfenster(); 
+		jetonfenster();
+		 
 	}
 
 	//Startbildschirm
@@ -147,12 +170,6 @@ public class Benutzeroberfläche extends JFrame  {
 		
 	}
 
-	
-	
-	
-	
-	
-	
 	//Loginfenster
 
 
@@ -300,7 +317,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonIPAdresseBestätigen.setBackground(null);
 			buttonIPAdresseBestätigen.setForeground(Color.white);
 			buttonIPAdresseBestätigen.addActionListener(spiel.aHandler);
-			buttonIPAdresseBestätigen.setVisible(true);
+			buttonIPAdresseBestätigen.setVisible(false);
 			this.add(buttonIPAdresseBestätigen);
 		}
 
@@ -327,32 +344,73 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonPortBestätigen.setBackground(null);
 			buttonPortBestätigen.setForeground(Color.white);
 			buttonPortBestätigen.addActionListener(spiel.aHandler);
-			buttonPortBestätigen.setVisible(true);
+			buttonPortBestätigen.setVisible(false);
 			this.add(buttonPortBestätigen);
 
 
 
 
-		
-		
-		//Überschrift: 
-		ueberschrift.setBounds(400,100,1000,200);
-		Font schriftart = new Font ("Algerian",Font.PLAIN+Font.ITALIC,120);
-		ueberschrift.setFont(schriftart);
-		ueberschrift.setVisible(false);
-		this.add(ueberschrift); 
+	 
 
 
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	
 	//Spielbildschirm 
+		public void einsatzfenster() {
+			
+		
+		//Buttons:	
+		buttonEinsatz.setBounds(0,700,1600,100);
+		buttonEinsatz.setFocusable(false);
+		buttonEinsatz.setBorder(null);
+		buttonEinsatz.setBackground(null);
+		buttonEinsatz.setForeground(Color.white);
+		buttonEinsatz.addActionListener(spiel.aHandler);
+		buttonEinsatz.setVisible(false);
+		this.add(buttonEinsatz);
+		
+		}
+		
+		public void jetonfenster() {
+			buttonJeton10.setBounds(100,700,100,100);
+			buttonJeton10.setFocusable(false);
+			buttonJeton10.setBorder(null);
+			buttonJeton10.setBackground(null);
+			buttonJeton10.setForeground(Color.white);
+			buttonJeton10.addActionListener(spiel.aHandler);
+			buttonJeton10.setVisible(false);
+			this.add(buttonJeton10);
+			
+			buttonJeton25.setBounds(400,700,100,100);
+			buttonJeton25.setFocusable(false);
+			buttonJeton25.setBorder(null);
+			buttonJeton25.setBackground(null);
+			buttonJeton25.setForeground(Color.white);
+			buttonJeton25.addActionListener(spiel.aHandler);
+			buttonJeton25.setVisible(false);
+			this.add(buttonJeton25);
+			
+			buttonJeton50.setBounds(700,700,100,100);
+			buttonJeton50.setFocusable(false);
+			buttonJeton50.setBorder(null);
+			buttonJeton50.setBackground(null);
+			buttonJeton50.setForeground(Color.white);
+			buttonJeton50.addActionListener(spiel.aHandler);
+			buttonJeton50.setVisible(false);
+			this.add(buttonJeton50);
+			
+			buttonJeton100.setBounds(1100,700,100,100);
+			buttonJeton100.setFocusable(false);
+			buttonJeton100.setBorder(null);
+			buttonJeton100.setBackground(null);
+			buttonJeton100.setForeground(Color.white);
+			buttonJeton100.addActionListener(spiel.aHandler);
+			buttonJeton100.setVisible(false);
+			this.add(buttonJeton100);
+			
+		}
+		
 	
 	
 	

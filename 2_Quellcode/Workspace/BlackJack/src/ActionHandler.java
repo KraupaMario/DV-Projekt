@@ -36,13 +36,24 @@ public void actionPerformed(ActionEvent e) {
 		case "Zurück":
 			spiel.logRegZuAuswahl();
 			break;	
-		case "Start": 
+		case ("Start"): 
 			spiel.loginZuIP(); 
 			break; 
 		case "Abschließen": 
 			spiel.loginZuIP(); 
+			break;
 		case "IP Adresse bestätigen": 
 			spiel.ipZuPort(); 
+			break;
+		case "Port bestätigen": 
+			spiel.portZuEinsatz(); 
+			break; 
+		case "Einsatz": 
+			spiel.einsatzZuJetons(); 
+			break; 
+			
+			
+		 
 			
 			
 			
