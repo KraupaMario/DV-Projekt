@@ -3,26 +3,26 @@ import javax.swing.JOptionPane;
 public class Spieler {
 
 	private String name;
-	private String passwort;
+    char[] passwort;
 	private long kontostand =  5000;
 	private long highscore;
 
 	int kartenwert;
 	int Gewinnstatus;
 
-	public Spieler(String n, String passwort) {
+	public Spieler(String n, char[] passwort) {
 		//..
 		kontostand = 5000;
 	}
 
 
 
-	static void registrieren() {
+	/*static void registrieren() {
 		String n = JOptionPane.showInputDialog("Nickname:");
 		//Abfrage Doppelt?
 		String p = JOptionPane.showInputDialog("Passwort:");
 		Spieler name = new Spieler(n, p);
-	}
+	}  */
 
 
 	public int geldsetzen() {

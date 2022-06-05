@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import java.util.Vector;
 
 public class Client implements Runnable{
 	private String ip = "localhost";
@@ -242,6 +242,9 @@ public class Client implements Runnable{
 	
 	ActionHandler aHandler = new ActionHandler(this); 
 	Benutzeroberfläche bo = new Benutzeroberfläche(this);
+	
+	//Vector
+	Vector<Spieler>player = new Vector<Spieler>();
 
 	public void startZuAuswahl() {
 		bo.buttonStartSpiel.setVisible(false);
@@ -550,7 +553,21 @@ public class Client implements Runnable{
 			
 		}
 
-	
+		
+		
+		public void benutzerErstellen() {
+			Spieler s = new Spieler(aHandler.benutzernameLogin, aHandler.password1);
+			player.addElement(s);			
+		}
+		
+	    public boolean passwordPruefen() {;
+	    	 for (int i=0;i<player.size();i++) {
+	    		 if (Spieler.passwort.equals(aHandler.password)==true) {
+	    			 return true;
+	    		 }
+	    		 
+	    	 } return false;
+	    }
 
 }
 

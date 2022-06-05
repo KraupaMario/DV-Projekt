@@ -58,7 +58,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JButton buttonRegistrieren = new JButton("Registrieren");
 	 JButton buttonstart = new JButton("Start");
 	 JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
-	  JButton buttonZurück = new JButton("Zurück");
+	 JButton buttonZurück = new JButton("Zurück");
 	 JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
 	 JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
 	 JButton buttonEinsatz = new JButton ("Einsatz");
@@ -76,12 +76,12 @@ public class Benutzeroberfläche extends JFrame  {
 
 	// TextField
 	public JTextField userText = new JTextField(20);
-	 JTextField userRegistText = new JTextField(20);
-	 JPasswordField passwordText = new JPasswordField(); 
-	 JPasswordField passwordText1 = new JPasswordField(); 
-	 JPasswordField passwordText2 = new JPasswordField(); 
-	 JTextField ipadresseText = new JTextField(20); 
-	 JTextField portText = new JTextField(20);
+	public JTextField userRegistText = new JTextField(20);
+	public JPasswordField passwordText = new JPasswordField(); 
+	public JPasswordField passwordText1 = new JPasswordField(); 
+	public JPasswordField passwordText2 = new JPasswordField(); 
+	public JTextField ipadresseText = new JTextField(20); 
+	public JTextField portText = new JTextField(20);
 	
 	 //Icons
 	
@@ -220,6 +220,7 @@ public class Benutzeroberfläche extends JFrame  {
 		//PasswordField: Passwort:
 		passwordText.setBounds(800,450,165,25);
 		passwordText.setVisible(false);
+		passwordText.addActionListener(spiel.aHandler);
 		this.add(passwordText);
 		
 		
@@ -281,16 +282,19 @@ public class Benutzeroberfläche extends JFrame  {
 
 		// TextField: Benutzername:
 		userRegistText.setBounds(800,350,165,25);
-		userRegistText.setVisible(false);
+		userRegistText.setVisible(true);
+		userRegistText.addActionListener(spiel.aHandler);
 		this.add(userRegistText);
 
 		//PasswordField:
 		passwordText1.setBounds(800,450,165,25);
 		passwordText1.setVisible(false);
+		passwordText1.addActionListener(spiel.aHandler);
 		this.add(passwordText1);
 
 		passwordText2.setBounds(800,550,165,25);
 		passwordText2.setVisible(false);
+		passwordText2.addActionListener(spiel.aHandler);
 		this.add(passwordText2);
 	}
 		
