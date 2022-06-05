@@ -331,6 +331,7 @@ public class Client implements Runnable{
 		bo.userRegistText.setVisible(true);
 		bo.passwordText1.setVisible(true);
 		bo.passwordText2.setVisible(true);
+		
 	}
 	
 	public void logRegZuAuswahl () {
@@ -389,7 +390,8 @@ public class Client implements Runnable{
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(true);
 		bo.labelipadresse.setVisible(true);
-		bo.ipadresseText.setVisible(true);
+		
+		
 	}
 	public void ipZuPort() {
 		//Startbildschirm
@@ -510,9 +512,44 @@ public class Client implements Runnable{
 		bo.buttonJeton25.setVisible(true);
 		bo.buttonJeton50.setVisible(true);
 		bo.buttonJeton100.setVisible(true);
+		bo.buttonEinsatzbestätigen.setVisible(true);
 		
-}
-	
+	}
+		public void jeton10() {
+			int j10 = 10;
+			String j11 = Integer.toString(j10);
+			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +j11);
+			bo.einsatzausgabe.setVisible(true);
+			
+			System.out.println(j10);
+		}
+		public void jeton25() {
+			int j25 = 25;
+			String j26 = Integer.toString(j25);
+			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +j26);
+			bo.einsatzausgabe.setVisible(true);
+			
+			System.out.println(j25);
+		}
+		public void  jeton50() {
+			int j50 = 50;
+			String j51 = Integer.toString(j50);
+			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +j51);
+			bo.einsatzausgabe.setVisible(true);
+			System.out.println(j50);
+		}
+		public void jeton100() {
+			int j100 = 100;
+			String j101 = Integer.toString(j100);
+			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +j101);
+			bo.einsatzausgabe.setVisible(true); 
+			System.out.println(j100);
+			
+		}
+		public void einsatzAusrechnen() {
+			
+		}
+
 	
 
 }

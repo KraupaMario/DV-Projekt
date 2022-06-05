@@ -16,14 +16,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Benutzeroberfläche extends JFrame  {
 
@@ -50,6 +42,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel labelPasswort2 = new JLabel("Passwort:");
 	 JLabel labelipadresse = new JLabel ("IP-Adresse:");
 	 JLabel labelport = new JLabel("Port:");
+	 JLabel einsatzausgabe = new JLabel();
 
 	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
 	 Icon jeton_25 = new ImageIcon(getClass().getResource("Jeton_25.PNG"));
@@ -69,22 +62,26 @@ public class Benutzeroberfläche extends JFrame  {
 	 JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
 	 JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
 	 JButton buttonEinsatz = new JButton ("Einsatz");
-	 JButton buttonJeton10 = new JButton(jeton_10);
-	 JButton buttonJeton25 = new JButton(jeton_25);
-	 JButton buttonJeton50 = new JButton (jeton_50);
-	 JButton buttonJeton100 = new JButton(jeton_100);
+	 JButton buttonJeton10 = new JButton("Jeton10",jeton_10);
+	 JButton buttonJeton25 = new JButton("Jeton25", jeton_25);
+	 JButton buttonJeton50 = new JButton ("Jeton50", jeton_50);
+	 JButton buttonJeton100 = new JButton("Jeton100", jeton_100);
+	 JButton buttonEinsatzbestätigen = new JButton("Einsatz bestätigen");
 	
-	
-	
+	 
+	 
+	 
+	 
+
+
 	// TextField
-	 JTextField userText = new JTextField(20);
+	public JTextField userText = new JTextField(20);
 	 JTextField userRegistText = new JTextField(20);
 	 JPasswordField passwordText = new JPasswordField(); 
 	 JPasswordField passwordText1 = new JPasswordField(); 
 	 JPasswordField passwordText2 = new JPasswordField(); 
 	 JTextField ipadresseText = new JTextField(20); 
 	 JTextField portText = new JTextField(20);
-	 
 	
 	 //Icons
 	
@@ -116,7 +113,7 @@ public class Benutzeroberfläche extends JFrame  {
 		portfenster();
 		einsatzfenster(); 
 		jetonfenster();
-		
+		 
 	}
 
 	//Startbildschirm
@@ -217,12 +214,17 @@ public class Benutzeroberfläche extends JFrame  {
 		// TextField: Benutzername:
 		userText.setBounds(800,350,165,25);
 		userText.setVisible(false);
+		userText.addActionListener(spiel.aHandler);
 		this.add(userText);
 
 		//PasswordField: Passwort:
 		passwordText.setBounds(800,450,165,25);
 		passwordText.setVisible(false);
 		this.add(passwordText);
+		
+		
+		
+		
 
 		//Überschrift: 
 		ueberschrift.setBounds(400,100,1000,200);
@@ -357,7 +359,8 @@ public class Benutzeroberfläche extends JFrame  {
 	}
 
 	
-	//Spielbildschirm 
+	//Spielfenster
+		
 		public void einsatzfenster() {
 			
 		
@@ -410,6 +413,29 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton100.setVisible(false);
 			this.add(buttonJeton100);
 			
+			buttonEinsatzbestätigen.setBounds(700,400,200,50);
+			buttonEinsatzbestätigen.setFocusable(false);
+			buttonEinsatzbestätigen.setBorder(null);
+			buttonEinsatzbestätigen.setBackground(null);
+			buttonEinsatzbestätigen.setForeground(Color.white);
+			buttonEinsatzbestätigen.addActionListener(spiel.aHandler);
+			buttonEinsatzbestätigen.setVisible(false);
+			this.add(buttonEinsatzbestätigen);
+			
+			einsatzausgabe.setBounds(100,350,165,25);
+			einsatzausgabe.setFocusable(false);
+			einsatzausgabe.setBorder(null);
+			einsatzausgabe.setBackground(null);
+			einsatzausgabe.setForeground(Color.white);
+			einsatzausgabe.setVisible(false);
+			this.add(einsatzausgabe);
+			
 		}
+		
+	
+	
+	
+	
+	
 	
 }

@@ -12,9 +12,13 @@ public class ActionHandler implements ActionListener{
 	}
 	
 	
+	
+	
 public void actionPerformed(ActionEvent e) {
 		
 		String command = e.getActionCommand();
+		
+		 
 		
 		
 		
@@ -51,6 +55,21 @@ public void actionPerformed(ActionEvent e) {
 		case "Einsatz": 
 			spiel.einsatzZuJetons(); 
 			break; 
+		case "Jeton10": 
+			spiel.jeton10(); 
+			break; 
+		case "Jeton25": 
+			spiel.jeton25(); 
+			break; 
+		case "Jeton50": 
+			spiel.jeton50(); 
+			break; 
+		case "Jeton100":
+			spiel.jeton100();
+			break; 
+		case "Einsatz bestätigen": 
+			spiel.einsatzAusrechnen(); 
+			break;
 			
 			
 		 
