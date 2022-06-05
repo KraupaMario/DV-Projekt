@@ -282,7 +282,7 @@ public class Benutzeroberfläche extends JFrame  {
 
 		// TextField: Benutzername:
 		userRegistText.setBounds(800,350,165,25);
-		userRegistText.setVisible(true);
+		userRegistText.setVisible(false);
 		userRegistText.addActionListener(spiel.aHandler);
 		this.add(userRegistText);
 

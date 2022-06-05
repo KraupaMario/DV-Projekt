@@ -2,8 +2,8 @@ import javax.swing.JOptionPane;
 
 public class Spieler {
 
-	private String name;
-    char[] passwort;
+	public String name;
+    public char[] passwort;
 	private long kontostand =  5000;
 	private long highscore;
 
