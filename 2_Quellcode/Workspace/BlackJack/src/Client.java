@@ -307,7 +307,10 @@ public class Client implements Runnable{
 		//Startbildschirm
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
+		
 
+		
+		
 		//Gemeinsame
 		bo.ueberschrift.setVisible(true);
 		bo.buttonZurück.setVisible(true);

@@ -16,6 +16,14 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Benutzeroberfläche extends JFrame  {
 
@@ -68,14 +76,6 @@ public class Benutzeroberfläche extends JFrame  {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-
-
 	// TextField
 	 JTextField userText = new JTextField(20);
 	 JTextField userRegistText = new JTextField(20);
@@ -84,6 +84,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JPasswordField passwordText2 = new JPasswordField(); 
 	 JTextField ipadresseText = new JTextField(20); 
 	 JTextField portText = new JTextField(20);
+	 
 	
 	 //Icons
 	
@@ -115,7 +116,7 @@ public class Benutzeroberfläche extends JFrame  {
 		portfenster();
 		einsatzfenster(); 
 		jetonfenster();
-		 
+		
 	}
 
 	//Startbildschirm
@@ -410,11 +411,5 @@ public class Benutzeroberfläche extends JFrame  {
 			this.add(buttonJeton100);
 			
 		}
-		
-	
-	
-	
-	
-	
 	
 }
