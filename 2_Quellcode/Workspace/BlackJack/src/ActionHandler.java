@@ -46,20 +46,18 @@ public void actionPerformed(ActionEvent e) {
 			break; 
 		case "Login": 
 			spiel.auswahlZuLogin();
-
 			break;
 		case "Registrieren":
-			spiel.benutzerErstellen();
-			
+			//spiel.benutzerErstellen();		
 			spiel.auswahlZuRegistrier();
 			break;
 		case "Zurück":
 			spiel.logRegZuAuswahl();
 			break;	
 		case ("Start"): 
-			if(spiel.passwordPruefen()==true) {
+			//if(spiel.passwordPruefen()==true) {
 			spiel.loginZuIP(); 
-			}
+			//}
 			break; 
 		case "Abschließen": 
 			spiel.loginZuIP(); 

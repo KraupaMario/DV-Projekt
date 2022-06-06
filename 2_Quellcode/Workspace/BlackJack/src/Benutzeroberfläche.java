@@ -37,17 +37,47 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel labelBenutzername = new JLabel ("Benutzername:");
 	 JLabel labelPasswort = new JLabel("Passwort:");
 	 JLabel ueberschrift = new JLabel("BLACK JACK"); 
+	 JLabel ueberschriftSpiel = new JLabel ("BLACK JACK"); 
+	 JLabel labelSpieler1 = new JLabel ("Spieler1");
+	 JLabel labelSpieler2 = new JLabel ("Spieler2"); 
+	 JLabel labelBank = new JLabel ("Bank"); 
 	 JLabel labelBenutzernameErstellen = new JLabel ("Benutzername:");
 	 JLabel labelPasswort1 = new JLabel("Passwort:");
 	 JLabel labelPasswort2 = new JLabel("Passwort:");
 	 JLabel labelipadresse = new JLabel ("IP-Adresse:");
 	 JLabel labelport = new JLabel("Port:");
+	 JLabel einsatzSpieler1 = new JLabel ("Einsatz Spieler1:"); 
+	 JLabel einsatzSpieler2 = new JLabel ("Einsatz Spieler2:"); 
+	 JLabel kontostandSpieler1 = new JLabel ("Kontostand Spieler1:"); 
+	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
 	 JLabel einsatzausgabe = new JLabel();
+	 
+
+	 
 
 	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
 	 Icon jeton_25 = new ImageIcon(getClass().getResource("Jeton_25.PNG"));
 	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
 	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
+	 Icon testkarte = new ImageIcon(getClass().getResource("testkarte.PNG"));
+	 
+	 JLabel karte1Spieler1 = new JLabel(testkarte);
+	 JLabel karte2Spieler1 = new JLabel(testkarte);
+	 JLabel karte3Spieler1 = new JLabel(testkarte);
+	 JLabel karte4Spieler1 = new JLabel(testkarte);
+	 JLabel karte5Spieler1 = new JLabel(testkarte);
+	 
+	 JLabel karte1Spieler2 = new JLabel(testkarte);
+	 JLabel karte2Spieler2 = new JLabel(testkarte);
+	 JLabel karte3Spieler2 = new JLabel(testkarte);
+	 JLabel karte4Spieler2 = new JLabel(testkarte);
+	 JLabel karte5Spieler2 = new JLabel(testkarte);
+	 
+	 JLabel karte1Bank = new JLabel(testkarte); 
+	 JLabel karte2Bank = new JLabel(testkarte); 
+	 JLabel karte3Bank = new JLabel(testkarte); 
+	 JLabel karte4Bank = new JLabel(testkarte); 
+	 JLabel karte5Bank = new JLabel(testkarte); 
 
 
 	//Buttons
@@ -365,6 +395,8 @@ public class Benutzeroberfläche extends JFrame  {
 	
 	//Spielfenster
 		
+	
+		
 		public void einsatzfenster() {
 			
 		
@@ -377,6 +409,131 @@ public class Benutzeroberfläche extends JFrame  {
 		buttonEinsatz.addActionListener(spiel.aHandler);
 		buttonEinsatz.setVisible(false);
 		this.add(buttonEinsatz);
+		
+		//Überschrift: 
+		ueberschriftSpiel.setBounds(500,250,1000,200);
+		Font schriftart = new Font ("Algerian",Font.PLAIN+Font.ITALIC,80);
+		ueberschriftSpiel.setForeground(Color.yellow);
+		ueberschriftSpiel.setFont(schriftart);
+		ueberschriftSpiel.setVisible(false);
+		this.add(ueberschriftSpiel); 
+		
+		//Überschrift: 
+		labelSpieler1.setBounds(200,500,1000,200);
+		Font schriftart1 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
+		labelSpieler1.setForeground(Color.yellow); 
+		labelSpieler1.setFont(schriftart1);
+		labelSpieler1.setVisible(false);
+		this.add(labelSpieler1); 
+		
+		//Überschrift: 
+		labelSpieler2.setBounds(1100,500,1000,200);
+		Font schriftart2 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
+		labelSpieler2.setForeground(Color.yellow); 
+		labelSpieler2.setFont(schriftart2);
+		labelSpieler2.setVisible(false);
+		this.add(labelSpieler2);
+
+		//Überschrift: 
+		labelBank.setBounds(600,10,1000,100);
+		Font schriftart3 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
+		labelBank.setForeground(Color.yellow); 
+		labelBank.setFont(schriftart3);
+		labelBank.setVisible(false);
+		this.add(labelBank);
+		
+		//Karten: 
+		karte1Spieler1.setBounds(1000,425,60,200);
+		karte1Spieler1.setFocusable(false);
+		karte1Spieler1.setBorder(null);
+		karte1Spieler1.setVisible(false);
+		this.add(karte1Spieler1); 
+		
+		karte2Spieler1.setBounds(1100,425,60,200);
+		karte2Spieler1.setFocusable(false);
+		karte2Spieler1.setBorder(null);
+		karte2Spieler1.setVisible(false);
+		this.add(karte2Spieler1);
+		
+		karte3Spieler1.setBounds(1200,425,60,200);
+		karte3Spieler1.setFocusable(false);
+		karte3Spieler1.setBorder(null);
+		karte3Spieler1.setVisible(false);
+		this.add(karte3Spieler1);
+		
+		karte4Spieler1.setBounds(1300,425,60,200);
+		karte4Spieler1.setFocusable(false);
+		karte4Spieler1.setBorder(null);
+		karte4Spieler1.setVisible(false);
+		this.add(karte4Spieler1);
+		
+		karte5Spieler1.setBounds(1400,425,60,200);
+		karte5Spieler1.setFocusable(false);
+		karte5Spieler1.setBorder(null);
+		karte5Spieler1.setVisible(false);
+		this.add(karte5Spieler1);
+		
+		karte1Spieler2.setBounds(100,425,60,200);
+		karte1Spieler2.setFocusable(false);
+		karte1Spieler2.setBorder(null);
+		karte1Spieler2.setVisible(false);
+		this.add(karte1Spieler2);
+		
+		karte2Spieler2.setBounds(200,425,60,200);
+		karte2Spieler2.setFocusable(false);
+		karte2Spieler2.setBorder(null);
+		karte2Spieler2.setVisible(false);
+		this.add(karte2Spieler2);
+		
+		karte3Spieler2.setBounds(300,425,60,200);
+		karte3Spieler2.setFocusable(false);
+		karte3Spieler2.setBorder(null);
+		karte3Spieler2.setVisible(false);
+		this.add(karte3Spieler2);
+		
+		karte4Spieler2.setBounds(400,425,60,200);
+		karte4Spieler2.setFocusable(false);
+		karte4Spieler2.setBorder(null);
+		karte4Spieler2.setVisible(false);
+		this.add(karte4Spieler2);
+		
+		karte5Spieler2.setBounds(500,425,60,200);
+		karte5Spieler2.setFocusable(false);
+		karte5Spieler2.setBorder(null);
+		karte5Spieler2.setVisible(false);
+		this.add(karte5Spieler2);
+		
+		karte1Bank.setBounds(500,100,60,200);
+		karte1Bank.setFocusable(false);
+		karte1Bank.setBorder(null);
+		karte1Bank.setVisible(false);
+		this.add(karte1Bank);
+		
+		karte2Bank.setBounds(600,100,60,200);
+		karte2Bank.setFocusable(false);
+		karte2Bank.setBorder(null);
+		karte2Bank.setVisible(false);
+		this.add(karte2Bank);
+		
+		karte3Bank.setBounds(700,100,60,200);
+		karte3Bank.setFocusable(false);
+		karte3Bank.setBorder(null);
+		karte3Bank.setVisible(false);
+		this.add(karte3Bank);
+		
+		karte4Bank.setBounds(800,100,60,200);
+		karte4Bank.setFocusable(false);
+		karte4Bank.setBorder(null);
+		karte4Bank.setVisible(false);
+		this.add(karte4Bank);
+		
+		karte5Bank.setBounds(900,100,60,200);
+		karte5Bank.setFocusable(false);
+		karte5Bank.setBorder(null);
+		karte5Bank.setVisible(false);
+		this.add(karte5Bank);
+		
+		
 		
 		}
 		
@@ -426,13 +583,45 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonEinsatzbestätigen.setVisible(false);
 			this.add(buttonEinsatzbestätigen);
 			
-			einsatzausgabe.setBounds(100,350,165,25);
+			einsatzausgabe.setBounds(1350,650,165,25);
 			einsatzausgabe.setFocusable(false);
 			einsatzausgabe.setBorder(null);
 			einsatzausgabe.setBackground(null);
 			einsatzausgabe.setForeground(Color.white);
 			einsatzausgabe.setVisible(false);
 			this.add(einsatzausgabe);
+			
+			einsatzSpieler1.setBounds(10,600,165,25);
+			einsatzSpieler1.setFocusable(false);
+			einsatzSpieler1.setBorder(null);
+			einsatzSpieler1.setBackground(null);
+			einsatzSpieler1.setForeground(Color.white);
+			einsatzSpieler1.setVisible(false);
+			this.add(einsatzSpieler1);
+			
+			einsatzSpieler2.setBounds(1350,600,165,25);
+			einsatzSpieler2.setFocusable(false);
+			einsatzSpieler2.setBorder(null);
+			einsatzSpieler2.setBackground(null);
+			einsatzSpieler2.setForeground(Color.white);
+			einsatzSpieler2.setVisible(false);
+			this.add(einsatzSpieler2);
+			
+			kontostandSpieler1.setBounds(10,10,165,25);
+			kontostandSpieler1.setFocusable(false);
+			kontostandSpieler1.setBorder(null);
+			kontostandSpieler1.setBackground(null);
+			kontostandSpieler1.setForeground(Color.white);
+			kontostandSpieler1.setVisible(false);
+			this.add(kontostandSpieler1);
+			
+			kontostandSpieler2.setBounds(1350,10,165,25);
+			kontostandSpieler2.setFocusable(false);
+			kontostandSpieler2.setBorder(null);
+			kontostandSpieler2.setBackground(null);
+			kontostandSpieler2.setForeground(Color.white);
+			kontostandSpieler2.setVisible(false);
+			this.add(kontostandSpieler2);
 			
 		}
 		

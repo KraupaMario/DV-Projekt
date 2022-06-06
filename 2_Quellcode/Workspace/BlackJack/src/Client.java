@@ -440,7 +440,7 @@ public class Client implements Runnable{
 		bo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		bo.ueberschrift.setVisible(true);
+		bo.ueberschrift.setVisible(false);
 		bo.buttonZurück.setVisible(false);
 
 		//Loginfenster
@@ -472,6 +472,10 @@ public class Client implements Runnable{
 		
 		//Spielfenster: 
 		bo.buttonEinsatz.setVisible(true);
+		bo.labelSpieler1.setVisible(true);
+		bo.labelSpieler2.setVisible(true);
+		bo.ueberschriftSpiel.setVisible(true);
+		bo.labelBank.setVisible(true);
 		
 	}
 	public void einsatzZuJetons() {
@@ -479,7 +483,7 @@ public class Client implements Runnable{
 		bo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		bo.ueberschrift.setVisible(true);
+		bo.ueberschrift.setVisible(false);
 		bo.buttonZurück.setVisible(false);
 
 		//Loginfenster
@@ -515,7 +519,26 @@ public class Client implements Runnable{
 		bo.buttonJeton25.setVisible(true);
 		bo.buttonJeton50.setVisible(true);
 		bo.buttonJeton100.setVisible(true);
-		bo.buttonEinsatzbestätigen.setVisible(true);
+		bo.karte1Spieler1.setVisible(true);
+		bo.karte2Spieler1.setVisible(true);
+		bo.karte3Spieler1.setVisible(true); 
+		bo.karte4Spieler1.setVisible(true); 
+		bo.karte5Spieler1.setVisible(true); 
+		bo.karte1Spieler2.setVisible(true);
+		bo.karte2Spieler2.setVisible(true);
+		bo.karte3Spieler2.setVisible(true);
+		bo.karte4Spieler2.setVisible(true);
+		bo.karte5Spieler2.setVisible(true);
+		bo.karte1Bank.setVisible(true);
+		bo.karte2Bank.setVisible(true);
+		bo.karte3Bank.setVisible(true);
+		bo.karte4Bank.setVisible(true);
+		bo.karte5Bank.setVisible(true);
+		bo.einsatzSpieler1.setVisible(true);
+		bo.einsatzSpieler2.setVisible(true);
+		bo.kontostandSpieler1.setVisible(true);
+		bo.kontostandSpieler2.setVisible(true); 
+		//bo.buttonEinsatzbestätigen.setVisible(true);
 		
 	}
 		public void jeton10() {
@@ -529,6 +552,7 @@ public class Client implements Runnable{
 		public void jeton25() {
 			int j25 = 25;
 			String j26 = Integer.toString(j25);
+			
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +j26);
 			bo.einsatzausgabe.setVisible(true);
 			
