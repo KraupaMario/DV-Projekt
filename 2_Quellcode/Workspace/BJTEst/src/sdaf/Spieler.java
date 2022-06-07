@@ -1,11 +1,11 @@
-package Game;
+package sdaf;
 import javax.swing.JOptionPane;
 
 public class Spieler {
 
 	private String name;
     private String passwort;
-	private int kontostand =  500;
+	private long kontostand =  5000;
 	private long highscore;
 
 	int kartenwert;
@@ -25,9 +25,7 @@ public class Spieler {
 		Spieler name = new Spieler(n, p);
 	}  */
 
-	public int getKontostand() {
-		return kontostand;
-	}
+
 	public int geldsetzen() {
 		System.out.println("Wie viel Geld wollen sie setzen? "); // Port festlegen 8080?
 		int mony = Integer.parseInt(JOptionPane.showInputDialog("Wie viel Geld wollen sie setzen?"));

@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 
 
-public class Server2 implements Runnable {
+public class Client2 implements Runnable {
 
 	private String ip = "localhost";
 	private int port = 22222;
@@ -54,7 +54,6 @@ public class Server2 implements Runnable {
 	int gesetztC;
 	static boolean klicks = false; 
 	public static int swischespeicher;
-	int kontomax = 0;
 	
 	
 
@@ -70,7 +69,7 @@ public class Server2 implements Runnable {
 	private String enemyWonString = "Dealer gewinnt!";
 	private String tieString = "Unentschieden!";
 
-	public Server2() {
+	public Client2() {
 		System.out.println("Bitte gib deine IP an: ");
 		ip = JOptionPane.showInputDialog("IP Adresse");
 		System.out.println("Bitte gib einen Port an: ");
@@ -159,7 +158,16 @@ public class Server2 implements Runnable {
 		server.createDeck();
 		//Spieler erstellen
 		Spieler playerS = new Spieler("playerS", "1234");
-		kontomax = playerS.getKontostand();
+		//Gesetzter Betrag vom Client empfangen:
+		try {
+			gesetztS = dis.readInt();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//Bis hier her Wartebildschirm
+		System.out.println("c/Server setzt: "+gesetztS);
+		
 		while (!klicks) {
 			System.out.println("Warten");
 			try {
@@ -169,50 +177,28 @@ public class Server2 implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		server.gesetztSpieler1 = gesetztS;
-		System.out.println("s/Mein gesetzter Betrag"+gesetztS);
-		try {
-			dos.writeInt(gesetztS);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("Mein gesetzter Betrag"+gesetztS);
 		//Betrag übermitteln
 		try {
-			dos.writeInt(gesetztS);
+			dos.writeInt(gesetztC);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//Gesetzter Betrag vom Client empfangen:
-				try {
-					gesetztC = dis.readInt();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			System.out.println("s/Der Client hat soviel gesetzt: "+gesetztC);
 		thread.stop();
-	}
-	
-	boolean abbuchungOK(int m){
-		boolean r = false;
-		if ((swischespeicher+m)>kontomax)
-			return false;
-		else return true;
 	}
 	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Server2 neu = new Server2();
+		Client2 neu = new Client2();
 
 	}
 	//Grafische Programmierung
 	
 	
-	ActionHandler aHandler = new ActionHandler(this); 
-	Benutzeroberfläche bo = new Benutzeroberfläche(this);
+	cHandler aHandler = new cHandler(this); 
+	CBenutzerOberfläche bo = new CBenutzerOberfläche(this);
 	
 	//Vector
 	Vector<Spieler>player = new Vector<Spieler>();
@@ -521,54 +507,39 @@ public class Server2 implements Runnable {
 	}
 		public void jeton10() {
 			int j10 = 10;
-			if(abbuchungOK(10)) {
+			
 			String j11 = Integer.toString(j10);
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true);
 			
 			System.out.println(j10);
-			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
-			}
+			System.out.println("Immo:"+swischespeicher);
 		}
 		public void jeton25() {
 			int j25 = 25;
-			if(abbuchungOK(25)) {
 			String j26 = Integer.toString(j25);
 			
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true);
 			
 			System.out.println(j25);
-			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
-			}
+			System.out.println("Immo:"+swischespeicher);
 		}
 		public void  jeton50() {
 			int j50 = 50;
-			if(abbuchungOK(50)) {
 			String j51 = Integer.toString(j50);
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true);
 			System.out.println(j50);
-			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
-			}
+			System.out.println("Immo:"+swischespeicher);
 		}
 		public void jeton100() {
 			int j100 = 100;
-			if(abbuchungOK(100)) {
 			String j101 = Integer.toString(j100);
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true); 
 			System.out.println(j100);
-			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
-			}
+			System.out.println("Immo:"+swischespeicher);
 			
 		}
 		public void einsatzAusrechnen() {
