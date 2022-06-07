@@ -121,6 +121,8 @@ public class Server implements Runnable{
 		host = true;
 		client = false;
 	}
+	// a = 300; //GUI
+	// Klick auf "setzen": bool: gesetzt = true
 	
 	private void aktion()  {
 		//Spiel erstellen
@@ -129,6 +131,11 @@ public class Server implements Runnable{
 		//Spieler erstellen
 		Spieler playerS = new Spieler("playerS", "1234");
 		//Geld setzen:
+		while(ActionHandler2.gesetzt = false) {
+			
+		}
+		gesetztS = ActionHandler2.a;
+		
 		gesetztS = playerS.geldsetzen();
 		server.gesetztSpieler1 = gesetztS;
 		//gesetzter Betrag übermitteln.
@@ -214,9 +221,9 @@ public class Server implements Runnable{
 		}
 		server.wertDealer = server.wertDealer();
 		
-		server.checkSpieler1(server.wertSpieler1);
-		server.checkSpieler2(server.wertSpieler2);
-		server.checkDealer(server.wertDealer);
+		server.checkBJSpieler1();
+		server.checkBJSpieler2();
+		server.checkBJDealer();
 
 		if (server.winSpieler1)
 			System.out.println("Spieler 1 hat gewonnen");	//Grafische Ausgabe
