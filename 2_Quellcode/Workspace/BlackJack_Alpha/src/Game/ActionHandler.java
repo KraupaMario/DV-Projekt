@@ -4,7 +4,9 @@ import java.awt.event.ActionListener;
 
 public class ActionHandler implements ActionListener{
 
-	Client spiel;
+	public static  int betragsetzen = 0;
+
+	Server2 spiel;
 	
 	//Variablen Login und Registrierung
 	
@@ -12,15 +14,18 @@ public class ActionHandler implements ActionListener{
 	String benutzernameLogin;
 	char[] password;
 	char[] password1; 
-	char[] password2; 
+	char[] password2;
+
+
 	
 	
 	
 	
-	public ActionHandler(Client spiel) {
+	public ActionHandler(Server2 spiel) {
 		
 		this.spiel = spiel;
 	}
+	boolean klick = false; 
 	
 	
 	
@@ -35,7 +40,11 @@ public void actionPerformed(ActionEvent e) {
 	password = spiel.bo.passwordText.getPassword();
 	password1 = spiel.bo.passwordText1.getPassword();
 	password2 = spiel.bo.passwordText2.getPassword();	
+	
+
+	
 		
+
 		
 		switch(command) {
 		
@@ -73,19 +82,28 @@ public void actionPerformed(ActionEvent e) {
 			spiel.einsatzZuJetons(); 
 			break; 
 		case "Jeton10": 
-			spiel.jeton10(); 
+			betragsetzen += 10;
+			spiel.jeton10();
+			
 			break; 
-		case "Jeton25": 
+		case "Jeton25":
+			betragsetzen += 25;
 			spiel.jeton25(); 
+			
 			break; 
-		case "Jeton50": 
+		case "Jeton50":
+			betragsetzen += 50;
 			spiel.jeton50(); 
+			
 			break; 
 		case "Jeton100":
+			betragsetzen += 100;
 			spiel.jeton100();
+			
 			break; 
 		case "Einsatz bestätigen": 
-			spiel.einsatzAusrechnen(); 
+			spiel.einsatzAusrechnen();
+			klick = true; 
 			break;
 			
 			

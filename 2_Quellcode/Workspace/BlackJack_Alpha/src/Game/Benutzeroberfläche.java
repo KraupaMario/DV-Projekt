@@ -1,6 +1,7 @@
 package Game;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
 import java.awt.*;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -23,7 +24,7 @@ public class Benutzeroberfläche extends JFrame  {
 
 	//Variablen
 
-	Client spiel;
+	Server2 spiel;
 
 	 JFrame frame = new JFrame();
 	 JPanel panel = new JPanel();
@@ -52,6 +53,8 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel kontostandSpieler1 = new JLabel ("Kontostand Spieler1:"); 
 	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
 	 JLabel einsatzausgabe = new JLabel();
+	 JLabel labelIPAdresse = new JLabel(); 
+	 
 	 
 
 	 
@@ -123,12 +126,12 @@ public class Benutzeroberfläche extends JFrame  {
 
 	//Konstruktor Fenster
 
-	public Benutzeroberfläche(Client spiel) {
+	public Benutzeroberfläche(Server2 server2) {
 
-		this.spiel = spiel;
+		this.spiel = server2;
 
 		this.setTitle("BlackJack");
-		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Icon.jpg")).getImage());
+		//this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Icon.jpg")).getImage());
 		this.setSize(1600,1000);
 		this.setLayout(null);
 		this.setVisible(true);
@@ -342,6 +345,14 @@ public class Benutzeroberfläche extends JFrame  {
 			labelipadresse.setForeground(Color.white);
 			labelipadresse.setVisible(false);
 			this.add(labelipadresse);
+			
+			labelIPAdresse.setBounds(700,350,165,25);
+			labelIPAdresse.setFocusable(false);
+			labelIPAdresse.setBorder(null);
+			labelIPAdresse.setBackground(null);
+			labelIPAdresse.setForeground(Color.white);
+			labelIPAdresse.setVisible(false);
+			this.add(labelIPAdresse);
 			
 			// TextField: Benutzername:
 			ipadresseText.setBounds(800,350,165,25);
