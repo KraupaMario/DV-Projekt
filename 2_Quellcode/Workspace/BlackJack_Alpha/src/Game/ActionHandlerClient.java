@@ -87,29 +87,29 @@ public void actionPerformed(ActionEvent e) {
 			spiel.einsatzZuJetons(); 
 			break; 
 		case "Jeton10": 
-			Server2.swischespeicher += 10;
+			Client2.swischespeicher += 10;
 			
 			spiel.jeton10();
 			
 			break; 
 		case "Jeton25":
-			Server2.swischespeicher += 25;
+			Client2.swischespeicher += 25;
 			spiel.jeton25(); 
 			
 			break; 
 		case "Jeton50":
-			Server2.swischespeicher += 50;
+			Client2.swischespeicher += 50;
 			spiel.jeton50(); 
 			
 			break; 
 		case "Jeton100":
-			Server2.swischespeicher += 100;
+			Client2.swischespeicher += 100;
 			spiel.jeton100();
 			
 			break; 
 		case "Einsatz bestätigen": 
 			spiel.einsatzAusrechnen();
-			Server2.klicks = true; 
+			Client2.klicks = true; 
 			break;
 			
 			

@@ -14,22 +14,22 @@ public class Spielkarten {
 
 		// Pik
 		for(int num=1; num<14; num++) {
-			pik[num]  = new ImageIcon(getClass().getClassLoader().getResource(num + "Karten/Pik.png"));
+			pik[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Pik.png"));
 		}
 		
 		// Herz
 		for(int num=1; num<14; num++) {
-			herz[num]  = new ImageIcon(getClass().getClassLoader().getResource(num + "Karten/Herz.png"));
+			herz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Herz.png"));
 		}
 		
 		// Kreuz
 		for(int num=1; num<14; num++) {
-			kreuz[num]  = new ImageIcon(getClass().getClassLoader().getResource(num + "Karten/Kreuz.png"));
+			kreuz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Kreuz.png"));
 		}
 		
 		// Karo
 		for(int num=1; num<14; num++) {
-			karo[num]  = new ImageIcon(getClass().getClassLoader().getResource(num + "Karten/Karo.png"));
+			karo[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Karo.png"));
 		}					
 	}
 }

@@ -85,7 +85,7 @@ public void actionPerformed(ActionEvent e) {
 			break; 
 		case "Jeton10": 
 			Server2.swischespeicher += 10;
-			
+			System.out.println("Server2 sw: "+ Server2.swischespeicher);
 			spiel.jeton10();
 			
 			break; 

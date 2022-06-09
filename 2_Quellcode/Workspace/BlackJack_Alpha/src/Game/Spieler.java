@@ -13,7 +13,7 @@ public class Spieler {
 
 	public Spieler(String n, String passwort) {
 		//..
-		kontostand = 5000;
+		kontostand = 500;
 	}
 
 

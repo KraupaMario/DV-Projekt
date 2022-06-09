@@ -56,8 +56,8 @@ public class Server2 implements Runnable {
 	static boolean klicks = false; 
 	public static int swischespeicher;
 	int kontomax = 0;
-Spieler aktuellerbenutzer;
-boolean anmelden = false;
+	Spieler aktuellerbenutzer;
+	boolean anmelden = false;
 
 
 
@@ -73,10 +73,21 @@ boolean anmelden = false;
 	private String tieString = "Unentschieden!";
 
 	public Server2() {
-		System.out.println("Bitte gib deine IP an: ");
-		ip = JOptionPane.showInputDialog("IP Adresse");
-		System.out.println("Bitte gib einen Port an: ");
-		port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
+
+		InetAddress ia;
+		String serverIP;
+		try { 
+			ia = InetAddress.getLocalHost(); 
+			String str = ia.getHostAddress(); 
+			System.out.println(str); 
+			serverIP =  ia.getHostAddress(); 
+			bo.labelIPAdresse.setText(serverIP);
+			ip = serverIP;
+		} catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+
+		port = 8080;
 		while (port < 1 || port > 65535) {
 			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
 			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
@@ -160,7 +171,7 @@ boolean anmelden = false;
 		Spiel server = new Spiel();
 		server.createDeck();
 		//Spieler erstellen
-		while (!anmelden) {
+		/*	while (!anmelden) {
 			System.out.println("Warten");
 			try {
 				Thread.sleep(1000);
@@ -169,26 +180,22 @@ boolean anmelden = false;
 				e.printStackTrace();
 			}
 		}
-	
-		Spieler playerS = aktuellerbenutzer;
+
+		Spieler playerS = aktuellerbenutzer; */
+		Spieler playerS = new Spieler ("jhg","76554");
 		kontomax = playerS.getKontostand();
 		while (!klicks) {
-			System.out.println("Warten");
+			System.out.println("Warten auf Einsatzbestätigenbutton");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		} klicks = false;
 		server.gesetztSpieler1 = gesetztS;
-		System.out.println("s/Mein gesetzter Betrag"+gesetztS);
-		try {
-			dos.writeInt(gesetztS);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("s/Mein gesetzter Betrag "+gesetztS);
+
 		//Betrag übermitteln
 		try {
 			dos.writeInt(gesetztS);
@@ -204,14 +211,39 @@ boolean anmelden = false;
 			e1.printStackTrace();
 		}
 		System.out.println("s/Der Client hat soviel gesetzt: "+gesetztC);
+
+		
+		
+		//Karte für Spieler 1 ziehen:
+		server.DeckSpieler1.add(server.getKarte());
+		//Karte für Spieler 2 ziehen:
+		server.DeckSpieler2.add(server.getKarte());
+		//Karten für Dealer ziehen:
+		server.DeckDealer.add(server.getKarte());
+		//2. Karte:
+		server.DeckSpieler1.add(server.getKarte());
+		server.DeckSpieler2.add(server.getKarte());
+		server.DeckDealer.add(server.getKarte());
+
+		//Gezogene Karten an Client übermitteln:
+		String card = server.DeckSpieler1.get(0).getFarbe()+server.DeckSpieler1.get(0).getName() ;
+		try {
+			dos.writeUTF(card);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		thread.stop();
 	}
 
 	boolean abbuchungOK(int m){
-		boolean r = false;
-		if ((swischespeicher+m)>kontomax)
-			return false;
-		else return true;
+
+		if ((swischespeicher)>kontomax) {
+			swischespeicher -= m;
+			return false; }
+		else 
+			return true;
 	}
 
 
@@ -375,26 +407,10 @@ boolean anmelden = false;
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(true);
 		bo.labelipadresse.setVisible(true);
-<<<<<<< Updated upstream
 
 
-		String serverIP = "192.168.178.53";
-		bo.labelIPAdresse.setText(serverIP);
-=======
-		
-		  InetAddress ia;
-		
-		try { 
-		 ia = InetAddress.getLocalHost(); 
-			String str = ia.getHostAddress(); 
-			System.out.println(str); 
-			String serverIP =  ia.getHostAddress(); 
-			bo.labelIPAdresse.setText(serverIP);
-			} catch (Exception e) { 
-			e.printStackTrace(); 
-			}
-	
->>>>>>> Stashed changes
+
+
 		bo.labelIPAdresse.setVisible(true);
 
 		//System.out.println(j10);
@@ -604,7 +620,7 @@ boolean anmelden = false;
 		swischespeicher = 0;
 	}
 
-
+	/*
 	//Vector
 	private Vector<Spieler>players = new Vector<Spieler>();
 
@@ -613,15 +629,15 @@ boolean anmelden = false;
 		int logIn = namePruefen();
 		if(logIn >= 0) {
 			if (passwordPruefen(logIn)) {
-				
+
 				return true;
 			}
 			else 
 				return false;
 		}
 		else return false;
-		
-		
+
+
 	}
 
 
@@ -662,13 +678,14 @@ boolean anmelden = false;
 
 		if (gefunden) {
 			return j;
-			
+
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Name nicht gefunden");
 			return -1;
-		} 
-	}}
+		} */
+}
+
 
 
 

@@ -52,6 +52,7 @@ public class Client2 implements Runnable {
 	private boolean dealerWon = false; // der Dealer hat gewonnen
 	int gesetztS; 
 	int gesetztC;
+	int kontomax = 0;
 	static boolean klicks = false; 
 	public static int swischespeicher;
 	
@@ -80,6 +81,7 @@ public class Client2 implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		klicks = false;
 		ip = cHandler.ipAdresse;
 		System.out.println("Die IP ist: " + ip);
 		port = 8080;
@@ -187,7 +189,8 @@ public class Client2 implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Mein gesetzter Betrag"+gesetztS);
+		klicks= false;
+		System.out.println("Mein gesetzter Betrag "+gesetztC);
 		//Betrag übermitteln
 		try {
 			dos.writeInt(gesetztC);
@@ -195,9 +198,28 @@ public class Client2 implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//ausgeteilte Karten Spieler 1:
+				try {
+					System.out.println(dis.readUTF());
+					//Switch Case
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 		thread.stop();
 	}
 	
+boolean abbuchungOK(int m){
+		
+		if ((swischespeicher)>kontomax) {
+			swischespeicher -= m;
+			return false; }
+		else 
+			return true;
+	}
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -552,7 +574,7 @@ public class Client2 implements Runnable {
 		}
 		public void einsatzAusrechnen() {
 			//swischespeicher = gesetztS; <---- Da liegt der Mist!
-			gesetztS = swischespeicher;
+			gesetztC = swischespeicher;
 			swischespeicher = 0;
 		}
 
