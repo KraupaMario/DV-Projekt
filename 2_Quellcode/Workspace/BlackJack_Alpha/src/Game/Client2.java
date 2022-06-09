@@ -205,10 +205,10 @@ public class Client2 implements Runnable {
 
 	public void startZuAuswahl() {
 		bo.buttonStartSpiel.setVisible(false);
-		bo.buttonAbbrechenSpiel.setVisible(false);
+		cbobuttonAbbrechenSpiel.setVisible(false);
 
 		//Startbildschirm
-		bo.buttonLogin.setVisible(true);
+		cbo.buttonLogin.setVisible(true);
 		bo.buttonRegistrieren.setVisible(true);
 
 		//Gemeinsame
