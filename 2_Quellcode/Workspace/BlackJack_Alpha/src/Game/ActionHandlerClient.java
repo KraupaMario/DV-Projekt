@@ -14,6 +14,7 @@ public class ActionHandlerClient implements ActionListener{
 	
 	String benutzername;
 	String benutzernameLogin;
+	String ipAdresse;
 	char[] password;
 	char[] password1; 
 	char[] password2;
@@ -43,7 +44,7 @@ public void actionPerformed(ActionEvent e) {
 	password = spiel.cbo.passwordText.getPassword();
 	password1 = spiel.cbo.passwordText1.getPassword();
 	password2 = spiel.cbo.passwordText2.getPassword();	
-	
+	ipAdresse = spiel.cbo.ipadresseText.getText();
 
 	
 		
@@ -77,6 +78,7 @@ public void actionPerformed(ActionEvent e) {
 			break;
 		case "IP Adresse bestätigen": 
 			spiel.ipZuPort(); 
+			Client2.klicks=true;
 			break;
 		case "Port bestätigen": 
 			spiel.portZuEinsatz(); 

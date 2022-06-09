@@ -71,9 +71,19 @@ public class Client2 implements Runnable {
 
 	public Client2() {
 		System.out.println("Bitte gib deine IP an: ");
-		ip = JOptionPane.showInputDialog("IP Adresse");
-		System.out.println("Bitte gib einen Port an: ");
-		port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
+		while (!klicks) {
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		ip = cHandler.ipAdresse;
+		System.out.println("Die IP ist: " + ip);
+		port = 8080;
+		
 		while (port < 1 || port > 65535) {
 			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
 			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
@@ -350,11 +360,9 @@ public class Client2 implements Runnable {
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestätigen.setVisible(true);
 		cbo.labelipadresseC.setVisible(true);
+		cbo.ipadresseText.setVisible(true);
 		
 		
-		String serverIP = "192.168.178.53";
-		cbo.labelipadresseC.setText(serverIP);
-		cbo.labelipadresseC.setVisible(true);
 		
 		//System.out.println(j10);
 		

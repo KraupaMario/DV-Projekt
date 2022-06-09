@@ -10,9 +10,10 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.Vector;
-
+import java.net.InetAddress;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -374,10 +375,26 @@ boolean anmelden = false;
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(true);
 		bo.labelipadresse.setVisible(true);
+<<<<<<< Updated upstream
 
 
 		String serverIP = "192.168.178.53";
 		bo.labelIPAdresse.setText(serverIP);
+=======
+		
+		  InetAddress ia;
+		
+		try { 
+		 ia = InetAddress.getLocalHost(); 
+			String str = ia.getHostAddress(); 
+			System.out.println(str); 
+			String serverIP =  ia.getHostAddress(); 
+			bo.labelIPAdresse.setText(serverIP);
+			} catch (Exception e) { 
+			e.printStackTrace(); 
+			}
+	
+>>>>>>> Stashed changes
 		bo.labelIPAdresse.setVisible(true);
 
 		//System.out.println(j10);
