@@ -27,7 +27,7 @@ public class Server2 implements Runnable {
 	private Scanner scanner = new Scanner(System.in);
 
 	private Thread thread;
-	
+
 	private boolean close = false; //Schließt wenn true
 
 
@@ -55,8 +55,9 @@ public class Server2 implements Runnable {
 	static boolean klicks = false; 
 	public static int swischespeicher;
 	int kontomax = 0;
-	
-	
+Spieler aktuellerbenutzer;
+boolean anmelden = false;
+
 
 
 
@@ -105,7 +106,7 @@ public class Server2 implements Runnable {
 			}
 
 			aktion();
-			
+
 			if (close) {
 				break;
 			}
@@ -158,7 +159,17 @@ public class Server2 implements Runnable {
 		Spiel server = new Spiel();
 		server.createDeck();
 		//Spieler erstellen
-		Spieler playerS = new Spieler("playerS", "1234");
+		while (!anmelden) {
+			System.out.println("Warten");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
+		Spieler playerS = aktuellerbenutzer;
 		kontomax = playerS.getKontostand();
 		while (!klicks) {
 			System.out.println("Warten");
@@ -185,23 +196,23 @@ public class Server2 implements Runnable {
 			e.printStackTrace();
 		}
 		//Gesetzter Betrag vom Client empfangen:
-				try {
-					gesetztC = dis.readInt();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			System.out.println("s/Der Client hat soviel gesetzt: "+gesetztC);
+		try {
+			gesetztC = dis.readInt();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("s/Der Client hat soviel gesetzt: "+gesetztC);
 		thread.stop();
 	}
-	
+
 	boolean abbuchungOK(int m){
 		boolean r = false;
 		if ((swischespeicher+m)>kontomax)
 			return false;
 		else return true;
 	}
-	
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -209,13 +220,12 @@ public class Server2 implements Runnable {
 
 	}
 	//Grafische Programmierung
-	
-	
+
+
 	ActionHandler aHandler = new ActionHandler(this); 
 	Benutzeroberfläche bo = new Benutzeroberfläche(this);
-	
-	//Vector
-	Vector<Spieler>player = new Vector<Spieler>();
+
+
 
 	public void startZuAuswahl() {
 		bo.buttonStartSpiel.setVisible(false);
@@ -247,16 +257,16 @@ public class Server2 implements Runnable {
 		bo.passwordText2.setVisible(false);
 
 	}
-	
+
 	public void auswahlZuLogin() {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
-		
+
 		//Gemeinsame
 		bo.ueberschrift.setVisible(true);
 		bo.buttonZurück.setVisible(true);
-		
+
 		//Loginfenster
 		bo.labelBenutzername.setVisible(true);
 		bo.labelPasswort.setVisible(true);
@@ -264,7 +274,7 @@ public class Server2 implements Runnable {
 		bo.userText.setVisible(true);
 		bo.passwordText.setVisible(true);
 		bo.buttonZurück.setVisible(true);
-		
+
 		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(false);
 		bo.labelPasswort1.setVisible(false);
@@ -273,18 +283,18 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		
-		
+
+
 	}
-	
+
 	public void auswahlZuRegistrier() {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
-		
 
-		
-		
+
+
+
 		//Gemeinsame
 		bo.ueberschrift.setVisible(true);
 		bo.buttonZurück.setVisible(true);
@@ -296,7 +306,7 @@ public class Server2 implements Runnable {
 		bo.userText.setVisible(false);
 		bo.passwordText.setVisible(false);
 
-		
+
 		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(true);
 		bo.labelPasswort1.setVisible(true);
@@ -305,9 +315,9 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(true);
 		bo.passwordText1.setVisible(true);
 		bo.passwordText2.setVisible(true);
-		
+
 	}
-	
+
 	public void logRegZuAuswahl () {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(true);
@@ -324,7 +334,7 @@ public class Server2 implements Runnable {
 		bo.userText.setVisible(false);
 		bo.passwordText.setVisible(false);
 
-		
+
 		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(false);
 		bo.labelPasswort1.setVisible(false);
@@ -333,7 +343,7 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-	
+
 	}
 	public void loginZuIP() {
 		//Startbildschirm
@@ -360,30 +370,30 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(true);
 		bo.labelipadresse.setVisible(true);
-		
-		
+
+
 		String serverIP = "192.168.178.53";
 		bo.labelIPAdresse.setText(serverIP);
 		bo.labelIPAdresse.setVisible(true);
-		
+
 		//System.out.println(j10);
-		
-		
+
+
 	}
 	public void ipZuPort() {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
 
-				//Gemeinsame
+		//Gemeinsame
 		bo.ueberschrift.setVisible(true);
 		bo.buttonZurück.setVisible(false);
 
-				//Loginfenster
+		//Loginfenster
 		bo.labelBenutzername.setVisible(false);
 		bo.labelPasswort.setVisible(false);
 		bo.buttonstart.setVisible(false);
@@ -391,7 +401,7 @@ public class Server2 implements Runnable {
 		bo.passwordText.setVisible(false);
 		bo.buttonZurück.setVisible(false);
 
-				//Registrierfenster
+		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(false);
 		bo.labelPasswort1.setVisible(false);
 		bo.labelPasswort2.setVisible(false);
@@ -399,20 +409,20 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-				
-				//IPAdressefenster:
+
+		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
-				
-				//Portfenster: 
+
+		//Portfenster: 
 		bo.buttonPortBestätigen.setVisible(true);
 		bo.labelport.setVisible(true);
 		bo.portText.setVisible(true);
-				
-		
+
+
 	}
-	
+
 	public void portZuEinsatz() {
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
@@ -437,24 +447,24 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
-		
+
 		//Portfenster: 
 		bo.buttonPortBestätigen.setVisible(false);
 		bo.labelport.setVisible(false);
 		bo.portText.setVisible(false);
-		
+
 		//Spielfenster: 
 		bo.buttonEinsatz.setVisible(true);
 		bo.labelSpieler1.setVisible(true);
 		bo.labelSpieler2.setVisible(true);
 		bo.ueberschriftSpiel.setVisible(true);
 		bo.labelBank.setVisible(true);
-		
+
 	}
 	public void einsatzZuJetons() {
 		bo.buttonLogin.setVisible(false);
@@ -480,17 +490,17 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
-		
+
 		//Portfenster: 
 		bo.buttonPortBestätigen.setVisible(false);
 		bo.labelport.setVisible(false);
 		bo.portText.setVisible(false);
-		
+
 		//Spielfenster: 
 		bo.buttonEinsatz.setVisible(false);
 		bo.buttonJeton10.setVisible(true);
@@ -517,86 +527,135 @@ public class Server2 implements Runnable {
 		bo.kontostandSpieler1.setVisible(true);
 		bo.kontostandSpieler2.setVisible(true); 
 		bo.buttonEinsatzbestätigen.setVisible(true);
-		
+
 	}
-		public void jeton10() {
-			int j10 = 10;
-			if(abbuchungOK(10)) {
+	public void jeton10() {
+		int j10 = 10;
+		if(abbuchungOK(10)) {
 			String j11 = Integer.toString(j10);
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true);
-			
+
 			System.out.println(j10);
 			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
-			}
+		else {
+			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
 		}
-		public void jeton25() {
-			int j25 = 25;
-			if(abbuchungOK(25)) {
+	}
+	public void jeton25() {
+		int j25 = 25;
+		if(abbuchungOK(25)) {
 			String j26 = Integer.toString(j25);
-			
+
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true);
-			
+
 			System.out.println(j25);
 			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
-			}
+		else {
+			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
 		}
-		public void  jeton50() {
-			int j50 = 50;
-			if(abbuchungOK(50)) {
+	}
+	public void  jeton50() {
+		int j50 = 50;
+		if(abbuchungOK(50)) {
 			String j51 = Integer.toString(j50);
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true);
 			System.out.println(j50);
 			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
-			}
+		else {
+			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
 		}
-		public void jeton100() {
-			int j100 = 100;
-			if(abbuchungOK(100)) {
+	}
+	public void jeton100() {
+		int j100 = 100;
+		if(abbuchungOK(100)) {
 			String j101 = Integer.toString(j100);
 			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabe.setVisible(true); 
 			System.out.println(j100);
 			System.out.println("Immo:"+swischespeicher);}
-			else {
-				JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
+		else {
+			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
+		}
+
+	}
+	public void einsatzAusrechnen() {
+		//swischespeicher = gesetztS; <---- Da liegt der Mist!
+		gesetztS = swischespeicher;
+		swischespeicher = 0;
+	}
+
+
+	//Vector
+	private Vector<Spieler>players = new Vector<Spieler>();
+
+
+	public boolean logIn() {
+		int logIn = namePruefen();
+		if(logIn >= 0) {
+			if (passwordPruefen(logIn)) {
+				
+				return true;
 			}
+			else 
+				return false;
+		}
+		else return false;
+		
+		
+	}
+
+
+	public void benutzerErstellen() {
+		if (aHandler.password1.equals(aHandler.password2))
+		{ 
+			Spieler s = new Spieler(aHandler.benutzernameLogin, aHandler.password1);
+				players.addElement(s);
+		}
+		else {
+			System.out.println("Passwort nicht gleich");
+			JOptionPane.showMessageDialog(null, "Bitte wiederholen Passwort nicht gleich");
+		}
+
+	}
+
+
+	public boolean passwordPruefen(int i) {
+
+		if (players.elementAt(i).getpasswort().equals(aHandler.password)==true)
+
+			return true;
+
+		else 
+			return false;
+	}
+
+
+
+	public int namePruefen() {
+		boolean gefunden = false;
+		int j=-1;
+		for (int i=0;i<players.size();i++) {
+			if (players.elementAt(i).getname().equals(aHandler.benutzernameLogin)==true)
+				j = i;	
+			gefunden = true;
+		}
+
+		if (gefunden) {
+			return j;
 			
 		}
-		public void einsatzAusrechnen() {
-			//swischespeicher = gesetztS; <---- Da liegt der Mist!
-			gesetztS = swischespeicher;
-			swischespeicher = 0;
-		}
-
-		
-		
-		public void benutzerErstellen() {
-			//Spieler s = new Spieler(aHandler.benutzernameLogin, aHandler.password1);
-			//player.addElement(s);			
-		}
-		/*
-	    public boolean passwordPruefen() {;
-	    	 for (int i=0;i<player.size();i++) {
-	    		 if (Spieler.passwort.equals(aHandler.password)==true) {
-	    			 return true;
-	    		 }
-	    		 
-	    	 } return false;
-	    }
-*/
-}
+		else {
+			JOptionPane.showMessageDialog(null, "Name nicht gefunden");
+			return -1;
+		} 
+	}}
 
 
-	
+
+
 
 
 
