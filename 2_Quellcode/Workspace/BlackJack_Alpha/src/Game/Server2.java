@@ -170,6 +170,7 @@ public class Server2 implements Runnable {
 		//Spiel erstellen
 		Spiel server = new Spiel();
 		server.createDeck();
+		Spielkarten Server = new Spielkarten();
 		//Spieler erstellen
 		/*	while (!anmelden) {
 			System.out.println("Warten");
@@ -257,7 +258,7 @@ public class Server2 implements Runnable {
 
 	ActionHandler aHandler = new ActionHandler(this); 
 	Benutzeroberfläche bo = new Benutzeroberfläche(this);
-
+    
 
 
 	public void startZuAuswahl() {

@@ -64,9 +64,9 @@ public class Benutzeroberfläche extends JFrame  {
 	 Icon jeton_25 = new ImageIcon(getClass().getResource("Jeton_25.PNG"));
 	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
 	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
-	 Icon testkartee =  new ImageIcon(getClass().getClassLoader().getResource("Karten/13Karo.png"));
+	 Icon testkarte =  new ImageIcon(getClass().getClassLoader().getResource("Karten/13Karo.png"));
 	 
-	 JLabel karte1Spieler1 = new JLabel(testkartee);
+	 JLabel karte1Spieler1 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("Karten/5Kreuz.png")));
 	 JLabel karte2Spieler1 = new JLabel(testkarte);
 	 JLabel karte3Spieler1 = new JLabel(testkarte);
 	 JLabel karte4Spieler1 = new JLabel(testkarte);

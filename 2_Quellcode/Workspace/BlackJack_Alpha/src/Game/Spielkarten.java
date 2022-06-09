@@ -2,11 +2,11 @@ package Game;
 import javax.swing.ImageIcon;
 
 public class Spielkarten {
-	ImageIcon front = new ImageIcon();
-	ImageIcon pik[] = new ImageIcon[14];
-	ImageIcon herz[] = new ImageIcon[14];
-	ImageIcon kreuz[] = new ImageIcon[14];
-	ImageIcon karo[] = new ImageIcon[14];
+	 static ImageIcon front = new ImageIcon();
+	static ImageIcon pik[] = new ImageIcon[14];
+	static ImageIcon herz[] = new ImageIcon[14];
+	static ImageIcon kreuz[] = new ImageIcon[14];
+	static ImageIcon karo[] = new ImageIcon[14];
 
 	public Spielkarten() {
 		
@@ -30,7 +30,8 @@ public class Spielkarten {
 		// Karo
 		for(int num=1; num<14; num++) {
 			karo[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Karo.png"));
-		}					
+		}	
+		
 	}
 }
 
