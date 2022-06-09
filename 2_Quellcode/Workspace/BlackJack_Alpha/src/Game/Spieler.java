@@ -1,6 +1,4 @@
 package Game;
-import java.util.Vector;
-
 import javax.swing.JOptionPane;
 
 public class Spieler {
@@ -13,21 +11,19 @@ public class Spieler {
 	int kartenwert;
 	int Gewinnstatus;
 
-	
-	public Spieler(String n, String p) {
-		name = n;
-		passwort=p;
+	public Spieler(String n, String passwort) {
+		//..
 		kontostand = 5000;
 	}
-	
 
-	public String getname() {
-		return name;
-	}
-	public String getpasswort() {
-		return passwort;
-	}
-	
+
+
+	/*static void registrieren() {
+		String n = JOptionPane.showInputDialog("Nickname:");
+		//Abfrage Doppelt?
+		String p = JOptionPane.showInputDialog("Passwort:");
+		Spieler name = new Spieler(n, p);
+	}  */
 
 	public int getKontostand() {
 		return kontostand;
