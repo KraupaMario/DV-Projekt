@@ -2,46 +2,47 @@ package Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ActionHandler implements ActionListener{
+public class ActionHandlerClient implements ActionListener{
 
 	public static int betragsetzen = 0;
 	//boolean klick = false; 
 
-	Server2 spiel;
+	Client2 spiel;
 	//Client2 spiel1;
 	
 	//Variablen Login und Registrierung
 	
 	String benutzername;
 	String benutzernameLogin;
-	String password;
-	String password1; 
-	String password2;
+	char[] password;
+	char[] password1; 
+	char[] password2;
 
 
 	
 	
 	
 	
-	public ActionHandler(Server2 spiel) {
+	public ActionHandlerClient(Client2 client2) {
 		
-		this.spiel = spiel;
+		this.spiel = client2;
 	}
 	
 	
-	
-	
-	
+
+
+
+
 public void actionPerformed(ActionEvent e) {
 		
 		String command = e.getActionCommand();
 		
 		
-	benutzername = spiel.bo.userText.getText();	
-	benutzernameLogin = spiel.bo.userRegistText.getText();
-	password = spiel.bo.passwordText.getText();
-	password1 = spiel.bo.passwordText1.getText();
-	password2 = spiel.bo.passwordText2.getText();	
+	benutzername = spiel.cbo.userText.getText();	
+	benutzernameLogin = spiel.cbo.userRegistText.getText();
+	password = spiel.cbo.passwordText.getPassword();
+	password1 = spiel.cbo.passwordText1.getPassword();
+	password2 = spiel.cbo.passwordText2.getPassword();	
 	
 
 	
