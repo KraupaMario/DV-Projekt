@@ -64,25 +64,61 @@ public class Benutzeroberfläche extends JFrame  {
 	 Icon jeton_25 = new ImageIcon(getClass().getResource("Jeton_25.PNG"));
 	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
 	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
-	 Icon testkarte =  new ImageIcon(getClass().getClassLoader().getResource("Karten/13Karo.png"));
+	 Icon karte =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
+	 Icon rückseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
 	 
-	 JLabel karte1Spieler1 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("Karten/5Kreuz.png")));
-	 JLabel karte2Spieler1 = new JLabel(testkarte);
-	 JLabel karte3Spieler1 = new JLabel(testkarte);
-	 JLabel karte4Spieler1 = new JLabel(testkarte);
-	 JLabel karte5Spieler1 = new JLabel(testkarte);
 	 
-	 JLabel karte1Spieler2 = new JLabel(testkarte);
-	 JLabel karte2Spieler2 = new JLabel(testkarte);
-	 JLabel karte3Spieler2 = new JLabel(testkarte);
-	 JLabel karte4Spieler2 = new JLabel(testkarte);
-	 JLabel karte5Spieler2 = new JLabel(testkarte);
+	 //PIK
+	 Icon pik[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				pik[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Pik.png"));
+			}
+	 }
+	 //Herz
+	 Icon herz[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				herz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Herz.png"));
+			}
+	 }
+	 //Kreuz
+	 Icon kreuz[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				kreuz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Kreuz.png"));
+			}
+	 }
+	 //Karo
+	 Icon karo[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				karo[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Karo.png"));
+			}
+	 }
 	 
-	 JLabel karte1Bank = new JLabel(testkarte); 
-	 JLabel karte2Bank = new JLabel(testkarte); 
-	 JLabel karte3Bank = new JLabel(testkarte); 
-	 JLabel karte4Bank = new JLabel(testkarte); 
-	 JLabel karte5Bank = new JLabel(testkarte); 
+		
+		
+		
+		
+	 JLabel karte1Spieler1 = new JLabel();
+	 JLabel karte2Spieler1 = new JLabel();
+	 JLabel karte3Spieler1 = new JLabel(karte);
+	 JLabel karte4Spieler1 = new JLabel(karte);
+	 JLabel karte5Spieler1 = new JLabel(karte);
+	 
+	 JLabel karte1Spieler2 = new JLabel(karte);
+	 JLabel karte2Spieler2 = new JLabel(karte);
+	 JLabel karte3Spieler2 = new JLabel(karte);
+	 JLabel karte4Spieler2 = new JLabel(karte);
+	 JLabel karte5Spieler2 = new JLabel(karte);
+	 
+	 JLabel karte1Bank = new JLabel(karte); 
+	 JLabel karte2Bank = new JLabel(karte); 
+	 JLabel karte3Bank = new JLabel(karte); 
+	 JLabel karte4Bank = new JLabel(karte); 
+	 JLabel karte5Bank = new JLabel(karte); 
+
+
+	 
+
+		
 
 
 	//Buttons
@@ -148,9 +184,11 @@ public class Benutzeroberfläche extends JFrame  {
 		portfenster();
 		einsatzfenster(); 
 		jetonfenster();
-		 
 	}
 
+	
+	
+	
 	//Startbildschirm
 	
 	public void startfenster() {
@@ -456,91 +494,91 @@ public class Benutzeroberfläche extends JFrame  {
 		this.add(labelBank);
 		
 		//Karten: 
-		karte1Spieler1.setBounds(1000,425,60,200);
+		karte1Spieler1.setBounds(1000,425,150,213);
 		karte1Spieler1.setFocusable(false);
 		karte1Spieler1.setBorder(null);
 		karte1Spieler1.setVisible(false);
 		this.add(karte1Spieler1); 
 		
-		karte2Spieler1.setBounds(1100,425,60,200);
+		karte2Spieler1.setBounds(1100,425,150,213);
 		karte2Spieler1.setFocusable(false);
 		karte2Spieler1.setBorder(null);
 		karte2Spieler1.setVisible(false);
 		this.add(karte2Spieler1);
 		
-		karte3Spieler1.setBounds(1200,425,60,200);
+		karte3Spieler1.setBounds(1200,425,150,213);
 		karte3Spieler1.setFocusable(false);
 		karte3Spieler1.setBorder(null);
 		karte3Spieler1.setVisible(false);
 		this.add(karte3Spieler1);
 		
-		karte4Spieler1.setBounds(1300,425,60,200);
+		karte4Spieler1.setBounds(1300,425,150,213);
 		karte4Spieler1.setFocusable(false);
 		karte4Spieler1.setBorder(null);
 		karte4Spieler1.setVisible(false);
 		this.add(karte4Spieler1);
 		
-		karte5Spieler1.setBounds(1400,425,60,200);
+		karte5Spieler1.setBounds(1400,425,150,213);
 		karte5Spieler1.setFocusable(false);
 		karte5Spieler1.setBorder(null);
 		karte5Spieler1.setVisible(false);
 		this.add(karte5Spieler1);
 		
-		karte1Spieler2.setBounds(100,425,60,200);
+		karte1Spieler2.setBounds(100,425,150,213);
 		karte1Spieler2.setFocusable(false);
 		karte1Spieler2.setBorder(null);
 		karte1Spieler2.setVisible(false);
 		this.add(karte1Spieler2);
 		
-		karte2Spieler2.setBounds(200,425,60,200);
+		karte2Spieler2.setBounds(200,425,150,213);
 		karte2Spieler2.setFocusable(false);
 		karte2Spieler2.setBorder(null);
 		karte2Spieler2.setVisible(false);
 		this.add(karte2Spieler2);
 		
-		karte3Spieler2.setBounds(300,425,60,200);
+		karte3Spieler2.setBounds(300,425,150,213);
 		karte3Spieler2.setFocusable(false);
 		karte3Spieler2.setBorder(null);
 		karte3Spieler2.setVisible(false);
 		this.add(karte3Spieler2);
 		
-		karte4Spieler2.setBounds(400,425,60,200);
+		karte4Spieler2.setBounds(400,425,150,213);
 		karte4Spieler2.setFocusable(false);
 		karte4Spieler2.setBorder(null);
 		karte4Spieler2.setVisible(false);
 		this.add(karte4Spieler2);
 		
-		karte5Spieler2.setBounds(500,425,60,200);
+		karte5Spieler2.setBounds(500,425,150,213);
 		karte5Spieler2.setFocusable(false);
 		karte5Spieler2.setBorder(null);
 		karte5Spieler2.setVisible(false);
 		this.add(karte5Spieler2);
 		
-		karte1Bank.setBounds(500,100,60,200);
+		karte1Bank.setBounds(500,100,150,213);
 		karte1Bank.setFocusable(false);
 		karte1Bank.setBorder(null);
 		karte1Bank.setVisible(false);
 		this.add(karte1Bank);
 		
-		karte2Bank.setBounds(600,100,60,200);
+		karte2Bank.setBounds(600,100,150,213);
 		karte2Bank.setFocusable(false);
 		karte2Bank.setBorder(null);
 		karte2Bank.setVisible(false);
 		this.add(karte2Bank);
 		
-		karte3Bank.setBounds(700,100,60,200);
+		karte3Bank.setBounds(700,100,150,213);
 		karte3Bank.setFocusable(false);
 		karte3Bank.setBorder(null);
 		karte3Bank.setVisible(false);
 		this.add(karte3Bank);
 		
-		karte4Bank.setBounds(800,100,60,200);
+		karte4Bank.setBounds(800,100,150,213);
 		karte4Bank.setFocusable(false);
 		karte4Bank.setBorder(null);
 		karte4Bank.setVisible(false);
 		this.add(karte4Bank);
 		
-		karte5Bank.setBounds(900,100,60,200);
+		karte5Bank.setBounds(900,100,150,213);
 		karte5Bank.setFocusable(false);
 		karte5Bank.setBorder(null);
 		karte5Bank.setVisible(false);

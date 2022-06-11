@@ -81,7 +81,10 @@ public void actionPerformed(ActionEvent e) {
 			spiel.portZuEinsatz(); 
 			break; 
 		case "Einsatz": 
+			spiel.kartenausgeben11();
 			spiel.einsatzZuJetons(); 
+			
+			
 			break; 
 		case "Jeton10": 
 			Server2.swischespeicher += 10;

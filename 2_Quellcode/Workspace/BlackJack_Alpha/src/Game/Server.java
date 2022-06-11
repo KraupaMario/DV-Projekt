@@ -603,6 +603,13 @@ public class Server implements Runnable{
 			System.out.println(j100);
 			
 		}
+		
+		
+		
+		
+		
+		
+		
 		public void einsatzAusrechnen() {
 			aHandler.betragsetzen = gesetztS; 
 			

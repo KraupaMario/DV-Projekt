@@ -2,7 +2,7 @@ package Game;
 import javax.swing.ImageIcon;
 
 public class Spielkarten {
-	 static ImageIcon front = new ImageIcon();
+	static ImageIcon front = new ImageIcon();
 	static ImageIcon pik[] = new ImageIcon[14];
 	static ImageIcon herz[] = new ImageIcon[14];
 	static ImageIcon kreuz[] = new ImageIcon[14];
