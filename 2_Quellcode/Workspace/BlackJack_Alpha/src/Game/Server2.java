@@ -14,6 +14,8 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.Vector;
 import java.net.InetAddress;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -170,6 +172,7 @@ public class Server2 implements Runnable {
 		//Spiel erstellen
 		Spiel server = new Spiel();
 		server.createDeck();
+		Spielkarten Server = new Spielkarten();
 		//Spieler erstellen
 		/*	while (!anmelden) {
 			System.out.println("Warten");
@@ -257,7 +260,7 @@ public class Server2 implements Runnable {
 
 	ActionHandler aHandler = new ActionHandler(this); 
 	Benutzeroberfläche bo = new Benutzeroberfläche(this);
-
+    Spielkarten sk = new Spielkarten();
 
 
 	public void startZuAuswahl() {
@@ -540,28 +543,21 @@ public class Server2 implements Runnable {
 		bo.buttonJeton25.setVisible(true);
 		bo.buttonJeton50.setVisible(true);
 		bo.buttonJeton100.setVisible(true);
-		bo.karte1Spieler1.setVisible(true);
-		bo.karte2Spieler1.setVisible(true);
-		bo.karte3Spieler1.setVisible(true); 
-		bo.karte4Spieler1.setVisible(true); 
-		bo.karte5Spieler1.setVisible(true); 
-		bo.karte1Spieler2.setVisible(true);
-		bo.karte2Spieler2.setVisible(true);
-		bo.karte3Spieler2.setVisible(true);
-		bo.karte4Spieler2.setVisible(true);
-		bo.karte5Spieler2.setVisible(true);
-		bo.karte1Bank.setVisible(true);
-		bo.karte2Bank.setVisible(true);
-		bo.karte3Bank.setVisible(true);
-		bo.karte4Bank.setVisible(true);
-		bo.karte5Bank.setVisible(true);
 		bo.einsatzSpieler1.setVisible(true);
 		bo.einsatzSpieler2.setVisible(true);
 		bo.kontostandSpieler1.setVisible(true);
 		bo.kontostandSpieler2.setVisible(true); 
-		bo.buttonEinsatzbestätigen.setVisible(true);
+		bo.buttonEinsatzbestätigen.setVisible(true);  
 
 	}
+	
+
+	
+	
+	
+	
+	
+	
 	public void jeton10() {
 		int j10 = 10;
 		if(abbuchungOK(10)) {
@@ -614,6 +610,78 @@ public class Server2 implements Runnable {
 		}
 
 	}
+	
+	//Kartenauswahl
+	
+	String farbek1 = "pik";
+	String farbek2 = "herz";
+	Icon karte11;
+	Icon karte12;
+	int nummerk1 = 12;
+	int nummerk2 = 11;
+	
+	public void kartenausgeben11(){
+		//Karte1 Spieler1
+		
+		
+		switch (farbek1) {
+		case "pik":
+			karte11 = bo.pik[nummerk1];
+			bo.karte1Spieler1.setIcon(karte11);
+			break;
+		case "herz":
+			karte11 = bo.herz[nummerk1];
+			bo.karte1Spieler1.setIcon(karte11);
+			break;
+		case "kreuz":
+			karte11 = bo.kreuz[nummerk1];
+			bo.karte1Spieler1.setIcon(karte11);
+			break;
+		case "karo":
+			karte11 = bo.karo[nummerk1];
+			bo.karte1Spieler1.setIcon(karte11);
+			break;
+		}
+		
+		switch (farbek2) {
+		case "pik":
+			karte12 = bo.pik[nummerk2];
+			bo.karte2Spieler1.setIcon(karte12);
+			break;
+		case "herz":
+			karte12 = bo.herz[nummerk2];
+			bo.karte2Spieler1.setIcon(karte12);
+			break;
+		case "kreuz":
+			karte12 = bo.kreuz[nummerk2];
+			bo.karte2Spieler1.setIcon(karte12);
+			break;
+		case "karo":
+			karte12 = bo.karo[nummerk2];
+			bo.karte2Spieler1.setIcon(karte12);
+			break;
+		}
+	
+ 
+		
+		
+		
+		bo.karte1Spieler1.setVisible(true);
+		bo.karte2Spieler1.setVisible(true);
+		bo.karte1Spieler2.setIcon(bo.rückseite);
+		bo.karte1Spieler2.setVisible(true);
+		bo.karte2Spieler2.setIcon(bo.rückseite);
+		bo.karte2Spieler2.setVisible(true);
+		bo.karte1Bank.setIcon(bo.rückseite);
+		bo.karte1Bank.setVisible(true);
+		bo.karte2Bank.setIcon(bo.rückseite);
+		bo.karte2Bank.setVisible(true); 
+	}
+	
+	
+	
+	
+	
 	public void einsatzAusrechnen() {
 		//swischespeicher = gesetztS; <---- Da liegt der Mist!
 		gesetztS = swischespeicher;
