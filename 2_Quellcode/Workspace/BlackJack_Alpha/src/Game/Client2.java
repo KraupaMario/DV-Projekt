@@ -167,10 +167,10 @@ public class Client2 implements Runnable {
 		host = true;
 		client = false;
 	}
-
+	 
 	private void aktion()  {
 		//Spiel erstellen
-		Spiel client = new Spiel();
+		 Spiel client = new Spiel();
 		client.createDeck();
 		//Spieler erstellen
 		Spieler playerS = new Spieler("playerS", "1234");
@@ -181,10 +181,10 @@ public class Client2 implements Runnable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		client.gesetztSpieler1 = gesetztS;
+		Spiel.setGesetztSpieler1(gesetztS);
 		gesetztS = 0;
 		//Bis hier her Wartebildschirm
-		System.out.println("c/Server setzt: "+client.gesetztSpieler1);
+		System.out.println("c/Server setzt: "+Spiel.getGesetztSpieler1());
 		
 		while (!klicks) {
 			System.out.println("Warten");
@@ -204,7 +204,7 @@ public class Client2 implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		client.gesetztSpieler2 = gesetztC;
+		Spiel.setGesetztSpieler2(gesetztC);
 		gesetztC = 0;
 		/*ausgeteilte Karten Spieler 1:
 				try {
@@ -214,7 +214,7 @@ public class Client2 implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}*/
-		
+		/*
 		try {
 			client.DeckSpieler1 = (ArrayList<Karten>) ois.readObject();
 		} catch (ClassNotFoundException e) {
@@ -223,13 +223,27 @@ public class Client2 implements Runnable {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		client.DeckSpieler1.clear();
+		client.DeckSpieler2.clear();
+		client.DeckDealer.clear();
+		
+		//Karte für Spieler 1 ziehen:
+		client.DeckSpieler1.add(client.getKarte());
+		//Karte für Spieler 2 ziehen:
+		client.DeckSpieler2.add(client.getKarte());
+		//Karten für Dealer ziehen:
+		client.DeckDealer.add(client.getKarte());
+		//2. Karte:
+		client.DeckSpieler1.add(client.getKarte());
+		client.DeckSpieler2.add(client.getKarte());
+		client.DeckDealer.add(client.getKarte());
 		
 		System.out.println(client.DeckSpieler1.get(0).getFarbe());
 		System.out.println(client.DeckSpieler1.get(0).getName());
 		System.out.println(client.DeckSpieler1.get(1).getFarbe());
 		System.out.println(client.DeckSpieler1.get(1).getName());
-		
+		kartenausgebenS_R1(client);//Karten anzeigen
 		
 		thread.stop();
 	}
@@ -495,6 +509,50 @@ boolean abbuchungOK(int m){
 		cbo.labelBankC.setVisible(true);
 		
 	}
+	public void ipZuEinsatz() {
+		cbo.buttonLogin.setVisible(false);
+		cbo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		cbo.ueberschriftC.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		cbo.labelBenutzernameC.setVisible(false);
+		cbo.labelPasswortC.setVisible(false);
+		cbo.buttonstart.setVisible(false);
+		cbo.userText.setVisible(false);
+		cbo.passwordText.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		cbo.labelBenutzernameCErstellenC.setVisible(false);
+		cbo.labelPasswortC1C.setVisible(false);
+		cbo.labelPasswortC2C.setVisible(false);
+		cbo.buttonRegistrierenAbschließen.setVisible(false);
+		cbo.userRegistText.setVisible(false);
+		cbo.passwordText1.setVisible(false);
+		cbo.passwordText2.setVisible(false);
+		
+		//IPAdressefenster:
+		cbo.buttonIPAdresseBestätigen.setVisible(false);
+		cbo.labelipadresseC.setVisible(false);
+		cbo.ipadresseText.setVisible(false);
+		
+		//Portfenster: 
+		cbo.buttonPortBestätigen.setVisible(false);
+		cbo.labelportC.setVisible(false);
+		cbo.portText.setVisible(false);
+		
+		//Spielfenster: 
+		cbo.buttonEinsatz.setVisible(true);
+		cbo.labelSpieler1C.setVisible(true);
+		cbo.labelSpieler2C.setVisible(true);
+		cbo.ueberschriftCSpielC.setVisible(true);
+		cbo.labelBankC.setVisible(true);
+		cbo.bedienfeld.setVisible(true);
+		
+	}
 	public void einsatzZuJetons() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
@@ -562,8 +620,8 @@ boolean abbuchungOK(int m){
 			int j10 = 10;
 			
 			String j11 = Integer.toString(j10);
-			cbo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabe.setVisible(true);
+			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+			cbo.einsatzausgabeSpieler2C.setVisible(true);
 			
 			System.out.println(j10);
 			System.out.println("Immo:"+swischespeicher);
@@ -572,8 +630,8 @@ boolean abbuchungOK(int m){
 			int j25 = 25;
 			String j26 = Integer.toString(j25);
 			
-			cbo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabe.setVisible(true);
+			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+			cbo.einsatzausgabeSpieler2C.setVisible(true);
 			
 			System.out.println(j25);
 			System.out.println("Immo:"+swischespeicher);
@@ -581,30 +639,37 @@ boolean abbuchungOK(int m){
 		public void  jeton50() {
 			int j50 = 50;
 			String j51 = Integer.toString(j50);
-			cbo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabe.setVisible(true);
+			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+			cbo.einsatzausgabeSpieler2C.setVisible(true);
 			System.out.println(j50);
 			System.out.println("Immo:"+swischespeicher);
 		}
 		public void jeton100() {
 			int j100 = 100;
 			String j101 = Integer.toString(j100);
-			cbo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabe.setVisible(true); 
+			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+			cbo.einsatzausgabeSpieler2C.setVisible(true); 
 			System.out.println(j100);
 			System.out.println("Immo:"+swischespeicher);
 			
 		}
 		public void einsatzAusrechnen() {
 			//swischespeicher = gesetztS; <---- Da liegt der Mist!
-			gesetztC = swischespeicher;
+			gesetztC = swischespeicher; 
 			swischespeicher = 0;
+			einsatzAnzeigenGegenspieler(); 
 		}
+		
+		public void einsatzAnzeigenGegenspieler() {
+			cbo.einsatzausgabeSpieler1C.setVisible(true);
+			cbo.einsatzausgabeSpieler1C.setText("Der Einsatz beträgt:" + Spiel.getGesetztSpieler1());
+			}
+		
 		
 		public void kartenausgebenS_R1(Spiel s){
 			
 			//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
-			String farbek11 = s.DeckSpieler1.get(0).getFarbe();
+			String farbek11 = "herz"; //s.DeckSpieler1.get(0).getFarbe();
 			String farbek21 = s.DeckSpieler1.get(1).getFarbe();
 			String farbek12 = s.DeckSpieler2.get(0).getFarbe();
 			String farbek22 = s.DeckSpieler2.get(1).getFarbe();
@@ -612,7 +677,7 @@ boolean abbuchungOK(int m){
 			String farbebank2= s.DeckDealer.get(1).getFarbe();
 			
 			//int nummerk11 = s.DeckSpieler1.get(0).getName();
-			int nummerk11 = s.DeckSpieler1.get(0).getName();
+			int nummerk11 = 11; //s.DeckSpieler1.get(0).getName();
 			int nummerk21 = s.DeckSpieler1.get(1).getName();
 			int nummerk12 = s.DeckSpieler2.get(0).getName();
 			int nummerk22 = s.DeckSpieler2.get(1).getName();

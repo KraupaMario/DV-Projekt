@@ -77,12 +77,12 @@ public void actionPerformed(ActionEvent e) {
 			spiel.loginZuIP(); 
 			break;
 		case "IP Adresse bestätigen": 
-			spiel.ipZuPort(); 
+			spiel.ipZuEinsatz(); 
 			Client2.klicks=true;
 			break;
-		case "Port bestätigen": 
+		/*case "Port bestätigen": 
 			spiel.portZuEinsatz(); 
-			break; 
+			break; */
 		case "Einsatz": 
 			spiel.einsatzZuJetons(); 
 			break; 
@@ -109,6 +109,8 @@ public void actionPerformed(ActionEvent e) {
 			break; 
 		case "Einsatz bestätigen": 
 			spiel.einsatzAusrechnen();
+			//spiel.kartenausgebenS_R1(); 
+			
 			Client2.klicks = true; 
 			break;
 			

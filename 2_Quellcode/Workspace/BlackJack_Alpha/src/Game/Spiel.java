@@ -54,8 +54,8 @@ public class Spiel {
 	private String enemyWonString = "Dealer gewinnt!";
 	private String tieString = "Unentschieden!";
 	
-	int gesetztSpieler1;
-	int gesetztSpieler2;
+	private static int gesetztSpieler1;
+	private static int gesetztSpieler2;
 
 	int wertSpieler1;
 	int wertSpieler2;
@@ -182,6 +182,34 @@ public class Spiel {
 		// TODO Auto-generated method stub
 	
 
+	}
+
+
+
+
+	public static int getGesetztSpieler2() {
+		return gesetztSpieler2;
+	}
+
+
+
+
+	public static void setGesetztSpieler2(int gesetztSpieler2) {
+		Spiel.gesetztSpieler2 = gesetztSpieler2;
+	}
+
+
+
+
+	public static int getGesetztSpieler1() {
+		return gesetztSpieler1;
+	}
+
+
+
+
+	public static void setGesetztSpieler1(int gesetztSpieler1) {
+		Spiel.gesetztSpieler1 = gesetztSpieler1;
 	}
 
 }

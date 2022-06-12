@@ -131,7 +131,7 @@ public class Server implements Runnable{
 		//Geld setzen:
 		
 		gesetztS = playerS.geldsetzen();
-		server.gesetztSpieler1 = gesetztS;
+		server.setGesetztSpieler1(gesetztS);
 		System.out.println(gesetztS);
 		//gesetzter Betrag übermitteln.
 		try {
@@ -228,7 +228,7 @@ public class Server implements Runnable{
 		if (server.winDealer)
 			System.out.println("Spieler 1 hat verloren");	//Grafische Ausgabe
 		gesetztS = 0;
-		server.gesetztSpieler1 = 0;
+		server.setGesetztSpieler1(0);
 		
 		//Ergebnisse vom Check des Client an Client schicken:
 		try {

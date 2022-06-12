@@ -168,7 +168,7 @@ public class Server2 implements Runnable {
 		host = true;
 		client = false;
 	}
-
+	
 	private void aktion()  {
 		//Spiel erstellen
 		Spiel server = new Spiel();
@@ -197,14 +197,14 @@ public class Server2 implements Runnable {
 				e.printStackTrace();
 			}
 		} klicks = false;
-		server.gesetztSpieler1 = gesetztS;
+		Spiel.setGesetztSpieler1(gesetztS);
 		gesetztS = 0;
-		playerS.abbuchen(server.gesetztSpieler1);
-		System.out.println("s/Mein gesetzter Betrag "+server.gesetztSpieler1);
+		playerS.abbuchen(Spiel.getGesetztSpieler1());
+		System.out.println("s/Mein gesetzter Betrag "+Spiel.getGesetztSpieler1());
 
 		//Betrag übermitteln
 		try {
-			dos.writeInt(server.gesetztSpieler1);
+			dos.writeInt(Spiel.getGesetztSpieler1());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -216,9 +216,10 @@ public class Server2 implements Runnable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		server.gesetztSpieler2 = gesetztC;
+		Spiel.setGesetztSpieler2(gesetztC);
 		gesetztC = 0;
-		System.out.println("s/Der Client hat soviel gesetzt: "+server.gesetztSpieler2);
+		einsatzAnzeigenGegenspieler();
+		System.out.println("s/Der Client hat soviel gesetzt: "+Spiel.getGesetztSpieler2());
 
 		
 		server.DeckSpieler1.clear();
@@ -474,10 +475,58 @@ public class Server2 implements Runnable {
 		bo.buttonPortBestätigen.setVisible(true);
 		bo.labelport.setVisible(true);
 		bo.portText.setVisible(true);
+		
+		bo.labelIPAdresse.setVisible(false);
 
 
 	}
+	public void ipZuEinsatz() {
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
 
+		//Gemeinsame
+		bo.ueberschrift.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
+		
+		//IPAdressefenster:
+		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.ipadresseText.setVisible(false);
+		
+		//Portfenster: 
+		bo.buttonPortBestätigen.setVisible(false);
+		bo.labelport.setVisible(false);
+		bo.portText.setVisible(false);
+		
+		//Spielfenster: 
+		bo.buttonEinsatz.setVisible(true);
+		bo.labelSpieler1.setVisible(true);
+		bo.labelSpieler2.setVisible(true);
+		bo.ueberschriftSpiel.setVisible(true);
+		bo.labelBank.setVisible(true);
+		bo.bedienfeld.setVisible(true);
+		
+		bo.labelipadresse.setVisible(false);
+		bo.labelIPAdresse.setVisible(false);
+		
+	}
 	public void portZuEinsatz() {
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
@@ -513,6 +562,7 @@ public class Server2 implements Runnable {
 		bo.labelport.setVisible(false);
 		bo.portText.setVisible(false);
 
+		bo.labelIPAdresse.setVisible(false);
 		//Spielfenster: 
 		bo.buttonEinsatz.setVisible(true);
 		bo.labelSpieler1.setVisible(true);
@@ -581,8 +631,8 @@ public class Server2 implements Runnable {
 		int j10 = 10;
 		if(abbuchungOK(10)) {
 			String j11 = Integer.toString(j10);
-			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			bo.einsatzausgabe.setVisible(true);
+			bo.einsatzausgabeSpieler1.setText("Der Einsatz beträgt:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setVisible(true);
 
 			System.out.println(j10);
 			System.out.println("Immo:"+swischespeicher);}
@@ -595,8 +645,8 @@ public class Server2 implements Runnable {
 		if(abbuchungOK(25)) {
 			String j26 = Integer.toString(j25);
 
-			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			bo.einsatzausgabe.setVisible(true);
+			bo.einsatzausgabeSpieler1.setText("Der Einsatz beträgt:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setVisible(true);
 
 			System.out.println(j25);
 			System.out.println("Immo:"+swischespeicher);}
@@ -608,8 +658,9 @@ public class Server2 implements Runnable {
 		int j50 = 50;
 		if(abbuchungOK(50)) {
 			String j51 = Integer.toString(j50);
-			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			bo.einsatzausgabe.setVisible(true);
+			bo.einsatzausgabeSpieler1.setText("Der Einsatz beträgt:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setVisible(true);
+			
 			System.out.println(j50);
 			System.out.println("Immo:"+swischespeicher);}
 		else {
@@ -620,8 +671,8 @@ public class Server2 implements Runnable {
 		int j100 = 100;
 		if(abbuchungOK(100)) {
 			String j101 = Integer.toString(j100);
-			bo.einsatzausgabe.setText("Der Einsatz beträgt:" +swischespeicher);
-			bo.einsatzausgabe.setVisible(true); 
+			bo.einsatzausgabeSpieler1.setText("Der Einsatz beträgt:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setVisible(true); 
 			System.out.println(j100);
 			System.out.println("Immo:"+swischespeicher);}
 		else {
@@ -635,9 +686,16 @@ public class Server2 implements Runnable {
 		//swischespeicher = gesetztS; <---- Da liegt der Mist!
 		gesetztS = swischespeicher;
 		swischespeicher = 0;
+
 	}
-	
-	
+
+	public void einsatzAnzeigenGegenspieler() {
+		bo.einsatzausgabeSpieler2.setVisible(true);
+
+		bo.einsatzausgabeSpieler2.setText("Der Einsatz beträgt:" + Spiel.getGesetztSpieler2());
+	}
+
+
 	//Kartenauswahl
 	
 	
