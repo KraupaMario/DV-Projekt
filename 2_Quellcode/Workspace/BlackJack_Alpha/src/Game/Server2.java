@@ -613,68 +613,126 @@ public class Server2 implements Runnable {
 	
 	//Kartenauswahl
 	
-	String farbek1 = "pik";
-	String farbek2 = "herz";
-	Icon karte11;
-	Icon karte12;
-	int nummerk1 = 12;
-	int nummerk2 = 11;
+	String farbek11 = "pik";
+	String farbek21 = "herz";
+	String farbek12 = "pik";
+	String farbek22 = "herz";
+	String farbebank1= "karo";
+	String farbebank2= "kreuz";
+	
+	int nummerk11 = 11;
+	int nummerk21 = 1;
+	int nummerk12 = 2;
+	int nummerk22 = 11;
+	int nummerk1b = 12;
+	int nummerk2b = 13;
 	
 	public void kartenausgeben11(){
 		//Karte1 Spieler1
-		
-		
-		switch (farbek1) {
+		switch (farbek11) {
 		case "pik":
-			karte11 = bo.pik[nummerk1];
-			bo.karte1Spieler1.setIcon(karte11);
+			bo.karte1Spieler1.setIcon(bo.pik[nummerk11]);
 			break;
 		case "herz":
-			karte11 = bo.herz[nummerk1];
-			bo.karte1Spieler1.setIcon(karte11);
+			bo.karte1Spieler1.setIcon(bo.herz[nummerk11]);
 			break;
 		case "kreuz":
-			karte11 = bo.kreuz[nummerk1];
-			bo.karte1Spieler1.setIcon(karte11);
+			bo.karte1Spieler1.setIcon(bo.kreuz[nummerk11]);
 			break;
 		case "karo":
-			karte11 = bo.karo[nummerk1];
-			bo.karte1Spieler1.setIcon(karte11);
+			bo.karte1Spieler1.setIcon(bo.karo[nummerk11]);
 			break;
 		}
 		
-		switch (farbek2) {
+		//Karte2 Spieler1
+		switch (farbek21) {
 		case "pik":
-			karte12 = bo.pik[nummerk2];
-			bo.karte2Spieler1.setIcon(karte12);
+			bo.karte2Spieler1.setIcon(bo.pik[nummerk21]);
 			break;
 		case "herz":
-			karte12 = bo.herz[nummerk2];
-			bo.karte2Spieler1.setIcon(karte12);
+			bo.karte2Spieler1.setIcon(bo.herz[nummerk21]);
 			break;
 		case "kreuz":
-			karte12 = bo.kreuz[nummerk2];
-			bo.karte2Spieler1.setIcon(karte12);
+			bo.karte2Spieler1.setIcon(bo.kreuz[nummerk21]);
 			break;
 		case "karo":
-			karte12 = bo.karo[nummerk2];
-			bo.karte2Spieler1.setIcon(karte12);
+			bo.karte2Spieler1.setIcon(bo.karo[nummerk21]);
 			break;
 		}
 	
- 
 		
+		//Karte1 Spieler2
+				switch (farbek12) {
+				case "pik":
+					bo.karte1Spieler2.setIcon(bo.pik[nummerk12]);
+					break;
+				case "herz":
+					bo.karte1Spieler2.setIcon(bo.herz[nummerk12]);
+					break;
+				case "kreuz":
+					bo.karte1Spieler2.setIcon(bo.kreuz[nummerk12]);
+					break;
+				case "karo":
+					bo.karte1Spieler2.setIcon(bo.karo[nummerk12]);
+					break;
+				}
+			
 		
+				//Karte2 Spieler2
+				switch (farbek22) {
+				case "pik":
+					bo.karte2Spieler2.setIcon(bo.pik[nummerk22]);
+					break;
+				case "herz":
+					bo.karte2Spieler2.setIcon(bo.herz[nummerk22]);
+					break;
+				case "kreuz":
+					bo.karte2Spieler2.setIcon(bo.kreuz[nummerk22]);
+					break;
+				case "karo":
+					bo.karte2Spieler2.setIcon(bo.karo[nummerk22]);
+					break;
+				}
+			
+				//Karte1 Bank
+			/*	switch (farbebank1) {
+				case "pik":
+					bo.karte1Bank.setIcon(bo.pik[nummerk1b]);
+					break;
+				case "herz":
+					bo.karte1Bank.setIcon(bo.herz[nummerk1b]);
+					break;
+				case "kreuz":
+					bo.karte1Bank.setIcon(bo.kreuz[nummerk1b]);
+					break;
+				case "karo":
+					bo.karte1Bank.setIcon(bo.karo[nummerk1b]);
+					break;
+				} */
+			
+				//Karte2 Bank
+				switch (farbebank2) {
+				case "pik":
+					bo.karte2Bank.setIcon(bo.pik[nummerk2b]);
+					break;
+				case "herz":
+					bo.karte2Bank.setIcon(bo.herz[nummerk2b]);
+					break;
+				case "kreuz":
+					bo.karte2Bank.setIcon(bo.kreuz[nummerk2b]);
+					break;
+				case "karo":
+					bo.karte2Bank.setIcon(bo.karo[nummerk2b]);
+					break;
+				} 
+				
 		
 		bo.karte1Spieler1.setVisible(true);
 		bo.karte2Spieler1.setVisible(true);
-		bo.karte1Spieler2.setIcon(bo.rückseite);
 		bo.karte1Spieler2.setVisible(true);
-		bo.karte2Spieler2.setIcon(bo.rückseite);
 		bo.karte2Spieler2.setVisible(true);
-		bo.karte1Bank.setIcon(bo.rückseite);
 		bo.karte1Bank.setVisible(true);
-		bo.karte2Bank.setIcon(bo.rückseite);
+		bo.karte1Bank.setIcon(bo.rückseite);
 		bo.karte2Bank.setVisible(true); 
 	}
 	
