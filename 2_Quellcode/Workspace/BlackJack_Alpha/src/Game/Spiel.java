@@ -125,8 +125,9 @@ public class Spiel {
 		    	DeckDealer.add(getKarte());
 		    	
 		    }
-		    int wert = 0;
-		    public int wertSpieler1() {				//aktueller Karten wert für jeden Spieler
+		    
+		    public int wertSpieler1() {		//aktueller Karten wert für jeden Spieler
+		    	int wert = 0;
 		    	for (int i = 0; i<DeckSpieler1.size();i++) {
 		    		int j = DeckSpieler1.get(i).getWert();
 		    		wert = wert + j;
@@ -136,6 +137,7 @@ public class Spiel {
 		    }
 	
 		    public int wertSpieler2() {
+		    	int wert = 0;
 		    	for (int i = 0; i<DeckSpieler2.size();i++) {
 		    		int j = DeckSpieler2.get(i).getWert();
 		    		wert = wert + j;
@@ -145,6 +147,7 @@ public class Spiel {
 		    }
 	
 		    public int wertDealer() {
+		    	int wert = 0;
 		    	for (int i = 0; i<DeckDealer.size();i++) {
 		    		int j = DeckDealer.get(i).getWert();
 		    		wert = wert + j;
