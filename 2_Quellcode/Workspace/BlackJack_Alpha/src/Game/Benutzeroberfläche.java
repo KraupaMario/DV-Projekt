@@ -589,7 +589,7 @@ public class Benutzeroberfläche extends JFrame  {
 		}
 		
 		public void jetonfenster() {
-			buttonJeton10.setBounds(100,700,100,100);
+			buttonJeton10.setBounds(100,700,112,100);
 			buttonJeton10.setFocusable(false);
 			buttonJeton10.setBorder(null);
 			buttonJeton10.setBackground(null);
@@ -598,7 +598,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton10.setVisible(false);
 			this.add(buttonJeton10);
 			
-			buttonJeton25.setBounds(400,700,100,100);
+			buttonJeton25.setBounds(400,700,112,100);
 			buttonJeton25.setFocusable(false);
 			buttonJeton25.setBorder(null);
 			buttonJeton25.setBackground(null);
@@ -607,7 +607,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton25.setVisible(false);
 			this.add(buttonJeton25);
 			
-			buttonJeton50.setBounds(700,700,100,100);
+			buttonJeton50.setBounds(700,700,112,100);
 			buttonJeton50.setFocusable(false);
 			buttonJeton50.setBorder(null);
 			buttonJeton50.setBackground(null);
@@ -616,7 +616,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton50.setVisible(false);
 			this.add(buttonJeton50);
 			
-			buttonJeton100.setBounds(1100,700,100,100);
+			buttonJeton100.setBounds(1100,700,112,100);
 			buttonJeton100.setFocusable(false);
 			buttonJeton100.setBorder(null);
 			buttonJeton100.setBackground(null);
