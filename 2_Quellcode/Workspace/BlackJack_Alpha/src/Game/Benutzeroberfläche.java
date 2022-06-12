@@ -143,6 +143,8 @@ public class Benutzeroberfläche extends JFrame  {
 	 JButton buttonJeton50 = new JButton ("Jeton50", jeton_50);
 	 JButton buttonJeton100 = new JButton("Jeton100", jeton_100);
 	 JButton buttonEinsatzbestätigen = new JButton("Einsatz bestätigen");
+	 JButton buttonHit = new JButton ("Hit"); 
+	 JButton buttonStay = new JButton ("Stay"); 
 	
 	 
 	 
@@ -605,7 +607,7 @@ public class Benutzeroberfläche extends JFrame  {
 		}
 		
 		public void jetonfenster() {
-			buttonJeton10.setBounds(100,700,112,100);
+			buttonJeton10.setBounds(350,700,100,100);
 			buttonJeton10.setFocusable(false);
 			buttonJeton10.setBorder(null);
 			buttonJeton10.setBackground(null);
@@ -614,7 +616,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton10.setVisible(false);
 			this.add(buttonJeton10);
 			
-			buttonJeton25.setBounds(400,700,112,100);
+			buttonJeton25.setBounds(600,700,100,100);
 			buttonJeton25.setFocusable(false);
 			buttonJeton25.setBorder(null);
 			buttonJeton25.setBackground(null);
@@ -623,7 +625,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton25.setVisible(false);
 			this.add(buttonJeton25);
 			
-			buttonJeton50.setBounds(700,700,112,100);
+			buttonJeton50.setBounds(850,700,100,100);
 			buttonJeton50.setFocusable(false);
 			buttonJeton50.setBorder(null);
 			buttonJeton50.setBackground(null);
@@ -632,7 +634,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton50.setVisible(false);
 			this.add(buttonJeton50);
 			
-			buttonJeton100.setBounds(1100,700,112,100);
+			buttonJeton100.setBounds(1100,700,100,100);
 			buttonJeton100.setFocusable(false);
 			buttonJeton100.setBorder(null);
 			buttonJeton100.setBackground(null);
@@ -641,7 +643,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonJeton100.setVisible(false);
 			this.add(buttonJeton100);
 			
-			buttonEinsatzbestätigen.setBounds(700,400,200,50);
+			buttonEinsatzbestätigen.setBounds(650,650,200,50);
 			buttonEinsatzbestätigen.setFocusable(false);
 			buttonEinsatzbestätigen.setBorder(null);
 			buttonEinsatzbestätigen.setBackground(null);
@@ -724,6 +726,26 @@ public class Benutzeroberfläche extends JFrame  {
 			kartenwertDealer.setForeground(Color.white);
 			kartenwertDealer.setVisible(false);
 			this.add(kartenwertDealer);
+			
+			buttonHit.setBounds(400,700,200,100);
+			buttonHit.setFocusable(false);
+			buttonHit.setBorder(null);
+			buttonHit.setBackground(null);
+			buttonHit.setForeground(Color.white);
+			buttonHit.addActionListener(spiel.aHandler);
+			buttonHit.setVisible(false);
+			this.add(buttonHit);
+			
+			buttonStay.setBounds(1000,700,200,100);
+			buttonStay.setFocusable(false);
+			buttonStay.setBorder(null);
+			buttonStay.setBackground(null);
+			buttonStay.setForeground(Color.white);
+			buttonStay.addActionListener(spiel.aHandler);
+			buttonStay.setVisible(false);
+			this.add(buttonStay);
+			
+			
 		}
 		
 	

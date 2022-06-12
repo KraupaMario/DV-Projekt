@@ -840,6 +840,75 @@ public void kartenwertanzeigen(Spiel s) {
 			cbo.karte2Bank.setVisible(true); 
 		}
 
+		public void jetonsZuHitundStay() {
+			cbo.buttonLogin.setVisible(false);
+			cbo.buttonRegistrieren.setVisible(false);
+
+			//Gemeinsame
+			cbo.ueberschriftC.setVisible(false);
+			cbo.buttonZurück.setVisible(false);
+
+			//Loginfenster
+			cbo.labelBenutzernameC.setVisible(false);
+			cbo.labelPasswortC.setVisible(false);
+			cbo.buttonstart.setVisible(false);
+			cbo.userText.setVisible(false);
+			cbo.passwordText.setVisible(false);
+			cbo.buttonZurück.setVisible(false);
+
+			//Registrierfenster
+			cbo.labelBenutzernameCErstellenC.setVisible(false);
+			cbo.labelPasswortC1C.setVisible(false);
+			cbo.labelPasswortC2C.setVisible(false);
+			cbo.buttonRegistrierenAbschließen.setVisible(false);
+			cbo.userRegistText.setVisible(false);
+			cbo.passwordText1.setVisible(false);
+			cbo.passwordText2.setVisible(false);
+			
+			//IPAdressefenster:
+			cbo.buttonIPAdresseBestätigen.setVisible(false);
+			cbo.labelipadresseC.setVisible(false);
+			cbo.ipadresseText.setVisible(false);
+			
+			//Portfenster: 
+			cbo.buttonPortBestätigen.setVisible(false);
+			cbo.labelportC.setVisible(false);
+			cbo.portText.setVisible(false);
+			
+			//Spielfenster: 
+			cbo.buttonEinsatz.setVisible(false);
+			cbo.buttonJeton10.setVisible(false);
+			cbo.buttonJeton25.setVisible(false);
+			cbo.buttonJeton50.setVisible(false);
+			cbo.buttonJeton100.setVisible(false);
+			cbo.karte1Spieler1.setVisible(true);
+			cbo.karte2Spieler1.setVisible(true);
+			cbo.karte3Spieler1.setVisible(true); 
+			cbo.karte4Spieler1.setVisible(true); 
+			cbo.karte5Spieler1.setVisible(true); 
+			cbo.karte1Spieler2.setVisible(true);
+			cbo.karte2Spieler2.setVisible(true);
+			cbo.karte3Spieler2.setVisible(true);
+			cbo.karte4Spieler2.setVisible(true);
+			cbo.karte5Spieler2.setVisible(true);
+			cbo.karte1Bank.setVisible(true);
+			cbo.karte2Bank.setVisible(true);
+			cbo.karte3Bank.setVisible(true);
+			cbo.karte4Bank.setVisible(true);
+			cbo.karte5Bank.setVisible(true);
+			cbo.einsatzSpieler1C.setVisible(true);
+			cbo.einsatzSpieler2C.setVisible(true);
+			//cbo.kontostandSpieler1C.setVisible(true);
+			cbo.kontostandSpieler2.setVisible(true); 
+			cbo.buttonEinsatzbestätigen.setVisible(true);
+			cbo.buttonHit.setVisible(true);
+			cbo.buttonStay.setVisible(true);
+			
+			
+			cbo.kartenwertSpieler1.setVisible(true);
+			cbo.kartenwertSpieler2.setVisible(true);
+			cbo.kartenwertDealer.setVisible(true);
+		}
 		
 		
 		public void benutzerErstellen() {

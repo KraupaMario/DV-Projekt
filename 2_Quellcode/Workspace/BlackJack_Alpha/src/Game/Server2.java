@@ -914,7 +914,74 @@ public class Server2 implements Runnable {
 	}
 	
 	
-	
+	public void jetonsZuHitundStay() {
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		bo.ueberschrift.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
+		
+		//IPAdressefenster:
+		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.ipadresseText.setVisible(false);
+		
+		//Portfenster: 
+		bo.buttonPortBestätigen.setVisible(false);
+		bo.labelport.setVisible(false);
+		bo.portText.setVisible(false);
+				//Spielfenster: 
+		bo.buttonEinsatz.setVisible(false);
+		bo.buttonJeton10.setVisible(false);
+		bo.buttonJeton25.setVisible(false);
+		bo.buttonJeton50.setVisible(false);
+		bo.buttonJeton100.setVisible(false);
+		bo.karte1Spieler1.setVisible(true);
+		bo.karte2Spieler1.setVisible(true);
+		bo.karte3Spieler1.setVisible(true); 
+		bo.karte4Spieler1.setVisible(true); 
+		bo.karte5Spieler1.setVisible(true); 
+		bo.karte1Spieler2.setVisible(true);
+		bo.karte2Spieler2.setVisible(true);
+		bo.karte3Spieler2.setVisible(true);
+		bo.karte4Spieler2.setVisible(true);
+		bo.karte5Spieler2.setVisible(true);
+		bo.karte1Bank.setVisible(true);
+		bo.karte2Bank.setVisible(true);
+		bo.karte3Bank.setVisible(true);
+		bo.karte4Bank.setVisible(true);
+		bo.karte5Bank.setVisible(true);
+		bo.einsatzSpieler1.setVisible(true);
+		bo.einsatzSpieler2.setVisible(true);
+		//cbo.kontostandSpieler1C.setVisible(true);
+		bo.kontostandSpieler1.setVisible(true); 
+		bo.buttonEinsatzbestätigen.setVisible(true);
+		bo.buttonHit.setVisible(true);
+		bo.buttonStay.setVisible(true);
+		
+		
+		bo.kartenwertSpieler1.setVisible(true);
+		bo.kartenwertSpieler2.setVisible(true);
+		bo.kartenwertDealer.setVisible(true);
+	}
 	
 	
 

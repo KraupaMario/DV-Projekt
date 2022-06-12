@@ -111,6 +111,8 @@ public void actionPerformed(ActionEvent e) {
 			spiel.einsatzAusrechnen();
 			
 			Server2.klicks = true; 
+			
+			spiel.jetonsZuHitundStay(); 
 			break;
 			
 			

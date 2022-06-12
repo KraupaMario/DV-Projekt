@@ -112,6 +112,7 @@ public void actionPerformed(ActionEvent e) {
 			//spiel.kartenausgebenS_R1(); 
 			
 			Client2.klicks = true; 
+			spiel.jetonsZuHitundStay(); 
 			break;
 			
 			
