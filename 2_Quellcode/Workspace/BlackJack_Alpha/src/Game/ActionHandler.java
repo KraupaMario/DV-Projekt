@@ -81,7 +81,7 @@ public void actionPerformed(ActionEvent e) {
 			spiel.portZuEinsatz(); 
 			break; 
 		case "Einsatz": 
-			spiel.kartenausgeben11();
+			
 			spiel.einsatzZuJetons(); 
 			
 			

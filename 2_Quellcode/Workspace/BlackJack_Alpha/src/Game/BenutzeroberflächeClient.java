@@ -51,7 +51,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel labelportC = new JLabel("Port:");
 	 JLabel einsatzSpieler1C = new JLabel ("Einsatz Spieler1:"); 
 	 JLabel einsatzSpieler2C = new JLabel ("Einsatz Spieler2:"); 
-	 JLabel kontostandSpieler1C = new JLabel ("Kontostand Spieler1:"); 
+	 //JLabel kontostandSpieler1C = new JLabel ("Kontostand Spieler1:"); 
 	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
 	 JLabel einsatzausgabe = new JLabel();
 	 JLabel labelipadresseC2 = new JLabel(); 
@@ -65,6 +65,33 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
 	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
 	 Icon testkarte = new ImageIcon(getClass().getResource("testkarte.PNG"));
+	 Icon rückseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
+	 
+	 
+	 //PIK
+	 Icon pik[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				pik[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Pik.png"));
+			}
+	 }
+	 //Herz
+	 Icon herz[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				herz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Herz.png"));
+			}
+	 }
+	 //Kreuz
+	 Icon kreuz[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				kreuz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Kreuz.png"));
+			}
+	 }
+	 //Karo
+	 Icon karo[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				karo[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Karo.png"));
+			}
+	 }
 	 
 	 JLabel karte1Spieler1 = new JLabel(testkarte);
 	 JLabel karte2Spieler1 = new JLabel(testkarte);
@@ -620,15 +647,15 @@ public class BenutzeroberflächeClient extends JFrame  {
 			einsatzSpieler2C.setVisible(false);
 			this.add(einsatzSpieler2C);
 			
-			kontostandSpieler1C.setBounds(10,10,165,25);
+			/*kontostandSpieler1C.setBounds(10,10,165,25);
 			kontostandSpieler1C.setFocusable(false);
 			kontostandSpieler1C.setBorder(null);
 			kontostandSpieler1C.setBackground(null);
 			kontostandSpieler1C.setForeground(Color.white);
 			kontostandSpieler1C.setVisible(false);
-			this.add(kontostandSpieler1C);
+			this.add(kontostandSpieler1C);*/
 			
-			kontostandSpieler2.setBounds(1350,10,165,25);
+			kontostandSpieler2.setBounds(10,10,165,25);
 			kontostandSpieler2.setFocusable(false);
 			kontostandSpieler2.setBorder(null);
 			kontostandSpieler2.setBackground(null);

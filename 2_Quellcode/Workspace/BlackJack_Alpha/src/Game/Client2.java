@@ -6,15 +6,19 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+
 
 //import jdk.internal.misc.FileSystemOption;
 
@@ -34,7 +38,7 @@ public class Client2 implements Runnable {
 	private Socket socket;
 	private DataOutputStream dos;
 	private ObjectOutputStream oos;
-	private ByteArrayOutputStream baos;
+	private ObjectInputStream ois;
 	private DataInputStream dis;
 
 	private ServerSocket serverSocket;
@@ -166,8 +170,8 @@ public class Client2 implements Runnable {
 
 	private void aktion()  {
 		//Spiel erstellen
-		Spiel server = new Spiel();
-		server.createDeck();
+		Spiel client = new Spiel();
+		client.createDeck();
 		//Spieler erstellen
 		Spieler playerS = new Spieler("playerS", "1234");
 		//Gesetzter Betrag vom Client empfangen:
@@ -177,8 +181,10 @@ public class Client2 implements Runnable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		client.gesetztSpieler1 = gesetztS;
+		gesetztS = 0;
 		//Bis hier her Wartebildschirm
-		System.out.println("c/Server setzt: "+gesetztS);
+		System.out.println("c/Server setzt: "+client.gesetztSpieler1);
 		
 		while (!klicks) {
 			System.out.println("Warten");
@@ -198,15 +204,32 @@ public class Client2 implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//ausgeteilte Karten Spieler 1:
+		client.gesetztSpieler2 = gesetztC;
+		gesetztC = 0;
+		/*ausgeteilte Karten Spieler 1:
 				try {
 					System.out.println(dis.readUTF());
 					//Switch Case
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
+		
+		try {
+			client.DeckSpieler1 = (ArrayList<Karten>) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(client.DeckSpieler1.get(0).getFarbe());
+		System.out.println(client.DeckSpieler1.get(0).getName());
+		System.out.println(client.DeckSpieler1.get(1).getFarbe());
+		System.out.println(client.DeckSpieler1.get(1).getName());
+		
 		
 		thread.stop();
 	}
@@ -530,7 +553,7 @@ boolean abbuchungOK(int m){
 		cbo.karte5Bank.setVisible(true);
 		cbo.einsatzSpieler1C.setVisible(true);
 		cbo.einsatzSpieler2C.setVisible(true);
-		cbo.kontostandSpieler1C.setVisible(true);
+		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestätigen.setVisible(true);
 		
@@ -576,6 +599,131 @@ boolean abbuchungOK(int m){
 			//swischespeicher = gesetztS; <---- Da liegt der Mist!
 			gesetztC = swischespeicher;
 			swischespeicher = 0;
+		}
+		
+		public void kartenausgebenS_R1(Spiel s){
+			
+			//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
+			String farbek11 = s.DeckSpieler1.get(0).getFarbe();
+			String farbek21 = s.DeckSpieler1.get(1).getFarbe();
+			String farbek12 = s.DeckSpieler2.get(0).getFarbe();
+			String farbek22 = s.DeckSpieler2.get(1).getFarbe();
+			String farbebank1= s.DeckDealer.get(0).getFarbe();
+			String farbebank2= s.DeckDealer.get(1).getFarbe();
+			
+			//int nummerk11 = s.DeckSpieler1.get(0).getName();
+			int nummerk11 = s.DeckSpieler1.get(0).getName();
+			int nummerk21 = s.DeckSpieler1.get(1).getName();
+			int nummerk12 = s.DeckSpieler2.get(0).getName();
+			int nummerk22 = s.DeckSpieler2.get(1).getName();
+			int nummerk1b = s.DeckDealer.get(0).getName();
+			int nummerk2b = s.DeckDealer.get(1).getName();
+			//Karte1 Spieler1
+			switch (farbek11) {
+			case "pik":
+				cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
+				break;
+			case "herz":
+				cbo.karte1Spieler1.setIcon(cbo.herz[nummerk11]);
+				break;
+			case "kreuz":
+				cbo.karte1Spieler1.setIcon(cbo.kreuz[nummerk11]);
+				break;
+			case "karo":
+				cbo.karte1Spieler1.setIcon(cbo.karo[nummerk11]);
+				break;
+			}
+			
+			//Karte2 Spieler1
+			switch (farbek21) {
+			case "pik":
+				cbo.karte2Spieler1.setIcon(cbo.pik[nummerk21]);
+				break;
+			case "herz":
+				cbo.karte2Spieler1.setIcon(cbo.herz[nummerk21]);
+				break;
+			case "kreuz":
+				cbo.karte2Spieler1.setIcon(cbo.kreuz[nummerk21]);
+				break;
+			case "karo":
+				cbo.karte2Spieler1.setIcon(cbo.karo[nummerk21]);
+				break;
+			}
+		
+			
+			//Karte1 Spieler2
+					switch (farbek12) {
+					case "pik":
+						cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
+						break;
+					case "herz":
+						cbo.karte1Spieler2.setIcon(cbo.herz[nummerk12]);
+						break;
+					case "kreuz":
+						cbo.karte1Spieler2.setIcon(cbo.kreuz[nummerk12]);
+						break;
+					case "karo":
+						cbo.karte1Spieler2.setIcon(cbo.karo[nummerk12]);
+						break;
+					}
+				
+			
+					//Karte2 Spieler2
+					switch (farbek22) {
+					case "pik":
+						cbo.karte2Spieler2.setIcon(cbo.pik[nummerk22]);
+						break;
+					case "herz":
+						cbo.karte2Spieler2.setIcon(cbo.herz[nummerk22]);
+						break;
+					case "kreuz":
+						cbo.karte2Spieler2.setIcon(cbo.kreuz[nummerk22]);
+						break;
+					case "karo":
+						cbo.karte2Spieler2.setIcon(cbo.karo[nummerk22]);
+						break;
+					}
+				
+					//Karte1 Bank
+				/*	switch (farbebank1) {
+					case "pik":
+						cbo.karte1Bank.setIcon(cbo.pik[nummerk1b]);
+						break;
+					case "herz":
+						cbo.karte1Bank.setIcon(cbo.herz[nummerk1b]);
+						break;
+					case "kreuz":
+						cbo.karte1Bank.setIcon(cbo.kreuz[nummerk1b]);
+						break;
+					case "karo":
+						cbo.karte1Bank.setIcon(cbo.karo[nummerk1b]);
+						break;
+					} */
+				
+					//Karte2 Bank
+					switch (farbebank2) {
+					case "pik":
+						cbo.karte2Bank.setIcon(cbo.pik[nummerk2b]);
+						break;
+					case "herz":
+						cbo.karte2Bank.setIcon(cbo.herz[nummerk2b]);
+						break;
+					case "kreuz":
+						cbo.karte2Bank.setIcon(cbo.kreuz[nummerk2b]);
+						break;
+					case "karo":
+						cbo.karte2Bank.setIcon(cbo.karo[nummerk2b]);
+						break;
+					} 
+					
+			
+			cbo.karte1Spieler1.setVisible(true);
+			cbo.karte2Spieler1.setVisible(true);
+			cbo.karte1Spieler2.setVisible(true);
+			cbo.karte2Spieler2.setVisible(true);
+			cbo.karte1Bank.setVisible(true);
+			cbo.karte1Bank.setIcon(cbo.rückseite);
+			cbo.karte2Bank.setVisible(true); 
 		}
 
 		

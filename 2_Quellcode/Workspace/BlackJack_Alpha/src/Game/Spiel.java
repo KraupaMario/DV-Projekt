@@ -73,19 +73,23 @@ public class Spiel {
 	//	class Spiel Variablen
 		    ArrayList<Karten> kartenDeck = new ArrayList<Karten>();
 		    
+		    ArrayList<Karten> DeckSpieler1 = new ArrayList<Karten>();
+		    ArrayList<Karten> DeckSpieler2 = new ArrayList<Karten>();
+		    ArrayList<Karten> DeckDealer = new ArrayList<Karten>();
+		    
 		    
 		    
 		  
 	
 		    
 		    public void createDeck(){
-		        String[] farben ={"Kreuz","Pik","Herz","Karo"};
-		        String[] name ={"A","K","D","B","10","9","8","7","6","5","4","3","2"};
+		        String[] farben ={"kreuz","pik","herz","karo"};
+		        int[] name ={1,13,12,11,10,9,8,7,6,5,4,3,2};
 		        int[] wert = {11,10,10,10,10,9,8,7,6,5,4,3,2};
 		        for(int y = 0; y < 6; y++) {
 		            for(int i=0;i<farben.length;i++) {
 		                for(int j=0;j<name.length;j++) {
-		                    kartenDeck.add(new Karten(wert[j], name[j],farben[i]));
+		                    kartenDeck.add(new Karten(wert[j],farben[i],name[j]));
 		                }
 		            }
 		        }
@@ -98,7 +102,7 @@ public class Spiel {
 		    
 		    public Karten getKarte(){
 		        //int random = (int)Math.random()*52*6;
-		    	int random = (int)Math.random()*(kartenDeck.size()-1); //Passt sich den verbleibenden Anzahl an Karten an. ?????????????????????? -1 oder nicht?????????
+		    	int random = (int)(Math.random()*(kartenDeck.size()-1)); //Passt sich den verbleibenden Anzahl an Karten an. ?????????????????????? -1 oder nicht?????????
 		        Karten gezogeneKarte = kartenDeck.get(random);
 		        kartenDeck.remove(random);
 		        wertgez = gezogeneKarte.getWert();
@@ -106,10 +110,7 @@ public class Spiel {
 		    }
 		    
 		    
-		    ArrayList<Karten> DeckSpieler1 = new ArrayList<Karten>();
-		      
-		    ArrayList<Karten> DeckSpieler2 = new ArrayList<Karten>();
-		    ArrayList<Karten> DeckDealer = new ArrayList<Karten>();
+
 			
 		    public void abspeichernKarteSp1 () { //gezogene Karte wird über getKarte als Rückgabewert in KartenArraylist von jedem spieler
 		    	DeckSpieler1.add(getKarte());
@@ -179,7 +180,7 @@ public class Spiel {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Spiel neu = new Spiel();
+	
 
 	}
 

@@ -39,6 +39,12 @@ public class Spieler {
 		return mony;
 	}
 	
+
+	
+	public void abbuchen(int g) {
+		kontostand = kontostand - g;
+	}
+	
 	void changeKontostand(int mony) {
 		//Geld zum Konto hinzufügen oder abziehen
 			if (Gewinnstatus == 1) {
@@ -66,5 +72,9 @@ public class Spieler {
 		// TODO Auto-generated method stub
 
 	}
+
+
+
+	
 
 }

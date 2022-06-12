@@ -14,17 +14,17 @@ public class Karten {
 
 	//private final String farbe; //Farbe
 	//private final String wert; // Wert
-	private int index;
+
 	private int wert;
 	private String farbe;
-	private String name;
+	private int name;
 
 
 	//public static Karten[] deck = new Karten[52];
 
 
 
-	public Karten(int w, String f, String n){
+	public Karten(int w, String f, int n){
 		farbe = f;
 		wert = w;
 		name = n;
@@ -38,7 +38,7 @@ public class Karten {
 		return this.wert;
 	}
 
-	public String getName(){
+	public int getName(){
 		return this.name;
 	}
 

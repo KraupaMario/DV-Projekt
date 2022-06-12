@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -37,8 +38,8 @@ public class Server2 implements Runnable {
 	private Socket socket;
 	private DataOutputStream dos;
 	private ObjectOutputStream oos;
-	private ByteArrayOutputStream baos;
 	private DataInputStream dis;
+	private ObjectInputStream ois;
 
 	private ServerSocket serverSocket;
 
@@ -197,11 +198,13 @@ public class Server2 implements Runnable {
 			}
 		} klicks = false;
 		server.gesetztSpieler1 = gesetztS;
-		System.out.println("s/Mein gesetzter Betrag "+gesetztS);
+		gesetztS = 0;
+		playerS.abbuchen(server.gesetztSpieler1);
+		System.out.println("s/Mein gesetzter Betrag "+server.gesetztSpieler1);
 
 		//Betrag übermitteln
 		try {
-			dos.writeInt(gesetztS);
+			dos.writeInt(server.gesetztSpieler1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -213,9 +216,14 @@ public class Server2 implements Runnable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("s/Der Client hat soviel gesetzt: "+gesetztC);
+		server.gesetztSpieler2 = gesetztC;
+		gesetztC = 0;
+		System.out.println("s/Der Client hat soviel gesetzt: "+server.gesetztSpieler2);
 
 		
+		server.DeckSpieler1.clear();
+		server.DeckSpieler2.clear();
+		server.DeckDealer.clear();
 		
 		//Karte für Spieler 1 ziehen:
 		server.DeckSpieler1.add(server.getKarte());
@@ -227,8 +235,12 @@ public class Server2 implements Runnable {
 		server.DeckSpieler1.add(server.getKarte());
 		server.DeckSpieler2.add(server.getKarte());
 		server.DeckDealer.add(server.getKarte());
+		
+		System.out.println(server.DeckSpieler1.get(0).getFarbe());
+		System.out.println(server.DeckSpieler1.get(0).getName());
+		kartenausgebenS_R1(server);//Karten anzeigen
 
-		//Gezogene Karten an Client übermitteln:
+		/*Gezogene Karten an Client übermitteln:
 		String card = server.DeckSpieler1.get(0).getFarbe()+server.DeckSpieler1.get(0).getName() ;
 		try {
 			dos.writeUTF(card);
@@ -236,6 +248,13 @@ public class Server2 implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 try {
+	         oos.writeObject(server.DeckSpieler1);
+	         oos.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 
 		thread.stop();
 	}
@@ -546,7 +565,7 @@ public class Server2 implements Runnable {
 		bo.einsatzSpieler1.setVisible(true);
 		bo.einsatzSpieler2.setVisible(true);
 		bo.kontostandSpieler1.setVisible(true);
-		bo.kontostandSpieler2.setVisible(true); 
+		//bo.kontostandSpieler2.setVisible(true); 
 		bo.buttonEinsatzbestätigen.setVisible(true);  
 
 	}
@@ -611,23 +630,35 @@ public class Server2 implements Runnable {
 
 	}
 	
+
+	public void einsatzAusrechnen() {
+		//swischespeicher = gesetztS; <---- Da liegt der Mist!
+		gesetztS = swischespeicher;
+		swischespeicher = 0;
+	}
+	
+	
 	//Kartenauswahl
 	
-	String farbek11 = "pik";
-	String farbek21 = "herz";
-	String farbek12 = "pik";
-	String farbek22 = "herz";
-	String farbebank1= "karo";
-	String farbebank2= "kreuz";
 	
-	int nummerk11 = 11;
-	int nummerk21 = 1;
-	int nummerk12 = 2;
-	int nummerk22 = 11;
-	int nummerk1b = 12;
-	int nummerk2b = 13;
 	
-	public void kartenausgeben11(){
+	public void kartenausgebenS_R1(Spiel s){
+		
+		//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
+		String farbek11 = s.DeckSpieler1.get(0).getFarbe();
+		String farbek21 = s.DeckSpieler1.get(1).getFarbe();
+		String farbek12 = s.DeckSpieler2.get(0).getFarbe();
+		String farbek22 = s.DeckSpieler2.get(1).getFarbe();
+		String farbebank1= s.DeckDealer.get(0).getFarbe();
+		String farbebank2= s.DeckDealer.get(1).getFarbe();
+		
+		//int nummerk11 = s.DeckSpieler1.get(0).getName();
+		int nummerk11 = s.DeckSpieler1.get(0).getName();
+		int nummerk21 = s.DeckSpieler1.get(1).getName();
+		int nummerk12 = s.DeckSpieler2.get(0).getName();
+		int nummerk22 = s.DeckSpieler2.get(1).getName();
+		int nummerk1b = s.DeckDealer.get(0).getName();
+		int nummerk2b = s.DeckDealer.get(1).getName();
 		//Karte1 Spieler1
 		switch (farbek11) {
 		case "pik":
@@ -740,11 +771,6 @@ public class Server2 implements Runnable {
 	
 	
 	
-	public void einsatzAusrechnen() {
-		//swischespeicher = gesetztS; <---- Da liegt der Mist!
-		gesetztS = swischespeicher;
-		swischespeicher = 0;
-	}
 
 	/*
 	//Vector

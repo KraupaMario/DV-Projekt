@@ -52,7 +52,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel einsatzSpieler1 = new JLabel ("Einsatz Spieler1:"); 
 	 JLabel einsatzSpieler2 = new JLabel ("Einsatz Spieler2:"); 
 	 JLabel kontostandSpieler1 = new JLabel ("Kontostand Spieler1:"); 
-	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
+	 //JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
 	 JLabel einsatzausgabe = new JLabel();
 	 JLabel labelIPAdresse = new JLabel(); 
 	 
@@ -97,23 +97,23 @@ public class Benutzeroberfläche extends JFrame  {
 		
 		
 		
-	 JLabel karte1Spieler1 = new JLabel();
+	 JLabel karte5Spieler1 = new JLabel();
+	 JLabel karte4Spieler1 = new JLabel();
+	 JLabel karte3Spieler1 = new JLabel();
 	 JLabel karte2Spieler1 = new JLabel();
-	 JLabel karte3Spieler1 = new JLabel(karte);
-	 JLabel karte4Spieler1 = new JLabel(karte);
-	 JLabel karte5Spieler1 = new JLabel(karte);
+	 JLabel karte1Spieler1 = new JLabel();
 	 
-	 JLabel karte1Spieler2 = new JLabel(karte);
-	 JLabel karte2Spieler2 = new JLabel(karte);
-	 JLabel karte3Spieler2 = new JLabel(karte);
-	 JLabel karte4Spieler2 = new JLabel(karte);
-	 JLabel karte5Spieler2 = new JLabel(karte);
+	 JLabel karte1Spieler2 = new JLabel();
+	 JLabel karte2Spieler2 = new JLabel();
+	 JLabel karte3Spieler2 = new JLabel();
+	 JLabel karte4Spieler2 = new JLabel();
+	 JLabel karte5Spieler2 = new JLabel();
 	 
-	 JLabel karte1Bank = new JLabel(karte); 
-	 JLabel karte2Bank = new JLabel(karte); 
-	 JLabel karte3Bank = new JLabel(karte); 
-	 JLabel karte4Bank = new JLabel(karte); 
-	 JLabel karte5Bank = new JLabel(karte); 
+	 JLabel karte1Bank = new JLabel(); 
+	 JLabel karte2Bank = new JLabel(); 
+	 JLabel karte3Bank = new JLabel(); 
+	 JLabel karte4Bank = new JLabel(); 
+	 JLabel karte5Bank = new JLabel(); 
 
 
 	 
@@ -494,61 +494,63 @@ public class Benutzeroberfläche extends JFrame  {
 		this.add(labelBank);
 		
 		//Karten: 
-		karte1Spieler1.setBounds(1000,425,150,213);
-		karte1Spieler1.setFocusable(false);
-		karte1Spieler1.setBorder(null);
-		karte1Spieler1.setVisible(false);
-		this.add(karte1Spieler1); 
 		
-		karte2Spieler1.setBounds(1100,425,150,213);
-		karte2Spieler1.setFocusable(false);
-		karte2Spieler1.setBorder(null);
-		karte2Spieler1.setVisible(false);
-		this.add(karte2Spieler1);
-		
-		karte3Spieler1.setBounds(1200,425,150,213);
-		karte3Spieler1.setFocusable(false);
-		karte3Spieler1.setBorder(null);
-		karte3Spieler1.setVisible(false);
-		this.add(karte3Spieler1);
-		
-		karte4Spieler1.setBounds(1300,425,150,213);
-		karte4Spieler1.setFocusable(false);
-		karte4Spieler1.setBorder(null);
-		karte4Spieler1.setVisible(false);
-		this.add(karte4Spieler1);
-		
-		karte5Spieler1.setBounds(1400,425,150,213);
+		karte5Spieler1.setBounds(500,425,150,213);
 		karte5Spieler1.setFocusable(false);
 		karte5Spieler1.setBorder(null);
 		karte5Spieler1.setVisible(false);
 		this.add(karte5Spieler1);
 		
-		karte1Spieler2.setBounds(100,425,150,213);
+		karte4Spieler1.setBounds(400,425,150,213);
+		karte4Spieler1.setFocusable(false);
+		karte4Spieler1.setBorder(null);
+		karte4Spieler1.setVisible(false);
+		this.add(karte4Spieler1);
+		
+		
+		karte3Spieler1.setBounds(300,425,150,213);
+		karte3Spieler1.setFocusable(false);
+		karte3Spieler1.setBorder(null);
+		karte3Spieler1.setVisible(false);
+		this.add(karte3Spieler1);
+		
+		karte2Spieler1.setBounds(200,425,150,213);
+		karte2Spieler1.setFocusable(false);
+		karte2Spieler1.setBorder(null);
+		karte2Spieler1.setVisible(false);
+		this.add(karte2Spieler1);
+		
+		karte1Spieler1.setBounds(100,425,150,213);
+		karte1Spieler1.setFocusable(false);
+		karte1Spieler1.setBorder(null);
+		karte1Spieler1.setVisible(false);
+		this.add(karte1Spieler1); 
+		
+		karte1Spieler2.setBounds(1000,425,150,213);
 		karte1Spieler2.setFocusable(false);
 		karte1Spieler2.setBorder(null);
 		karte1Spieler2.setVisible(false);
 		this.add(karte1Spieler2);
 		
-		karte2Spieler2.setBounds(200,425,150,213);
+		karte2Spieler2.setBounds(1100,425,150,213);
 		karte2Spieler2.setFocusable(false);
 		karte2Spieler2.setBorder(null);
 		karte2Spieler2.setVisible(false);
 		this.add(karte2Spieler2);
 		
-		karte3Spieler2.setBounds(300,425,150,213);
+		karte3Spieler2.setBounds(1200,425,150,213);
 		karte3Spieler2.setFocusable(false);
 		karte3Spieler2.setBorder(null);
 		karte3Spieler2.setVisible(false);
 		this.add(karte3Spieler2);
 		
-		karte4Spieler2.setBounds(400,425,150,213);
+		karte4Spieler2.setBounds(1300,425,150,213);
 		karte4Spieler2.setFocusable(false);
 		karte4Spieler2.setBorder(null);
 		karte4Spieler2.setVisible(false);
 		this.add(karte4Spieler2);
 		
-		karte5Spieler2.setBounds(500,425,150,213);
+		karte5Spieler2.setBounds(1400,425,150,213);
 		karte5Spieler2.setFocusable(false);
 		karte5Spieler2.setBorder(null);
 		karte5Spieler2.setVisible(false);
@@ -666,13 +668,13 @@ public class Benutzeroberfläche extends JFrame  {
 			kontostandSpieler1.setVisible(false);
 			this.add(kontostandSpieler1);
 			
-			kontostandSpieler2.setBounds(1350,10,165,25);
+			/*kontostandSpieler2.setBounds(1350,10,165,25);
 			kontostandSpieler2.setFocusable(false);
 			kontostandSpieler2.setBorder(null);
 			kontostandSpieler2.setBackground(null);
 			kontostandSpieler2.setForeground(Color.white);
 			kontostandSpieler2.setVisible(false);
-			this.add(kontostandSpieler2);
+			this.add(kontostandSpieler2);*/
 			
 		}
 		
