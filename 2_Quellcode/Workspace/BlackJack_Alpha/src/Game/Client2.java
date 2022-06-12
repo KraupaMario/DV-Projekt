@@ -251,6 +251,7 @@ public class Client2 implements Runnable {
 		System.out.println(client.DeckSpieler1.get(1).getFarbe());
 		System.out.println(client.DeckSpieler1.get(1).getName());
 		kartenausgebenS_R1(client);//Karten anzeigen
+		kartenwertanzeigen(client);
 		
 		thread.stop();
 	}
@@ -648,7 +649,22 @@ boolean abbuchungOK(int m){
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestätigen.setVisible(true);
 		
+		
+		cbo.kartenwertSpieler1.setVisible(true);
+		cbo.kartenwertSpieler2.setVisible(true);
+		cbo.kartenwertDealer.setVisible(true);
+		
 	}
+	
+	
+public void kartenwertanzeigen(Spiel s) {
+		
+		cbo.kartenwertSpieler1.setText("Kartenwert Spieler 1: "+Integer.toString(s.wertSpieler1()));
+		cbo.kartenwertSpieler2.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertSpieler2()));
+		cbo.kartenwertDealer.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertDealer()));
+	
+	}
+	
 		public void jeton10() {
 			int j10 = 10;
 			

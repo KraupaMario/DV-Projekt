@@ -56,8 +56,9 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel einsatzausgabeSpieler1 = new JLabel();
 	 JLabel einsatzausgabeSpieler2 = new JLabel();
 	 JLabel labelIPAdresse = new JLabel(); 
-	
-	 
+	 JLabel kartenwertSpieler1 = new JLabel(); 
+	 JLabel kartenwertSpieler2 = new JLabel(); 
+	 JLabel kartenwertDealer = new JLabel(); 
 	 
 
 	 
@@ -698,6 +699,31 @@ public class Benutzeroberfläche extends JFrame  {
 			kontostandSpieler2.setVisible(false);
 			this.add(kontostandSpieler2);*/
 			
+			kartenwertSpieler1.setBounds(10,50,165,25);
+			kartenwertSpieler1.setFocusable(false);
+			kartenwertSpieler1.setBorder(null);
+			kartenwertSpieler1.setBackground(null);
+			kartenwertSpieler1.setForeground(Color.white);
+			kartenwertSpieler1.setVisible(false);
+			this.add(kartenwertSpieler1);
+			
+
+			kartenwertSpieler2.setBounds(1350,50,165,25);
+			kartenwertSpieler2.setFocusable(false);
+			kartenwertSpieler2.setBorder(null);
+			kartenwertSpieler2.setBackground(null);
+			kartenwertSpieler2.setForeground(Color.white);
+			kartenwertSpieler2.setVisible(false);
+			this.add(kartenwertSpieler2);
+			
+
+			kartenwertDealer.setBounds(500,10,165,25);
+			kartenwertDealer.setFocusable(false);
+			kartenwertDealer.setBorder(null);
+			kartenwertDealer.setBackground(null);
+			kartenwertDealer.setForeground(Color.white);
+			kartenwertDealer.setVisible(false);
+			this.add(kartenwertDealer);
 		}
 		
 	

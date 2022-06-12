@@ -314,6 +314,7 @@ public class Server2 implements Runnable {
 		System.out.println(server.DeckSpieler1.get(0).getFarbe());
 		System.out.println(server.DeckSpieler1.get(0).getName());
 		kartenausgebenS_R1(server);//Karten anzeigen
+		kartenwertanzeigen(server);
 
 		/*Gezogene Karten an Client übermitteln:
 		String card = server.DeckSpieler1.get(0).getFarbe()+server.DeckSpieler1.get(0).getName() ;
@@ -695,10 +696,20 @@ public class Server2 implements Runnable {
 		//bo.kontostandSpieler2.setVisible(true); 
 		bo.buttonEinsatzbestätigen.setVisible(true);  
 
+		
+		bo.kartenwertSpieler1.setVisible(true);
+		bo.kartenwertSpieler2.setVisible(true);
+		bo.kartenwertDealer.setVisible(true);
 	}
 	
 
-	
+	public void kartenwertanzeigen(Spiel s) {
+		
+		bo.kartenwertSpieler1.setText("Kartenwert Spieler 1: "+Integer.toString(s.wertSpieler1()));
+		bo.kartenwertSpieler2.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertSpieler2()));
+		bo.kartenwertDealer.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertDealer()));
+		
+	}
 	
 	
 	
