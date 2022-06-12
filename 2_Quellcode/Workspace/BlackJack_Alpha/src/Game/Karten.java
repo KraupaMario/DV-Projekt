@@ -21,7 +21,9 @@ public class Karten {
 
 
 	//public static Karten[] deck = new Karten[52];
-
+	
+		
+	
 
 
 	public Karten(int w, String f, int n){

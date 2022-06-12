@@ -112,16 +112,16 @@ public class Spiel {
 		    
 
 			
-		    public void abspeichernKarteSp1 () { //gezogene Karte wird über getKarte als Rückgabewert in KartenArraylist von jedem spieler
+		    public void austeilenKarteSp1 () { //gezogene Karte wird über getKarte als Rückgabewert in KartenArraylist von jedem spieler
 		    	DeckSpieler1.add(getKarte());
 		    	
 		    }
-		    public void abspeichernKarteSp2 () {
+		    public void austeilenKarteSp2 () {
 		    	DeckSpieler2.add(getKarte());
 		    	
 		    }
 		    
-		    public void abspeichernKarteDealer () {
+		    public void austeilenKarteDealer () {
 		    	DeckDealer.add(getKarte());
 		    	
 		    }

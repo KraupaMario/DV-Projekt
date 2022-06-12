@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -228,16 +229,22 @@ public class Client2 implements Runnable {
 		client.DeckSpieler2.clear();
 		client.DeckDealer.clear();
 		
-		//Karte für Spieler 1 ziehen:
-		client.DeckSpieler1.add(client.getKarte());
-		//Karte für Spieler 2 ziehen:
-		client.DeckSpieler2.add(client.getKarte());
-		//Karten für Dealer ziehen:
-		client.DeckDealer.add(client.getKarte());
-		//2. Karte:
-		client.DeckSpieler1.add(client.getKarte());
-		client.DeckSpieler2.add(client.getKarte());
-		client.DeckDealer.add(client.getKarte());
+		//Karte für Spieler 1 empfangen:
+		client.DeckSpieler1.add(karteEmpfangen());
+		client.DeckSpieler1.add(karteEmpfangen()); 	//2. Karte:
+		//Karte für Spieler 2 empfangen:
+		client.DeckSpieler2.add(karteEmpfangen());
+		client.DeckSpieler2.add(karteEmpfangen()); 	//2. Karte:
+		//Karten für Dealer empfangen:
+		client.DeckDealer.add(karteEmpfangen());
+		client.DeckDealer.add(karteEmpfangen()); 	//2. Karte:
+	
+		
+		
+		
+		
+	
+		
 		
 		System.out.println(client.DeckSpieler1.get(0).getFarbe());
 		System.out.println(client.DeckSpieler1.get(0).getName());
@@ -248,6 +255,32 @@ public class Client2 implements Runnable {
 		thread.stop();
 	}
 	
+	Karten karteEmpfangen() {
+		String f = null;
+		try {
+			f = dis.readUTF();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    int name=0;
+		try {
+			name = dis.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int wert=0;
+		try {
+			wert = dis.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Karten k = new Karten(wert,f,name);
+		return k;
+	}
+
 boolean abbuchungOK(int m){
 		
 		if ((swischespeicher)>kontomax) {
@@ -669,7 +702,7 @@ boolean abbuchungOK(int m){
 		public void kartenausgebenS_R1(Spiel s){
 			
 			//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
-			String farbek11 = "herz"; //s.DeckSpieler1.get(0).getFarbe();
+			String farbek11 = s.DeckSpieler1.get(0).getFarbe();
 			String farbek21 = s.DeckSpieler1.get(1).getFarbe();
 			String farbek12 = s.DeckSpieler2.get(0).getFarbe();
 			String farbek22 = s.DeckSpieler2.get(1).getFarbe();
@@ -677,7 +710,7 @@ boolean abbuchungOK(int m){
 			String farbebank2= s.DeckDealer.get(1).getFarbe();
 			
 			//int nummerk11 = s.DeckSpieler1.get(0).getName();
-			int nummerk11 = 11; //s.DeckSpieler1.get(0).getName();
+			int nummerk11 = s.DeckSpieler1.get(0).getName();
 			int nummerk21 = s.DeckSpieler1.get(1).getName();
 			int nummerk12 = s.DeckSpieler2.get(0).getName();
 			int nummerk22 = s.DeckSpieler2.get(1).getName();

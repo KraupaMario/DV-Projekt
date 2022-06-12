@@ -227,16 +227,90 @@ public class Server2 implements Runnable {
 		server.DeckDealer.clear();
 		
 		//Karte für Spieler 1 ziehen:
-		server.DeckSpieler1.add(server.getKarte());
+		//server.DeckSpieler1.add(server.getKarte());
+		server.austeilenKarteSp1();
 		//Karte für Spieler 2 ziehen:
-		server.DeckSpieler2.add(server.getKarte());
+		server.austeilenKarteSp2();
+		//server.DeckSpieler2.add(server.getKarte());
 		//Karten für Dealer ziehen:
-		server.DeckDealer.add(server.getKarte());
+		//server.DeckDealer.add(server.getKarte());
+		server.austeilenKarteDealer();
 		//2. Karte:
-		server.DeckSpieler1.add(server.getKarte());
-		server.DeckSpieler2.add(server.getKarte());
-		server.DeckDealer.add(server.getKarte());
+		server.austeilenKarteSp1();
+		server.austeilenKarteSp2();
+		server.austeilenKarteDealer();
+		//server.DeckSpieler1.add(server.getKarte());
+		//server.DeckSpieler2.add(server.getKarte());
+		//server.DeckDealer.add(server.getKarte());
 		
+		//Karte verschicken Spieler 1
+		
+		for (int i = 0;i<server.DeckSpieler1.size();i++) {
+			try {
+				dos.writeUTF(server.DeckSpieler1.get(i).getFarbe());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				dos.writeInt(server.DeckSpieler1.get(i).getName());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				dos.writeInt(server.DeckSpieler1 .get(i).getWert());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		
+	//Karte verschicken Spieler 2
+		
+		for (int i = 0;i<server.DeckSpieler2.size();i++) {
+			try {
+				dos.writeUTF(server.DeckSpieler2.get(i).getFarbe());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				dos.writeInt(server.DeckSpieler2.get(i).getName());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				dos.writeInt(server.DeckSpieler2 .get(i).getWert());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		
+		//Karte verschicken Dealer
+		
+				for (int i = 0;i<server.DeckDealer.size();i++) {
+					try {
+						dos.writeUTF(server.DeckDealer.get(i).getFarbe());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckDealer.get(i).getName());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckDealer .get(i).getWert());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+				}
 		System.out.println(server.DeckSpieler1.get(0).getFarbe());
 		System.out.println(server.DeckSpieler1.get(0).getName());
 		kartenausgebenS_R1(server);//Karten anzeigen
@@ -259,7 +333,10 @@ public class Server2 implements Runnable {
 
 		thread.stop();
 	}
+	
 
+		
+	
 	boolean abbuchungOK(int m){
 
 		if ((swischespeicher)>kontomax) {
