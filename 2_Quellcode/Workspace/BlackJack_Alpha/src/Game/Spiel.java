@@ -96,16 +96,23 @@ public class Spiel {
 		        
 		    }
 		    
-		    int wertgez;
+		    
 		    
 		    //public Karten( int w, String f, String n)
+		    
+		    public Karten karteManuell(int n) {
+		    	Karten gezogeneKarte = kartenDeck.get(n);
+		        kartenDeck.remove(n);
+		        //wertgez = gezogeneKarte.getWert();
+		        return gezogeneKarte;
+		    }
 		    
 		    public Karten getKarte(){
 		        //int random = (int)Math.random()*52*6;
 		    	int random = (int)(Math.random()*(kartenDeck.size()-1)); //Passt sich den verbleibenden Anzahl an Karten an. ?????????????????????? -1 oder nicht?????????
 		        Karten gezogeneKarte = kartenDeck.get(random);
 		        kartenDeck.remove(random);
-		        wertgez = gezogeneKarte.getWert();
+		        //wertgez = gezogeneKarte.getWert();
 		        return gezogeneKarte; //gibt die Gezogene Karte Weiter (als Objekt)
 		    }
 		    
