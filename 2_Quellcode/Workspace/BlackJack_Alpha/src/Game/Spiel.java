@@ -69,6 +69,9 @@ public class Spiel {
 	boolean loseSpieler2 = false;
 	boolean loseDealer = false;
 	
+	boolean pattSpieler1 = false;
+	boolean pattSpieler2 = false;
+	
 		
 	//	class Spiel Variablen
 		    ArrayList<Karten> kartenDeck = new ArrayList<Karten>();
@@ -138,8 +141,9 @@ public class Spiel {
 		    	for (int i = 0; i<DeckSpieler1.size();i++) {
 		    		int j = DeckSpieler1.get(i).getWert();
 		    		wert = wert + j;
+		    		
 		
-		    	}
+		    	}System.out.println("S1:" + wert);
 		    	return wert;
 		    }
 	
@@ -149,7 +153,7 @@ public class Spiel {
 		    		int j = DeckSpieler2.get(i).getWert();
 		    		wert = wert + j;
 		
-		    	}
+		    	}System.out.println("S2:" + wert);
 		    	return wert;
 		    }
 	
@@ -159,32 +163,82 @@ public class Spiel {
 		    		int j = DeckDealer.get(i).getWert();
 		    		wert = wert + j;
 		
-		    	}
+		    	}System.out.println("SD:" + wert);
 		    	return wert;
 		    }
 		    
 		    // Checkt ob Blackjack oder Überkauft
-		    public void checkBJSpieler1(){
-		    	if (wertSpieler1 == 21) 
-		    		winSpieler1 = true;
-		    	if (wertSpieler1 > 21)
+		    public int checkBJSpieler1(){
+		    	if (wertSpieler1() == 21) {
+		      		winSpieler1 = true;
+		      				      		
+		      		return 0;
+		      	}
+		    	if (wertSpieler1() > 21) {
 		    		loseSpieler1 = true;
-		    }
+		    	System.out.println("PLanlos");
+		    	}else return -1;
+		    	
+		    } 
+		    
 		    
 		    
 		    public void checkBJSpieler2(){
-		    	if (wertSpieler2 == 21) 
+		    	if (wertSpieler2() == 21) 
 		    		winSpieler2 = true;
-		    	if (wertSpieler1 > 21)
+		    	if (wertSpieler2 ()> 21)
 		    		loseSpieler2 = true;
 		    }
 			
 		
 		    public void checkBJDealer(){
-		    	if (wertDealer == 21) 
+		    	if (wertDealer() == 21) 
 		    		winDealer = true;
-		    	if (wertDealer > 21)
+		    	if (wertDealer() > 21)
 		    		loseDealer = true;
+		    }
+		    
+		    /**Auswerten Methoden*/
+		    /** 1 = Sieg Spieler, 2 = Sieg Dealer, 3 = unentschieden*/
+		    public int auswertenS1() {
+		    if (wertSpieler1() > wertDealer()) {
+		    winSpieler1 = true;
+		   
+		    loseDealer = true;
+		    return 1;
+		    }
+		    else if (wertSpieler1() < wertDealer()) {
+		    winDealer = true;
+		    loseSpieler1 = true;
+		    return 2;
+		    }
+		    else if (wertSpieler1() == wertDealer())
+		    {
+		    pattSpieler1 = true;
+		    return 3;
+		    }
+		   return -1;
+
+		    }
+
+		    public int auswertenS2() {
+		    if (wertSpieler2() > wertDealer()) {
+		    winSpieler2 = true;
+		    loseDealer = true;
+		    return 1;
+		    }
+		    else if (wertSpieler2() < wertDealer()) {
+		    winDealer = true;
+		    loseSpieler2 = true;
+		    return 2;
+		    }
+		    else if (wertSpieler2() == wertDealer())
+		    {
+		    pattSpieler2 = true;
+		    return 3;
+		    }
+		     return -1;
+
 		    }
 	
 
