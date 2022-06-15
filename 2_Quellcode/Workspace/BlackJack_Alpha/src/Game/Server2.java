@@ -43,7 +43,9 @@ public class Server2 implements Runnable {
 
 	private ServerSocket serverSocket;
 
-
+	int auswertStatSp1;
+	int auswertStatSp2;
+	
 
 	private String[] spaces = new String[9];
 
@@ -228,7 +230,9 @@ public class Server2 implements Runnable {
 		
 		//Karte für Spieler 1 ziehen:
 		//server.DeckSpieler1.add(server.getKarte());
-		server.austeilenKarteSp1();
+		//server.austeilenKarteSp1();
+		server.DeckSpieler1.add(server.karteManuell(0));
+		server.DeckSpieler1.add(server.karteManuell(0));
 		//Karte für Spieler 2 ziehen:
 		server.austeilenKarteSp2();
 		//server.DeckSpieler2.add(server.getKarte());
@@ -236,7 +240,7 @@ public class Server2 implements Runnable {
 		//server.DeckDealer.add(server.getKarte());
 		server.austeilenKarteDealer();
 		//2. Karte:
-		server.austeilenKarteSp1();
+		//server.austeilenKarteSp1();
 		server.austeilenKarteSp2();
 		server.austeilenKarteDealer();
 		//server.DeckSpieler1.add(server.getKarte());
@@ -288,6 +292,7 @@ public class Server2 implements Runnable {
 				e.printStackTrace();
 			}	
 		}
+
 		
 		//Karte verschicken Dealer
 		
@@ -332,11 +337,128 @@ public class Server2 implements Runnable {
 			e.printStackTrace();
 		}*/
 
+		/**BlackJack und Überworfen Abfrage*/
+		server.checkBJSpieler1();
+		server.checkBJSpieler2();
+		server.checkBJDealer();
+		System.out.println(server.loseSpieler1);
+		System.out.println(server.winDealer);
+		
+		/**Spieler Status Spieler 1*/
+		
+		if(server.winSpieler1) {
+		System.out.println("Sieger Spieler 1");
+		auswertStatSp2 = server.auswertenS2();
+		
+			
+		
+		}
+
+
+		if (server.loseSpieler1) {
+		System.out.println("Verlierer Spieler 1");
+		auswertStatSp2 = server.auswertenS2();
+		
+		}
+
+
+		/**Spieler Status Spieler 2*/
+		if(server.winSpieler2) {
+		System.out.println("Sieger Spieler 2");
+		auswertStatSp1 = server.auswertenS1();
+		}
+
+
+		if (server.loseSpieler2) {
+		System.out.println("Verlierer Spieler 2");
+		auswertStatSp1 = server.auswertenS1();
+		}
+
+
+		/**Spieler Status Dealer*/
+		if(server.winDealer) {
+		System.out.println("Sieger Dealer");
+		//Stop
+		}
+
+
+		if (server.loseDealer) {
+		System.out.println("Verlierer Dealer");
+		//Stop
+		}
+		
+		
+		if (server.wertSpieler1() == 21)
+			auswertStatSp1 = 0;
+		
+		
+		
+		
+		//playerS.changeKontostand(Spiel.getGesetztSpieler1(),auswertStatSp1);
+	
+
+    	/**verschicken Status Spieler 1*/
+    	try {
+			dos.writeBoolean(server.winSpieler1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();  }  
+    	
+    	try {
+			dos.writeBoolean(server.loseSpieler1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();  }  
+    	
+			
+    	/**verschicken Status Spieler 2:*/
+			
+			try {
+				dos.writeBoolean(server.winSpieler2);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace(); } 
+			
+			try {
+				dos.writeBoolean(server.loseSpieler2);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();  }  
+    	
+		/**verschicken Status Dealer:*/
+				
+				try {
+					dos.writeBoolean(server.winDealer);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  }
+				
+				try {
+					dos.writeBoolean(server.loseDealer);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  } 
+	    	
+				
+				
+    	//Methode hit;//2.Karte
+    	server.austeilenKarteSp1();
+    	
+    	
+    	//Methode stay;
+    	//nichts machen eine Runde noch machen
+    	
+    	
+    
+		
 		thread.stop();
 	}
 	
 
 		
+	
+	
+	
 	
 	boolean abbuchungOK(int m){
 
@@ -350,7 +472,7 @@ public class Server2 implements Runnable {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Server2 neu = new Server2();
+		Server2 gameh = new Server2();
 
 	}
 	//Grafische Programmierung
