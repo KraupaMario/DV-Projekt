@@ -68,6 +68,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel anmeldetext = new JLabel();
 	 JLabel registrierungtext = new JLabel();
 	 JLabel ueberschrift = new JLabel("BLACK JACK"); 
+	 JLabel wartenAufSpieler = new JLabel("Bitte warten...");
 	
 
 	 
@@ -199,6 +200,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 		einsatzfenster(); 
 		jetonfenster();
 		auswerteFenster();
+		wartefenster(); 
 		
 		 
 	}
@@ -867,6 +869,12 @@ public void registrierfenster() {
 			nachrichtS2.setForeground(Color.red); 
 			nachrichtS2.setVisible(false);
 			this.add(nachrichtS2);
+		}
+		public void wartefenster() {
+			wartenAufSpieler.setBounds(600,400,200,100);
+			wartenAufSpieler.setForeground(Color.red); 
+			wartenAufSpieler.setVisible(false);
+			this.add(wartenAufSpieler);
 		}
 		
 	

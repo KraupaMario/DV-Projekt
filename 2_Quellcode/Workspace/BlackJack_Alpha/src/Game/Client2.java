@@ -65,6 +65,9 @@ public class Client2 implements Runnable {
 	int kontomax = 0;
 	static boolean klicks = false; 
 	public static int swischespeicher;
+	
+	static boolean wartenAufSpielerClient = false; 
+	static boolean wartenAufSpielerServer = false; 
 
 
 
@@ -1337,6 +1340,10 @@ public class Client2 implements Runnable {
 		cbo.nachrichtS1.setVisible(false);
 		cbo.nachrichtS2.setVisible(false);
 		cbo.buttonNaechsteRunde.setVisible(false);
+	}
+	
+	public void warteBildschirm() {
+		cbo.wartenAufSpieler.setVisible(true);
 	}
 
 	public void benutzerErstellen() {

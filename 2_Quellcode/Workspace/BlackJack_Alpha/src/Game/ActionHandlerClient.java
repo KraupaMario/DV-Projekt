@@ -86,8 +86,14 @@ public void actionPerformed(ActionEvent e) {
 		/*case "Port bestätigen": 
 			spiel.portZuEinsatz(); 
 			break; */
-		case "Einsatz": 
-			spiel.einsatzZuJetons(); 
+		case "Einsatz":
+			if (Client2.wartenAufSpielerClient= true) {
+			spiel.warteBildschirm(); 
+			}
+			else if (Client2.wartenAufSpielerClient = false) {
+				spiel.einsatzZuJetons(); 
+			}
+			 
 			break; 
 		case "Jeton10": 
 			Client2.swischespeicher += 10;

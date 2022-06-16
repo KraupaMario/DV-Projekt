@@ -48,6 +48,9 @@ public class Server2 implements Runnable {
 
 	int auswertStatSp1;
 	int auswertStatSp2;
+	
+	static boolean wartenAufSpielerClient = false; 
+	static boolean wartenAufSpielerServer = false; 
 
 
 	private String[] spaces = new String[9];
@@ -786,6 +789,7 @@ public class Server2 implements Runnable {
 	}
 	
 	public void einsatzZuJetons() {
+		
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
 
