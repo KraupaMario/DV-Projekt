@@ -115,6 +115,10 @@ public void actionPerformed(ActionEvent e) {
 			spiel.jetonsZuHitundStay(); 
 			break;
 			
+		case "Nächste Runde":
+			spiel.auswertenZuEinsatz();
+			break;
+			
 			
 		 
 			

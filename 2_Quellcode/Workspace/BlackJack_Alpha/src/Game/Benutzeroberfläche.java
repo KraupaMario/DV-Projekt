@@ -29,14 +29,8 @@ public class Benutzeroberfläche extends JFrame  {
 
 	 JFrame frame = new JFrame();
 	 JPanel panel = new JPanel();
-	
-	
 
-
-
-
-
-	//Label
+	 //Label
 	 JLabel labelBenutzername = new JLabel ("Benutzername:");
 	 JLabel labelPasswort = new JLabel("Passwort:");
 	 JLabel ueberschrift = new JLabel("BLACK JACK"); 
@@ -58,7 +52,10 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel labelIPAdresse = new JLabel(); 
 	 JLabel kartenwertSpieler1 = new JLabel(); 
 	 JLabel kartenwertSpieler2 = new JLabel(); 
-	 JLabel kartenwertDealer = new JLabel(); 
+	 JLabel kartenwertDealer = new JLabel();
+	 JLabel nachrichtS1 = new JLabel();
+	 JLabel nachrichtS2 = new JLabel();
+	
 	 
 
 	 
@@ -145,6 +142,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JButton buttonEinsatzbestätigen = new JButton("Einsatz bestätigen");
 	 JButton buttonHit = new JButton ("Hit"); 
 	 JButton buttonStay = new JButton ("Stay"); 
+	 JButton buttonNaechsteRunde = new JButton ("Nächste Runde");
 	
 	 
 	 
@@ -161,7 +159,8 @@ public class Benutzeroberfläche extends JFrame  {
 	public JTextField ipadresseText = new JTextField(20); 
 	public JTextField portText = new JTextField(20);
 	
-	 //Icons
+	
+	//Icons
 	
 	
 
@@ -184,6 +183,7 @@ public class Benutzeroberfläche extends JFrame  {
 		this.getContentPane().setBackground(new Color(0,81,0));
 
 		startfenster();
+		auswerteFenster();
 		auswahlfenster();
 		anmeldefenster();
 		registrierfenster();
@@ -191,6 +191,7 @@ public class Benutzeroberfläche extends JFrame  {
 		portfenster();
 		einsatzfenster(); 
 		jetonfenster();
+		
 	}
 
 	
@@ -748,6 +749,26 @@ public class Benutzeroberfläche extends JFrame  {
 			
 		}
 		
+		public void auswerteFenster() {
+			buttonNaechsteRunde.setBounds(650,650,200,50);
+			buttonNaechsteRunde.setFocusable(false);
+			buttonNaechsteRunde.setBorder(null);
+			buttonNaechsteRunde.setBackground(null);
+			buttonNaechsteRunde.setForeground(Color.white);
+			buttonNaechsteRunde.addActionListener(spiel.aHandler);
+			buttonNaechsteRunde.setVisible(false);
+			this.add(buttonNaechsteRunde);
+			
+			nachrichtS1.setBounds(200,200,1000,100);
+			nachrichtS1.setForeground(Color.red); 
+			nachrichtS1.setVisible(false);
+			this.add(nachrichtS1);
+			
+			nachrichtS2.setBounds(1100,200,1000,100);
+			nachrichtS2.setForeground(Color.red); 
+			nachrichtS2.setVisible(false);
+			this.add(nachrichtS2);
+		}
 	
 	
 	

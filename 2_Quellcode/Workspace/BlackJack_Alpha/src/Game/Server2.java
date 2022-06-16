@@ -45,7 +45,7 @@ public class Server2 implements Runnable {
 
 	int auswertStatSp1;
 	int auswertStatSp2;
-	
+
 
 	private String[] spaces = new String[9];
 
@@ -170,7 +170,7 @@ public class Server2 implements Runnable {
 		host = true;
 		client = false;
 	}
-	
+
 	private void aktion()  {
 		//Spiel erstellen
 		Spiel server = new Spiel();
@@ -178,7 +178,7 @@ public class Server2 implements Runnable {
 		Spielkarten Server = new Spielkarten();
 		//Spieler erstellen
 		/*	while (!anmelden) {
-			System.out.println("Warten");
+			System.out.println(f"Warten");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -223,11 +223,11 @@ public class Server2 implements Runnable {
 		einsatzAnzeigenGegenspieler();
 		System.out.println("s/Der Client hat soviel gesetzt: "+Spiel.getGesetztSpieler2());
 
-		
+
 		server.DeckSpieler1.clear();
 		server.DeckSpieler2.clear();
 		server.DeckDealer.clear();
-		
+
 		//Karte für Spieler 1 ziehen:
 		//server.DeckSpieler1.add(server.getKarte());
 		//server.austeilenKarteSp1();
@@ -246,9 +246,9 @@ public class Server2 implements Runnable {
 		//server.DeckSpieler1.add(server.getKarte());
 		//server.DeckSpieler2.add(server.getKarte());
 		//server.DeckDealer.add(server.getKarte());
-		
+
 		//Karte verschicken Spieler 1
-		
+
 		for (int i = 0;i<server.DeckSpieler1.size();i++) {
 			try {
 				dos.writeUTF(server.DeckSpieler1.get(i).getFarbe());
@@ -269,9 +269,9 @@ public class Server2 implements Runnable {
 				e.printStackTrace();
 			}	
 		}
-		
-	//Karte verschicken Spieler 2
-		
+
+		//Karte verschicken Spieler 2
+
 		for (int i = 0;i<server.DeckSpieler2.size();i++) {
 			try {
 				dos.writeUTF(server.DeckSpieler2.get(i).getFarbe());
@@ -293,29 +293,29 @@ public class Server2 implements Runnable {
 			}	
 		}
 
-		
+
 		//Karte verschicken Dealer
-		
-				for (int i = 0;i<server.DeckDealer.size();i++) {
-					try {
-						dos.writeUTF(server.DeckDealer.get(i).getFarbe());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					try {
-						dos.writeInt(server.DeckDealer.get(i).getName());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					try {
-						dos.writeInt(server.DeckDealer .get(i).getWert());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}	
-				}
+
+		for (int i = 0;i<server.DeckDealer.size();i++) {
+			try {
+				dos.writeUTF(server.DeckDealer.get(i).getFarbe());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				dos.writeInt(server.DeckDealer.get(i).getName());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				dos.writeInt(server.DeckDealer .get(i).getWert());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
 		System.out.println(server.DeckSpieler1.get(0).getFarbe());
 		System.out.println(server.DeckSpieler1.get(0).getName());
 		kartenausgebenS_R1(server);//Karten anzeigen
@@ -343,123 +343,118 @@ public class Server2 implements Runnable {
 		server.checkBJDealer();
 		System.out.println(server.loseSpieler1);
 		System.out.println(server.winDealer);
-		
+
 		/**Spieler Status Spieler 1*/
-		
+
 		if(server.winSpieler1) {
-		System.out.println("Sieger Spieler 1");
-		auswertStatSp2 = server.auswertenS2();
-		
-			
-		
+			System.out.println("Sieger Spieler 1");
+			auswertStatSp2 = server.auswertenS2();
 		}
 
 
 		if (server.loseSpieler1) {
-		System.out.println("Verlierer Spieler 1");
-		auswertStatSp2 = server.auswertenS2();
-		
+			System.out.println("Verlierer Spieler 1");
+			auswertStatSp2 = server.auswertenS2();
 		}
 
 
 		/**Spieler Status Spieler 2*/
 		if(server.winSpieler2) {
-		System.out.println("Sieger Spieler 2");
-		auswertStatSp1 = server.auswertenS1();
+			System.out.println("Sieger Spieler 2");
+			auswertStatSp1 = server.auswertenS1();
 		}
 
 
 		if (server.loseSpieler2) {
-		System.out.println("Verlierer Spieler 2");
-		auswertStatSp1 = server.auswertenS1();
+			System.out.println("Verlierer Spieler 2");
+			auswertStatSp1 = server.auswertenS1();
 		}
 
 
 		/**Spieler Status Dealer*/
 		if(server.winDealer) {
-		System.out.println("Sieger Dealer");
-		//Stop
+			System.out.println("Sieger Dealer");
+			//Stop
 		}
 
 
 		if (server.loseDealer) {
-		System.out.println("Verlierer Dealer");
-		//Stop
+			System.out.println("Verlierer Dealer");
+			//Stop
 		}
-		
-		
+
+
 		if (server.wertSpieler1() == 21)
 			auswertStatSp1 = 0;
-		
-		
-		
-		
-		//playerS.changeKontostand(Spiel.getGesetztSpieler1(),auswertStatSp1);
-	
 
-    	/**verschicken Status Spieler 1*/
-    	try {
+
+		//playerS.changeKontostand(Spiel.getGesetztSpieler1(),auswertStatSp1);
+
+
+		/**verschicken Status Spieler 1*/
+		try {
 			dos.writeBoolean(server.winSpieler1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();  }  
-    	
-    	try {
+
+		try {
 			dos.writeBoolean(server.loseSpieler1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();  }  
-    	
-			
-    	/**verschicken Status Spieler 2:*/
-			
-			try {
-				dos.writeBoolean(server.winSpieler2);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace(); } 
-			
-			try {
-				dos.writeBoolean(server.loseSpieler2);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();  }  
-    	
+
+
+		/**verschicken Status Spieler 2:*/
+
+		try {
+			dos.writeBoolean(server.winSpieler2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); } 
+
+		try {
+			dos.writeBoolean(server.loseSpieler2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();  }  
+
 		/**verschicken Status Dealer:*/
-				
-				try {
-					dos.writeBoolean(server.winDealer);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();  }
-				
-				try {
-					dos.writeBoolean(server.loseDealer);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();  } 
-	    	
-				
-				
-    	//Methode hit;//2.Karte
-    	server.austeilenKarteSp1();
-    	
-    	
-    	//Methode stay;
-    	//nichts machen eine Runde noch machen
-    	
-    	
-    
+
+		try {
+			dos.writeBoolean(server.winDealer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();  }
+
+		try {
+			dos.writeBoolean(server.loseDealer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();  } 
+
+		System.out.println("Jetzt zum Auswertefenster");
+		rundeZuAuswerten();
 		
+		//Methode hit;//2.Karte
+		//server.austeilenKarteSp1();
+
+
+		//Methode stay;
+		//nichts machen eine Runde noch machen
+
+
+
+
 		thread.stop();
 	}
-	
 
-		
-	
-	
-	
-	
+
+
+
+
+
+
 	boolean abbuchungOK(int m){
 
 		if ((swischespeicher)>kontomax) {
@@ -480,7 +475,7 @@ public class Server2 implements Runnable {
 
 	ActionHandler aHandler = new ActionHandler(this); 
 	Benutzeroberfläche bo = new Benutzeroberfläche(this);
-    Spielkarten sk = new Spielkarten();
+	Spielkarten sk = new Spielkarten();
 
 
 	public void startZuAuswahl() {
@@ -675,7 +670,7 @@ public class Server2 implements Runnable {
 		bo.buttonPortBestätigen.setVisible(true);
 		bo.labelport.setVisible(true);
 		bo.portText.setVisible(true);
-		
+
 		bo.labelIPAdresse.setVisible(false);
 
 
@@ -704,17 +699,17 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
-		
+
 		//Portfenster: 
 		bo.buttonPortBestätigen.setVisible(false);
 		bo.labelport.setVisible(false);
 		bo.portText.setVisible(false);
-		
+
 		//Spielfenster: 
 		bo.buttonEinsatz.setVisible(true);
 		bo.labelSpieler1.setVisible(true);
@@ -722,10 +717,10 @@ public class Server2 implements Runnable {
 		bo.ueberschriftSpiel.setVisible(true);
 		bo.labelBank.setVisible(true);
 		bo.bedienfeld.setVisible(true);
-		
+
 		bo.labelipadresse.setVisible(false);
 		bo.labelIPAdresse.setVisible(false);
-		
+
 	}
 	public void portZuEinsatz() {
 		bo.buttonLogin.setVisible(false);
@@ -818,25 +813,25 @@ public class Server2 implements Runnable {
 		//bo.kontostandSpieler2.setVisible(true); 
 		bo.buttonEinsatzbestätigen.setVisible(true);  
 
-		
+
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
 		bo.kartenwertDealer.setVisible(true);
 	}
-	
+
 
 	public void kartenwertanzeigen(Spiel s) {
-		
+
 		bo.kartenwertSpieler1.setText("Kartenwert Spieler 1: "+Integer.toString(s.wertSpieler1()));
 		bo.kartenwertSpieler2.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertSpieler2()));
 		bo.kartenwertDealer.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertDealer()));
-		
+
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	public void jeton10() {
 		int j10 = 10;
 		if(abbuchungOK(10)) {
@@ -870,7 +865,7 @@ public class Server2 implements Runnable {
 			String j51 = Integer.toString(j50);
 			bo.einsatzausgabeSpieler1.setText("Der Einsatz beträgt:" +swischespeicher);
 			bo.einsatzausgabeSpieler1.setVisible(true);
-			
+
 			System.out.println(j50);
 			System.out.println("Immo:"+swischespeicher);}
 		else {
@@ -890,7 +885,7 @@ public class Server2 implements Runnable {
 		}
 
 	}
-	
+
 
 	public void einsatzAusrechnen() {
 		//swischespeicher = gesetztS; <---- Da liegt der Mist!
@@ -907,11 +902,11 @@ public class Server2 implements Runnable {
 
 
 	//Kartenauswahl
-	
-	
-	
+
+
+
 	public void kartenausgebenS_R1(Spiel s){
-		
+
 		//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
 		String farbek11 = s.DeckSpieler1.get(0).getFarbe();
 		String farbek21 = s.DeckSpieler1.get(1).getFarbe();
@@ -919,7 +914,7 @@ public class Server2 implements Runnable {
 		String farbek22 = s.DeckSpieler2.get(1).getFarbe();
 		String farbebank1= s.DeckDealer.get(0).getFarbe();
 		String farbebank2= s.DeckDealer.get(1).getFarbe();
-		
+
 		//int nummerk11 = s.DeckSpieler1.get(0).getName();
 		int nummerk11 = s.DeckSpieler1.get(0).getName();
 		int nummerk21 = s.DeckSpieler1.get(1).getName();
@@ -942,7 +937,7 @@ public class Server2 implements Runnable {
 			bo.karte1Spieler1.setIcon(bo.karo[nummerk11]);
 			break;
 		}
-		
+
 		//Karte2 Spieler1
 		switch (farbek21) {
 		case "pik":
@@ -958,43 +953,43 @@ public class Server2 implements Runnable {
 			bo.karte2Spieler1.setIcon(bo.karo[nummerk21]);
 			break;
 		}
-	
-		
+
+
 		//Karte1 Spieler2
-				switch (farbek12) {
-				case "pik":
-					bo.karte1Spieler2.setIcon(bo.pik[nummerk12]);
-					break;
-				case "herz":
-					bo.karte1Spieler2.setIcon(bo.herz[nummerk12]);
-					break;
-				case "kreuz":
-					bo.karte1Spieler2.setIcon(bo.kreuz[nummerk12]);
-					break;
-				case "karo":
-					bo.karte1Spieler2.setIcon(bo.karo[nummerk12]);
-					break;
-				}
-			
-		
-				//Karte2 Spieler2
-				switch (farbek22) {
-				case "pik":
-					bo.karte2Spieler2.setIcon(bo.pik[nummerk22]);
-					break;
-				case "herz":
-					bo.karte2Spieler2.setIcon(bo.herz[nummerk22]);
-					break;
-				case "kreuz":
-					bo.karte2Spieler2.setIcon(bo.kreuz[nummerk22]);
-					break;
-				case "karo":
-					bo.karte2Spieler2.setIcon(bo.karo[nummerk22]);
-					break;
-				}
-			
-				//Karte1 Bank
-			/*	switch (farbebank1) {
+		switch (farbek12) {
+		case "pik":
+			bo.karte1Spieler2.setIcon(bo.pik[nummerk12]);
+			break;
+		case "herz":
+			bo.karte1Spieler2.setIcon(bo.herz[nummerk12]);
+			break;
+		case "kreuz":
+			bo.karte1Spieler2.setIcon(bo.kreuz[nummerk12]);
+			break;
+		case "karo":
+			bo.karte1Spieler2.setIcon(bo.karo[nummerk12]);
+			break;
+		}
+
+
+		//Karte2 Spieler2
+		switch (farbek22) {
+		case "pik":
+			bo.karte2Spieler2.setIcon(bo.pik[nummerk22]);
+			break;
+		case "herz":
+			bo.karte2Spieler2.setIcon(bo.herz[nummerk22]);
+			break;
+		case "kreuz":
+			bo.karte2Spieler2.setIcon(bo.kreuz[nummerk22]);
+			break;
+		case "karo":
+			bo.karte2Spieler2.setIcon(bo.karo[nummerk22]);
+			break;
+		}
+
+		//Karte1 Bank
+		/*	switch (farbebank1) {
 				case "pik":
 					bo.karte1Bank.setIcon(bo.pik[nummerk1b]);
 					break;
@@ -1008,24 +1003,24 @@ public class Server2 implements Runnable {
 					bo.karte1Bank.setIcon(bo.karo[nummerk1b]);
 					break;
 				} */
-			
-				//Karte2 Bank
-				switch (farbebank2) {
-				case "pik":
-					bo.karte2Bank.setIcon(bo.pik[nummerk2b]);
-					break;
-				case "herz":
-					bo.karte2Bank.setIcon(bo.herz[nummerk2b]);
-					break;
-				case "kreuz":
-					bo.karte2Bank.setIcon(bo.kreuz[nummerk2b]);
-					break;
-				case "karo":
-					bo.karte2Bank.setIcon(bo.karo[nummerk2b]);
-					break;
-				} 
-				
-		
+
+		//Karte2 Bank
+		switch (farbebank2) {
+		case "pik":
+			bo.karte2Bank.setIcon(bo.pik[nummerk2b]);
+			break;
+		case "herz":
+			bo.karte2Bank.setIcon(bo.herz[nummerk2b]);
+			break;
+		case "kreuz":
+			bo.karte2Bank.setIcon(bo.kreuz[nummerk2b]);
+			break;
+		case "karo":
+			bo.karte2Bank.setIcon(bo.karo[nummerk2b]);
+			break;
+		} 
+
+
 		bo.karte1Spieler1.setVisible(true);
 		bo.karte2Spieler1.setVisible(true);
 		bo.karte1Spieler2.setVisible(true);
@@ -1034,8 +1029,85 @@ public class Server2 implements Runnable {
 		bo.karte1Bank.setIcon(bo.rückseite);
 		bo.karte2Bank.setVisible(true); 
 	}
+
+	public void kartenausgebenS_R234(Spiel s, int runde){
+
+
+		String farbek11 = s.DeckSpieler1.get(runde).getFarbe();
+		
+		String farbek12 = s.DeckSpieler2.get(runde).getFarbe();
+		
+		String farbebank1= s.DeckDealer.get(runde).getFarbe();
+		
+
 	
+		int nummerk11 = s.DeckSpieler1.get(s.DeckSpieler1.size()-1).getName();
 	
+		int nummerk12 = s.DeckSpieler2.get(s.DeckSpieler2.size()-1).getName();
+		
+		int nummerk1b = s.DeckDealer.get(s.DeckDealer.size()-1).getName();
+		
+		/**weitere Karte von Spieler1 anzeigen.*/
+		switch (farbek11) {
+		case "pik":
+			bo.karte1Spieler1.setIcon(bo.pik[nummerk11]);
+			break;
+		case "herz":
+			bo.karte1Spieler1.setIcon(bo.herz[nummerk11]);
+			break;
+		case "kreuz":
+			bo.karte1Spieler1.setIcon(bo.kreuz[nummerk11]);
+			break;
+		case "karo":
+			bo.karte1Spieler1.setIcon(bo.karo[nummerk11]);
+			break;
+		}
+
+
+		//Karte Spieler2
+		switch (farbek12) {
+		case "pik":
+			bo.karte1Spieler2.setIcon(bo.pik[nummerk12]);
+			break;
+		case "herz":
+			bo.karte1Spieler2.setIcon(bo.herz[nummerk12]);
+			break;
+		case "kreuz":
+			bo.karte1Spieler2.setIcon(bo.kreuz[nummerk12]);
+			break;
+		case "karo":
+			bo.karte1Spieler2.setIcon(bo.karo[nummerk12]);
+			break;
+		}
+
+
+		//Karte Bank
+		switch (farbebank1) {
+		case "pik":
+			bo.karte2Bank.setIcon(bo.pik[nummerk1b]);
+			break;
+		case "herz":
+			bo.karte2Bank.setIcon(bo.herz[nummerk1b]);
+			break;
+		case "kreuz":
+			bo.karte2Bank.setIcon(bo.kreuz[nummerk1b]);
+			break;
+		case "karo":
+			bo.karte2Bank.setIcon(bo.karo[nummerk1b]);
+			break;
+		} 
+
+
+		bo.karte1Spieler1.setVisible(true);
+		bo.karte2Spieler1.setVisible(true);
+		bo.karte1Spieler2.setVisible(true);
+		bo.karte2Spieler2.setVisible(true);
+		bo.karte1Bank.setVisible(true);
+		bo.karte1Bank.setIcon(bo.rückseite);
+		bo.karte2Bank.setVisible(true); 
+	}
+
+
 	public void jetonsZuHitundStay() {
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
@@ -1060,17 +1132,17 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestätigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
-		
+
 		//Portfenster: 
 		bo.buttonPortBestätigen.setVisible(false);
 		bo.labelport.setVisible(false);
 		bo.portText.setVisible(false);
-				//Spielfenster: 
+		//Spielfenster: 
 		bo.buttonEinsatz.setVisible(false);
 		bo.buttonJeton10.setVisible(false);
 		bo.buttonJeton25.setVisible(false);
@@ -1095,17 +1167,157 @@ public class Server2 implements Runnable {
 		bo.einsatzSpieler2.setVisible(true);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		bo.kontostandSpieler1.setVisible(true); 
-		bo.buttonEinsatzbestätigen.setVisible(true);
+		bo.buttonEinsatzbestätigen.setVisible(false);
 		bo.buttonHit.setVisible(true);
 		bo.buttonStay.setVisible(true);
-		
-		
+
+
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
 		bo.kartenwertDealer.setVisible(true);
 	}
 	
+	public void rundeZuAuswerten() {
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		bo.ueberschrift.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
+
+		//IPAdressefenster:
+		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.ipadresseText.setVisible(false);
+
+		//Portfenster: 
+		bo.buttonPortBestätigen.setVisible(false);
+		bo.labelport.setVisible(false);
+		bo.portText.setVisible(false);
+		//Spielfenster: 
+		bo.buttonEinsatz.setVisible(false);
+		bo.buttonJeton10.setVisible(false);
+		bo.buttonJeton25.setVisible(false);
+		bo.buttonJeton50.setVisible(false);
+		bo.buttonJeton100.setVisible(false);
+		bo.karte1Spieler1.setVisible(true);
+		bo.karte2Spieler1.setVisible(true);
+		bo.karte3Spieler1.setVisible(true); 
+		bo.karte4Spieler1.setVisible(true); 
+		bo.karte5Spieler1.setVisible(true); 
+		bo.karte1Spieler2.setVisible(true);
+		bo.karte2Spieler2.setVisible(true);
+		bo.karte3Spieler2.setVisible(true);
+		bo.karte4Spieler2.setVisible(true);
+		bo.karte5Spieler2.setVisible(true);
+		bo.karte1Bank.setVisible(true);
+		bo.karte2Bank.setVisible(true);
+		bo.karte3Bank.setVisible(true);
+		bo.karte4Bank.setVisible(true);
+		bo.karte5Bank.setVisible(true);
+		bo.einsatzSpieler1.setVisible(true);
+		bo.einsatzSpieler2.setVisible(true);
+		//cbo.kontostandSpieler1C.setVisible(true);
+		bo.kontostandSpieler1.setVisible(true); 
+		bo.buttonEinsatzbestätigen.setVisible(false);
+		bo.buttonHit.setVisible(false);
+		bo.buttonStay.setVisible(false);
+		bo.kartenwertSpieler1.setVisible(true);
+		bo.kartenwertSpieler2.setVisible(true);
+		bo.kartenwertDealer.setVisible(true);
+		bo.nachrichtS1.setVisible(true);
+		bo.nachrichtS2.setVisible(true);
+		bo.buttonNaechsteRunde.setVisible(true);
+	}
 	
+	public void auswertenZuEinsatz() {
+		bo.buttonLogin.setVisible(false);
+		bo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		bo.ueberschrift.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		bo.labelBenutzername.setVisible(false);
+		bo.labelPasswort.setVisible(false);
+		bo.buttonstart.setVisible(false);
+		bo.userText.setVisible(false);
+		bo.passwordText.setVisible(false);
+		bo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		bo.labelBenutzernameErstellen.setVisible(false);
+		bo.labelPasswort1.setVisible(false);
+		bo.labelPasswort2.setVisible(false);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
+		bo.userRegistText.setVisible(false);
+		bo.passwordText1.setVisible(false);
+		bo.passwordText2.setVisible(false);
+
+		//IPAdressefenster:
+		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.ipadresseText.setVisible(false);
+
+		//Portfenster: 
+		bo.buttonPortBestätigen.setVisible(false);
+		bo.labelport.setVisible(false);
+		bo.portText.setVisible(false);
+		//Spielfenster: 
+		bo.buttonEinsatz.setVisible(true);
+		bo.buttonJeton10.setVisible(false);
+		bo.buttonJeton25.setVisible(false);
+		bo.buttonJeton50.setVisible(false);
+		bo.buttonJeton100.setVisible(false);
+		bo.karte1Spieler1.setVisible(false);
+		bo.karte2Spieler1.setVisible(false);
+		bo.karte3Spieler1.setVisible(false); 
+		bo.karte4Spieler1.setVisible(false); 
+		bo.karte5Spieler1.setVisible(false); 
+		bo.karte1Spieler2.setVisible(false);
+		bo.karte2Spieler2.setVisible(false);
+		bo.karte3Spieler2.setVisible(false);
+		bo.karte4Spieler2.setVisible(false);
+		bo.karte5Spieler2.setVisible(false);
+		bo.karte1Bank.setVisible(false);
+		bo.karte2Bank.setVisible(false);
+		bo.karte3Bank.setVisible(false);
+		bo.karte4Bank.setVisible(false);
+		bo.karte5Bank.setVisible(false);
+		bo.einsatzSpieler1.setVisible(false);
+		bo.einsatzSpieler2.setVisible(false);
+		//cbo.kontostandSpieler1C.setVisible(true);
+		bo.kontostandSpieler1.setVisible(false); 
+		bo.buttonEinsatzbestätigen.setVisible(false);
+		bo.buttonHit.setVisible(false);
+		bo.buttonStay.setVisible(false);
+		bo.kartenwertSpieler1.setVisible(false);
+		bo.kartenwertSpieler2.setVisible(false);
+		bo.kartenwertDealer.setVisible(false);
+		bo.nachrichtS1.setVisible(false);
+		bo.nachrichtS2.setVisible(false);
+		bo.buttonNaechsteRunde.setVisible(false);
+	}
+
+
 
 	/*
 	//Vector

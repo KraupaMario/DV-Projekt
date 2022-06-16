@@ -17,6 +17,8 @@ public class SDSD {
 
 		System.out.println("Erstellen Spiel usw.");
 
+		
+		
 		newgame: while(!a) {
 			System.out.println("reset");
 			System.out.println("Einsatz + Erste 2 Karten ausgeben.");

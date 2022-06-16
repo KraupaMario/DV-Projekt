@@ -63,6 +63,8 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel kartenwertSpieler1 = new JLabel(); 
 	 JLabel kartenwertSpieler2 = new JLabel(); 
 	 JLabel kartenwertDealer = new JLabel(); 
+	 JLabel nachrichtS1 = new JLabel();
+	 JLabel nachrichtS2 = new JLabel();
 	 
 	 
 
@@ -141,6 +143,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JButton buttonEinsatzbestätigen = new JButton("Einsatz bestätigen");
 	 JButton buttonHit = new JButton ("Hit"); 
 	 JButton buttonStay = new JButton ("Stay"); 
+	 JButton buttonNaechsteRunde = new JButton ("Nächste Runde");
 	
 	 
 	 
@@ -187,6 +190,8 @@ public class BenutzeroberflächeClient extends JFrame  {
 		portfenster();
 		einsatzfenster(); 
 		jetonfenster();
+		auswerteFenster();
+		
 		 
 	}
 
@@ -739,10 +744,29 @@ public class BenutzeroberflächeClient extends JFrame  {
 			buttonStay.setVisible(false);
 			this.add(buttonStay);
 			
+		}
+		
+		public void auswerteFenster() {
+			buttonNaechsteRunde.setBounds(650,650,200,50);
+			buttonNaechsteRunde.setFocusable(false);
+			buttonNaechsteRunde.setBorder(null);
+			buttonNaechsteRunde.setBackground(null);
+			buttonNaechsteRunde.setForeground(Color.white);
+			buttonNaechsteRunde.addActionListener(spiel.cHandler);
+			buttonNaechsteRunde.setVisible(false);
+			this.add(buttonNaechsteRunde);
 			
 			
+			nachrichtS1.setBounds(200,200,1000,100);
+			nachrichtS1.setForeground(Color.red); 
+			nachrichtS1.setVisible(false);
+			this.add(nachrichtS1);
 			
 			
+			nachrichtS2.setBounds(1100,200,1000,100);
+			nachrichtS2.setForeground(Color.red); 
+			nachrichtS2.setVisible(false);
+			this.add(nachrichtS2);
 		}
 		
 	

@@ -328,6 +328,8 @@ public class Client2 implements Runnable {
 		kartenausgebenS_R1(client);//Karten anzeigen
 		kartenwertanzeigen(client);
 		
+		rundeZuAuswerten();
+		
 		thread.stop();
 	}
 	
@@ -985,6 +987,145 @@ public void kartenwertanzeigen(Spiel s) {
 			cbo.kartenwertDealer.setVisible(true);
 		}
 		
+		public void rundeZuAuswerten() {
+			cbo.buttonLogin.setVisible(false);
+			cbo.buttonRegistrieren.setVisible(false);
+
+			//Gemeinsame
+			cbo.ueberschriftC.setVisible(false);
+			cbo.buttonZurück.setVisible(false);
+
+			//Loginfenster
+			cbo.labelBenutzernameC.setVisible(false);
+			cbo.labelPasswortC.setVisible(false);
+			cbo.buttonstart.setVisible(false);
+			cbo.userText.setVisible(false);
+			cbo.passwordText.setVisible(false);
+			cbo.buttonZurück.setVisible(false);
+
+			//Registrierfenster
+			cbo.labelBenutzernameCErstellenC.setVisible(false);
+			cbo.labelPasswortC1C.setVisible(false);
+			cbo.labelPasswortC2C.setVisible(false);
+			cbo.buttonRegistrierenAbschließen.setVisible(false);
+			cbo.userRegistText.setVisible(false);
+			cbo.passwordText1.setVisible(false);
+			cbo.passwordText2.setVisible(false);
+
+			//IPAdressefenster:
+			cbo.buttonIPAdresseBestätigen.setVisible(false);
+			cbo.labelipadresseC.setVisible(false);
+			cbo.ipadresseText.setVisible(false);
+
+			//Portfenster: 
+			cbo.buttonPortBestätigen.setVisible(false);
+			cbo.labelportC.setVisible(false);
+			cbo.portText.setVisible(false);
+			//Spielfenster: 
+			cbo.buttonEinsatz.setVisible(false);
+			cbo.buttonJeton10.setVisible(false);
+			cbo.buttonJeton25.setVisible(false);
+			cbo.buttonJeton50.setVisible(false);
+			cbo.buttonJeton100.setVisible(false);
+			cbo.karte1Spieler1.setVisible(true);
+			cbo.karte2Spieler1.setVisible(true);
+			cbo.karte3Spieler1.setVisible(true); 
+			cbo.karte4Spieler1.setVisible(true); 
+			cbo.karte5Spieler1.setVisible(true); 
+			cbo.karte1Spieler2.setVisible(true);
+			cbo.karte2Spieler2.setVisible(true);
+			cbo.karte3Spieler2.setVisible(true);
+			cbo.karte4Spieler2.setVisible(true);
+			cbo.karte5Spieler2.setVisible(true);
+			cbo.karte1Bank.setVisible(true);
+			cbo.karte2Bank.setVisible(true);
+			cbo.karte3Bank.setVisible(true);
+			cbo.karte4Bank.setVisible(true);
+			cbo.karte5Bank.setVisible(true);
+			cbo.einsatzSpieler1C.setVisible(true);
+			cbo.einsatzSpieler2C.setVisible(true);
+			//cbo.kontostandSpieler1C.setVisible(true);
+			cbo.kontostandSpieler2.setVisible(true); 
+			cbo.buttonEinsatzbestätigen.setVisible(false);
+			cbo.buttonHit.setVisible(false);
+			cbo.buttonStay.setVisible(false);
+			cbo.kartenwertSpieler1.setVisible(true);
+			cbo.kartenwertSpieler2.setVisible(true);
+			cbo.kartenwertDealer.setVisible(true);
+			cbo.nachrichtS1.setVisible(true);
+			cbo.nachrichtS2.setVisible(true);
+			cbo.buttonNaechsteRunde.setVisible(true);
+		}
+		
+		public void auswertenZuEinsatz() {
+			cbo.buttonLogin.setVisible(false);
+			cbo.buttonRegistrieren.setVisible(false);
+
+			//Gemeinsame
+			cbo.ueberschriftC.setVisible(false);
+			cbo.buttonZurück.setVisible(false);
+
+			//Loginfenster
+			cbo.labelBenutzernameC.setVisible(false);
+			cbo.labelPasswortC.setVisible(false);
+			cbo.buttonstart.setVisible(false);
+			cbo.userText.setVisible(false);
+			cbo.passwordText.setVisible(false);
+			cbo.buttonZurück.setVisible(false);
+
+			//Registrierfenster
+			cbo.labelBenutzernameCErstellenC.setVisible(false);
+			cbo.labelPasswortC1C.setVisible(false);
+			cbo.labelPasswortC2C.setVisible(false);
+			cbo.buttonRegistrierenAbschließen.setVisible(false);
+			cbo.userRegistText.setVisible(false);
+			cbo.passwordText1.setVisible(false);
+			cbo.passwordText2.setVisible(false);
+
+			//IPAdressefenster:
+			cbo.buttonIPAdresseBestätigen.setVisible(false);
+			cbo.labelipadresseC.setVisible(false);
+			cbo.ipadresseText.setVisible(false);
+
+			//Portfenster: 
+			cbo.buttonPortBestätigen.setVisible(false);
+			cbo.labelportC.setVisible(false);
+			cbo.portText.setVisible(false);
+			//Spielfenster: 
+			cbo.buttonEinsatz.setVisible(true);
+			cbo.buttonJeton10.setVisible(false);
+			cbo.buttonJeton25.setVisible(false);
+			cbo.buttonJeton50.setVisible(false);
+			cbo.buttonJeton100.setVisible(false);
+			cbo.karte1Spieler1.setVisible(false);
+			cbo.karte2Spieler1.setVisible(false);
+			cbo.karte3Spieler1.setVisible(false); 
+			cbo.karte4Spieler1.setVisible(false); 
+			cbo.karte5Spieler1.setVisible(false); 
+			cbo.karte1Spieler2.setVisible(false);
+			cbo.karte2Spieler2.setVisible(false);
+			cbo.karte3Spieler2.setVisible(false);
+			cbo.karte4Spieler2.setVisible(false);
+			cbo.karte5Spieler2.setVisible(false);
+			cbo.karte1Bank.setVisible(false);
+			cbo.karte2Bank.setVisible(false);
+			cbo.karte3Bank.setVisible(false);
+			cbo.karte4Bank.setVisible(false);
+			cbo.karte5Bank.setVisible(false);
+			cbo.einsatzSpieler1C.setVisible(false);
+			cbo.einsatzSpieler1C.setVisible(false);
+			//cbo.kontostandSpieler1C.setVisible(true);
+			cbo.kontostandSpieler2.setVisible(false); 
+			cbo.buttonEinsatzbestätigen.setVisible(false);
+			cbo.buttonHit.setVisible(false);
+			cbo.buttonStay.setVisible(false);
+			cbo.kartenwertSpieler1.setVisible(false);
+			cbo.kartenwertSpieler2.setVisible(false);
+			cbo.kartenwertDealer.setVisible(false);
+			cbo.nachrichtS1.setVisible(false);
+			cbo.nachrichtS2.setVisible(false);
+			cbo.buttonNaechsteRunde.setVisible(false);
+		}
 		
 		public void benutzerErstellen() {
 			//Spieler s = new Spieler(aHandler.benutzernameLogin, aHandler.password1);

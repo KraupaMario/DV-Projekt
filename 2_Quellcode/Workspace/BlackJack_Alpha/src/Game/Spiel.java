@@ -170,14 +170,15 @@ public class Spiel {
 		    // Checkt ob Blackjack oder Überkauft
 		    public int checkBJSpieler1(){
 		    	if (wertSpieler1() == 21) {
-		      		winSpieler1 = true;
-		      				      		
+		      		winSpieler1 = true;		      		
 		      		return 0;
 		      	}
 		    	if (wertSpieler1() > 21) {
 		    		loseSpieler1 = true;
 		    	System.out.println("PLanlos");
-		    	}else return -1;
+		    	return -1;
+		    	}
+		    	else return -1;
 		    	
 		    } 
 		    
@@ -199,7 +200,7 @@ public class Spiel {
 		    }
 		    
 		    /**Auswerten Methoden*/
-		    /** 1 = Sieg Spieler, 2 = Sieg Dealer, 3 = unentschieden*/
+		    /** 1 = Sieg Spieler, 2 = Sieg Dealer (Spieler verliert), 3 = unentschieden*/
 		    public int auswertenS1() {
 		    if (wertSpieler1() > wertDealer()) {
 		    winSpieler1 = true;
