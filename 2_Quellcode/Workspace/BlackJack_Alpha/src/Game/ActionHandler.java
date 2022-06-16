@@ -18,6 +18,7 @@ public class ActionHandler implements ActionListener{
 	String password1; 
 	String password2;
 
+	
 
 	
 	
@@ -123,8 +124,21 @@ public void actionPerformed(ActionEvent e) {
 			spiel.auswertenZuEinsatz();
 			break;
 			
-		 
+<<<<<<< HEAD
+		case "hit":
+			Server2.hitostay=1;
+			Server2.klicks = true;
+			break;
+=======
 			
+			
+		 
+>>>>>>> c22089969bd44eaafca056d7cc6234a2f3dbf0af
+			
+		case "stay":
+			Server2.hitostay=2;
+			Server2.klicks =true;
+			break;
 			
 			
 		}
