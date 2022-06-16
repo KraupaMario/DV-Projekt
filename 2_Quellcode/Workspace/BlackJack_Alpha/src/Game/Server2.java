@@ -437,13 +437,13 @@ public class Server2 implements Runnable {
 					System.out.println("Auswerten");
 					continue newgame;
 				}
-
+             
 				while((hit1 && hit2)) {
 					System.out.println("Auswerten");
 					if (win) {
 						System.out.println("Ein spieler Gewinnt oder Überkauft sich");
 						break newcard;
-					}
+				}
 					continue newcard;
 				}
 
