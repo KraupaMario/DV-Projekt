@@ -923,6 +923,148 @@ public void kartenwertanzeigen(Spiel s) {
 			cbo.karte1Bank.setIcon(cbo.rückseite);
 			cbo.karte2Bank.setVisible(true); 
 		}
+		
+		public void kartenausgebenS_R234(Spiel s, int runde){
+			String farbek11=null;
+			String farbek12=null;
+			String farbebank1=null;
+			int nummerk11=-1;
+			int nummerk12=-1;
+			int nummerk1b=-1;
+
+			try {
+				farbek11 = s.DeckSpieler1.get(runde).getFarbe();
+			}
+			catch (Exception e){}
+			try {
+				farbek12 = s.DeckSpieler2.get(runde).getFarbe();
+			}
+			catch (Exception e){}
+			try {
+				farbebank1= s.DeckDealer.get(runde).getFarbe();
+			}
+			catch (Exception e){}
+
+			try {
+				nummerk11 = s.DeckSpieler1.get(s.DeckSpieler1.size()-1).getName();
+			}
+			catch (Exception e){}
+
+			try {
+				nummerk12 = s.DeckSpieler2.get(s.DeckSpieler2.size()-1).getName();
+			}
+			catch (Exception e){}
+
+			try {
+				nummerk1b = s.DeckDealer.get(s.DeckDealer.size()-1).getName();
+			}
+			catch (Exception e){}
+
+			/**weitere Karte von Spieler1 anzeigen.*/
+			switch (farbek11) {
+			case "pik":
+				cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
+				break;
+			case "herz":
+				cbo.karte1Spieler1.setIcon(cbo.herz[nummerk11]);
+				break;
+			case "kreuz":
+				cbo.karte1Spieler1.setIcon(cbo.kreuz[nummerk11]);
+				break;
+			case "karo":
+				cbo.karte1Spieler1.setIcon(cbo.karo[nummerk11]);
+				break;
+			default:
+				break;
+			}
+
+
+			//Karte Spieler2
+			switch (farbek12) {
+			case "pik":
+				cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
+				break;
+			case "herz":
+				cbo.karte1Spieler2.setIcon(cbo.herz[nummerk12]);
+				break;
+			case "kreuz":
+				cbo.karte1Spieler2.setIcon(cbo.kreuz[nummerk12]);
+				break;
+			case "karo":
+				cbo.karte1Spieler2.setIcon(cbo.karo[nummerk12]);
+				break;
+			default:
+				break;
+			}
+
+
+			//Karte Bank
+			switch (farbebank1) {
+			case "pik":
+				cbo.karte2Bank.setIcon(cbo.pik[nummerk1b]);
+				break;
+			case "herz":
+				cbo.karte2Bank.setIcon(cbo.herz[nummerk1b]);
+				break;
+			case "kreuz":
+				cbo.karte2Bank.setIcon(cbo.kreuz[nummerk1b]);
+				break;
+			case "karo":
+				cbo.karte2Bank.setIcon(cbo.karo[nummerk1b]);
+				break;
+			default:
+				break;
+			} 
+
+			if (runde == 2) {
+				cbo.karte1Spieler1.setVisible(true);
+				cbo.karte2Spieler1.setVisible(true);
+				cbo.karte3Spieler1.setVisible(true);
+
+				cbo.karte1Spieler2.setVisible(true);
+				cbo.karte2Spieler2.setVisible(true);
+				cbo.karte3Spieler2.setVisible(true);
+
+				cbo.karte1Bank.setVisible(true);
+				cbo.karte1Bank.setIcon(cbo.rückseite);
+				cbo.karte2Bank.setVisible(true);
+				cbo.karte3Bank.setVisible(true);}
+			else if (runde == 3) {
+				cbo.karte1Spieler1.setVisible(true);
+				cbo.karte2Spieler1.setVisible(true);
+				cbo.karte3Spieler1.setVisible(true);
+				cbo.karte4Spieler1.setVisible(true);
+
+				cbo.karte1Spieler2.setVisible(true);
+				cbo.karte2Spieler2.setVisible(true);
+				cbo.karte3Spieler2.setVisible(true);
+				cbo.karte4Spieler2.setVisible(true);
+
+				cbo.karte1Bank.setVisible(true);
+				cbo.karte1Bank.setIcon(cbo.rückseite);
+				cbo.karte2Bank.setVisible(true);
+				cbo.karte3Bank.setVisible(true);
+				cbo.karte4Bank.setVisible(true);}
+			else if (runde == 4) {
+				cbo.karte1Spieler1.setVisible(true);
+				cbo.karte2Spieler1.setVisible(true);
+				cbo.karte3Spieler1.setVisible(true);
+				cbo.karte4Spieler1.setVisible(true);
+				cbo.karte5Spieler1.setVisible(true);
+
+				cbo.karte1Spieler2.setVisible(true);
+				cbo.karte2Spieler2.setVisible(true);
+				cbo.karte3Spieler2.setVisible(true);
+				cbo.karte4Spieler2.setVisible(true);
+				cbo.karte5Spieler2.setVisible(true);
+
+				cbo.karte1Bank.setVisible(true);
+				cbo.karte1Bank.setIcon(cbo.rückseite);
+				cbo.karte2Bank.setVisible(true);
+				cbo.karte3Bank.setVisible(true);
+				cbo.karte4Bank.setVisible(true); 
+				cbo.karte5Bank.setVisible(true);}
+		}
 
 		public void jetonsZuHitundStay() {
 			cbo.buttonLogin.setVisible(false);

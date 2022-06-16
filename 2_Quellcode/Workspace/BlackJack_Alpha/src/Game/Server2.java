@@ -442,7 +442,7 @@ public class Server2 implements Runnable {
 
 		System.out.println("Jetzt zum Auswertefenster");
 		rundeZuAuswerten();
-		
+
 		//Methode hit;//2.Karte
 		//server.austeilenKarteSp1();
 
@@ -1038,22 +1038,41 @@ public class Server2 implements Runnable {
 	}
 
 	public void kartenausgebenS_R234(Spiel s, int runde){
+		String farbek11=null;
+		String farbek12=null;
+		String farbebank1=null;
+		int nummerk11=-1;
+		int nummerk12=-1;
+		int nummerk1b=-1;
 
+		try {
+			farbek11 = s.DeckSpieler1.get(runde).getFarbe();
+		}
+		catch (Exception e){}
+		try {
+			farbek12 = s.DeckSpieler2.get(runde).getFarbe();
+		}
+		catch (Exception e){}
+		try {
+			farbebank1= s.DeckDealer.get(runde).getFarbe();
+		}
+		catch (Exception e){}
 
-		String farbek11 = s.DeckSpieler1.get(runde).getFarbe();
-		
-		String farbek12 = s.DeckSpieler2.get(runde).getFarbe();
-		
-		String farbebank1= s.DeckDealer.get(runde).getFarbe();
-		
+		try {
+			nummerk11 = s.DeckSpieler1.get(s.DeckSpieler1.size()-1).getName();
+		}
+		catch (Exception e){}
 
-	
-		int nummerk11 = s.DeckSpieler1.get(s.DeckSpieler1.size()-1).getName();
-	
-		int nummerk12 = s.DeckSpieler2.get(s.DeckSpieler2.size()-1).getName();
-		
-		int nummerk1b = s.DeckDealer.get(s.DeckDealer.size()-1).getName();
-		
+		try {
+			nummerk12 = s.DeckSpieler2.get(s.DeckSpieler2.size()-1).getName();
+		}
+		catch (Exception e){}
+
+		try {
+			nummerk1b = s.DeckDealer.get(s.DeckDealer.size()-1).getName();
+		}
+		catch (Exception e){}
+
 		/**weitere Karte von Spieler1 anzeigen.*/
 		switch (farbek11) {
 		case "pik":
@@ -1067,6 +1086,8 @@ public class Server2 implements Runnable {
 			break;
 		case "karo":
 			bo.karte1Spieler1.setIcon(bo.karo[nummerk11]);
+			break;
+		default:
 			break;
 		}
 
@@ -1085,6 +1106,8 @@ public class Server2 implements Runnable {
 		case "karo":
 			bo.karte1Spieler2.setIcon(bo.karo[nummerk12]);
 			break;
+		default:
+			break;
 		}
 
 
@@ -1102,16 +1125,58 @@ public class Server2 implements Runnable {
 		case "karo":
 			bo.karte2Bank.setIcon(bo.karo[nummerk1b]);
 			break;
+		default:
+			break;
 		} 
 
+		if (runde == 2) {
+			bo.karte1Spieler1.setVisible(true);
+			bo.karte2Spieler1.setVisible(true);
+			bo.karte3Spieler1.setVisible(true);
 
-		bo.karte1Spieler1.setVisible(true);
-		bo.karte2Spieler1.setVisible(true);
-		bo.karte1Spieler2.setVisible(true);
-		bo.karte2Spieler2.setVisible(true);
-		bo.karte1Bank.setVisible(true);
-		bo.karte1Bank.setIcon(bo.rückseite);
-		bo.karte2Bank.setVisible(true); 
+			bo.karte1Spieler2.setVisible(true);
+			bo.karte2Spieler2.setVisible(true);
+			bo.karte3Spieler2.setVisible(true);
+
+			bo.karte1Bank.setVisible(true);
+			bo.karte1Bank.setIcon(bo.rückseite);
+			bo.karte2Bank.setVisible(true);
+			bo.karte3Bank.setVisible(true);}
+		else if (runde == 3) {
+			bo.karte1Spieler1.setVisible(true);
+			bo.karte2Spieler1.setVisible(true);
+			bo.karte3Spieler1.setVisible(true);
+			bo.karte4Spieler1.setVisible(true);
+
+			bo.karte1Spieler2.setVisible(true);
+			bo.karte2Spieler2.setVisible(true);
+			bo.karte3Spieler2.setVisible(true);
+			bo.karte4Spieler2.setVisible(true);
+
+			bo.karte1Bank.setVisible(true);
+			bo.karte1Bank.setIcon(bo.rückseite);
+			bo.karte2Bank.setVisible(true);
+			bo.karte3Bank.setVisible(true);
+			bo.karte4Bank.setVisible(true);}
+		else if (runde == 4) {
+			bo.karte1Spieler1.setVisible(true);
+			bo.karte2Spieler1.setVisible(true);
+			bo.karte3Spieler1.setVisible(true);
+			bo.karte4Spieler1.setVisible(true);
+			bo.karte5Spieler1.setVisible(true);
+
+			bo.karte1Spieler2.setVisible(true);
+			bo.karte2Spieler2.setVisible(true);
+			bo.karte3Spieler2.setVisible(true);
+			bo.karte4Spieler2.setVisible(true);
+			bo.karte5Spieler2.setVisible(true);
+
+			bo.karte1Bank.setVisible(true);
+			bo.karte1Bank.setIcon(bo.rückseite);
+			bo.karte2Bank.setVisible(true);
+			bo.karte3Bank.setVisible(true);
+			bo.karte4Bank.setVisible(true); 
+			bo.karte5Bank.setVisible(true);}
 	}
 
 
@@ -1183,7 +1248,7 @@ public class Server2 implements Runnable {
 		bo.kartenwertSpieler2.setVisible(true);
 		bo.kartenwertDealer.setVisible(true);
 	}
-	
+
 	public void rundeZuAuswerten() {
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
@@ -1255,7 +1320,7 @@ public class Server2 implements Runnable {
 		bo.nachrichtS2.setVisible(true);
 		bo.buttonNaechsteRunde.setVisible(true);
 	}
-	
+
 	public void auswertenZuEinsatz() {
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
