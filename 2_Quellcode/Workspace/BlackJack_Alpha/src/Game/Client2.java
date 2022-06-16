@@ -32,7 +32,7 @@ public class Client2 implements Runnable {
 	private Scanner scanner = new Scanner(System.in);
 
 	private Thread thread;
-	
+
 	private boolean close = false; //Schließt wenn true
 
 
@@ -43,7 +43,7 @@ public class Client2 implements Runnable {
 	private DataInputStream dis;
 
 	private ServerSocket serverSocket;
-	
+
 	public String ausgabetextS1C; 
 	public String ausgabetextS2C; 
 
@@ -63,8 +63,8 @@ public class Client2 implements Runnable {
 	int kontomax = 0;
 	static boolean klicks = false; 
 	public static int swischespeicher;
-	
-	
+
+
 
 
 
@@ -81,7 +81,7 @@ public class Client2 implements Runnable {
 	public Client2() {
 		System.out.println("Bitte gib deine IP an: ");
 		while (!klicks) {
-			
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -93,7 +93,7 @@ public class Client2 implements Runnable {
 		ip = cHandler.ipAdresse;
 		System.out.println("Die IP ist: " + ip);
 		port = 8080;
-		
+
 		while (port < 1 || port > 65535) {
 			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
 			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
@@ -124,7 +124,7 @@ public class Client2 implements Runnable {
 			}
 
 			aktion();
-			
+
 			if (close) {
 				break;
 			}
@@ -171,77 +171,114 @@ public class Client2 implements Runnable {
 		host = true;
 		client = false;
 	}
-	 
+
 	private void aktion()  {
-		//Spiel erstellen
-		 Spiel client = new Spiel();
+
+		/**Spiel erstellen*/
+		Spiel client = new Spiel();
 		client.createDeck();
-		//Spieler erstellen
+		/**Spieler erstellen*/
 		Spieler playerS = new Spieler("playerS", "1234");
-		//Gesetzter Betrag vom Client empfangen:
-		try {
-			gesetztS = dis.readInt();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Spiel.setGesetztSpieler1(gesetztS);
-		gesetztS = 0;
-		//Bis hier her Wartebildschirm
-		System.out.println("c/Server setzt: "+Spiel.getGesetztSpieler1());
-		
-		while (!klicks) {
-			System.out.println("Warten");
+
+		newgame: while(!a) {			
+			/** Reset*/
+			client.DeckSpieler1.clear();
+			client.DeckSpieler2.clear();
+			client.DeckDealer.clear();
+			
+			System.out.println("Einsatz platzieren");
+			/**Gesetzter Betrag vom Server empfangen:*/
 			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+				gesetztS = dis.readInt();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Spiel.setGesetztSpieler1(gesetztS);
+			gesetztS = 0;
+			//Bis hier her Wartebildschirm
+			System.out.println("c/Server setzt: "+Spiel.getGesetztSpieler1());
+			
+			/**Warteschleife um Einsatz zu platzieren*/
+			while (!klicks) {
+				System.out.println("Warten");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			klicks= false;
+			System.out.println("Mein gesetzter Betrag "+gesetztC);
+			//Betrag übermitteln
+			try {
+				dos.writeInt(gesetztC);
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			Spiel.setGesetztSpieler2(gesetztC);
+			gesetztC = 0;
+			
+			/**Karten vom Server empfangen.*/
+			//Karte für Spieler 1 empfangen:
+			client.DeckSpieler1.add(karteEmpfangen());
+			client.DeckSpieler1.add(karteEmpfangen()); 	//2. Karte:
+			//Karte für Spieler 2 empfangen:
+			client.DeckSpieler2.add(karteEmpfangen());
+			client.DeckSpieler2.add(karteEmpfangen()); 	//2. Karte:
+			//Karten für Dealer empfangen:
+			client.DeckDealer.add(karteEmpfangen());
+			client.DeckDealer.add(karteEmpfangen()); 	//2. Karte:
+
+			//Wenn BJ = true, mach neues Spiel (gehe zu newgame)
+			while(BJ) {
+				System.out.println("BlackJack!");
+				System.out.println("Auswerten!");
+				continue newgame;}
+
+			//Wenn BJ = false, frag nach Hit oder Stay
+			newcard: while(!BJ) {
+				z++;
+				if (z>3) {
+					break newcard;
+				}
+				System.out.println("Spieler 1 Hit/Stay?");
+				hit1 = true;
+				System.out.println("Spieler 2 Hit/Stay?");
+				hit2 = true;
+
+				while((!hit1 || !hit2)) {
+					System.out.println("Auswerten");
+					continue newgame;
+				}
+
+				while((hit1 && hit2)) {
+					System.out.println("Auswerten");
+					if (win) {
+						System.out.println("Ein spieler Gewinnt oder Überkauft sich");
+						break newcard;
+					}
+					continue newcard;
+				}
+			}
+
+			a = true;
+			//continue newgame;
 		}
-		klicks= false;
-		System.out.println("Mein gesetzter Betrag "+gesetztC);
-		//Betrag übermitteln
-		try {
-			dos.writeInt(gesetztC);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Spiel.setGesetztSpieler2(gesetztC);
-		gesetztC = 0;
-		/*ausgeteilte Karten Spieler 1:
-				try {
-					System.out.println(dis.readUTF());
-					//Switch Case
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
-		/*
-		try {
-			client.DeckSpieler1 = (ArrayList<Karten>) ois.readObject();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		client.DeckSpieler1.clear();
-		client.DeckSpieler2.clear();
-		client.DeckDealer.clear();
-		
-		//Karte für Spieler 1 empfangen:
-		client.DeckSpieler1.add(karteEmpfangen());
-		client.DeckSpieler1.add(karteEmpfangen()); 	//2. Karte:
-		//Karte für Spieler 2 empfangen:
-		client.DeckSpieler2.add(karteEmpfangen());
-		client.DeckSpieler2.add(karteEmpfangen()); 	//2. Karte:
-		//Karten für Dealer empfangen:
-		client.DeckDealer.add(karteEmpfangen());
-		client.DeckDealer.add(karteEmpfangen()); 	//2. Karte:
+
+
+
+
+
+
+		//--------------------------------------------------------------------------------------------------------------------------
+
 	
+
+		
+
 		/**Empfängt den Status, ob direkt nach dem austeilen ein Spieler verloren oder gewonnen hat*/
 		/**Status für Spieler 1:*/
 		try {
@@ -282,64 +319,64 @@ public class Client2 implements Runnable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		/**Spieler Status Spieler 1*/
 		if(client.winSpieler1 = true) {
 			ausgabetextS1C = "Sieger"; 
-		System.out.println("Sieger Spieler 1");
-		//Stop
+			System.out.println("Sieger Spieler 1");
+			//Stop
 		}
 
 
 		if (client.loseSpieler1=true) {
 			ausgabetextS1C = "Verlierer"; 
-		System.out.println("Verlierer Spieler 1");
-		//Stop
+			System.out.println("Verlierer Spieler 1");
+			//Stop
 		}
 
 
 		/**Spieler Status Spieler 2*/
 		if(client.winSpieler2 = true) {
 			ausgabetextS2C = "Sieger";
-		System.out.println("Sieger Spieler 2");
-		//Stop
+			System.out.println("Sieger Spieler 2");
+			//Stop
 		}
 
 
 		if (client.loseSpieler2=true) {
 			ausgabetextS2C = "Verlierer";
-		System.out.println("Verlierer Spieler 2");
-		//Stop
+			System.out.println("Verlierer Spieler 2");
+			//Stop
 		}
 
 
 		/**Spieler Status Dealer*/
 		if(client.winDealer = true) {
-		System.out.println("Sieger Spieler Dealer");
-		//Stop
+			System.out.println("Sieger Spieler Dealer");
+			//Stop
 		}
 
 
 		if (client.loseDealer=true) {
-		System.out.println("Verlierer Spieler Dealer");
-		//Stop
+			System.out.println("Verlierer Spieler Dealer");
+			//Stop
 		}
 
-	
-		
-		
+
+
+
 		System.out.println(client.DeckSpieler1.get(0).getFarbe());
 		System.out.println(client.DeckSpieler1.get(0).getName());
 		System.out.println(client.DeckSpieler1.get(1).getFarbe());
 		System.out.println(client.DeckSpieler1.get(1).getName());
 		kartenausgebenS_R1(client);//Karten anzeigen
 		kartenwertanzeigen(client);
-		
+
 		rundeZuAuswerten();
-		
+
 		thread.stop();
 	}
-	
+
 	Karten karteEmpfangen() {
 		String f = null;
 		try {
@@ -348,7 +385,7 @@ public class Client2 implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    int name=0;
+		int name=0;
 		try {
 			name = dis.readInt();
 		} catch (IOException e) {
@@ -366,8 +403,8 @@ public class Client2 implements Runnable {
 		return k;
 	}
 
-boolean abbuchungOK(int m){
-		
+	boolean abbuchungOK(int m){
+
 		if ((swischespeicher)>kontomax) {
 			swischespeicher -= m;
 			return false; }
@@ -382,11 +419,11 @@ boolean abbuchungOK(int m){
 
 	}
 	//Grafische Programmierung
-	
-	
+
+
 	ActionHandlerClient cHandler = new ActionHandlerClient(this); 
 	BenutzeroberflächeClient cbo = new BenutzeroberflächeClient(this);
-	
+
 	//Vector
 	Vector<Spieler>player = new Vector<Spieler>();
 
@@ -420,16 +457,16 @@ boolean abbuchungOK(int m){
 		cbo.passwordText2.setVisible(false);
 
 	}
-	
+
 	public void auswahlZuLogin() {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
-		
+
 		//Gemeinsame
 		cbo.ueberschriftC.setVisible(true);
 		cbo.buttonZurück.setVisible(true);
-		
+
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(true);
 		cbo.labelPasswortC.setVisible(true);
@@ -437,7 +474,7 @@ boolean abbuchungOK(int m){
 		cbo.userText.setVisible(true);
 		cbo.passwordText.setVisible(true);
 		cbo.buttonZurück.setVisible(true);
-		
+
 		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
@@ -446,18 +483,18 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		
-		
+
+
 	}
-	
+
 	public void auswahlZuRegistrier() {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
-		
 
-		
-		
+
+
+
 		//Gemeinsame
 		cbo.ueberschriftC.setVisible(true);
 		cbo.buttonZurück.setVisible(true);
@@ -469,7 +506,7 @@ boolean abbuchungOK(int m){
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
 
-		
+
 		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(true);
 		cbo.labelPasswortC1C.setVisible(true);
@@ -478,9 +515,9 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(true);
 		cbo.passwordText1.setVisible(true);
 		cbo.passwordText2.setVisible(true);
-		
+
 	}
-	
+
 	public void logRegZuAuswahl () {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(true);
@@ -497,7 +534,7 @@ boolean abbuchungOK(int m){
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
 
-		
+
 		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
@@ -506,7 +543,7 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-	
+
 	}
 	public void loginZuIP() {
 		//Startbildschirm
@@ -533,28 +570,28 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestätigen.setVisible(true);
 		cbo.labelipadresseC.setVisible(true);
 		cbo.ipadresseText.setVisible(true);
-		
-		
-		
+
+
+
 		//System.out.println(j10);
-		
-		
+
+
 	}
 	public void ipZuPort() {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
-				//Gemeinsame
+		//Gemeinsame
 		cbo.ueberschriftC.setVisible(true);
 		cbo.buttonZurück.setVisible(false);
 
-				//Loginfenster
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -562,7 +599,7 @@ boolean abbuchungOK(int m){
 		cbo.passwordText.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
 
-				//Registrierfenster
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -570,20 +607,20 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-				
-				//IPAdressefenster:
+
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestätigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
-				
-				//Portfenster: 
+
+		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(true);
 		cbo.labelportC.setVisible(true);
 		cbo.portText.setVisible(true);
-				
-		
+
+
 	}
-	
+
 	public void portZuEinsatz() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
@@ -608,24 +645,24 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestätigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
-		
+
 		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(false);
 		cbo.labelportC.setVisible(false);
 		cbo.portText.setVisible(false);
-		
+
 		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(true);
 		cbo.labelSpieler1C.setVisible(true);
 		cbo.labelSpieler2C.setVisible(true);
 		cbo.ueberschriftCSpielC.setVisible(true);
 		cbo.labelBankC.setVisible(true);
-		
+
 	}
 	public void ipZuEinsatz() {
 		cbo.buttonLogin.setVisible(false);
@@ -651,17 +688,17 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestätigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
-		
+
 		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(false);
 		cbo.labelportC.setVisible(false);
 		cbo.portText.setVisible(false);
-		
+
 		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(true);
 		cbo.labelSpieler1C.setVisible(true);
@@ -669,7 +706,7 @@ boolean abbuchungOK(int m){
 		cbo.ueberschriftCSpielC.setVisible(true);
 		cbo.labelBankC.setVisible(true);
 		cbo.bedienfeld.setVisible(true);
-		
+
 	}
 	public void einsatzZuJetons() {
 		cbo.buttonLogin.setVisible(false);
@@ -695,17 +732,17 @@ boolean abbuchungOK(int m){
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		
+
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestätigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
-		
+
 		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(false);
 		cbo.labelportC.setVisible(false);
 		cbo.portText.setVisible(false);
-		
+
 		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(false);
 		cbo.buttonJeton10.setVisible(true);
@@ -732,158 +769,158 @@ boolean abbuchungOK(int m){
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestätigen.setVisible(true);
-		
-		
+
+
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
 		cbo.kartenwertDealer.setVisible(true);
-		
+
 	}
-	
-	
-public void kartenwertanzeigen(Spiel s) {
-		
+
+
+	public void kartenwertanzeigen(Spiel s) {
+
 		cbo.kartenwertSpieler1.setText("Kartenwert Spieler 1: "+Integer.toString(s.wertSpieler1()));
 		cbo.kartenwertSpieler2.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertSpieler2()));
 		cbo.kartenwertDealer.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertDealer()));
-	
+
 	}
-	
-		public void jeton10() {
-			int j10 = 10;
-			
-			String j11 = Integer.toString(j10);
-			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabeSpieler2C.setVisible(true);
-			
-			System.out.println(j10);
-			System.out.println("Immo:"+swischespeicher);
+
+	public void jeton10() {
+		int j10 = 10;
+
+		String j11 = Integer.toString(j10);
+		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setVisible(true);
+
+		System.out.println(j10);
+		System.out.println("Immo:"+swischespeicher);
+	}
+	public void jeton25() {
+		int j25 = 25;
+		String j26 = Integer.toString(j25);
+
+		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setVisible(true);
+
+		System.out.println(j25);
+		System.out.println("Immo:"+swischespeicher);
+	}
+	public void  jeton50() {
+		int j50 = 50;
+		String j51 = Integer.toString(j50);
+		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setVisible(true);
+		System.out.println(j50);
+		System.out.println("Immo:"+swischespeicher);
+	}
+	public void jeton100() {
+		int j100 = 100;
+		String j101 = Integer.toString(j100);
+		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setVisible(true); 
+		System.out.println(j100);
+		System.out.println("Immo:"+swischespeicher);
+
+	}
+	public void einsatzAusrechnen() {
+		//swischespeicher = gesetztS; <---- Da liegt der Mist!
+		gesetztC = swischespeicher; 
+		swischespeicher = 0;
+		einsatzAnzeigenGegenspieler(); 
+	}
+
+	public void einsatzAnzeigenGegenspieler() {
+		cbo.einsatzausgabeSpieler1C.setVisible(true);
+		cbo.einsatzausgabeSpieler1C.setText("Der Einsatz beträgt:" + Spiel.getGesetztSpieler1());
+	}
+
+
+	public void kartenausgebenS_R1(Spiel s){
+
+		//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
+		String farbek11 = s.DeckSpieler1.get(0).getFarbe();
+		String farbek21 = s.DeckSpieler1.get(1).getFarbe();
+		String farbek12 = s.DeckSpieler2.get(0).getFarbe();
+		String farbek22 = s.DeckSpieler2.get(1).getFarbe();
+		String farbebank1= s.DeckDealer.get(0).getFarbe();
+		String farbebank2= s.DeckDealer.get(1).getFarbe();
+
+		//int nummerk11 = s.DeckSpieler1.get(0).getName();
+		int nummerk11 = s.DeckSpieler1.get(0).getName();
+		int nummerk21 = s.DeckSpieler1.get(1).getName();
+		int nummerk12 = s.DeckSpieler2.get(0).getName();
+		int nummerk22 = s.DeckSpieler2.get(1).getName();
+		int nummerk1b = s.DeckDealer.get(0).getName();
+		int nummerk2b = s.DeckDealer.get(1).getName();
+		//Karte1 Spieler1
+		switch (farbek11) {
+		case "pik":
+			cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
+			break;
+		case "herz":
+			cbo.karte1Spieler1.setIcon(cbo.herz[nummerk11]);
+			break;
+		case "kreuz":
+			cbo.karte1Spieler1.setIcon(cbo.kreuz[nummerk11]);
+			break;
+		case "karo":
+			cbo.karte1Spieler1.setIcon(cbo.karo[nummerk11]);
+			break;
 		}
-		public void jeton25() {
-			int j25 = 25;
-			String j26 = Integer.toString(j25);
-			
-			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabeSpieler2C.setVisible(true);
-			
-			System.out.println(j25);
-			System.out.println("Immo:"+swischespeicher);
+
+		//Karte2 Spieler1
+		switch (farbek21) {
+		case "pik":
+			cbo.karte2Spieler1.setIcon(cbo.pik[nummerk21]);
+			break;
+		case "herz":
+			cbo.karte2Spieler1.setIcon(cbo.herz[nummerk21]);
+			break;
+		case "kreuz":
+			cbo.karte2Spieler1.setIcon(cbo.kreuz[nummerk21]);
+			break;
+		case "karo":
+			cbo.karte2Spieler1.setIcon(cbo.karo[nummerk21]);
+			break;
 		}
-		public void  jeton50() {
-			int j50 = 50;
-			String j51 = Integer.toString(j50);
-			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabeSpieler2C.setVisible(true);
-			System.out.println(j50);
-			System.out.println("Immo:"+swischespeicher);
+
+
+		//Karte1 Spieler2
+		switch (farbek12) {
+		case "pik":
+			cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
+			break;
+		case "herz":
+			cbo.karte1Spieler2.setIcon(cbo.herz[nummerk12]);
+			break;
+		case "kreuz":
+			cbo.karte1Spieler2.setIcon(cbo.kreuz[nummerk12]);
+			break;
+		case "karo":
+			cbo.karte1Spieler2.setIcon(cbo.karo[nummerk12]);
+			break;
 		}
-		public void jeton100() {
-			int j100 = 100;
-			String j101 = Integer.toString(j100);
-			cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
-			cbo.einsatzausgabeSpieler2C.setVisible(true); 
-			System.out.println(j100);
-			System.out.println("Immo:"+swischespeicher);
-			
+
+
+		//Karte2 Spieler2
+		switch (farbek22) {
+		case "pik":
+			cbo.karte2Spieler2.setIcon(cbo.pik[nummerk22]);
+			break;
+		case "herz":
+			cbo.karte2Spieler2.setIcon(cbo.herz[nummerk22]);
+			break;
+		case "kreuz":
+			cbo.karte2Spieler2.setIcon(cbo.kreuz[nummerk22]);
+			break;
+		case "karo":
+			cbo.karte2Spieler2.setIcon(cbo.karo[nummerk22]);
+			break;
 		}
-		public void einsatzAusrechnen() {
-			//swischespeicher = gesetztS; <---- Da liegt der Mist!
-			gesetztC = swischespeicher; 
-			swischespeicher = 0;
-			einsatzAnzeigenGegenspieler(); 
-		}
-		
-		public void einsatzAnzeigenGegenspieler() {
-			cbo.einsatzausgabeSpieler1C.setVisible(true);
-			cbo.einsatzausgabeSpieler1C.setText("Der Einsatz beträgt:" + Spiel.getGesetztSpieler1());
-			}
-		
-		
-		public void kartenausgebenS_R1(Spiel s){
-			
-			//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
-			String farbek11 = s.DeckSpieler1.get(0).getFarbe();
-			String farbek21 = s.DeckSpieler1.get(1).getFarbe();
-			String farbek12 = s.DeckSpieler2.get(0).getFarbe();
-			String farbek22 = s.DeckSpieler2.get(1).getFarbe();
-			String farbebank1= s.DeckDealer.get(0).getFarbe();
-			String farbebank2= s.DeckDealer.get(1).getFarbe();
-			
-			//int nummerk11 = s.DeckSpieler1.get(0).getName();
-			int nummerk11 = s.DeckSpieler1.get(0).getName();
-			int nummerk21 = s.DeckSpieler1.get(1).getName();
-			int nummerk12 = s.DeckSpieler2.get(0).getName();
-			int nummerk22 = s.DeckSpieler2.get(1).getName();
-			int nummerk1b = s.DeckDealer.get(0).getName();
-			int nummerk2b = s.DeckDealer.get(1).getName();
-			//Karte1 Spieler1
-			switch (farbek11) {
-			case "pik":
-				cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
-				break;
-			case "herz":
-				cbo.karte1Spieler1.setIcon(cbo.herz[nummerk11]);
-				break;
-			case "kreuz":
-				cbo.karte1Spieler1.setIcon(cbo.kreuz[nummerk11]);
-				break;
-			case "karo":
-				cbo.karte1Spieler1.setIcon(cbo.karo[nummerk11]);
-				break;
-			}
-			
-			//Karte2 Spieler1
-			switch (farbek21) {
-			case "pik":
-				cbo.karte2Spieler1.setIcon(cbo.pik[nummerk21]);
-				break;
-			case "herz":
-				cbo.karte2Spieler1.setIcon(cbo.herz[nummerk21]);
-				break;
-			case "kreuz":
-				cbo.karte2Spieler1.setIcon(cbo.kreuz[nummerk21]);
-				break;
-			case "karo":
-				cbo.karte2Spieler1.setIcon(cbo.karo[nummerk21]);
-				break;
-			}
-		
-			
-			//Karte1 Spieler2
-					switch (farbek12) {
-					case "pik":
-						cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
-						break;
-					case "herz":
-						cbo.karte1Spieler2.setIcon(cbo.herz[nummerk12]);
-						break;
-					case "kreuz":
-						cbo.karte1Spieler2.setIcon(cbo.kreuz[nummerk12]);
-						break;
-					case "karo":
-						cbo.karte1Spieler2.setIcon(cbo.karo[nummerk12]);
-						break;
-					}
-				
-			
-					//Karte2 Spieler2
-					switch (farbek22) {
-					case "pik":
-						cbo.karte2Spieler2.setIcon(cbo.pik[nummerk22]);
-						break;
-					case "herz":
-						cbo.karte2Spieler2.setIcon(cbo.herz[nummerk22]);
-						break;
-					case "kreuz":
-						cbo.karte2Spieler2.setIcon(cbo.kreuz[nummerk22]);
-						break;
-					case "karo":
-						cbo.karte2Spieler2.setIcon(cbo.karo[nummerk22]);
-						break;
-					}
-				
-					//Karte1 Bank
-				/*	switch (farbebank1) {
+
+		//Karte1 Bank
+		/*	switch (farbebank1) {
 					case "pik":
 						cbo.karte1Bank.setIcon(cbo.pik[nummerk1b]);
 						break;
@@ -897,406 +934,406 @@ public void kartenwertanzeigen(Spiel s) {
 						cbo.karte1Bank.setIcon(cbo.karo[nummerk1b]);
 						break;
 					} */
-				
-					//Karte2 Bank
-					switch (farbebank2) {
-					case "pik":
-						cbo.karte2Bank.setIcon(cbo.pik[nummerk2b]);
-						break;
-					case "herz":
-						cbo.karte2Bank.setIcon(cbo.herz[nummerk2b]);
-						break;
-					case "kreuz":
-						cbo.karte2Bank.setIcon(cbo.kreuz[nummerk2b]);
-						break;
-					case "karo":
-						cbo.karte2Bank.setIcon(cbo.karo[nummerk2b]);
-						break;
-					} 
-					
-			
+
+		//Karte2 Bank
+		switch (farbebank2) {
+		case "pik":
+			cbo.karte2Bank.setIcon(cbo.pik[nummerk2b]);
+			break;
+		case "herz":
+			cbo.karte2Bank.setIcon(cbo.herz[nummerk2b]);
+			break;
+		case "kreuz":
+			cbo.karte2Bank.setIcon(cbo.kreuz[nummerk2b]);
+			break;
+		case "karo":
+			cbo.karte2Bank.setIcon(cbo.karo[nummerk2b]);
+			break;
+		} 
+
+
+		cbo.karte1Spieler1.setVisible(true);
+		cbo.karte2Spieler1.setVisible(true);
+		cbo.karte1Spieler2.setVisible(true);
+		cbo.karte2Spieler2.setVisible(true);
+		cbo.karte1Bank.setVisible(true);
+		cbo.karte1Bank.setIcon(cbo.rückseite);
+		cbo.karte2Bank.setVisible(true); 
+	}
+
+	public void kartenausgebenS_R234(Spiel s, int runde){
+		String farbek11=null;
+		String farbek12=null;
+		String farbebank1=null;
+		int nummerk11=-1;
+		int nummerk12=-1;
+		int nummerk1b=-1;
+
+		try {
+			farbek11 = s.DeckSpieler1.get(runde).getFarbe();
+		}
+		catch (Exception e){}
+		try {
+			farbek12 = s.DeckSpieler2.get(runde).getFarbe();
+		}
+		catch (Exception e){}
+		try {
+			farbebank1= s.DeckDealer.get(runde).getFarbe();
+		}
+		catch (Exception e){}
+
+		try {
+			nummerk11 = s.DeckSpieler1.get(s.DeckSpieler1.size()-1).getName();
+		}
+		catch (Exception e){}
+
+		try {
+			nummerk12 = s.DeckSpieler2.get(s.DeckSpieler2.size()-1).getName();
+		}
+		catch (Exception e){}
+
+		try {
+			nummerk1b = s.DeckDealer.get(s.DeckDealer.size()-1).getName();
+		}
+		catch (Exception e){}
+
+		/**weitere Karte von Spieler1 anzeigen.*/
+		switch (farbek11) {
+		case "pik":
+			cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
+			break;
+		case "herz":
+			cbo.karte1Spieler1.setIcon(cbo.herz[nummerk11]);
+			break;
+		case "kreuz":
+			cbo.karte1Spieler1.setIcon(cbo.kreuz[nummerk11]);
+			break;
+		case "karo":
+			cbo.karte1Spieler1.setIcon(cbo.karo[nummerk11]);
+			break;
+		default:
+			break;
+		}
+
+
+		//Karte Spieler2
+		switch (farbek12) {
+		case "pik":
+			cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
+			break;
+		case "herz":
+			cbo.karte1Spieler2.setIcon(cbo.herz[nummerk12]);
+			break;
+		case "kreuz":
+			cbo.karte1Spieler2.setIcon(cbo.kreuz[nummerk12]);
+			break;
+		case "karo":
+			cbo.karte1Spieler2.setIcon(cbo.karo[nummerk12]);
+			break;
+		default:
+			break;
+		}
+
+
+		//Karte Bank
+		switch (farbebank1) {
+		case "pik":
+			cbo.karte2Bank.setIcon(cbo.pik[nummerk1b]);
+			break;
+		case "herz":
+			cbo.karte2Bank.setIcon(cbo.herz[nummerk1b]);
+			break;
+		case "kreuz":
+			cbo.karte2Bank.setIcon(cbo.kreuz[nummerk1b]);
+			break;
+		case "karo":
+			cbo.karte2Bank.setIcon(cbo.karo[nummerk1b]);
+			break;
+		default:
+			break;
+		} 
+
+		if (runde == 2) {
 			cbo.karte1Spieler1.setVisible(true);
 			cbo.karte2Spieler1.setVisible(true);
+			cbo.karte3Spieler1.setVisible(true);
+
 			cbo.karte1Spieler2.setVisible(true);
 			cbo.karte2Spieler2.setVisible(true);
+			cbo.karte3Spieler2.setVisible(true);
+
 			cbo.karte1Bank.setVisible(true);
 			cbo.karte1Bank.setIcon(cbo.rückseite);
-			cbo.karte2Bank.setVisible(true); 
-		}
-		
-		public void kartenausgebenS_R234(Spiel s, int runde){
-			String farbek11=null;
-			String farbek12=null;
-			String farbebank1=null;
-			int nummerk11=-1;
-			int nummerk12=-1;
-			int nummerk1b=-1;
-
-			try {
-				farbek11 = s.DeckSpieler1.get(runde).getFarbe();
-			}
-			catch (Exception e){}
-			try {
-				farbek12 = s.DeckSpieler2.get(runde).getFarbe();
-			}
-			catch (Exception e){}
-			try {
-				farbebank1= s.DeckDealer.get(runde).getFarbe();
-			}
-			catch (Exception e){}
-
-			try {
-				nummerk11 = s.DeckSpieler1.get(s.DeckSpieler1.size()-1).getName();
-			}
-			catch (Exception e){}
-
-			try {
-				nummerk12 = s.DeckSpieler2.get(s.DeckSpieler2.size()-1).getName();
-			}
-			catch (Exception e){}
-
-			try {
-				nummerk1b = s.DeckDealer.get(s.DeckDealer.size()-1).getName();
-			}
-			catch (Exception e){}
-
-			/**weitere Karte von Spieler1 anzeigen.*/
-			switch (farbek11) {
-			case "pik":
-				cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
-				break;
-			case "herz":
-				cbo.karte1Spieler1.setIcon(cbo.herz[nummerk11]);
-				break;
-			case "kreuz":
-				cbo.karte1Spieler1.setIcon(cbo.kreuz[nummerk11]);
-				break;
-			case "karo":
-				cbo.karte1Spieler1.setIcon(cbo.karo[nummerk11]);
-				break;
-			default:
-				break;
-			}
-
-
-			//Karte Spieler2
-			switch (farbek12) {
-			case "pik":
-				cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
-				break;
-			case "herz":
-				cbo.karte1Spieler2.setIcon(cbo.herz[nummerk12]);
-				break;
-			case "kreuz":
-				cbo.karte1Spieler2.setIcon(cbo.kreuz[nummerk12]);
-				break;
-			case "karo":
-				cbo.karte1Spieler2.setIcon(cbo.karo[nummerk12]);
-				break;
-			default:
-				break;
-			}
-
-
-			//Karte Bank
-			switch (farbebank1) {
-			case "pik":
-				cbo.karte2Bank.setIcon(cbo.pik[nummerk1b]);
-				break;
-			case "herz":
-				cbo.karte2Bank.setIcon(cbo.herz[nummerk1b]);
-				break;
-			case "kreuz":
-				cbo.karte2Bank.setIcon(cbo.kreuz[nummerk1b]);
-				break;
-			case "karo":
-				cbo.karte2Bank.setIcon(cbo.karo[nummerk1b]);
-				break;
-			default:
-				break;
-			} 
-
-			if (runde == 2) {
-				cbo.karte1Spieler1.setVisible(true);
-				cbo.karte2Spieler1.setVisible(true);
-				cbo.karte3Spieler1.setVisible(true);
-
-				cbo.karte1Spieler2.setVisible(true);
-				cbo.karte2Spieler2.setVisible(true);
-				cbo.karte3Spieler2.setVisible(true);
-
-				cbo.karte1Bank.setVisible(true);
-				cbo.karte1Bank.setIcon(cbo.rückseite);
-				cbo.karte2Bank.setVisible(true);
-				cbo.karte3Bank.setVisible(true);}
-			else if (runde == 3) {
-				cbo.karte1Spieler1.setVisible(true);
-				cbo.karte2Spieler1.setVisible(true);
-				cbo.karte3Spieler1.setVisible(true);
-				cbo.karte4Spieler1.setVisible(true);
-
-				cbo.karte1Spieler2.setVisible(true);
-				cbo.karte2Spieler2.setVisible(true);
-				cbo.karte3Spieler2.setVisible(true);
-				cbo.karte4Spieler2.setVisible(true);
-
-				cbo.karte1Bank.setVisible(true);
-				cbo.karte1Bank.setIcon(cbo.rückseite);
-				cbo.karte2Bank.setVisible(true);
-				cbo.karte3Bank.setVisible(true);
-				cbo.karte4Bank.setVisible(true);}
-			else if (runde == 4) {
-				cbo.karte1Spieler1.setVisible(true);
-				cbo.karte2Spieler1.setVisible(true);
-				cbo.karte3Spieler1.setVisible(true);
-				cbo.karte4Spieler1.setVisible(true);
-				cbo.karte5Spieler1.setVisible(true);
-
-				cbo.karte1Spieler2.setVisible(true);
-				cbo.karte2Spieler2.setVisible(true);
-				cbo.karte3Spieler2.setVisible(true);
-				cbo.karte4Spieler2.setVisible(true);
-				cbo.karte5Spieler2.setVisible(true);
-
-				cbo.karte1Bank.setVisible(true);
-				cbo.karte1Bank.setIcon(cbo.rückseite);
-				cbo.karte2Bank.setVisible(true);
-				cbo.karte3Bank.setVisible(true);
-				cbo.karte4Bank.setVisible(true); 
-				cbo.karte5Bank.setVisible(true);}
-		}
-
-		public void jetonsZuHitundStay() {
-			cbo.buttonLogin.setVisible(false);
-			cbo.buttonRegistrieren.setVisible(false);
-
-			//Gemeinsame
-			cbo.ueberschriftC.setVisible(false);
-			cbo.buttonZurück.setVisible(false);
-
-			//Loginfenster
-			cbo.labelBenutzernameC.setVisible(false);
-			cbo.labelPasswortC.setVisible(false);
-			cbo.buttonstart.setVisible(false);
-			cbo.userText.setVisible(false);
-			cbo.passwordText.setVisible(false);
-			cbo.buttonZurück.setVisible(false);
-
-			//Registrierfenster
-			cbo.labelBenutzernameCErstellenC.setVisible(false);
-			cbo.labelPasswortC1C.setVisible(false);
-			cbo.labelPasswortC2C.setVisible(false);
-			cbo.buttonRegistrierenAbschließen.setVisible(false);
-			cbo.userRegistText.setVisible(false);
-			cbo.passwordText1.setVisible(false);
-			cbo.passwordText2.setVisible(false);
-			
-			//IPAdressefenster:
-			cbo.buttonIPAdresseBestätigen.setVisible(false);
-			cbo.labelipadresseC.setVisible(false);
-			cbo.ipadresseText.setVisible(false);
-			
-			//Portfenster: 
-			cbo.buttonPortBestätigen.setVisible(false);
-			cbo.labelportC.setVisible(false);
-			cbo.portText.setVisible(false);
-			
-			//Spielfenster: 
-			cbo.buttonEinsatz.setVisible(false);
-			cbo.buttonJeton10.setVisible(false);
-			cbo.buttonJeton25.setVisible(false);
-			cbo.buttonJeton50.setVisible(false);
-			cbo.buttonJeton100.setVisible(false);
+			cbo.karte2Bank.setVisible(true);
+			cbo.karte3Bank.setVisible(true);}
+		else if (runde == 3) {
 			cbo.karte1Spieler1.setVisible(true);
 			cbo.karte2Spieler1.setVisible(true);
-			cbo.karte3Spieler1.setVisible(true); 
-			cbo.karte4Spieler1.setVisible(true); 
-			cbo.karte5Spieler1.setVisible(true); 
+			cbo.karte3Spieler1.setVisible(true);
+			cbo.karte4Spieler1.setVisible(true);
+
+			cbo.karte1Spieler2.setVisible(true);
+			cbo.karte2Spieler2.setVisible(true);
+			cbo.karte3Spieler2.setVisible(true);
+			cbo.karte4Spieler2.setVisible(true);
+
+			cbo.karte1Bank.setVisible(true);
+			cbo.karte1Bank.setIcon(cbo.rückseite);
+			cbo.karte2Bank.setVisible(true);
+			cbo.karte3Bank.setVisible(true);
+			cbo.karte4Bank.setVisible(true);}
+		else if (runde == 4) {
+			cbo.karte1Spieler1.setVisible(true);
+			cbo.karte2Spieler1.setVisible(true);
+			cbo.karte3Spieler1.setVisible(true);
+			cbo.karte4Spieler1.setVisible(true);
+			cbo.karte5Spieler1.setVisible(true);
+
 			cbo.karte1Spieler2.setVisible(true);
 			cbo.karte2Spieler2.setVisible(true);
 			cbo.karte3Spieler2.setVisible(true);
 			cbo.karte4Spieler2.setVisible(true);
 			cbo.karte5Spieler2.setVisible(true);
+
 			cbo.karte1Bank.setVisible(true);
+			cbo.karte1Bank.setIcon(cbo.rückseite);
 			cbo.karte2Bank.setVisible(true);
 			cbo.karte3Bank.setVisible(true);
-			cbo.karte4Bank.setVisible(true);
-			cbo.karte5Bank.setVisible(true);
-			cbo.einsatzSpieler1C.setVisible(true);
-			cbo.einsatzSpieler2C.setVisible(true);
-			//cbo.kontostandSpieler1C.setVisible(true);
-			cbo.kontostandSpieler2.setVisible(true); 
-			cbo.buttonEinsatzbestätigen.setVisible(true);
-			cbo.buttonHit.setVisible(true);
-			cbo.buttonStay.setVisible(true);
-			
-			
-			cbo.kartenwertSpieler1.setVisible(true);
-			cbo.kartenwertSpieler2.setVisible(true);
-			cbo.kartenwertDealer.setVisible(true);
-		}
-		
-		public void rundeZuAuswerten() {
-			cbo.buttonLogin.setVisible(false);
-			cbo.buttonRegistrieren.setVisible(false);
+			cbo.karte4Bank.setVisible(true); 
+			cbo.karte5Bank.setVisible(true);}
+	}
 
-			//Gemeinsame
-			cbo.ueberschriftC.setVisible(false);
-			cbo.buttonZurück.setVisible(false);
+	public void jetonsZuHitundStay() {
+		cbo.buttonLogin.setVisible(false);
+		cbo.buttonRegistrieren.setVisible(false);
 
-			//Loginfenster
-			cbo.labelBenutzernameC.setVisible(false);
-			cbo.labelPasswortC.setVisible(false);
-			cbo.buttonstart.setVisible(false);
-			cbo.userText.setVisible(false);
-			cbo.passwordText.setVisible(false);
-			cbo.buttonZurück.setVisible(false);
+		//Gemeinsame
+		cbo.ueberschriftC.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
 
-			//Registrierfenster
-			cbo.labelBenutzernameCErstellenC.setVisible(false);
-			cbo.labelPasswortC1C.setVisible(false);
-			cbo.labelPasswortC2C.setVisible(false);
-			cbo.buttonRegistrierenAbschließen.setVisible(false);
-			cbo.userRegistText.setVisible(false);
-			cbo.passwordText1.setVisible(false);
-			cbo.passwordText2.setVisible(false);
+		//Loginfenster
+		cbo.labelBenutzernameC.setVisible(false);
+		cbo.labelPasswortC.setVisible(false);
+		cbo.buttonstart.setVisible(false);
+		cbo.userText.setVisible(false);
+		cbo.passwordText.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
 
-			//IPAdressefenster:
-			cbo.buttonIPAdresseBestätigen.setVisible(false);
-			cbo.labelipadresseC.setVisible(false);
-			cbo.ipadresseText.setVisible(false);
+		//Registrierfenster
+		cbo.labelBenutzernameCErstellenC.setVisible(false);
+		cbo.labelPasswortC1C.setVisible(false);
+		cbo.labelPasswortC2C.setVisible(false);
+		cbo.buttonRegistrierenAbschließen.setVisible(false);
+		cbo.userRegistText.setVisible(false);
+		cbo.passwordText1.setVisible(false);
+		cbo.passwordText2.setVisible(false);
 
-			//Portfenster: 
-			cbo.buttonPortBestätigen.setVisible(false);
-			cbo.labelportC.setVisible(false);
-			cbo.portText.setVisible(false);
-			//Spielfenster: 
-			cbo.buttonEinsatz.setVisible(false);
-			cbo.buttonJeton10.setVisible(false);
-			cbo.buttonJeton25.setVisible(false);
-			cbo.buttonJeton50.setVisible(false);
-			cbo.buttonJeton100.setVisible(false);
-			cbo.karte1Spieler1.setVisible(true);
-			cbo.karte2Spieler1.setVisible(true);
-			cbo.karte3Spieler1.setVisible(true); 
-			cbo.karte4Spieler1.setVisible(true); 
-			cbo.karte5Spieler1.setVisible(true); 
-			cbo.karte1Spieler2.setVisible(true);
-			cbo.karte2Spieler2.setVisible(true);
-			cbo.karte3Spieler2.setVisible(true);
-			cbo.karte4Spieler2.setVisible(true);
-			cbo.karte5Spieler2.setVisible(true);
-			cbo.karte1Bank.setVisible(true);
-			cbo.karte2Bank.setVisible(true);
-			cbo.karte3Bank.setVisible(true);
-			cbo.karte4Bank.setVisible(true);
-			cbo.karte5Bank.setVisible(true);
-			cbo.einsatzSpieler1C.setVisible(true);
-			cbo.einsatzSpieler2C.setVisible(true);
-			//cbo.kontostandSpieler1C.setVisible(true);
-			cbo.kontostandSpieler2.setVisible(true); 
-			cbo.buttonEinsatzbestätigen.setVisible(false);
-			cbo.buttonHit.setVisible(false);
-			cbo.buttonStay.setVisible(false);
-			cbo.kartenwertSpieler1.setVisible(true);
-			cbo.kartenwertSpieler2.setVisible(true);
-			cbo.kartenwertDealer.setVisible(true);
-			cbo.nachrichtS1.setText(ausgabetextS1C);
-			cbo.nachrichtS2.setText(ausgabetextS2C);
-			cbo.nachrichtS1.setVisible(true);
-			
-			cbo.nachrichtS2.setVisible(true);
-			cbo.buttonNaechsteRunde.setVisible(true);
-		}
-		
-		public void auswertenZuEinsatz() {
-			cbo.buttonLogin.setVisible(false);
-			cbo.buttonRegistrieren.setVisible(false);
+		//IPAdressefenster:
+		cbo.buttonIPAdresseBestätigen.setVisible(false);
+		cbo.labelipadresseC.setVisible(false);
+		cbo.ipadresseText.setVisible(false);
 
-			//Gemeinsame
-			cbo.ueberschriftC.setVisible(false);
-			cbo.buttonZurück.setVisible(false);
+		//Portfenster: 
+		cbo.buttonPortBestätigen.setVisible(false);
+		cbo.labelportC.setVisible(false);
+		cbo.portText.setVisible(false);
 
-			//Loginfenster
-			cbo.labelBenutzernameC.setVisible(false);
-			cbo.labelPasswortC.setVisible(false);
-			cbo.buttonstart.setVisible(false);
-			cbo.userText.setVisible(false);
-			cbo.passwordText.setVisible(false);
-			cbo.buttonZurück.setVisible(false);
+		//Spielfenster: 
+		cbo.buttonEinsatz.setVisible(false);
+		cbo.buttonJeton10.setVisible(false);
+		cbo.buttonJeton25.setVisible(false);
+		cbo.buttonJeton50.setVisible(false);
+		cbo.buttonJeton100.setVisible(false);
+		cbo.karte1Spieler1.setVisible(true);
+		cbo.karte2Spieler1.setVisible(true);
+		cbo.karte3Spieler1.setVisible(true); 
+		cbo.karte4Spieler1.setVisible(true); 
+		cbo.karte5Spieler1.setVisible(true); 
+		cbo.karte1Spieler2.setVisible(true);
+		cbo.karte2Spieler2.setVisible(true);
+		cbo.karte3Spieler2.setVisible(true);
+		cbo.karte4Spieler2.setVisible(true);
+		cbo.karte5Spieler2.setVisible(true);
+		cbo.karte1Bank.setVisible(true);
+		cbo.karte2Bank.setVisible(true);
+		cbo.karte3Bank.setVisible(true);
+		cbo.karte4Bank.setVisible(true);
+		cbo.karte5Bank.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(true);
+		cbo.einsatzSpieler2C.setVisible(true);
+		//cbo.kontostandSpieler1C.setVisible(true);
+		cbo.kontostandSpieler2.setVisible(true); 
+		cbo.buttonEinsatzbestätigen.setVisible(true);
+		cbo.buttonHit.setVisible(true);
+		cbo.buttonStay.setVisible(true);
 
-			//Registrierfenster
-			cbo.labelBenutzernameCErstellenC.setVisible(false);
-			cbo.labelPasswortC1C.setVisible(false);
-			cbo.labelPasswortC2C.setVisible(false);
-			cbo.buttonRegistrierenAbschließen.setVisible(false);
-			cbo.userRegistText.setVisible(false);
-			cbo.passwordText1.setVisible(false);
-			cbo.passwordText2.setVisible(false);
 
-			//IPAdressefenster:
-			cbo.buttonIPAdresseBestätigen.setVisible(false);
-			cbo.labelipadresseC.setVisible(false);
-			cbo.ipadresseText.setVisible(false);
+		cbo.kartenwertSpieler1.setVisible(true);
+		cbo.kartenwertSpieler2.setVisible(true);
+		cbo.kartenwertDealer.setVisible(true);
+	}
 
-			//Portfenster: 
-			cbo.buttonPortBestätigen.setVisible(false);
-			cbo.labelportC.setVisible(false);
-			cbo.portText.setVisible(false);
-			//Spielfenster: 
-			cbo.buttonEinsatz.setVisible(true);
-			cbo.buttonJeton10.setVisible(false);
-			cbo.buttonJeton25.setVisible(false);
-			cbo.buttonJeton50.setVisible(false);
-			cbo.buttonJeton100.setVisible(false);
-			cbo.karte1Spieler1.setVisible(false);
-			cbo.karte2Spieler1.setVisible(false);
-			cbo.karte3Spieler1.setVisible(false); 
-			cbo.karte4Spieler1.setVisible(false); 
-			cbo.karte5Spieler1.setVisible(false); 
-			cbo.karte1Spieler2.setVisible(false);
-			cbo.karte2Spieler2.setVisible(false);
-			cbo.karte3Spieler2.setVisible(false);
-			cbo.karte4Spieler2.setVisible(false);
-			cbo.karte5Spieler2.setVisible(false);
-			cbo.karte1Bank.setVisible(false);
-			cbo.karte2Bank.setVisible(false);
-			cbo.karte3Bank.setVisible(false);
-			cbo.karte4Bank.setVisible(false);
-			cbo.karte5Bank.setVisible(false);
-			cbo.einsatzSpieler1C.setVisible(false);
-			cbo.einsatzSpieler1C.setVisible(false);
-			//cbo.kontostandSpieler1C.setVisible(true);
-			cbo.kontostandSpieler2.setVisible(false); 
-			cbo.buttonEinsatzbestätigen.setVisible(false);
-			cbo.buttonHit.setVisible(false);
-			cbo.buttonStay.setVisible(false);
-			cbo.kartenwertSpieler1.setVisible(false);
-			cbo.kartenwertSpieler2.setVisible(false);
-			cbo.kartenwertDealer.setVisible(false);
-			cbo.nachrichtS1.setVisible(false);
-			cbo.nachrichtS2.setVisible(false);
-			cbo.buttonNaechsteRunde.setVisible(false);
-		}
-		
-		public void benutzerErstellen() {
-			//Spieler s = new Spieler(aHandler.benutzernameLogin, aHandler.password1);
-			//player.addElement(s);			
-		}
-		/*
+	public void rundeZuAuswerten() {
+		cbo.buttonLogin.setVisible(false);
+		cbo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		cbo.ueberschriftC.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		cbo.labelBenutzernameC.setVisible(false);
+		cbo.labelPasswortC.setVisible(false);
+		cbo.buttonstart.setVisible(false);
+		cbo.userText.setVisible(false);
+		cbo.passwordText.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		cbo.labelBenutzernameCErstellenC.setVisible(false);
+		cbo.labelPasswortC1C.setVisible(false);
+		cbo.labelPasswortC2C.setVisible(false);
+		cbo.buttonRegistrierenAbschließen.setVisible(false);
+		cbo.userRegistText.setVisible(false);
+		cbo.passwordText1.setVisible(false);
+		cbo.passwordText2.setVisible(false);
+
+		//IPAdressefenster:
+		cbo.buttonIPAdresseBestätigen.setVisible(false);
+		cbo.labelipadresseC.setVisible(false);
+		cbo.ipadresseText.setVisible(false);
+
+		//Portfenster: 
+		cbo.buttonPortBestätigen.setVisible(false);
+		cbo.labelportC.setVisible(false);
+		cbo.portText.setVisible(false);
+		//Spielfenster: 
+		cbo.buttonEinsatz.setVisible(false);
+		cbo.buttonJeton10.setVisible(false);
+		cbo.buttonJeton25.setVisible(false);
+		cbo.buttonJeton50.setVisible(false);
+		cbo.buttonJeton100.setVisible(false);
+		cbo.karte1Spieler1.setVisible(true);
+		cbo.karte2Spieler1.setVisible(true);
+		cbo.karte3Spieler1.setVisible(true); 
+		cbo.karte4Spieler1.setVisible(true); 
+		cbo.karte5Spieler1.setVisible(true); 
+		cbo.karte1Spieler2.setVisible(true);
+		cbo.karte2Spieler2.setVisible(true);
+		cbo.karte3Spieler2.setVisible(true);
+		cbo.karte4Spieler2.setVisible(true);
+		cbo.karte5Spieler2.setVisible(true);
+		cbo.karte1Bank.setVisible(true);
+		cbo.karte2Bank.setVisible(true);
+		cbo.karte3Bank.setVisible(true);
+		cbo.karte4Bank.setVisible(true);
+		cbo.karte5Bank.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(true);
+		cbo.einsatzSpieler2C.setVisible(true);
+		//cbo.kontostandSpieler1C.setVisible(true);
+		cbo.kontostandSpieler2.setVisible(true); 
+		cbo.buttonEinsatzbestätigen.setVisible(false);
+		cbo.buttonHit.setVisible(false);
+		cbo.buttonStay.setVisible(false);
+		cbo.kartenwertSpieler1.setVisible(true);
+		cbo.kartenwertSpieler2.setVisible(true);
+		cbo.kartenwertDealer.setVisible(true);
+		cbo.nachrichtS1.setText(ausgabetextS1C);
+		cbo.nachrichtS2.setText(ausgabetextS2C);
+		cbo.nachrichtS1.setVisible(true);
+
+		cbo.nachrichtS2.setVisible(true);
+		cbo.buttonNaechsteRunde.setVisible(true);
+	}
+
+	public void auswertenZuEinsatz() {
+		cbo.buttonLogin.setVisible(false);
+		cbo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		cbo.ueberschriftC.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
+
+		//Loginfenster
+		cbo.labelBenutzernameC.setVisible(false);
+		cbo.labelPasswortC.setVisible(false);
+		cbo.buttonstart.setVisible(false);
+		cbo.userText.setVisible(false);
+		cbo.passwordText.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
+
+		//Registrierfenster
+		cbo.labelBenutzernameCErstellenC.setVisible(false);
+		cbo.labelPasswortC1C.setVisible(false);
+		cbo.labelPasswortC2C.setVisible(false);
+		cbo.buttonRegistrierenAbschließen.setVisible(false);
+		cbo.userRegistText.setVisible(false);
+		cbo.passwordText1.setVisible(false);
+		cbo.passwordText2.setVisible(false);
+
+		//IPAdressefenster:
+		cbo.buttonIPAdresseBestätigen.setVisible(false);
+		cbo.labelipadresseC.setVisible(false);
+		cbo.ipadresseText.setVisible(false);
+
+		//Portfenster: 
+		cbo.buttonPortBestätigen.setVisible(false);
+		cbo.labelportC.setVisible(false);
+		cbo.portText.setVisible(false);
+		//Spielfenster: 
+		cbo.buttonEinsatz.setVisible(true);
+		cbo.buttonJeton10.setVisible(false);
+		cbo.buttonJeton25.setVisible(false);
+		cbo.buttonJeton50.setVisible(false);
+		cbo.buttonJeton100.setVisible(false);
+		cbo.karte1Spieler1.setVisible(false);
+		cbo.karte2Spieler1.setVisible(false);
+		cbo.karte3Spieler1.setVisible(false); 
+		cbo.karte4Spieler1.setVisible(false); 
+		cbo.karte5Spieler1.setVisible(false); 
+		cbo.karte1Spieler2.setVisible(false);
+		cbo.karte2Spieler2.setVisible(false);
+		cbo.karte3Spieler2.setVisible(false);
+		cbo.karte4Spieler2.setVisible(false);
+		cbo.karte5Spieler2.setVisible(false);
+		cbo.karte1Bank.setVisible(false);
+		cbo.karte2Bank.setVisible(false);
+		cbo.karte3Bank.setVisible(false);
+		cbo.karte4Bank.setVisible(false);
+		cbo.karte5Bank.setVisible(false);
+		cbo.einsatzSpieler1C.setVisible(false);
+		cbo.einsatzSpieler1C.setVisible(false);
+		//cbo.kontostandSpieler1C.setVisible(true);
+		cbo.kontostandSpieler2.setVisible(false); 
+		cbo.buttonEinsatzbestätigen.setVisible(false);
+		cbo.buttonHit.setVisible(false);
+		cbo.buttonStay.setVisible(false);
+		cbo.kartenwertSpieler1.setVisible(false);
+		cbo.kartenwertSpieler2.setVisible(false);
+		cbo.kartenwertDealer.setVisible(false);
+		cbo.nachrichtS1.setVisible(false);
+		cbo.nachrichtS2.setVisible(false);
+		cbo.buttonNaechsteRunde.setVisible(false);
+	}
+
+	public void benutzerErstellen() {
+		//Spieler s = new Spieler(aHandler.benutzernameLogin, aHandler.password1);
+		//player.addElement(s);			
+	}
+	/*
 	    public boolean passwordPruefen() {;
 	    	 for (int i=0;i<player.size();i++) {
 	    		 if (Spieler.passwort.equals(aHandler.password)==true) {
 	    			 return true;
 	    		 }
-	    		 
+
 	    	 } return false;
 	    }
-*/
+	 */
 }
 
 
-	
+
 
 
 
