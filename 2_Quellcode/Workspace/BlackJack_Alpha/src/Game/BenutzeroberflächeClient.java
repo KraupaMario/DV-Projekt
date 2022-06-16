@@ -757,13 +757,13 @@ public class BenutzeroberflächeClient extends JFrame  {
 			this.add(buttonNaechsteRunde);
 			
 			
-			nachrichtS1.setBounds(200,200,1000,100);
+			nachrichtS1.setBounds(200,400,1000,100);
 			nachrichtS1.setForeground(Color.red); 
 			nachrichtS1.setVisible(false);
 			this.add(nachrichtS1);
 			
 			
-			nachrichtS2.setBounds(1100,200,1000,100);
+			nachrichtS2.setBounds(1100,400,1000,100);
 			nachrichtS2.setForeground(Color.red); 
 			nachrichtS2.setVisible(false);
 			this.add(nachrichtS2);

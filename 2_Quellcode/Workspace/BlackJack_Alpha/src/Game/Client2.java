@@ -43,6 +43,9 @@ public class Client2 implements Runnable {
 	private DataInputStream dis;
 
 	private ServerSocket serverSocket;
+	
+	public String ausgabetextS1C; 
+	public String ausgabetextS2C; 
 
 
 
@@ -282,12 +285,14 @@ public class Client2 implements Runnable {
 		
 		/**Spieler Status Spieler 1*/
 		if(client.winSpieler1 = true) {
+			ausgabetextS1C = "Sieger"; 
 		System.out.println("Sieger Spieler 1");
 		//Stop
 		}
 
 
 		if (client.loseSpieler1=true) {
+			ausgabetextS1C = "Verlierer"; 
 		System.out.println("Verlierer Spieler 1");
 		//Stop
 		}
@@ -295,12 +300,14 @@ public class Client2 implements Runnable {
 
 		/**Spieler Status Spieler 2*/
 		if(client.winSpieler2 = true) {
+			ausgabetextS2C = "Sieger";
 		System.out.println("Sieger Spieler 2");
 		//Stop
 		}
 
 
 		if (client.loseSpieler2=true) {
+			ausgabetextS2C = "Verlierer";
 		System.out.println("Verlierer Spieler 2");
 		//Stop
 		}
@@ -1052,7 +1059,10 @@ public void kartenwertanzeigen(Spiel s) {
 			cbo.kartenwertSpieler1.setVisible(true);
 			cbo.kartenwertSpieler2.setVisible(true);
 			cbo.kartenwertDealer.setVisible(true);
+			cbo.nachrichtS1.setText(ausgabetextS1C);
+			cbo.nachrichtS2.setText(ausgabetextS2C);
 			cbo.nachrichtS1.setVisible(true);
+			
 			cbo.nachrichtS2.setVisible(true);
 			cbo.buttonNaechsteRunde.setVisible(true);
 		}

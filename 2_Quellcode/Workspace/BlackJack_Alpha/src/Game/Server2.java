@@ -33,6 +33,9 @@ public class Server2 implements Runnable {
 	private Thread thread;
 
 	private boolean close = false; //Schlieﬂt wenn true
+	
+	public String ausgabetextS1; 
+	public String ausgabetextS2; 
 
 
 	private Socket socket;
@@ -347,12 +350,14 @@ public class Server2 implements Runnable {
 		/**Spieler Status Spieler 1*/
 
 		if(server.winSpieler1) {
+			ausgabetextS1 = "Sieger"; 
 			System.out.println("Sieger Spieler 1");
 			auswertStatSp2 = server.auswertenS2();
 		}
 
 
 		if (server.loseSpieler1) {
+			ausgabetextS1 = "Verlierer"; 
 			System.out.println("Verlierer Spieler 1");
 			auswertStatSp2 = server.auswertenS2();
 		}
@@ -360,12 +365,14 @@ public class Server2 implements Runnable {
 
 		/**Spieler Status Spieler 2*/
 		if(server.winSpieler2) {
+			ausgabetextS2 = "Sieger"; 
 			System.out.println("Sieger Spieler 2");
 			auswertStatSp1 = server.auswertenS1();
 		}
 
 
 		if (server.loseSpieler2) {
+			ausgabetextS2 = "Verlierer"; 
 			System.out.println("Verlierer Spieler 2");
 			auswertStatSp1 = server.auswertenS1();
 		}
@@ -1242,6 +1249,8 @@ public class Server2 implements Runnable {
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
 		bo.kartenwertDealer.setVisible(true);
+		bo.nachrichtS1.setText(ausgabetextS1);
+		bo.nachrichtS2.setText(ausgabetextS2);
 		bo.nachrichtS1.setVisible(true);
 		bo.nachrichtS2.setVisible(true);
 		bo.buttonNaechsteRunde.setVisible(true);
