@@ -119,6 +119,8 @@ public void actionPerformed(ActionEvent e) {
 			spiel.auswertenZuEinsatz();
 			break;
 			
+			
+			
 		 
 			
 			
