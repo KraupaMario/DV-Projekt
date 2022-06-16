@@ -30,6 +30,9 @@ public class Benutzeroberfläche extends JFrame  {
 	 JFrame frame = new JFrame();
 	 JPanel panel = new JPanel();
 
+	 
+	
+	 
 	 //Label
 	 JLabel labelBenutzername = new JLabel ("Benutzername:");
 	 JLabel labelPasswort = new JLabel("Passwort:");
@@ -55,9 +58,9 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel kartenwertDealer = new JLabel();
 	 JLabel nachrichtS1 = new JLabel();
 	 JLabel nachrichtS2 = new JLabel();
-	
-	 
-
+     JLabel anmeldetext = new JLabel();
+     JLabel registrierungtext = new JLabel();
+     JLabel IPText = new JLabel();
 	 
 
 	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
@@ -67,9 +70,18 @@ public class Benutzeroberfläche extends JFrame  {
 	 Icon karte =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
 	 Icon testkarte = new ImageIcon(getClass().getResource("testkarte.PNG"));
 	 Icon rückseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
+	 Icon lasvegas = new ImageIcon(getClass().getClassLoader().getResource("Karten/lasvegas.jpg"));
+	 Icon blackjack = new ImageIcon(getClass().getClassLoader().getResource("Karten/blackjacklogo.png"));
+	 Icon hintergrundtisch = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundtisch.jpg"));
 	 
-	 JLabel bedienfeld = new JLabel(); 
+	 JLabel panelstart = new JLabel(hintergrundtisch);
+	 JLabel hintergrundmenu = new JLabel(lasvegas);
+	 JLabel bedienfeld = new JLabel();
+	 JLabel logo = new JLabel(blackjack);
 	 
+	 
+
+	
 	 //PIK
 	 Icon pik[] = new ImageIcon[14];{
 		 for(int num=1; num<14; num++) {
@@ -132,6 +144,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JButton buttonstart = new JButton("Start");
 	 JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
 	 JButton buttonZurück = new JButton("Zurück");
+	 JButton buttonZurückZuStart = new JButton("Zurück zum Start");
 	 JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
 	 JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
 	 JButton buttonEinsatz = new JButton ("Einsatz");
@@ -174,7 +187,7 @@ public class Benutzeroberfläche extends JFrame  {
 		this.spiel = server2;
 
 		this.setTitle("BlackJack");
-		//this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Icon.jpg")).getImage());
+		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Karten/casino-chip.png")).getImage());
 		this.setSize(1600,1000);
 		this.setLayout(null);
 		this.setVisible(true);
@@ -200,24 +213,59 @@ public class Benutzeroberfläche extends JFrame  {
 	//Startbildschirm
 	
 	public void startfenster() {
+		
+		//hintergrundbild
+		
+		hintergrundmenu.setBounds(0,0,2000,1300);
+		hintergrundmenu.setFocusable(false);
+		hintergrundmenu.setBorder(null);
+		hintergrundmenu.setBackground(null);
+		hintergrundmenu.setForeground(Color.white);
+		hintergrundmenu.setVisible(true);
+		this.add(hintergrundmenu); 
+
+		
+		
+		panelstart.setBounds(450,100,600,700);
+		panelstart.setFocusable(false);
+		panelstart.setBorder(null);
+		panelstart.setForeground(Color.white);
+		panelstart.setBackground(null);
+		panelstart.setVisible(true);
+		hintergrundmenu.add(panelstart); 
+		
+		logo.setBounds(50,10,500,500);
+		logo.setFocusable(false);
+		logo.setBorder(null);
+		logo.setBackground(Color.white);
+		logo.setForeground(Color.white);
+		logo.setVisible(true);
+		panelstart.add(logo); 
+		
 		//Buttons: 
-		buttonStartSpiel.setBounds(600,550,165,25);
+		buttonStartSpiel.setBounds(80,550,200,50);
 		buttonStartSpiel.setFocusable(false);
 		buttonStartSpiel.setBorder(null);
-		buttonStartSpiel.setBackground(null);
+		buttonStartSpiel.setBackground(Color.gray);
+		buttonStartSpiel.setFocusPainted(false);
 		buttonStartSpiel.setForeground(Color.white);
+		buttonStartSpiel.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonStartSpiel.setContentAreaFilled(false);
 		buttonStartSpiel.addActionListener(spiel.aHandler);
 		buttonStartSpiel.setVisible(true);
-		this.add(buttonStartSpiel);
+		panelstart.add(buttonStartSpiel);
 		
-		buttonAbbrechenSpiel.setBounds(800,550,165,25);
+		buttonAbbrechenSpiel.setBounds(300,550,200,50);
 		buttonAbbrechenSpiel.setFocusable(false);
 		buttonAbbrechenSpiel.setBorder(null);
-		buttonAbbrechenSpiel.setBackground(null);
+		buttonAbbrechenSpiel.setBackground(Color.gray);
+		buttonAbbrechenSpiel.setFocusPainted(false);
 		buttonAbbrechenSpiel.setForeground(Color.white);
+		buttonAbbrechenSpiel.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonAbbrechenSpiel.setContentAreaFilled(false);
 		buttonAbbrechenSpiel.addActionListener(spiel.aHandler);
 		buttonAbbrechenSpiel.setVisible(true);
-		this.add(buttonAbbrechenSpiel);
+		panelstart.add(buttonAbbrechenSpiel);
 		
 	}
 	
@@ -228,24 +276,43 @@ public class Benutzeroberfläche extends JFrame  {
 		
 		
 	//Buttons
-		buttonLogin.setBounds(600,550,165,25);
+		buttonLogin.setBounds(80,550,200,50);
 		buttonLogin.setFocusable(false);
 		buttonLogin.setBorder(null);
-		buttonLogin.setBackground(null);
+		buttonLogin.setBackground(Color.gray);
+		buttonLogin.setFocusPainted(false);
 		buttonLogin.setForeground(Color.white);
+		buttonLogin.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonLogin.setContentAreaFilled(false);
 		buttonLogin.addActionListener(spiel.aHandler);
-		buttonLogin.setVisible(true);
-		this.add(buttonLogin);
+		buttonLogin.setVisible(false);
+		panelstart.add(buttonLogin);
 		
 		
-		buttonRegistrieren.setBounds(800,550,165,25);
+		buttonRegistrieren.setBounds(300,550,200,50);
 		buttonRegistrieren.setFocusable(false);
 		buttonRegistrieren.setBorder(null);
-		buttonRegistrieren.setBackground(null);
+		buttonRegistrieren.setBackground(Color.gray);
+		buttonRegistrieren.setFocusPainted(false);
 		buttonRegistrieren.setForeground(Color.white);
+		buttonRegistrieren.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonRegistrieren.setContentAreaFilled(false);
 		buttonRegistrieren.addActionListener(spiel.aHandler);
-		buttonRegistrieren.setVisible(true);
-		this.add(buttonRegistrieren);
+		buttonRegistrieren.setVisible(false);
+		panelstart.add(buttonRegistrieren);
+		
+		
+		buttonZurückZuStart.setBounds(165,625,250,50);
+		buttonZurückZuStart.setFocusable(false);
+		buttonZurückZuStart.setBorder(null);
+		buttonZurückZuStart.setBackground(Color.gray);
+		buttonZurückZuStart.setFocusPainted(false);
+		buttonZurückZuStart.setForeground(Color.white);
+		buttonZurückZuStart.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonZurückZuStart.setContentAreaFilled(false);
+		buttonZurückZuStart.addActionListener(spiel.aHandler);
+		buttonZurückZuStart.setVisible(false);
+		panelstart.add(buttonZurückZuStart);
 		
 	}
 
@@ -255,54 +322,73 @@ public class Benutzeroberfläche extends JFrame  {
 	public void anmeldefenster() {
 
 		//Button 1: Benutzername: 
-		labelBenutzername.setBounds(500,350,165,25);
+		labelBenutzername.setBounds(100,250,165,25);
 		labelBenutzername.setFocusable(false);
 		labelBenutzername.setBorder(null);
 		labelBenutzername.setBackground(null);
 		labelBenutzername.setForeground(Color.white);
+		labelBenutzername.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelBenutzername.setVisible(false);
-		this.add(labelBenutzername); 
+		panelstart.add(labelBenutzername); 
 
 		//Button 2: Passwort: 
-		labelPasswort.setBounds(500,450,165,25);
+		labelPasswort.setBounds(100,350,165,25);
 		labelPasswort.setFocusable(false);
 		labelPasswort.setBorder(null);
 		labelPasswort.setBackground(null);
 		labelPasswort.setForeground(Color.white);
+		labelPasswort.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelPasswort.setVisible(false);
-		this.add(labelPasswort);
+		panelstart.add(labelPasswort);
 
+		
+		anmeldetext.setBounds(100,150,500,25);
+		anmeldetext.setFocusable(false);
+		anmeldetext.setBorder(null);
+		anmeldetext.setBackground(null);
+		anmeldetext.setForeground(Color.white);
+		anmeldetext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
+		anmeldetext.setVisible(false);
+		anmeldetext.setText("Bitte geben Sie Ihren Benutzernamen und Ihr Passwort ein!");
+		panelstart.add(anmeldetext);
+		
 		//Button 3: Login:
-		buttonstart.setBounds(800,550,165,25);
+		buttonstart.setBounds(100,610,150,50);
 		buttonstart.setFocusable(false);
 		buttonstart.setBorder(null);
-		buttonstart.setBackground(null);
+		buttonstart.setBackground(Color.gray);
+		buttonstart.setFocusPainted(false);
 		buttonstart.setForeground(Color.white);
+		buttonstart.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+		buttonstart.setContentAreaFilled(false);
 		buttonstart.addActionListener(spiel.aHandler);
 		buttonstart.setVisible(false);
-		this.add(buttonstart);
+		panelstart.add(buttonstart);
 
 
-		buttonZurück.setBounds(800,750,165,25);
+		buttonZurück.setBounds(380,610,150,50);
 		buttonZurück.setFocusable(false);
 		buttonZurück.setBorder(null);
-		buttonZurück.setBackground(null);
+		buttonZurück.setBackground(Color.gray);
+		buttonZurück.setFocusPainted(false);
 		buttonZurück.setForeground(Color.white);
+		buttonZurück.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+		buttonZurück.setContentAreaFilled(false);
 		buttonZurück.addActionListener(spiel.aHandler);
 		buttonZurück.setVisible(false);
-		this.add(buttonZurück);
+		panelstart.add(buttonZurück);
 		
 		// TextField: Benutzername:
-		userText.setBounds(800,350,165,25);
+		userText.setBounds(300,250,165,25);
 		userText.setVisible(false);
 		userText.addActionListener(spiel.aHandler);
-		this.add(userText);
+		panelstart.add(userText);
 
 		//PasswordField: Passwort:
-		passwordText.setBounds(800,450,165,25);
+		passwordText.setBounds(300,350,165,25);
 		passwordText.setVisible(false);
 		passwordText.addActionListener(spiel.aHandler);
-		this.add(passwordText);
+		panelstart.add(passwordText);
 		
 		
 		
@@ -325,58 +411,73 @@ public class Benutzeroberfläche extends JFrame  {
 	public void registrierfenster() {
 
 		
-		labelBenutzernameErstellen.setBounds(500,350,165,25);
+		labelBenutzernameErstellen.setBounds(100,250,165,25);
 		labelBenutzernameErstellen.setFocusable(false);
 		labelBenutzernameErstellen.setBorder(null);
 		labelBenutzernameErstellen.setBackground(null);
 		labelBenutzernameErstellen.setForeground(Color.white);
+		labelBenutzernameErstellen.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelBenutzernameErstellen.setVisible(false);
-		this.add(labelBenutzernameErstellen); 
+		panelstart.add(labelBenutzernameErstellen); 
 
 		
-		labelPasswort1.setBounds(500,450,165,25);
+		labelPasswort1.setBounds(100,350,165,25);
 		labelPasswort1.setFocusable(false);
 		labelPasswort1.setBorder(null);
 		labelPasswort1.setBackground(null);
 		labelPasswort1.setForeground(Color.white);
+		labelPasswort1.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelPasswort1.setVisible(false);
-		this.add(labelPasswort1);
+		panelstart.add(labelPasswort1);
 
-		labelPasswort2.setBounds(500,550,165,25);
+		labelPasswort2.setBounds(100,450,165,25);
 		labelPasswort2.setFocusable(false);
 		labelPasswort2.setBorder(null);
 		labelPasswort2.setBackground(null);
 		labelPasswort2.setForeground(Color.white);
+		labelPasswort2.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelPasswort2.setVisible(false);
-		this.add(labelPasswort2);
+		panelstart.add(labelPasswort2);
+		
+		registrierungtext.setBounds(100,150,500,25);
+		registrierungtext.setFocusable(false);
+		registrierungtext.setBorder(null);
+		registrierungtext.setBackground(null);
+		registrierungtext.setForeground(Color.white);
+		registrierungtext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
+		registrierungtext.setVisible(false);
+		registrierungtext.setText("Bitte wählen Sie einen Benutzernamen und ein Passwort!");
+		panelstart.add(registrierungtext);
 		
 		
-		
-		buttonRegistrierenAbschließen.setBounds(800,650,165,25);
+		buttonRegistrierenAbschließen.setBounds(100,610,150,50);
 		buttonRegistrierenAbschließen.setFocusable(false);
 		buttonRegistrierenAbschließen.setBorder(null);
-		buttonRegistrierenAbschließen.setBackground(null);
+		buttonRegistrierenAbschließen.setBackground(Color.gray);
+		buttonRegistrierenAbschließen.setFocusPainted(false);
 		buttonRegistrierenAbschließen.setForeground(Color.white);
+		buttonRegistrierenAbschließen.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+		buttonRegistrierenAbschließen.setContentAreaFilled(false);
 		buttonRegistrierenAbschließen.addActionListener(spiel.aHandler);
 		buttonRegistrierenAbschließen.setVisible(false);
-		this.add(buttonRegistrierenAbschließen);
+		panelstart.add(buttonRegistrierenAbschließen);
 
 		// TextField: Benutzername:
-		userRegistText.setBounds(800,350,165,25);
+		userRegistText.setBounds(300,250,165,25);
 		userRegistText.setVisible(false);
 		userRegistText.addActionListener(spiel.aHandler);
-		this.add(userRegistText);
+		panelstart.add(userRegistText);
 
 		//PasswordField:
-		passwordText1.setBounds(800,450,165,25);
+		passwordText1.setBounds(300,350,165,25);
 		passwordText1.setVisible(false);
 		passwordText1.addActionListener(spiel.aHandler);
-		this.add(passwordText1);
+		panelstart.add(passwordText1);
 
-		passwordText2.setBounds(800,550,165,25);
+		passwordText2.setBounds(300,450,165,25);
 		passwordText2.setVisible(false);
 		passwordText2.addActionListener(spiel.aHandler);
-		this.add(passwordText2);
+		panelstart.add(passwordText2);
 	}
 		
 		//ipadressefenster: 
@@ -385,36 +486,43 @@ public class Benutzeroberfläche extends JFrame  {
 			
 			
 			//Labels:
-			labelipadresse.setBounds(500,350,165,25);
+			labelipadresse.setBounds(50,550,165,25);
 			labelipadresse.setFocusable(false);
 			labelipadresse.setBorder(null);
 			labelipadresse.setBackground(null);
 			labelipadresse.setForeground(Color.white);
 			labelipadresse.setVisible(false);
-			this.add(labelipadresse);
+			labelipadresse.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+			panelstart.add(labelipadresse);
 			
-			labelIPAdresse.setBounds(700,350,165,25);
+			labelIPAdresse.setBounds(250,550,200,25);
 			labelIPAdresse.setFocusable(false);
 			labelIPAdresse.setBorder(null);
 			labelIPAdresse.setBackground(null);
 			labelIPAdresse.setForeground(Color.white);
 			labelIPAdresse.setVisible(false);
-			this.add(labelIPAdresse);
+			labelIPAdresse.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+			panelstart.add(labelIPAdresse);
 			
 			// TextField: Benutzername:
-			ipadresseText.setBounds(800,350,165,25);
+			ipadresseText.setBounds(800,550,165,25);
 			ipadresseText.setVisible(false);
-			this.add(ipadresseText);
+			ipadresseText.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+			panelstart.add(ipadresseText);
 
 			//Buttons:	
-			buttonIPAdresseBestätigen.setBounds(800,550,165,25);
+			
+			buttonIPAdresseBestätigen.setBounds(50,610,250,50);
 			buttonIPAdresseBestätigen.setFocusable(false);
 			buttonIPAdresseBestätigen.setBorder(null);
-			buttonIPAdresseBestätigen.setBackground(null);
+			buttonIPAdresseBestätigen.setBackground(Color.gray);
+			buttonIPAdresseBestätigen.setFocusPainted(false);
 			buttonIPAdresseBestätigen.setForeground(Color.white);
+			buttonIPAdresseBestätigen.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+			buttonIPAdresseBestätigen.setContentAreaFilled(false);
 			buttonIPAdresseBestätigen.addActionListener(spiel.aHandler);
 			buttonIPAdresseBestätigen.setVisible(false);
-			this.add(buttonIPAdresseBestätigen);
+			panelstart.add(buttonIPAdresseBestätigen);
 		}
 
 		public void portfenster() {
@@ -437,7 +545,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonPortBestätigen.setBounds(800,550,165,25);
 			buttonPortBestätigen.setFocusable(false);
 			buttonPortBestätigen.setBorder(null);
-			buttonPortBestätigen.setBackground(null);
+			buttonPortBestätigen.setBackground(Color.gray);
 			buttonPortBestätigen.setForeground(Color.white);
 			buttonPortBestätigen.addActionListener(spiel.aHandler);
 			buttonPortBestätigen.setVisible(false);
@@ -471,7 +579,7 @@ public class Benutzeroberfläche extends JFrame  {
 		
 		//Bedienfeld: 
 		bedienfeld.setBounds(500,500,1600,200);
-		bedienfeld.setForeground(Color.black); 
+		bedienfeld.setForeground(Color.gray); 
 		bedienfeld.setVisible(false);
 		this.add(bedienfeld);
 		

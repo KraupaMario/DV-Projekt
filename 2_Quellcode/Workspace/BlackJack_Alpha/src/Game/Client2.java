@@ -427,17 +427,56 @@ public class Client2 implements Runnable {
 	//Vector
 	Vector<Spieler>player = new Vector<Spieler>();
 
-	public void startZuAuswahl() {
+	public void startZuIP() {
 		cbo.buttonStartSpielC.setVisible(false);
 		cbo.buttonAbbrechenSpiel.setVisible(false);
 
-		//Startbildschirm
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
+		cbo.buttonZurück.setVisible(true);
+
+		//IPAdressefenster:
+		cbo.buttonIPAdresseBestätigen.setVisible(true);
+		cbo.labelipadresseC.setVisible(true);
+		cbo.ipadresseText.setVisible(true);
+
+
+	}
+
+	
+	public void ipZuAuswahl() {
+	
+		cbo.buttonStartSpielC.setVisible(false);
+		cbo.buttonAbbrechenSpiel.setVisible(false);
+
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
+		cbo.buttonZurück.setVisible(false);
+		cbo.buttonZurückZuStart.setVisible(true);
+
+		//IPAdressefenster:
+		cbo.buttonIPAdresseBestätigen.setVisible(false);
+		cbo.labelipadresseC.setVisible(false);
+		cbo.ipadresseText.setVisible(false);
+		
+		//Auswahlbildschirm
 		cbo.buttonLogin.setVisible(true);
 		cbo.buttonRegistrieren.setVisible(true);
 
+	}
+	public void zurückZuStart() {
+		//Startbildschirm
+		cbo.buttonStartSpielC.setVisible(true);
+		cbo.buttonAbbrechenSpiel.setVisible(true);
+		cbo.buttonZurückZuStart.setVisible(false);
+		
+		cbo.buttonLogin.setVisible(false);
+		cbo.buttonRegistrieren.setVisible(false);
+
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(true);
+		cbo.ueberschrift.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
+		cbo.logo.setVisible(true);
 
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
@@ -445,6 +484,7 @@ public class Client2 implements Runnable {
 		cbo.buttonstart.setVisible(false);
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
+		cbo.anmeldetext.setVisible(false);
 
 
 		//Registrierfenster
@@ -455,17 +495,19 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-
+		cbo.registrierungtext.setVisible(false);
 	}
-
+	
 	public void auswahlZuLogin() {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(true);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(true);
+		cbo.logo.setVisible(false);
+		cbo.buttonZurückZuStart.setVisible(false);
 
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(true);
@@ -474,6 +516,7 @@ public class Client2 implements Runnable {
 		cbo.userText.setVisible(true);
 		cbo.passwordText.setVisible(true);
 		cbo.buttonZurück.setVisible(true);
+		cbo.anmeldetext.setVisible(true);
 
 		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
@@ -491,13 +534,12 @@ public class Client2 implements Runnable {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
-
-
-
-
+		
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(true);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(true);
+		cbo.logo.setVisible(false);
+		cbo.buttonZurückZuStart.setVisible(false);
 
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
@@ -515,6 +557,7 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(true);
 		cbo.passwordText1.setVisible(true);
 		cbo.passwordText2.setVisible(true);
+		cbo.registrierungtext.setVisible(true);
 
 	}
 
@@ -524,8 +567,10 @@ public class Client2 implements Runnable {
 		cbo.buttonRegistrieren.setVisible(true);
 
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(true);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
+		cbo.logo.setVisible(true);
+
 
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
@@ -533,6 +578,7 @@ public class Client2 implements Runnable {
 		cbo.buttonstart.setVisible(false);
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
+		cbo.anmeldetext.setVisible(false);
 
 
 		//Registrierfenster
@@ -543,16 +589,22 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
+		cbo.registrierungtext.setVisible(false);
 
 	}
-	public void loginZuIP() {
-		//Startbildschirm
+	
+	
+
+	public void logRegZuEinsatz() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(true);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
+		cbo.hintergrundmenu.setVisible(false);
+		cbo.panelstart.setVisible(false);
+
 
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
@@ -561,6 +613,7 @@ public class Client2 implements Runnable {
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
+		cbo.anmeldetext.setVisible(false);
 
 		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
@@ -570,91 +623,14 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-
-		//IPAdressefenster:
-		cbo.buttonIPAdresseBestätigen.setVisible(true);
-		cbo.labelipadresseC.setVisible(true);
-		cbo.ipadresseText.setVisible(true);
-
-
-
-		//System.out.println(j10);
-
-
-	}
-	public void ipZuPort() {
-		//Startbildschirm
-		cbo.buttonLogin.setVisible(false);
-		cbo.buttonRegistrieren.setVisible(false);
-
-		//Gemeinsame
-		cbo.ueberschriftC.setVisible(true);
-		cbo.buttonZurück.setVisible(false);
-
-		//Loginfenster
-		cbo.labelBenutzernameC.setVisible(false);
-		cbo.labelPasswortC.setVisible(false);
-		cbo.buttonstart.setVisible(false);
-		cbo.userText.setVisible(false);
-		cbo.passwordText.setVisible(false);
-		cbo.buttonZurück.setVisible(false);
-
-		//Registrierfenster
-		cbo.labelBenutzernameCErstellenC.setVisible(false);
-		cbo.labelPasswortC1C.setVisible(false);
-		cbo.labelPasswortC2C.setVisible(false);
-		cbo.buttonRegistrierenAbschließen.setVisible(false);
-		cbo.userRegistText.setVisible(false);
-		cbo.passwordText1.setVisible(false);
-		cbo.passwordText2.setVisible(false);
+		cbo.registrierungtext.setVisible(false);
 
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestätigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
 
-		//Portfenster: 
-		cbo.buttonPortBestätigen.setVisible(true);
-		cbo.labelportC.setVisible(true);
-		cbo.portText.setVisible(true);
-
-
-	}
-
-	public void portZuEinsatz() {
-		cbo.buttonLogin.setVisible(false);
-		cbo.buttonRegistrieren.setVisible(false);
-
-		//Gemeinsame
-		cbo.ueberschriftC.setVisible(false);
-		cbo.buttonZurück.setVisible(false);
-
-		//Loginfenster
-		cbo.labelBenutzernameC.setVisible(false);
-		cbo.labelPasswortC.setVisible(false);
-		cbo.buttonstart.setVisible(false);
-		cbo.userText.setVisible(false);
-		cbo.passwordText.setVisible(false);
-		cbo.buttonZurück.setVisible(false);
-
-		//Registrierfenster
-		cbo.labelBenutzernameCErstellenC.setVisible(false);
-		cbo.labelPasswortC1C.setVisible(false);
-		cbo.labelPasswortC2C.setVisible(false);
-		cbo.buttonRegistrierenAbschließen.setVisible(false);
-		cbo.userRegistText.setVisible(false);
-		cbo.passwordText1.setVisible(false);
-		cbo.passwordText2.setVisible(false);
-
-		//IPAdressefenster:
-		cbo.buttonIPAdresseBestätigen.setVisible(false);
-		cbo.labelipadresseC.setVisible(false);
-		cbo.ipadresseText.setVisible(false);
-
-		//Portfenster: 
-		cbo.buttonPortBestätigen.setVisible(false);
-		cbo.labelportC.setVisible(false);
-		cbo.portText.setVisible(false);
+		
 
 		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(true);
@@ -664,56 +640,13 @@ public class Client2 implements Runnable {
 		cbo.labelBankC.setVisible(true);
 
 	}
-	public void ipZuEinsatz() {
-		cbo.buttonLogin.setVisible(false);
-		cbo.buttonRegistrieren.setVisible(false);
-
-		//Gemeinsame
-		cbo.ueberschriftC.setVisible(false);
-		cbo.buttonZurück.setVisible(false);
-
-		//Loginfenster
-		cbo.labelBenutzernameC.setVisible(false);
-		cbo.labelPasswortC.setVisible(false);
-		cbo.buttonstart.setVisible(false);
-		cbo.userText.setVisible(false);
-		cbo.passwordText.setVisible(false);
-		cbo.buttonZurück.setVisible(false);
-
-		//Registrierfenster
-		cbo.labelBenutzernameCErstellenC.setVisible(false);
-		cbo.labelPasswortC1C.setVisible(false);
-		cbo.labelPasswortC2C.setVisible(false);
-		cbo.buttonRegistrierenAbschließen.setVisible(false);
-		cbo.userRegistText.setVisible(false);
-		cbo.passwordText1.setVisible(false);
-		cbo.passwordText2.setVisible(false);
-
-		//IPAdressefenster:
-		cbo.buttonIPAdresseBestätigen.setVisible(false);
-		cbo.labelipadresseC.setVisible(false);
-		cbo.ipadresseText.setVisible(false);
-
-		//Portfenster: 
-		cbo.buttonPortBestätigen.setVisible(false);
-		cbo.labelportC.setVisible(false);
-		cbo.portText.setVisible(false);
-
-		//Spielfenster: 
-		cbo.buttonEinsatz.setVisible(true);
-		cbo.labelSpieler1C.setVisible(true);
-		cbo.labelSpieler2C.setVisible(true);
-		cbo.ueberschriftCSpielC.setVisible(true);
-		cbo.labelBankC.setVisible(true);
-		cbo.bedienfeld.setVisible(true);
-
-	}
+	
 	public void einsatzZuJetons() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(false);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
 
 		//Loginfenster
@@ -1108,7 +1041,7 @@ public class Client2 implements Runnable {
 		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(false);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
 
 		//Loginfenster
@@ -1178,7 +1111,7 @@ public class Client2 implements Runnable {
 		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(false);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
 
 		//Loginfenster
@@ -1251,7 +1184,7 @@ public class Client2 implements Runnable {
 		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
-		cbo.ueberschriftC.setVisible(false);
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurück.setVisible(false);
 
 		//Loginfenster

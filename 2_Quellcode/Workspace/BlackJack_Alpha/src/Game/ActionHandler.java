@@ -51,11 +51,14 @@ public void actionPerformed(ActionEvent e) {
 		switch(command) {
 		
 		case "Spiel starten": 
-			spiel.startZuAuswahl();
+			spiel.startZuIP();
 			break; 
 		case "Abbrechen": 
 			System.exit(0);
 			break; 
+		case "IP Adresse bestätigen": 
+			spiel.IPZuAuswahl();
+			break;
 		case "Login": 
 			spiel.auswahlZuLogin();
 			break;
@@ -68,15 +71,16 @@ public void actionPerformed(ActionEvent e) {
 			break;	
 		case ("Start"): 
 			//if(spiel.passwordPruefen()==true) {
-			spiel.loginZuIP(); 
+			spiel.logRegZuEinsatz(); 
 			//}
 			break; 
 		case "Abschließen": 
-			spiel.loginZuIP(); 
+			spiel.logRegZuEinsatz(); 
 			break;
-		case "IP Adresse bestätigen": 
-			spiel.ipZuEinsatz(); 
+		case "Zurück zum Start": 
+			spiel.zurückZuStart(); 
 			break;
+		
 		/*case "Port bestätigen": 
 			spiel.portZuEinsatz(); 
 			break; */

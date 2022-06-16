@@ -43,7 +43,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	//Label
 	 JLabel labelBenutzernameC = new JLabel ("Benutzername:");
 	 JLabel labelPasswortC = new JLabel("Passwort:");
-	 JLabel ueberschriftC = new JLabel("BLACK JACK"); 
+	// JLabel ueberschriftC = new JLabel("BLACK JACK"); 
 	 JLabel ueberschriftCSpielC = new JLabel ("BLACK JACK"); 
 	 JLabel labelSpieler1C = new JLabel ("Spieler1");
 	 JLabel labelSpieler2C = new JLabel ("Spieler2"); 
@@ -65,8 +65,10 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel kartenwertDealer = new JLabel(); 
 	 JLabel nachrichtS1 = new JLabel();
 	 JLabel nachrichtS2 = new JLabel();
-	 
-	 
+	 JLabel anmeldetext = new JLabel();
+	 JLabel registrierungtext = new JLabel();
+	 JLabel ueberschrift = new JLabel("BLACK JACK"); 
+	
 
 	 
 
@@ -76,9 +78,14 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
 	 Icon testkarte = new ImageIcon(getClass().getResource("testkarte.PNG"));
 	 Icon rückseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
+	 Icon lasvegas = new ImageIcon(getClass().getClassLoader().getResource("Karten/lasvegas.jpg"));
+	 Icon blackjack = new ImageIcon(getClass().getClassLoader().getResource("Karten/blackjacklogo.png"));
+	 Icon hintergrundtisch = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundtisch.jpg"));
 	 
-	 JLabel bedienfeld = new JLabel(); 
-	 
+	 JLabel panelstart = new JLabel(hintergrundtisch);
+	 JLabel hintergrundmenu = new JLabel(lasvegas);
+	 JLabel bedienfeld = new JLabel();
+	 JLabel logo = new JLabel(blackjack);
 	 
 	 //PIK
 	 Icon pik[] = new ImageIcon[14];{
@@ -133,6 +140,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JButton buttonstart = new JButton("Start");
 	 JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
 	 JButton buttonZurück = new JButton("Zurück");
+	 JButton buttonZurückZuStart = new JButton("Zurück zum Start");
 	 JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
 	 JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
 	 JButton buttonEinsatz = new JButton ("Einsatz");
@@ -174,7 +182,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 		this.spiel = client2;
 
 		this.setTitle("BlackJack");
-		//this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Icon.jpg")).getImage());
+		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Karten/casino-chip.png")).getImage());
 		this.setSize(1600,1000);
 		this.setLayout(null);
 		this.setVisible(true);
@@ -198,53 +206,108 @@ public class BenutzeroberflächeClient extends JFrame  {
 	//Startbildschirm
 	
 	public void startfenster() {
+	//hintergrundbild
+		
+		hintergrundmenu.setBounds(0,0,2000,1300);
+		hintergrundmenu.setFocusable(false);
+		hintergrundmenu.setBorder(null);
+		hintergrundmenu.setBackground(null);
+		hintergrundmenu.setForeground(Color.white);
+		hintergrundmenu.setVisible(true);
+		this.add(hintergrundmenu); 
+
+		
+		
+		panelstart.setBounds(450,100,600,700);
+		panelstart.setFocusable(false);
+		panelstart.setBorder(null);
+		panelstart.setForeground(Color.white);
+		panelstart.setBackground(null);
+		panelstart.setVisible(true);
+		hintergrundmenu.add(panelstart); 
+		
+		logo.setBounds(50,10,500,500);
+		logo.setFocusable(false);
+		logo.setBorder(null);
+		logo.setBackground(Color.white);
+		logo.setForeground(Color.white);
+		logo.setVisible(true);
+		panelstart.add(logo); 
+		
 		//Buttons: 
-		buttonStartSpielC.setBounds(600,550,165,25);
+		buttonStartSpielC.setBounds(80,550,200,50);
 		buttonStartSpielC.setFocusable(false);
 		buttonStartSpielC.setBorder(null);
 		buttonStartSpielC.setBackground(null);
+		buttonStartSpielC.setFocusPainted(false);
 		buttonStartSpielC.setForeground(Color.white);
+		buttonStartSpielC.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonStartSpielC.setContentAreaFilled(false);
 		buttonStartSpielC.addActionListener(spiel.cHandler);
 		buttonStartSpielC.setVisible(true);
-		this.add(buttonStartSpielC);
+		panelstart.add(buttonStartSpielC);
 		
-		buttonAbbrechenSpiel.setBounds(800,550,165,25);
+		buttonAbbrechenSpiel.setBounds(300,550,200,50);
 		buttonAbbrechenSpiel.setFocusable(false);
 		buttonAbbrechenSpiel.setBorder(null);
 		buttonAbbrechenSpiel.setBackground(null);
+		buttonAbbrechenSpiel.setFocusPainted(false);
 		buttonAbbrechenSpiel.setForeground(Color.white);
+		buttonAbbrechenSpiel.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonAbbrechenSpiel.setContentAreaFilled(false);
 		buttonAbbrechenSpiel.addActionListener(spiel.cHandler);
 		buttonAbbrechenSpiel.setVisible(true);
-		this.add(buttonAbbrechenSpiel);
+		panelstart.add(buttonAbbrechenSpiel);
 		
 	}
+	
 	
 	
 	//Auswahlfenster
 
 	public void auswahlfenster() {
-		
-		
-	//Buttons
-		buttonLogin.setBounds(600,550,165,25);
+
+
+		//Buttons
+		buttonLogin.setBounds(80,550,200,50);
 		buttonLogin.setFocusable(false);
 		buttonLogin.setBorder(null);
 		buttonLogin.setBackground(null);
+		buttonLogin.setFocusPainted(false);
 		buttonLogin.setForeground(Color.white);
+		buttonLogin.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonLogin.setContentAreaFilled(false);
 		buttonLogin.addActionListener(spiel.cHandler);
-		buttonLogin.setVisible(true);
-		this.add(buttonLogin);
-		
-		
-		buttonRegistrieren.setBounds(800,550,165,25);
+		buttonLogin.setVisible(false);
+		panelstart.add(buttonLogin);
+
+
+		buttonRegistrieren.setBounds(300,550,200,50);
 		buttonRegistrieren.setFocusable(false);
 		buttonRegistrieren.setBorder(null);
 		buttonRegistrieren.setBackground(null);
+		buttonRegistrieren.setFocusPainted(false);
 		buttonRegistrieren.setForeground(Color.white);
+		buttonRegistrieren.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonRegistrieren.setContentAreaFilled(false);
 		buttonRegistrieren.addActionListener(spiel.cHandler);
-		buttonRegistrieren.setVisible(true);
-		this.add(buttonRegistrieren);
+		buttonRegistrieren.setVisible(false);
+		panelstart.add(buttonRegistrieren);
 		
+
+		buttonZurückZuStart.setBounds(165,625,250,50);
+		buttonZurückZuStart.setFocusable(false);
+		buttonZurückZuStart.setBorder(null);
+		buttonZurückZuStart.setBackground(Color.gray);
+		buttonZurückZuStart.setFocusPainted(false);
+		buttonZurückZuStart.setForeground(Color.white);
+		buttonZurückZuStart.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonZurückZuStart.setContentAreaFilled(false);
+		buttonZurückZuStart.addActionListener(spiel.cHandler);
+		buttonZurückZuStart.setVisible(false);
+		panelstart.add(buttonZurückZuStart);
+		
+
 	}
 
 	//Loginfenster
@@ -253,65 +316,82 @@ public class BenutzeroberflächeClient extends JFrame  {
 	public void anmeldefenster() {
 
 		//Button 1: Benutzername: 
-		labelBenutzernameC.setBounds(500,350,165,25);
+		labelBenutzernameC.setBounds(100,250,165,25);
 		labelBenutzernameC.setFocusable(false);
 		labelBenutzernameC.setBorder(null);
 		labelBenutzernameC.setBackground(null);
 		labelBenutzernameC.setForeground(Color.white);
+		labelBenutzernameC.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelBenutzernameC.setVisible(false);
-		this.add(labelBenutzernameC); 
+		panelstart.add(labelBenutzernameC); 
 
 		//Button 2: Passwort: 
-		labelPasswortC.setBounds(500,450,165,25);
+		labelPasswortC.setBounds(100,350,165,25);
 		labelPasswortC.setFocusable(false);
 		labelPasswortC.setBorder(null);
 		labelPasswortC.setBackground(null);
 		labelPasswortC.setForeground(Color.white);
+		labelPasswortC.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelPasswortC.setVisible(false);
-		this.add(labelPasswortC);
+		panelstart.add(labelPasswortC);
 
+		
+		anmeldetext.setBounds(100,150,500,25);
+		anmeldetext.setFocusable(false);
+		anmeldetext.setBorder(null);
+		anmeldetext.setBackground(null);
+		anmeldetext.setForeground(Color.white);
+		anmeldetext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
+		anmeldetext.setVisible(false);
+		anmeldetext.setText("Bitte geben Sie Ihren Benutzernamen und Ihr Passwort ein!");
+		panelstart.add(anmeldetext);
+		
 		//Button 3: Login:
-		buttonstart.setBounds(800,550,165,25);
+		buttonstart.setBounds(100,610,150,50);
 		buttonstart.setFocusable(false);
 		buttonstart.setBorder(null);
-		buttonstart.setBackground(null);
+		buttonstart.setBackground(Color.gray);
+		buttonstart.setFocusPainted(false);
 		buttonstart.setForeground(Color.white);
+		buttonstart.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+		buttonstart.setContentAreaFilled(false);
 		buttonstart.addActionListener(spiel.cHandler);
 		buttonstart.setVisible(false);
-		this.add(buttonstart);
+		panelstart.add(buttonstart);
 
 
-		buttonZurück.setBounds(800,750,165,25);
+		buttonZurück.setBounds(380,610,150,50);
 		buttonZurück.setFocusable(false);
 		buttonZurück.setBorder(null);
-		buttonZurück.setBackground(null);
+		buttonZurück.setBackground(Color.gray);
+		buttonZurück.setFocusPainted(false);
 		buttonZurück.setForeground(Color.white);
+		buttonZurück.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+		buttonZurück.setContentAreaFilled(false);
 		buttonZurück.addActionListener(spiel.cHandler);
 		buttonZurück.setVisible(false);
-		this.add(buttonZurück);
+		panelstart.add(buttonZurück);
 		
 		// TextField: Benutzername:
-		userText.setBounds(800,350,165,25);
+		userText.setBounds(300,250,165,25);
 		userText.setVisible(false);
 		userText.addActionListener(spiel.cHandler);
-		this.add(userText);
+		panelstart.add(userText);
 
 		//PasswordField: Passwort:
-		passwordText.setBounds(800,450,165,25);
+		passwordText.setBounds(300,350,165,25);
 		passwordText.setVisible(false);
 		passwordText.addActionListener(spiel.cHandler);
-		this.add(passwordText);
-		
-		
+		panelstart.add(passwordText);
 		
 		
 
 		//Überschrift: 
-		ueberschriftC.setBounds(400,100,1000,200);
+		ueberschrift.setBounds(400,100,1000,200);
 		Font schriftart = new Font ("Algerian",Font.PLAIN+Font.ITALIC,120);
-		ueberschriftC.setFont(schriftart);
-		ueberschriftC.setVisible(true);
-		this.add(ueberschriftC); 
+		ueberschrift.setFont(schriftart);
+		ueberschrift.setVisible(true);
+		this.add(ueberschrift); 
 
 
 	}
@@ -320,61 +400,76 @@ public class BenutzeroberflächeClient extends JFrame  {
 	
 	//Registrierungsfenster
 	
-	public void registrierfenster() {
+public void registrierfenster() {
 
 		
-		labelBenutzernameCErstellenC.setBounds(500,350,165,25);
-		labelBenutzernameCErstellenC.setFocusable(false);
-		labelBenutzernameCErstellenC.setBorder(null);
-		labelBenutzernameCErstellenC.setBackground(null);
-		labelBenutzernameCErstellenC.setForeground(Color.white);
-		labelBenutzernameCErstellenC.setVisible(false);
-		this.add(labelBenutzernameCErstellenC); 
+	labelBenutzernameCErstellenC.setBounds(100,250,165,25);
+	labelBenutzernameCErstellenC.setFocusable(false);
+	labelBenutzernameCErstellenC.setBorder(null);
+	labelBenutzernameCErstellenC.setBackground(null);
+	labelBenutzernameCErstellenC.setForeground(Color.white);
+	labelBenutzernameCErstellenC.setFont(new Font("Book Antiqua", Font.PLAIN,20));
+	labelBenutzernameCErstellenC.setVisible(false);
+	panelstart.add(labelBenutzernameCErstellenC); 
 
 		
-		labelPasswortC1C.setBounds(500,450,165,25);
-		labelPasswortC1C.setFocusable(false);
-		labelPasswortC1C.setBorder(null);
-		labelPasswortC1C.setBackground(null);
-		labelPasswortC1C.setForeground(Color.white);
-		labelPasswortC1C.setVisible(false);
-		this.add(labelPasswortC1C);
+	labelPasswortC1C.setBounds(100,350,165,25);
+	labelPasswortC1C.setFocusable(false);
+	labelPasswortC1C.setBorder(null);
+	labelPasswortC1C.setBackground(null);
+	labelPasswortC1C.setForeground(Color.white);
+	labelPasswortC1C.setFont(new Font("Book Antiqua", Font.PLAIN,20));
+	labelPasswortC1C.setVisible(false);
+	panelstart.add(labelPasswortC1C);
 
-		labelPasswortC2C.setBounds(500,550,165,25);
-		labelPasswortC2C.setFocusable(false);
-		labelPasswortC2C.setBorder(null);
-		labelPasswortC2C.setBackground(null);
-		labelPasswortC2C.setForeground(Color.white);
-		labelPasswortC2C.setVisible(false);
-		this.add(labelPasswortC2C);
+	labelPasswortC2C.setBounds(100,450,165,25);
+	labelPasswortC2C.setFocusable(false);
+	labelPasswortC2C.setBorder(null);
+	labelPasswortC2C.setBackground(null);
+	labelPasswortC2C.setForeground(Color.white);
+	labelPasswortC2C.setFont(new Font("Book Antiqua", Font.PLAIN,20));
+	labelPasswortC2C.setVisible(false);
+	panelstart.add(labelPasswortC2C);
+		
+		registrierungtext.setBounds(100,150,500,25);
+		registrierungtext.setFocusable(false);
+		registrierungtext.setBorder(null);
+		registrierungtext.setBackground(null);
+		registrierungtext.setForeground(Color.white);
+		registrierungtext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
+		registrierungtext.setVisible(false);
+		registrierungtext.setText("Bitte wählen Sie einen Benutzernamen und ein Passwort!");
+		panelstart.add(registrierungtext);
 		
 		
-		
-		buttonRegistrierenAbschließen.setBounds(800,650,165,25);
+		buttonRegistrierenAbschließen.setBounds(100,610,150,50);
 		buttonRegistrierenAbschließen.setFocusable(false);
 		buttonRegistrierenAbschließen.setBorder(null);
-		buttonRegistrierenAbschließen.setBackground(null);
+		buttonRegistrierenAbschließen.setBackground(Color.gray);
+		buttonRegistrierenAbschließen.setFocusPainted(false);
 		buttonRegistrierenAbschließen.setForeground(Color.white);
+		buttonRegistrierenAbschließen.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+		buttonRegistrierenAbschließen.setContentAreaFilled(false);
 		buttonRegistrierenAbschließen.addActionListener(spiel.cHandler);
 		buttonRegistrierenAbschließen.setVisible(false);
-		this.add(buttonRegistrierenAbschließen);
+		panelstart.add(buttonRegistrierenAbschließen);
 
 		// TextField: Benutzername:
-		userRegistText.setBounds(800,350,165,25);
+		userRegistText.setBounds(300,250,165,25);
 		userRegistText.setVisible(false);
 		userRegistText.addActionListener(spiel.cHandler);
-		this.add(userRegistText);
+		panelstart.add(userRegistText);
 
 		//PasswordField:
-		passwordText1.setBounds(800,450,165,25);
+		passwordText1.setBounds(300,350,165,25);
 		passwordText1.setVisible(false);
 		passwordText1.addActionListener(spiel.cHandler);
-		this.add(passwordText1);
+		panelstart.add(passwordText1);
 
-		passwordText2.setBounds(800,550,165,25);
+		passwordText2.setBounds(300,450,165,25);
 		passwordText2.setVisible(false);
 		passwordText2.addActionListener(spiel.cHandler);
-		this.add(passwordText2);
+		panelstart.add(passwordText2);
 	}
 		
 		//ipadressefenster: 
@@ -383,36 +478,41 @@ public class BenutzeroberflächeClient extends JFrame  {
 			
 			
 			//Labels:
-			labelipadresseC.setBounds(500,350,165,25);
+			labelipadresseC.setBounds(50,550,165,25);
 			labelipadresseC.setFocusable(false);
 			labelipadresseC.setBorder(null);
 			labelipadresseC.setBackground(null);
 			labelipadresseC.setForeground(Color.white);
+			labelipadresseC.setFont(new Font("Book Antiqua", Font.PLAIN,25));
 			labelipadresseC.setVisible(false);
-			this.add(labelipadresseC);
+			panelstart.add(labelipadresseC);
 			
-			labelipadresseC.setBounds(700,350,165,25);
+			labelipadresseC.setBounds(50,550,165,25);
 			labelipadresseC.setFocusable(false);
 			labelipadresseC.setBorder(null);
 			labelipadresseC.setBackground(null);
 			labelipadresseC.setForeground(Color.white);
+			labelipadresseC.setFont(new Font("Book Antiqua", Font.PLAIN,25));
 			labelipadresseC.setVisible(false);
-			this.add(labelipadresseC);
+			panelstart.add(labelipadresseC);
 			
 			// TextField: Benutzername:
-			ipadresseText.setBounds(800,350,165,25);
+			ipadresseText.setBounds(250,550,165,25);
 			ipadresseText.setVisible(false);
-			this.add(ipadresseText);
+			panelstart.add(ipadresseText);
 
 			//Buttons:	
-			buttonIPAdresseBestätigen.setBounds(800,550,165,25);
+			buttonIPAdresseBestätigen.setBounds(50,610,250,50);
 			buttonIPAdresseBestätigen.setFocusable(false);
 			buttonIPAdresseBestätigen.setBorder(null);
-			buttonIPAdresseBestätigen.setBackground(null);
+			buttonIPAdresseBestätigen.setBackground(Color.gray);
+			buttonIPAdresseBestätigen.setFocusPainted(false);
 			buttonIPAdresseBestätigen.setForeground(Color.white);
+			buttonIPAdresseBestätigen.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+			buttonIPAdresseBestätigen.setContentAreaFilled(false);
 			buttonIPAdresseBestätigen.addActionListener(spiel.cHandler);
 			buttonIPAdresseBestätigen.setVisible(false);
-			this.add(buttonIPAdresseBestätigen);
+			panelstart.add(buttonIPAdresseBestätigen);
 		}
 
 		public void portfenster() {
