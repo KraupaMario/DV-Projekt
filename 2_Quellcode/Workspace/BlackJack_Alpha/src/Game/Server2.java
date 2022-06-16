@@ -422,14 +422,18 @@ public class Server2 implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();  }
 						
+				/**Spieler 2 Hit/Stay? empfangen"*/
+				try {
+				hit2 = dis.readBoolean();
+				} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				}
 				
+							
 				
-				System.out.println("Spieler 1 Hit/Stay?");
-				hit1 = true;
-				System.out.println("Spieler 2 Hit/Stay?");
-				hit2 = true;
-
 				while((!hit1 || !hit2)) {
+					
 					System.out.println("Auswerten");
 					continue newgame;
 				}
