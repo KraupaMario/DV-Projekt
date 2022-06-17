@@ -726,6 +726,7 @@ public class Client2 implements Runnable {
 		
 
 		//Spielfenster: 
+		cbo.menuleiste.setVisible(true);
 		cbo.buttonEinsatz.setVisible(true);
 		cbo.labelSpieler1C.setVisible(true);
 		cbo.labelSpieler2C.setVisible(true);
