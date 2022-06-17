@@ -61,6 +61,7 @@ public class Benutzeroberfläche extends JFrame  {
      JLabel anmeldetext = new JLabel();
      JLabel registrierungtext = new JLabel();
      JLabel IPText = new JLabel();
+     JLabel wartenAufSpieler = new JLabel("Bitte warten...");
 	 
 
 	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
@@ -205,6 +206,7 @@ public class Benutzeroberfläche extends JFrame  {
 		portfenster();
 		einsatzfenster(); 
 		jetonfenster();
+		wartefenster(); 
 		
 	}
 
@@ -724,41 +726,41 @@ public class Benutzeroberfläche extends JFrame  {
 		}
 		
 		public void jetonfenster() {
-			buttonJeton10.setBounds(350,50,100,100);
+			buttonJeton10.setBounds(350,50,115,100);
 			buttonJeton10.setFocusable(false);
 			buttonJeton10.setBorder(null);
 			buttonJeton10.setBackground(null);
-			buttonJeton10.setForeground(Color.white);
+			buttonJeton10.setForeground(Color.black);
 			buttonJeton10.addActionListener(spiel.aHandler);
 			buttonJeton10.setContentAreaFilled(false);
 			buttonJeton10.setVisible(false);
 			menuleiste.add(buttonJeton10);
 			
-			buttonJeton25.setBounds(600,50,100,100);
+			buttonJeton25.setBounds(600,50,115,100);
 			buttonJeton25.setFocusable(false);
 			buttonJeton25.setBorder(null);
 			buttonJeton25.setBackground(null);
-			buttonJeton25.setForeground(Color.white);
+			buttonJeton25.setForeground(Color.black);
 			buttonJeton25.addActionListener(spiel.aHandler);
 			buttonJeton25.setContentAreaFilled(false);
 			buttonJeton25.setVisible(false);
 			menuleiste.add(buttonJeton25);
 			
-			buttonJeton50.setBounds(850,50,100,100);
+			buttonJeton50.setBounds(850,50,115,100);
 			buttonJeton50.setFocusable(false);
 			buttonJeton50.setBorder(null);
 			buttonJeton50.setBackground(null);
-			buttonJeton50.setForeground(Color.white);
+			buttonJeton50.setForeground(Color.black);
 			buttonJeton50.addActionListener(spiel.aHandler);
 			buttonJeton50.setContentAreaFilled(false);
 			buttonJeton50.setVisible(false);
 			menuleiste.add(buttonJeton50);
 			
-			buttonJeton100.setBounds(1100,50,100,100);
+			buttonJeton100.setBounds(1100,50,115,100);
 			buttonJeton100.setFocusable(false);
 			buttonJeton100.setBorder(null);
 			buttonJeton100.setBackground(null);
-			buttonJeton100.setForeground(Color.white);
+			buttonJeton100.setForeground(Color.black);
 			buttonJeton100.addActionListener(spiel.aHandler);
 			buttonJeton100.setContentAreaFilled(false);
 			buttonJeton100.setVisible(false);
@@ -891,6 +893,14 @@ public class Benutzeroberfläche extends JFrame  {
 			nachrichtS2.setForeground(Color.red); 
 			nachrichtS2.setVisible(false);
 			this.add(nachrichtS2);
+		}
+		
+		public void wartefenster() {
+			wartenAufSpieler.setBounds(600,400,500,100);
+			wartenAufSpieler.setForeground(Color.red); 
+			wartenAufSpieler.setFont(new Font("Book Antiqua", Font.PLAIN,40));
+			wartenAufSpieler.setVisible(false);
+			this.add(wartenAufSpieler);
 		}
 	
 	
