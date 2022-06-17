@@ -775,7 +775,8 @@ public class Server2 implements Runnable {
 		bo.labelport.setVisible(false);
 		bo.portText.setVisible(false);
 
-		//Spielfenster: 
+		//Spielfenster:
+		bo.menuleiste.setVisible(true);
 		bo.buttonEinsatz.setVisible(true);
 		bo.labelSpieler1.setVisible(true);
 		bo.labelSpieler2.setVisible(true);
