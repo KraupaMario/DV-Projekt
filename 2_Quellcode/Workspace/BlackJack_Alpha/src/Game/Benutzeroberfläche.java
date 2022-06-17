@@ -78,6 +78,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel hintergrundmenu = new JLabel(lasvegas);
 	 JLabel bedienfeld = new JLabel();
 	 JLabel logo = new JLabel(blackjack);
+	 JLabel menuleiste = new JLabel(testkarte); 
 	 
 	 
 
@@ -566,16 +567,23 @@ public class Benutzeroberfläche extends JFrame  {
 		
 		public void einsatzfenster() {
 			
+			
+			menuleiste.setBounds(0,650,1600,350);
+			menuleiste.setVisible(false);
+			this.add(menuleiste); 
+			
+		
 		
 		//Buttons:	
-		buttonEinsatz.setBounds(0,700,1600,100);
+		buttonEinsatz.setBounds(0,0,1600,200);
 		buttonEinsatz.setFocusable(false);
 		buttonEinsatz.setBorder(null);
 		buttonEinsatz.setBackground(null);
 		buttonEinsatz.setForeground(Color.white);
+		buttonEinsatz.setContentAreaFilled(false);
 		buttonEinsatz.addActionListener(spiel.aHandler);
 		buttonEinsatz.setVisible(false);
-		this.add(buttonEinsatz);
+		menuleiste.add(buttonEinsatz);
 		
 		//Bedienfeld: 
 		bedienfeld.setBounds(500,500,1600,200);
@@ -601,7 +609,7 @@ public class Benutzeroberfläche extends JFrame  {
 		this.add(labelSpieler1); 
 		
 		//Überschrift: 
-		labelSpieler2.setBounds(1100,500,1000,200);
+		labelSpieler2.setBounds(900,500,1000,200);
 		Font schriftart2 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelSpieler2.setForeground(Color.yellow); 
 		labelSpieler2.setFont(schriftart2);
@@ -716,50 +724,55 @@ public class Benutzeroberfläche extends JFrame  {
 		}
 		
 		public void jetonfenster() {
-			buttonJeton10.setBounds(350,700,100,100);
+			buttonJeton10.setBounds(350,50,100,100);
 			buttonJeton10.setFocusable(false);
 			buttonJeton10.setBorder(null);
 			buttonJeton10.setBackground(null);
 			buttonJeton10.setForeground(Color.white);
 			buttonJeton10.addActionListener(spiel.aHandler);
+			buttonJeton10.setContentAreaFilled(false);
 			buttonJeton10.setVisible(false);
-			this.add(buttonJeton10);
+			menuleiste.add(buttonJeton10);
 			
-			buttonJeton25.setBounds(600,700,100,100);
+			buttonJeton25.setBounds(600,50,100,100);
 			buttonJeton25.setFocusable(false);
 			buttonJeton25.setBorder(null);
 			buttonJeton25.setBackground(null);
 			buttonJeton25.setForeground(Color.white);
 			buttonJeton25.addActionListener(spiel.aHandler);
+			buttonJeton25.setContentAreaFilled(false);
 			buttonJeton25.setVisible(false);
-			this.add(buttonJeton25);
+			menuleiste.add(buttonJeton25);
 			
-			buttonJeton50.setBounds(850,700,100,100);
+			buttonJeton50.setBounds(850,50,100,100);
 			buttonJeton50.setFocusable(false);
 			buttonJeton50.setBorder(null);
 			buttonJeton50.setBackground(null);
 			buttonJeton50.setForeground(Color.white);
 			buttonJeton50.addActionListener(spiel.aHandler);
+			buttonJeton50.setContentAreaFilled(false);
 			buttonJeton50.setVisible(false);
-			this.add(buttonJeton50);
+			menuleiste.add(buttonJeton50);
 			
-			buttonJeton100.setBounds(1100,700,100,100);
+			buttonJeton100.setBounds(1100,50,100,100);
 			buttonJeton100.setFocusable(false);
 			buttonJeton100.setBorder(null);
 			buttonJeton100.setBackground(null);
 			buttonJeton100.setForeground(Color.white);
 			buttonJeton100.addActionListener(spiel.aHandler);
+			buttonJeton100.setContentAreaFilled(false);
 			buttonJeton100.setVisible(false);
-			this.add(buttonJeton100);
+			menuleiste.add(buttonJeton100);
 			
-			buttonEinsatzbestätigen.setBounds(650,650,200,50);
+			buttonEinsatzbestätigen.setBounds(650,0,200,50);
 			buttonEinsatzbestätigen.setFocusable(false);
 			buttonEinsatzbestätigen.setBorder(null);
 			buttonEinsatzbestätigen.setBackground(null);
 			buttonEinsatzbestätigen.setForeground(Color.white);
 			buttonEinsatzbestätigen.addActionListener(spiel.aHandler);
+			buttonEinsatzbestätigen.setContentAreaFilled(false);
 			buttonEinsatzbestätigen.setVisible(false);
-			this.add(buttonEinsatzbestätigen);
+			menuleiste.add(buttonEinsatzbestätigen);
 			
 			einsatzausgabeSpieler1.setBounds(10,650,165,25);
 			einsatzausgabeSpieler1.setFocusable(false);
@@ -836,23 +849,25 @@ public class Benutzeroberfläche extends JFrame  {
 			kartenwertDealer.setVisible(false);
 			this.add(kartenwertDealer);
 			
-			buttonHit.setBounds(400,700,200,100);
+			buttonHit.setBounds(400,0,200,100);
 			buttonHit.setFocusable(false);
 			buttonHit.setBorder(null);
 			buttonHit.setBackground(null);
 			buttonHit.setForeground(Color.white);
 			buttonHit.addActionListener(spiel.aHandler);
+			buttonHit.setContentAreaFilled(false);
 			buttonHit.setVisible(false);
-			this.add(buttonHit);
+			menuleiste.add(buttonHit);
 			
-			buttonStay.setBounds(1000,700,200,100);
+			buttonStay.setBounds(1000,0,200,100);
 			buttonStay.setFocusable(false);
 			buttonStay.setBorder(null);
 			buttonStay.setBackground(null);
 			buttonStay.setForeground(Color.white);
 			buttonStay.addActionListener(spiel.aHandler);
+			buttonStay.setContentAreaFilled(false);
 			buttonStay.setVisible(false);
-			this.add(buttonStay);
+			menuleiste.add(buttonStay);
 			
 			
 		}
