@@ -726,11 +726,21 @@ public class Client2 implements Runnable {
 		
 
 		//Spielfenster: 
+		cbo.menuleiste.setVisible(true);
 		cbo.buttonEinsatz.setVisible(true);
 		cbo.labelSpieler1C.setVisible(true);
 		cbo.labelSpieler2C.setVisible(true);
-		cbo.ueberschriftCSpielC.setVisible(true);
+		cbo.ueberschriftCSpielC.setVisible(false);
 		cbo.labelBankC.setVisible(true);
+		
+		//Kartenfenster
+		cbo.kartenfeldS1.setVisible(true);
+		cbo.kartenfeldS1g.setVisible(true);
+		cbo.kartenfeldS2.setVisible(true);
+		cbo.kartenfeldS2g.setVisible(true);
+		cbo.kartenfeldbank.setVisible(true);
+		cbo.kartenfeldbankg.setVisible(true);
+		
 
 	}
 	

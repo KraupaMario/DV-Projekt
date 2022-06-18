@@ -88,7 +88,7 @@ public void actionPerformed(ActionEvent e) {
 		case "Einsatz": 
 			
 			spiel.einsatzZuJetons(); 
-			Client2.wartenAufSpielerClient = true; 
+			//Client2.wartenAufSpielerClient = true; 
 			
 			
 			break; 
@@ -115,7 +115,7 @@ public void actionPerformed(ActionEvent e) {
 			break; 
 		case "Einsatz bestätigen": 
 			spiel.einsatzAusrechnen();
-			Client2.wartenAufSpielerClient = false; 
+			//Client2.wartenAufSpielerClient = false; 
 			
 			Server2.klicks = true; 
 			
