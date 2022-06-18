@@ -578,10 +578,10 @@ public class Server2 implements Runnable {
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(true);
+		bo.buttonZurueck.setVisible(true);
 
 		//IPAdressefenster:
-		bo.buttonIPAdresseBestätigen.setVisible(true);
+		bo.buttonIPAdresseBestaetigen.setVisible(true);
 		bo.labelipadresse.setVisible(true);
 		bo.labelIPAdresse.setVisible(true);
 	}
@@ -591,15 +591,15 @@ public class Server2 implements Runnable {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(true);
 		bo.buttonRegistrieren.setVisible(true);
-		bo.buttonZurückZuStart.setVisible(true);
+		bo.buttonZurueckZuStart.setVisible(true);
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 	
 
 		//IPAdressefenster:
-		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
         bo.labelIPAdresse.setVisible(false);
 	}
@@ -610,11 +610,11 @@ public class Server2 implements Runnable {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
-		bo.buttonZurückZuStart.setVisible(false);
+		bo.buttonZurueckZuStart.setVisible(false);
 		
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(true);
+		bo.buttonZurueck.setVisible(true);
 		bo.logo.setVisible(false);
 
 		//Loginfenster
@@ -623,7 +623,7 @@ public class Server2 implements Runnable {
 		bo.buttonstart.setVisible(true);
 		bo.userText.setVisible(true);
 		bo.passwordText.setVisible(true);
-		bo.buttonZurück.setVisible(true);
+		bo.buttonZurueck.setVisible(true);
 		bo.anmeldetext.setVisible(true);
 
 		//Registrierfenster
@@ -642,12 +642,12 @@ public class Server2 implements Runnable {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
-		bo.buttonZurückZuStart.setVisible(false);
+		bo.buttonZurueckZuStart.setVisible(false);
 		
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(true);
+		bo.buttonZurueck.setVisible(true);
 		bo.logo.setVisible(false);
 		
 		//Loginfenster
@@ -678,7 +678,7 @@ public class Server2 implements Runnable {
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(true);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 		bo.logo.setVisible(true);
 
 		//Loginfenster
@@ -705,14 +705,14 @@ public class Server2 implements Runnable {
 		//Startbildschirm
 		bo.buttonStartSpiel.setVisible(true);
 		bo.buttonAbbrechenSpiel.setVisible(true);
-		bo.buttonZurückZuStart.setVisible(false);
+		bo.buttonZurueckZuStart.setVisible(false);
 		
 		bo.buttonLogin.setVisible(false);
 		bo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 		bo.logo.setVisible(true);
 
 		//Loginfenster
@@ -742,7 +742,7 @@ public class Server2 implements Runnable {
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 		bo.hintergrundmenu.setVisible(false);
 		bo.panelstart.setVisible(false);
 
@@ -752,7 +752,7 @@ public class Server2 implements Runnable {
 		bo.buttonstart.setVisible(false);
 		bo.userText.setVisible(false);
 		bo.passwordText.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 		bo.anmeldetext.setVisible(false);
 
 		//Registrierfenster
@@ -766,7 +766,7 @@ public class Server2 implements Runnable {
 		bo.registrierungtext.setVisible(false);
 
 		//IPAdressefenster:
-		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
 
@@ -780,7 +780,8 @@ public class Server2 implements Runnable {
 		bo.buttonEinsatz.setVisible(true);
 		bo.labelSpieler1.setVisible(true);
 		bo.labelSpieler2.setVisible(true);
-		bo.ueberschriftSpiel.setVisible(false);
+		bo.ueberschriftSpiel.setVisible(true);
+		bo.unterueberschriftSpiel.setVisible(true);
 		bo.labelBank.setVisible(true);
 		bo.bedienfeld.setVisible(true);
 		bo.labelipadresse.setVisible(false);
@@ -794,6 +795,15 @@ public class Server2 implements Runnable {
 		bo.kartenfeldbank.setVisible(true);
 		bo.kartenfeldbankg.setVisible(true);
 		
+		bo.einsatzSpieler1.setVisible(true);
+		bo.einsatzSpieler2.setVisible(true);
+		
+		bo.kontostandSpieler1.setVisible(true);
+		bo.kontostandSpieler2.setVisible(true);
+		
+		
+		
+		
 
 	}
 	
@@ -804,7 +814,7 @@ public class Server2 implements Runnable {
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Loginfenster
 		bo.labelBenutzername.setVisible(false);
@@ -812,7 +822,7 @@ public class Server2 implements Runnable {
 		bo.buttonstart.setVisible(false);
 		bo.userText.setVisible(false);
 		bo.passwordText.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(false);
@@ -824,7 +834,7 @@ public class Server2 implements Runnable {
 		bo.passwordText2.setVisible(false);
 
 		//IPAdressefenster:
-		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
 
@@ -839,16 +849,18 @@ public class Server2 implements Runnable {
 		bo.buttonJeton25.setVisible(true);
 		bo.buttonJeton50.setVisible(true);
 		bo.buttonJeton100.setVisible(true);
-		bo.einsatzSpieler1.setVisible(true);
-		bo.einsatzSpieler2.setVisible(true);
-		bo.kontostandSpieler1.setVisible(true);
+		//bo.einsatzSpieler1.setVisible(true);
+		//bo.einsatzSpieler2.setVisible(true);
+		//bo.kontostandSpieler1.setVisible(true);
 		//bo.kontostandSpieler2.setVisible(true); 
-		bo.buttonEinsatzbestätigen.setVisible(true);  
-
-
+		bo.buttonEinsatzbestaetigen.setVisible(true);  
+		
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
 		bo.kartenwertDealer.setVisible(true);
+
+
+		
 	}
 
 
@@ -1058,7 +1070,7 @@ public class Server2 implements Runnable {
 		bo.karte1Spieler2.setVisible(true);
 		bo.karte2Spieler2.setVisible(true);
 		bo.karte1Bank.setVisible(true);
-		bo.karte1Bank.setIcon(bo.rückseite);
+		bo.karte1Bank.setIcon(bo.rueckseite);
 		bo.karte2Bank.setVisible(true); 
 	}
 
@@ -1164,7 +1176,7 @@ public class Server2 implements Runnable {
 			bo.karte3Spieler2.setVisible(true);
 
 			bo.karte1Bank.setVisible(true);
-			bo.karte1Bank.setIcon(bo.rückseite);
+			bo.karte1Bank.setIcon(bo.rueckseite);
 			bo.karte2Bank.setVisible(true);
 			bo.karte3Bank.setVisible(true);}
 		else if (runde == 3) {
@@ -1179,7 +1191,7 @@ public class Server2 implements Runnable {
 			bo.karte4Spieler2.setVisible(true);
 
 			bo.karte1Bank.setVisible(true);
-			bo.karte1Bank.setIcon(bo.rückseite);
+			bo.karte1Bank.setIcon(bo.rueckseite);
 			bo.karte2Bank.setVisible(true);
 			bo.karte3Bank.setVisible(true);
 			bo.karte4Bank.setVisible(true);}
@@ -1197,7 +1209,7 @@ public class Server2 implements Runnable {
 			bo.karte5Spieler2.setVisible(true);
 
 			bo.karte1Bank.setVisible(true);
-			bo.karte1Bank.setIcon(bo.rückseite);
+			bo.karte1Bank.setIcon(bo.rueckseite);
 			bo.karte2Bank.setVisible(true);
 			bo.karte3Bank.setVisible(true);
 			bo.karte4Bank.setVisible(true); 
@@ -1211,7 +1223,7 @@ public class Server2 implements Runnable {
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Loginfenster
 		bo.labelBenutzername.setVisible(false);
@@ -1219,7 +1231,7 @@ public class Server2 implements Runnable {
 		bo.buttonstart.setVisible(false);
 		bo.userText.setVisible(false);
 		bo.passwordText.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(false);
@@ -1231,7 +1243,7 @@ public class Server2 implements Runnable {
 		bo.passwordText2.setVisible(false);
 
 		//IPAdressefenster:
-		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
 
@@ -1264,7 +1276,7 @@ public class Server2 implements Runnable {
 		bo.einsatzSpieler2.setVisible(true);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		bo.kontostandSpieler1.setVisible(true); 
-		bo.buttonEinsatzbestätigen.setVisible(false);
+		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(true);
 		bo.buttonStay.setVisible(true);
 
@@ -1280,7 +1292,7 @@ public class Server2 implements Runnable {
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Loginfenster
 		bo.labelBenutzername.setVisible(false);
@@ -1288,7 +1300,7 @@ public class Server2 implements Runnable {
 		bo.buttonstart.setVisible(false);
 		bo.userText.setVisible(false);
 		bo.passwordText.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(false);
@@ -1300,7 +1312,7 @@ public class Server2 implements Runnable {
 		bo.passwordText2.setVisible(false);
 
 		//IPAdressefenster:
-		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
 
@@ -1333,7 +1345,7 @@ public class Server2 implements Runnable {
 		bo.einsatzSpieler2.setVisible(true);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		bo.kontostandSpieler1.setVisible(true); 
-		bo.buttonEinsatzbestätigen.setVisible(false);
+		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(false);
 		bo.buttonStay.setVisible(false);
 		bo.kartenwertSpieler1.setVisible(true);
@@ -1352,7 +1364,7 @@ public class Server2 implements Runnable {
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Loginfenster
 		bo.labelBenutzername.setVisible(false);
@@ -1360,7 +1372,7 @@ public class Server2 implements Runnable {
 		bo.buttonstart.setVisible(false);
 		bo.userText.setVisible(false);
 		bo.passwordText.setVisible(false);
-		bo.buttonZurück.setVisible(false);
+		bo.buttonZurueck.setVisible(false);
 
 		//Registrierfenster
 		bo.labelBenutzernameErstellen.setVisible(false);
@@ -1372,7 +1384,7 @@ public class Server2 implements Runnable {
 		bo.passwordText2.setVisible(false);
 
 		//IPAdressefenster:
-		bo.buttonIPAdresseBestätigen.setVisible(false);
+		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
 
@@ -1405,7 +1417,7 @@ public class Server2 implements Runnable {
 		bo.einsatzSpieler2.setVisible(false);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		bo.kontostandSpieler1.setVisible(false); 
-		bo.buttonEinsatzbestätigen.setVisible(false);
+		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(false);
 		bo.buttonStay.setVisible(false);
 		bo.kartenwertSpieler1.setVisible(false);
