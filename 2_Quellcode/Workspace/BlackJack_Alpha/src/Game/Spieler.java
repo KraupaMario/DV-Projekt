@@ -24,10 +24,20 @@ public class Spieler {
 		String p = JOptionPane.showInputDialog("Passwort:");
 		Spieler name = new Spieler(n, p);
 	}  */
-
+	
+	
+	/**
+	 * Kontostand abfragen 
+	 * @return den Betrag des Kontostands
+	 */
 	public int getKontostand() {
 		return kontostand;
 	}
+	
+	/**
+	 * Wie viel Geld der Spieler setzen will
+	 * @return Geldeinsatz
+	 */
 	public int geldsetzen() {
 		System.out.println("Wie viel Geld wollen sie setzen? "); // Port festlegen 8080?
 		int mony = Integer.parseInt(JOptionPane.showInputDialog("Wie viel Geld wollen sie setzen?"));
