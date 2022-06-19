@@ -299,6 +299,16 @@ public class Client2 implements Runnable {
 					e1.printStackTrace();
 				}
 				gewinnbenachrichtung(client);
+				
+				rundeZuAuswerten();
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				auswertenZuEinsatz();
+				
 				continue newgame;
 			}
 
@@ -362,7 +372,17 @@ public class Client2 implements Runnable {
 						e1.printStackTrace();
 					}
 					/** Gewinner/Verlierernachricht ausgeben*/
-					gewinnbenachrichtung(client);		
+					gewinnbenachrichtung(client);	
+					
+					rundeZuAuswerten();
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					auswertenZuEinsatz();
+					
 					continue newgame;
 				}
 
@@ -436,6 +456,16 @@ public class Client2 implements Runnable {
 							e1.printStackTrace();
 						}
 						gewinnbenachrichtung(client);
+						
+						rundeZuAuswerten();
+						try {
+							Thread.sleep(5000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						auswertenZuEinsatz();
+						
 						continue newgame;
 					}
 					continue newcard;
