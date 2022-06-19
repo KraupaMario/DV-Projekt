@@ -87,13 +87,11 @@ public void actionPerformed(ActionEvent e) {
 			spiel.portZuEinsatz(); 
 			break; */
 		case "Einsatz":
-			/*
-			if (Client2.wartenAufSpielerClient= true) {
-			spiel.warteBildschirm(); 
-			}
-			else if (Client2.wartenAufSpielerClient = false) {
+			
+			
+			
 				spiel.einsatzZuJetons(); 
-			}*/
+			
 			 
 			break; 
 		case "Jeton10": 

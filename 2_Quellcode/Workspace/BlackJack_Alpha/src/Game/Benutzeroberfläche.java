@@ -643,95 +643,95 @@ public class Benutzeroberfläche extends JFrame  {
 		
 		//Karten: 
 		
-		karte5Spieler1.setBounds(500,350,150,213);
+		karte5Spieler1.setBounds(200,0,150,213);
 		karte5Spieler1.setFocusable(false);
 		karte5Spieler1.setBorder(null);
 		karte5Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte5Spieler1);
 		
-		karte4Spieler1.setBounds(400,350,150,213);
+		karte4Spieler1.setBounds(150,0,150,213);
 		karte4Spieler1.setFocusable(false);
 		karte4Spieler1.setBorder(null);
 		karte4Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte4Spieler1);
 		
 		
-		karte3Spieler1.setBounds(300,350,150,213);
+		karte3Spieler1.setBounds(100,0,150,213);
 		karte3Spieler1.setFocusable(false);
 		karte3Spieler1.setBorder(null);
 		karte3Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte3Spieler1);
 		
-		karte2Spieler1.setBounds(200,350,150,213);
+		karte2Spieler1.setBounds(50,0,150,213);
 		karte2Spieler1.setFocusable(false);
 		karte2Spieler1.setBorder(null);
 		karte2Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte2Spieler1);
 		
-		karte1Spieler1.setBounds(100,350,150,213);
+		karte1Spieler1.setBounds(0,0,150,213);
 		karte1Spieler1.setFocusable(false);
 		karte1Spieler1.setBorder(null);
 		karte1Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte1Spieler1); 
 		
-		karte5Spieler2.setBounds(1400,350,150,213);
+		karte5Spieler2.setBounds(200,0,150,213);
 		karte5Spieler2.setFocusable(false);
 		karte5Spieler2.setBorder(null);
 		karte5Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte5Spieler2);
 		
 
-		karte4Spieler2.setBounds(1300,350,150,213);
+		karte4Spieler2.setBounds(150,0,150,213);
 		karte4Spieler2.setFocusable(false);
 		karte4Spieler2.setBorder(null);
 		karte4Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte4Spieler2);
 		
-		karte3Spieler2.setBounds(1200,350,150,213);
+		karte3Spieler2.setBounds(100,0,150,213);
 		karte3Spieler2.setFocusable(false);
 		karte3Spieler2.setBorder(null);
 		karte3Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte3Spieler2);
 		
-		karte2Spieler2.setBounds(1100,350,150,213);
+		karte2Spieler2.setBounds(50,0,150,213);
 		karte2Spieler2.setFocusable(false);
 		karte2Spieler2.setBorder(null);
 		karte2Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte2Spieler2);
 		
 		
-		karte1Spieler2.setBounds(1000,350,150,213);
+		karte1Spieler2.setBounds(0,0,150,213);
 		karte1Spieler2.setFocusable(false);
 		karte1Spieler2.setBorder(null);
 		karte1Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte1Spieler2);
 		
-		karte5Bank.setBounds(900,75,150,213);
+		karte5Bank.setBounds(200,0,150,213);
 		karte5Bank.setFocusable(false);
 		karte5Bank.setBorder(null);
 		karte5Bank.setVisible(false);
 		kartenfeldbankg.add(karte5Bank);
 
 		
-		karte4Bank.setBounds(800,75,150,213);
+		karte4Bank.setBounds(150,0,150,213);
 		karte4Bank.setFocusable(false);
 		karte4Bank.setBorder(null);
 		karte4Bank.setVisible(false);
 		kartenfeldbankg.add(karte4Bank);
 		
-		karte3Bank.setBounds(700,75,150,213);
+		karte3Bank.setBounds(100,0,150,213);
 		karte3Bank.setFocusable(false);
 		karte3Bank.setBorder(null);
 		karte3Bank.setVisible(false);
 		kartenfeldbankg.add(karte3Bank);
 		
-		karte2Bank.setBounds(600,75,150,213);
+		karte2Bank.setBounds(50,0,150,213);
 		karte2Bank.setFocusable(false);
 		karte2Bank.setBorder(null);
 		karte2Bank.setVisible(false);
 		kartenfeldbankg.add(karte2Bank);
 		
-		karte1Bank.setBounds(500,75,150,213);
+		karte1Bank.setBounds(0,0,150,213);
 		karte1Bank.setFocusable(false);
 		karte1Bank.setBorder(null);
 		karte1Bank.setVisible(false);
