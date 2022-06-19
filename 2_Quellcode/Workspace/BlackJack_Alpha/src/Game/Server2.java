@@ -349,6 +349,8 @@ public class Server2 implements Runnable {
 			server.checkBJSpieler1();
 			server.checkBJSpieler2();
 			server.checkBJDealer();
+			
+			System.out.println("CheckBJS1: "+ server.winSpieler1);
 
 
 			/** verschicken Status Spieler win...*/
@@ -393,7 +395,7 @@ public class Server2 implements Runnable {
 				e.printStackTrace();  } 
 
 			/**Wenn BJ = true oder Spieler überkauft, mach neues Spiel (gehe zu newgame)*/
-			while(server.winSpieler1 || server.winSpieler2 || server.winDealer|server.loseSpieler1|server.loseSpieler2|server.loseDealer) {
+			while(server.winSpieler1 || server.winSpieler2 || server.winDealer||server.loseSpieler1||server.loseSpieler2||server.loseDealer) {
 				auswerten(server);
 				gewinnbenachrichtung(server);
 				
@@ -664,7 +666,7 @@ public class Server2 implements Runnable {
 
 					/** wenn ein Spieler BJ hat oder sich überkauft*/
 
-					if(server.winSpieler1 || server.winSpieler2 || server.winDealer|server.loseSpieler1|server.loseSpieler2|server.loseDealer) {
+					if(server.winSpieler1 || server.winSpieler2 || server.winDealer||server.loseSpieler1||server.loseSpieler2||server.loseDealer) {
 
 						auswerten(server);
 						gewinnbenachrichtung(server);
