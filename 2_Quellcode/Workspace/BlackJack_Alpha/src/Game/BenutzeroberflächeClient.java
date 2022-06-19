@@ -64,8 +64,8 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel kartenwertSpieler1 = new JLabel(); 
 	 JLabel kartenwertSpieler2 = new JLabel(); 
 	 JLabel kartenwertDealer = new JLabel(); 
-	 JLabel nachrichtS1 = new JLabel();
-	 JLabel nachrichtS2 = new JLabel();
+	 JLabel nachrichtS1C = new JLabel();
+	 JLabel nachrichtS2C = new JLabel();
 	 JLabel anmeldetext = new JLabel();
 	 JLabel registrierungtext = new JLabel();
 	 
@@ -935,16 +935,18 @@ public void registrierfenster() {
 			this.add(buttonNaechsteRunde);
 			
 			
-			nachrichtS1.setBounds(200,400,1000,100);
-			nachrichtS1.setForeground(Color.red); 
-			nachrichtS1.setVisible(false);
-			this.add(nachrichtS1);
+			nachrichtS1C.setBounds(200,500,1000,100);
+			nachrichtS1C.setForeground(Color.red); 
+			nachrichtS1C.setFont(new Font("Calibri", Font.PLAIN,40));
+			nachrichtS1C.setVisible(false);
+			this.add(nachrichtS1C);
 			
 			
-			nachrichtS2.setBounds(1100,400,1000,100);
-			nachrichtS2.setForeground(Color.red); 
-			nachrichtS2.setVisible(false);
-			this.add(nachrichtS2);
+			nachrichtS2C.setBounds(1100,500,1000,100);
+			nachrichtS2C.setForeground(Color.red); 
+			nachrichtS2C.setFont(new Font("Calibri", Font.PLAIN,40));
+			nachrichtS2C.setVisible(false);
+			this.add(nachrichtS2C);
 		}
 		public void wartefenster() {
 			wartenAufSpieler.setBounds(600,400,200,100);
@@ -952,6 +954,7 @@ public void registrierfenster() {
 			wartenAufSpieler.setVisible(false);
 			this.add(wartenAufSpieler);
 		}
+	
 		
 	
 	
