@@ -842,7 +842,7 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonEinsatzbestaetigen.setVisible(false);
 			menuleiste.add(buttonEinsatzbestaetigen);
 			
-			einsatzausgabeSpieler1.setBounds(10,650,165,25);
+			einsatzausgabeSpieler1.setBounds(25,375,165,25);
 			einsatzausgabeSpieler1.setFocusable(false);
 			einsatzausgabeSpieler1.setBorder(null);
 			einsatzausgabeSpieler1.setBackground(null);
@@ -851,7 +851,7 @@ public class Benutzeroberfläche extends JFrame  {
 			this.add(einsatzausgabeSpieler1);
 			
 			
-			einsatzausgabeSpieler2.setBounds(1350,650,165,25);
+			einsatzausgabeSpieler2.setBounds(1300,375,165,25);
 			einsatzausgabeSpieler2.setFocusable(false);
 			einsatzausgabeSpieler2.setBorder(null);
 			einsatzausgabeSpieler2.setBackground(null);

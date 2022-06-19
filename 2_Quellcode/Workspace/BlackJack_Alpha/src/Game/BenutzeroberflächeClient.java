@@ -825,7 +825,7 @@ public void registrierfenster() {
 			menuleiste.add(buttonEinsatzbestaetigen);
 			
 			
-			einsatzausgabeSpieler1C.setBounds(10,650,165,25);
+			einsatzausgabeSpieler1C.setBounds(25,375,165,25);
 			einsatzausgabeSpieler1C.setFocusable(false);
 			einsatzausgabeSpieler1C.setBorder(null);
 			einsatzausgabeSpieler1C.setBackground(null);
@@ -834,7 +834,7 @@ public void registrierfenster() {
 			this.add(einsatzausgabeSpieler1C);
 			
 			
-			einsatzausgabeSpieler2C.setBounds(1350,650,165,25);
+			einsatzausgabeSpieler2C.setBounds(1300,375,165,25);
 			einsatzausgabeSpieler2C.setFocusable(false);
 			einsatzausgabeSpieler2C.setBorder(null);
 			einsatzausgabeSpieler2C.setBackground(null);
