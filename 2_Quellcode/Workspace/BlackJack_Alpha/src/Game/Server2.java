@@ -181,233 +181,45 @@ public class Server2 implements Runnable {
 
 	private void aktion()  {
 
-
-		/**Erstellen Spiel*/
-
-
-		//Spiel erstellen
-		Spiel server = new Spiel();
-		server.createDeck();
-		Spielkarten Server = new Spielkarten();
-		//Spieler erstellen
-		/*	while (!anmelden) {
-			System.out.println(f"Warten");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		Spieler playerS = aktuellerbenutzer; */
-		Spieler playerS = new Spieler ("jhg","76554");
-		kontomax = playerS.getKontostand();
+		
 
 
-		newgame: while(!true) {
+			/**Erstellen Spiel*/
 
 
-			/**Reset alle Array-lists*/
-
-			server.DeckSpieler1.clear();
-			server.DeckSpieler2.clear();
-			server.DeckDealer.clear();
-
-			/** Warteschleife Einsatz setzen und ausgeben der ersten 2 Karten*/
-
-			while (!klicks) {
-				System.out.println("Warten auf Einsatzbestätigenbutton");
+			//Spiel erstellen
+			Spiel server = new Spiel();
+			server.createDeck();
+			Spielkarten Server = new Spielkarten();
+			//Spieler erstellen
+			/*	while (!anmelden) {
+				System.out.println(f"Warten");
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} klicks = false;
-			Spiel.setGesetztSpieler1(gesetztS);
-			gesetztS = 0;
-			playerS.abbuchen(Spiel.getGesetztSpieler1());
-			System.out.println("s/Mein gesetzter Betrag "+Spiel.getGesetztSpieler1());
-
-			//Betrag übermitteln
-			try {
-				dos.writeInt(Spiel.getGesetztSpieler1());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			//Gesetzter Betrag vom Client empfangen:
-			try {
-				gesetztC = dis.readInt();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			Spiel.setGesetztSpieler2(gesetztC);
-			gesetztC = 0;
-			einsatzAnzeigenGegenspieler();
-			System.out.println("s/Der Client hat soviel gesetzt: "+Spiel.getGesetztSpieler2());
-
-
-
-
-			//Karte für Spieler 1 ziehen:
-			//server.DeckSpieler1.add(server.getKarte());
-			//server.austeilenKarteSp1();
-			server.DeckSpieler1.add(server.karteManuell(0));
-			server.DeckSpieler1.add(server.karteManuell(0));
-			//Karte für Spieler 2 ziehen:
-			server.austeilenKarteSp2();
-			//server.DeckSpieler2.add(server.getKarte());
-			//Karten für Dealer ziehen:
-			//server.DeckDealer.add(server.getKarte());
-			server.austeilenKarteDealer();
-			//2. Karte:
-			//server.austeilenKarteSp1();
-			server.austeilenKarteSp2();
-			server.austeilenKarteDealer();
-			//server.DeckSpieler1.add(server.getKarte());
-			//server.DeckSpieler2.add(server.getKarte());
-			//server.DeckDealer.add(server.getKarte());
-
-			//Karte verschicken Spieler 1
-
-			for (int i = 0;i<server.DeckSpieler1.size();i++) {
-				try {
-					dos.writeUTF(server.DeckSpieler1.get(i).getFarbe());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					dos.writeInt(server.DeckSpieler1.get(i).getName());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					dos.writeInt(server.DeckSpieler1 .get(i).getWert());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
 			}
 
-			//Karte verschicken Spieler 2
-
-			for (int i = 0;i<server.DeckSpieler2.size();i++) {
-				try {
-					dos.writeUTF(server.DeckSpieler2.get(i).getFarbe());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					dos.writeInt(server.DeckSpieler2.get(i).getName());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					dos.writeInt(server.DeckSpieler2 .get(i).getWert());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-			}
+			Spieler playerS = aktuellerbenutzer; */
+			Spieler playerS = new Spieler ("jhg","76554");
+			kontomax = playerS.getKontostand();
 
 
-			//Karte verschicken Dealer
-
-			for (int i = 0;i<server.DeckDealer.size();i++) {
-				try {
-					dos.writeUTF(server.DeckDealer.get(i).getFarbe());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					dos.writeInt(server.DeckDealer.get(i).getName());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					dos.writeInt(server.DeckDealer .get(i).getWert());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-			}
-			System.out.println(server.DeckSpieler1.get(0).getFarbe());
-			System.out.println(server.DeckSpieler1.get(0).getName());
-			kartenausgebenS_R1(server);//Karten anzeigen
-			kartenwertanzeigen(server);
+			newgame: while(!true) {
 
 
-			/**BlackJack und Überkauft Abfrage*/
-			server.checkBJSpieler1();
-			server.checkBJSpieler2();
-			server.checkBJDealer();
-			
-			
-			/** verschicken Status Spieler*/
-			try {
-				dos.writeBoolean(server.winSpieler1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();  }  
+				/**Reset alle Array-lists*/
 
-			try {
-				dos.writeBoolean(server.winSpieler2);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();  }  
-			
-			try {
-				dos.writeBoolean(server.winDealer);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();  }  
+				server.DeckSpieler1.clear();
+				server.DeckSpieler2.clear();
+				server.DeckDealer.clear();
 
-			//Wenn BJ = true, mach neues Spiel (gehe zu newgame)
-			while(server.winSpieler1 || server.winSpieler2 || server.winDealer) {
-				auswerten(server);
-				gewinnbenachrichtung();
-				
-				/**verschicken Status Spieler 1*/
-				try {
-					dos.writeInt(auswertStatSp1);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();  }  
+				/** Warteschleife Einsatz setzen und ausgeben der ersten 2 Karten*/
 
-				/**verschicken Status Spieler 2:*/
-
-				try {
-					dos.writeInt(auswertStatSp1);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace(); } 
-
-
-				continue newgame;}
-
-			//Wenn BJ = false, frag nach Hit oder Stay
-			newcard: while(!server.winSpieler1 && !server.winSpieler2 && !server.winDealer) {
-				int z=0;
-				z++; //Zähler, Anzahl der Spielzüge
-				boolean hit1=false;
-				boolean hit2= false;
-				if (z>3) {
-					break newcard;
-				}
-				
-				/** Spieler 1 wählt hit oder stay aus*/
-				
 				while (!klicks) {
-					System.out.println("Warten auf hit oder stay");
+					System.out.println("Warten auf Einsatzbestätigenbutton");
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -415,62 +227,418 @@ public class Server2 implements Runnable {
 						e.printStackTrace();
 					}
 				} klicks = false;
-				if (hitostay == 1) {
-					hit1 = true;
-							}
-				hitostay =0;
+				Spiel.setGesetztSpieler1(gesetztS);
+				gesetztS = 0;
+				playerS.abbuchen(Spiel.getGesetztSpieler1());
+				System.out.println("s/Mein gesetzter Betrag "+Spiel.getGesetztSpieler1());
+
+				//Betrag übermitteln
 				try {
-					dos.writeBoolean(hit1);
+					dos.writeInt(Spiel.getGesetztSpieler1());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();  }
-						
-				/**Spieler 2 Hit/Stay? empfangen"*/
+					e.printStackTrace();
+				}
+				//Gesetzter Betrag vom Client empfangen:
 				try {
-				hit2 = dis.readBoolean();
+					gesetztC = dis.readInt();
 				} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				
-							
-				
-				while((!hit1 || !hit2)) {
-					
-					System.out.println("Auswerten");
-					continue newgame;
+				Spiel.setGesetztSpieler2(gesetztC);
+				gesetztC = 0;
+				einsatzAnzeigenGegenspieler();
+				System.out.println("s/Der Client hat soviel gesetzt: "+Spiel.getGesetztSpieler2());
+
+
+
+
+				//Karte für Spieler 1 ziehen:
+				//server.DeckSpieler1.add(server.getKarte());
+				//server.austeilenKarteSp1();
+				server.DeckSpieler1.add(server.karteManuell(0));
+				server.DeckSpieler1.add(server.karteManuell(0));
+				//Karte für Spieler 2 ziehen:
+				server.austeilenKarteSp2();
+				//server.DeckSpieler2.add(server.getKarte());
+				//Karten für Dealer ziehen:
+				//server.DeckDealer.add(server.getKarte());
+				server.austeilenKarteDealer();
+				//2. Karte:
+				//server.austeilenKarteSp1();
+				server.austeilenKarteSp2();
+				server.austeilenKarteDealer();
+				//server.DeckSpieler1.add(server.getKarte());
+				//server.DeckSpieler2.add(server.getKarte());
+				//server.DeckDealer.add(server.getKarte());
+
+				//Karte verschicken Spieler 1
+
+				for (int i = 0;i<server.DeckSpieler1.size();i++) {
+					try {
+						dos.writeUTF(server.DeckSpieler1.get(i).getFarbe());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckSpieler1.get(i).getName());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckSpieler1 .get(i).getWert());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
 				}
-             
-				while((hit1 && hit2)) {
-					System.out.println("Auswerten");
-					if (win) {
+
+				//Karte verschicken Spieler 2
+
+				for (int i = 0;i<server.DeckSpieler2.size();i++) {
+					try {
+						dos.writeUTF(server.DeckSpieler2.get(i).getFarbe());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckSpieler2.get(i).getName());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckSpieler2 .get(i).getWert());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+				}
+
+
+				//Karte verschicken Dealer
+
+				for (int i = 0;i<server.DeckDealer.size();i++) {
+					try {
+						dos.writeUTF(server.DeckDealer.get(i).getFarbe());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckDealer.get(i).getName());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						dos.writeInt(server.DeckDealer .get(i).getWert());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+				}
+				System.out.println(server.DeckSpieler1.get(0).getFarbe());
+				System.out.println(server.DeckSpieler1.get(0).getName());
+				kartenausgebenS_R1(server);//Karten anzeigen
+				kartenwertanzeigen(server);
+
+
+				/**BlackJack und Überkauft Abfrage*/
+				server.checkBJSpieler1();
+				server.checkBJSpieler2();
+				server.checkBJDealer();
+
+
+				/** verschicken Status Spieler*/
+				try {
+					dos.writeBoolean(server.winSpieler1);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  }  
+
+				try {
+					dos.writeBoolean(server.winSpieler2);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  }  
+
+				try {
+					dos.writeBoolean(server.winDealer);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  }  
+
+				/** vershicke Status Spieler lose....*/
+
+
+				/** verschicken Status Spieler*/
+				try {
+					dos.writeBoolean(server.loseSpieler1);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  }  
+
+				try {
+					dos.writeBoolean(server.loseSpieler2);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  }  
+
+				try {
+					dos.writeBoolean(server.loseDealer);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();  } 
+
+				//Wenn BJ = true, mach neues Spiel (gehe zu newgame)
+				while(server.winSpieler1 || server.winSpieler2 || server.winDealer|server.loseSpieler1|server.loseSpieler2|server.loseDealer) {
+					auswerten(server);
+					gewinnbenachrichtung();
+
+					/**verschicken Status Spieler 1*/
+					try {
+						dos.writeInt(auswertStatSp1);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  }  
+
+					/**verschicken Status Spieler 2:*/
+
+					try {
+						dos.writeInt(auswertStatSp1);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace(); } 
+
+
+					continue newgame;}
+
+				//Wenn BJ = false, frag nach Hit oder Stay
+				newcard: while(!server.winSpieler1 && !server.winSpieler2 && !server.winDealer) {
+					int z=0;
+					z++; //Zähler, Anzahl der Spielzüge
+					boolean hit1=false;
+					boolean hit2= false;
+					if (z>3) {
+						break newcard;
+					}
+
+					/** Spieler 1 wählt hit oder stay aus*/
+					/**Spieler 1 Hit/Stay? empfangen"*/
+
+
+
+					while (!klicks) {
+						System.out.println("Warten auf hit oder stay");
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					} klicks = false;
+					if (hitostay == 1) {
+						hit1 = true;
+					}
+					hitostay =0;
+					try {
+						dos.writeBoolean(hit1);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  }
+
+					/**Spieler 2 Hit/Stay? empfangen"*/
+					try {
+						hit2 = dis.readBoolean(); //muss hier nicht beim client hit2 verschicken?
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+
+
+					while((!hit1 || !hit2)) {
+
+						auswerten(server);
+						gewinnbenachrichtung();
+
+						/**verschicken Status Spieler 1*/
+						try {
+							dos.writeInt(auswertStatSp1);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();  }  
+
+						/**verschicken Status Spieler 2:*/
+
+						try {
+							dos.writeInt(auswertStatSp1);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace(); } 
+
+						continue newgame;
+					}
+
+
+					while((hit1 && hit2)) {
+
+						//Karte für Spieler 1 ziehen:
+
+						server.austeilenKarteSp1();
+
+						//Karte für Spieler 2 ziehen:
+						server.austeilenKarteSp2();
+
+						//Karten für Dealer ziehen:
+
+						server.austeilenKarteDealer();
+						//2. Karte:
+
+
+						//Karte verschicken Spieler 1
+
+						int i = server.DeckSpieler1.size()-1;
+						try {
+							dos.writeUTF(server.DeckSpieler1.get(i).getFarbe());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							dos.writeInt(server.DeckSpieler1.get(i).getName());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							dos.writeInt(server.DeckSpieler1 .get(i).getWert());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+						//Karte verschicken Spieler 2
+						int j = server.DeckSpieler2.size();
+						try {
+							dos.writeUTF(server.DeckSpieler2.get(j).getFarbe());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							dos.writeInt(server.DeckSpieler2.get(j).getName());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							dos.writeInt(server.DeckSpieler2 .get(j).getWert());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
+					}
+
+
+					//Karte verschicken Dealer
+
+					if (server.wertDealer()<17) {
+						int s = server.DeckDealer.size();
+						try {
+							dos.writeUTF(server.DeckDealer.get(s).getFarbe());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							dos.writeInt(server.DeckDealer.get(s).getName());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						try {
+							dos.writeInt(server.DeckDealer .get(s).getWert());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
+
+					}
+
+					kartenausgebenS_R234(server, z);
+					kartenwertanzeigen(server);
+
+					/** verschicken Status Spieler*/
+					try {
+						dos.writeBoolean(server.winSpieler1);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  }  
+
+					try {
+						dos.writeBoolean(server.winSpieler2);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  }  
+
+					try {
+						dos.writeBoolean(server.winDealer);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  }  
+
+					/** vershicke Status Spieler lose....*/
+
+
+					/** verschicken Status Spieler*/
+					try {
+						dos.writeBoolean(server.loseSpieler1);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  }  
+
+					try {
+						dos.writeBoolean(server.loseSpieler2);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  }  
+
+					try {
+						dos.writeBoolean(server.loseDealer);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();  } 
+
+
+
+
+					if(server.winSpieler1 || server.winSpieler2 || server.winDealer|server.loseSpieler1|server.loseSpieler2|server.loseDealer) {
 						System.out.println("Ein spieler Gewinnt oder Überkauft sich");
 						break newcard;
-				}
+					}
 					continue newcard;
+
 				}
 
 			}
 
+			continue newgame;
 
 
-			System.out.println("Jetzt zum Auswertefenster");
-			rundeZuAuswerten();
-
-			//Methode hit;//2.Karte
-			//server.austeilenKarteSp1();
-
-
-			//Methode stay;
-			//nichts machen eine Runde noch machen
 
 
 
 
 			thread.stop();
 		}
-	}
 
+	}
 
 	void auswerten(Spiel server) {
 
