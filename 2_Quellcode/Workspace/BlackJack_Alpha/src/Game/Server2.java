@@ -254,16 +254,16 @@ public class Server2 implements Runnable {
 
 			/** Ziehen der ersten 2 Karten*/
 			//Karte für Spieler 1 ziehen:
-						//server.austeilenKarteSp1();
-			server.DeckSpieler1.add(server.karteManuell(0));
-			server.DeckSpieler1.add(server.karteManuell(0));
+			server.austeilenKarteSp1();
+			//server.DeckSpieler1.add(server.karteManuell(0));
+			//server.DeckSpieler1.add(server.karteManuell(0));
 			//Karte für Spieler 2 ziehen:
 			server.austeilenKarteSp2();
 			//Karten für Dealer ziehen:
 			//server.DeckDealer.add(server.getKarte());
 			server.austeilenKarteDealer();
 			//2. Karte:
-			//server.austeilenKarteSp1();
+			server.austeilenKarteSp1();
 			server.austeilenKarteSp2();
 			server.austeilenKarteDealer();
 			//server.DeckSpieler1.add(server.getKarte());
@@ -402,7 +402,7 @@ public class Server2 implements Runnable {
 				/**Auswertung anzeigen*/
 				rundeZuAuswerten();
 				try {
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 				} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -474,7 +474,7 @@ public class Server2 implements Runnable {
 
 					if (server.wertDealer()<17) {
 						server.austeilenKarteDealer();
-						int s = server.DeckDealer.size();
+						int s = server.DeckDealer.size()-1;
 						try {
 							dos.writeUTF(server.DeckDealer.get(s).getFarbe());
 						} catch (IOException e) {
@@ -510,7 +510,7 @@ public class Server2 implements Runnable {
 					/**Auswertung anzeigen*/
 					rundeZuAuswerten();
 					try {
-					Thread.sleep(5000);
+					Thread.sleep(10000);
 					} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -566,7 +566,7 @@ public class Server2 implements Runnable {
 
 					if (hit1) {
 						server.austeilenKarteSp2();
-						int j = server.DeckSpieler2.size();
+						int j = server.DeckSpieler2.size()-1;
 						try {
 							dos.writeUTF(server.DeckSpieler2.get(j).getFarbe());
 						} catch (IOException e) {
@@ -592,7 +592,7 @@ public class Server2 implements Runnable {
 
 					if (server.wertDealer()<17) {
 						server.austeilenKarteDealer();
-						int s = server.DeckDealer.size();
+						int s = server.DeckDealer.size()-1;
 						try {
 							dos.writeUTF(server.DeckDealer.get(s).getFarbe());
 						} catch (IOException e) {
@@ -674,7 +674,7 @@ public class Server2 implements Runnable {
 						/**Auswertung anzeigen*/
 						rundeZuAuswerten();
 						try {
-						Thread.sleep(5000);
+						Thread.sleep(10000);
 						} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

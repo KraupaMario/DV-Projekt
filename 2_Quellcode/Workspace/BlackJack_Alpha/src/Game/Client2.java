@@ -302,7 +302,7 @@ public class Client2 implements Runnable {
 				
 				rundeZuAuswerten();
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(10000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -376,7 +376,7 @@ public class Client2 implements Runnable {
 					
 					rundeZuAuswerten();
 					try {
-						Thread.sleep(5000);
+						Thread.sleep(10000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -459,7 +459,7 @@ public class Client2 implements Runnable {
 						
 						rundeZuAuswerten();
 						try {
-							Thread.sleep(5000);
+							Thread.sleep(10000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
