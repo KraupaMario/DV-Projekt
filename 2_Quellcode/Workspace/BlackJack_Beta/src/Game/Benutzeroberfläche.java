@@ -24,19 +24,15 @@ public class Benutzeroberfläche extends JFrame  {
 
 	//Variablen
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-
 	Server2 spiel;
 	
 
 	 JFrame frame = new JFrame();
 	 JPanel panel = new JPanel();
 
- 
+	 
+	
+	 
 	 //Label
 	 JLabel labelBenutzername = new JLabel ("Benutzername:");
 	 JLabel labelPasswort = new JLabel("Passwort:");

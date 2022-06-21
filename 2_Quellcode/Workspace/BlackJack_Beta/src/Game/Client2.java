@@ -29,7 +29,7 @@ public class Client2 implements Runnable {
 
 	private String ip = "localhost";
 	private int port = 22222;
-
+	private Scanner scanner = new Scanner(System.in);
 
 	private Thread thread;
 
@@ -38,7 +38,8 @@ public class Client2 implements Runnable {
 
 	private Socket socket;
 	private DataOutputStream dos;
-	
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
 	private DataInputStream dis;
 
 	private ServerSocket serverSocket;
@@ -50,13 +51,15 @@ public class Client2 implements Runnable {
 	public String ausgabetextS1C; 
 	public String ausgabetextS2C; 
 
-	
+	private String[] spaces = new String[9];
 
-	
+	private boolean yourTurn = false; //bin ich an der Reihe?
 	private boolean client = true;	// Bin ich der Client?
-	
+	private boolean host = false; // Bin ich der Host?
 	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
-	
+	private boolean unableToCommunicateWithOpponent = false; // Verbindung abgebrochen?
+	private boolean won = false; //ich habe den Spielzug gewonnen
+	private boolean dealerWon = false; // der Dealer hat gewonnen
 	int gesetztS; 
 	int gesetztC;
 	int kontomax = 0;
@@ -70,7 +73,15 @@ public class Client2 implements Runnable {
 
 
 
-	
+	private int errors = 0;
+
+
+
+	private String waitingString = "Warten auf Mitspieler...";
+	private String unableToCommunicateWithOpponentString = "Kommunikation mit dem Spieler nicht möglich.";
+	private String wonString = "Du hast gewonnen!";
+	private String enemyWonString = "Dealer gewinnt!";
+	private String tieString = "Unentschieden!";
 
 	public Client2() {
 		System.out.println("Bitte gib deine IP an: ");
@@ -161,7 +172,8 @@ public class Client2 implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		yourTurn = true;
+		host = true;
 		client = false;
 	}
 
@@ -499,38 +511,30 @@ public class Client2 implements Runnable {
 	void gewinnbenachrichtung (Spiel s) {
 
 	/** Spieler 1*/
-	 if (auswertStatSp1 == 0) {
+	 if (auswertStatSp1 == 0)
 		ausgabetextS1C = "BlackJack";
-	 System.out.println("Blackjack");}
 
-	if (auswertStatSp1 == 1) {
+	if (auswertStatSp1 == 1)
 		ausgabetextS1C = "Gewonnen";
-	System.out.println("gew");}
 
-	if (auswertStatSp1 == 2) {
+	if (auswertStatSp1 == 2)
 		ausgabetextS1C = "Verloren";
-	System.out.println("verl");}
 
-	if (auswertStatSp1 == 3) {
+	if (auswertStatSp1 == 3)
 		ausgabetextS1C = "Unentschieden";
-	System.out.println("unent");}
 
 	/** Spieler 2*/
 	if (auswertStatSp2 == 0)
 		ausgabetextS2C = "BlackJack";
-	System.out.println("Blackjack");
 
 	if (auswertStatSp2 == 1)
 		ausgabetextS2C = "Gewonnen";
-	System.out.println("geww");
 
 	if (auswertStatSp2 == 2)
 		ausgabetextS2C = "Verloren";
-	System.out.println("verl");
 
 	if (auswertStatSp1 == 3)
 		ausgabetextS1C = "Unentschieden";
-	System.out.println("Unent");
 
 	/** 1. Karte von Dealer aufdecken*/
 	dealerKarteAufdecken(s);
@@ -1509,8 +1513,8 @@ public class Client2 implements Runnable {
 		cbo.kartenwertDealer.setVisible(true);
 		cbo.nachrichtS1C.setText(ausgabetextS1C);
 		cbo.nachrichtS2C.setText(ausgabetextS2C);
-		System.out.println("Hier sollte angzeigt werden: "+ausgabetextS1C);
 		cbo.nachrichtS1C.setVisible(true);
+
 		cbo.nachrichtS2C.setVisible(true);
 		cbo.buttonNaechsteRunde.setVisible(true);
 	}

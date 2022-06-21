@@ -28,7 +28,8 @@ public class Server2 implements Runnable {
 
 	private String ip = "localhost";
 	private int port = 22222;
-	
+	private Scanner scanner = new Scanner(System.in);
+
 	private Thread thread;
 
 	private boolean close = false; //Schließt wenn true
@@ -39,9 +40,9 @@ public class Server2 implements Runnable {
 
 	private Socket socket;
 	private DataOutputStream dos;
-	
+	private ObjectOutputStream oos;
 	private DataInputStream dis;
-
+	private ObjectInputStream ois;
 
 	private ServerSocket serverSocket;
 
@@ -52,13 +53,15 @@ public class Server2 implements Runnable {
 	static boolean wartenAufSpielerServer = false; 
 
 
+	private String[] spaces = new String[9];
 
+	private boolean yourTurn = false; //bin ich an der Reihe?
 	private boolean client = true;	// Bin ich der Client?
-
+	private boolean host = false; // Bin ich der Host?
 	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
-
-
-
+	private boolean unableToCommunicateWithOpponent = false; // Verbindung abgebrochen?
+	private boolean won = false; //ich habe den Spielzug gewonnen
+	private boolean dealerWon = false; // der Dealer hat gewonnen
 	int gesetztS; 
 	int gesetztC;
 	static int  hitostay;
@@ -70,6 +73,17 @@ public class Server2 implements Runnable {
 	boolean anmelden = false;
 
 
+
+
+	private int errors = 0;
+
+
+
+	private String waitingString = "Warten auf Mitspieler...";
+	private String unableToCommunicateWithOpponentString = "Kommunikation mit dem Spieler nicht möglich.";
+	private String wonString = "Du hast gewonnen!";
+	private String enemyWonString = "Dealer gewinnt!";
+	private String tieString = "Unentschieden!";
 
 	public Server2() {
 
@@ -160,7 +174,8 @@ public class Server2 implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+		yourTurn = true;
+		host = true;
 		client = false;
 	}
 
