@@ -167,7 +167,7 @@ public class Spiel {
 
 	// Checkt ob Blackjack oder Überkauft
 	/** checkBJSpieler 1 muss immer als erstes aufgerufen werden!*/
-	public int checkBJSpieler1(){
+	public void checkBJSpieler1(){
 		winSpieler1 = false;
 		winSpieler2 = false;
 		winDealer = false;
@@ -179,19 +179,12 @@ public class Spiel {
 		pattSpieler1 = false;
 		pattSpieler2 = false;
 		if (wertSpieler1() == 21) {
-			System.out.println("Hier true setzen!");
-			winSpieler1 = true;		      		
-			return 0;
+			winSpieler1 = true;
 		}
 		if (wertSpieler1() > 21) {
 			loseSpieler1 = true;
-			System.out.println("PLanlos");
-			return -1;
 		}
-		else return -1;
-
 	} 
-
 
 
 	public void checkBJSpieler2(){
@@ -210,7 +203,7 @@ public class Spiel {
 	}
 
 	/**Auswerten Methoden*/
-	/** 1 = Sieg Spieler, 2 = Sieg Dealer (Spieler verliert), 3 = unentschieden*/
+	/** 0 = BlackJack, 1 = Sieg Spieler, 2 = Sieg Dealer (Spieler verliert), 3 = unentschieden*/
 	public int auswertenS1() {
 		winSpieler1 = false;
 		winSpieler2 = false;
@@ -222,15 +215,29 @@ public class Spiel {
 
 		pattSpieler1 = false;
 		pattSpieler2 = false;
-		
-		if ((wertSpieler1() > wertDealer())&& wertSpieler1()<22 && wertDealer() <22) {
+
+		if ((wertSpieler1() > wertDealer())&& wertSpieler1()<21 && wertDealer() <22) {
 			winSpieler1 = true;
 			loseDealer = true;
 			return 1;}
-		else if (wertSpieler1()<22 && wertDealer() >21) {
+		else if ((wertSpieler1() > wertDealer())&& wertSpieler1()==21 && wertDealer() <22) {
+			winSpieler1 = true;
+			loseDealer = true;
+			return 0;}
+		else if (wertSpieler1()<21 && wertDealer() >21) {
 			winSpieler1 = true;  
 			loseDealer = true;
 			return 1;
+		}
+		else if (wertSpieler1()==21 && wertDealer() >21) {
+			winSpieler1 = true;  
+			loseDealer = true;
+			return 0;
+		}
+		else if (wertSpieler1()==21 && wertDealer() <21) {
+			winSpieler1 = true;  
+			loseDealer = true;
+			return 0;
 		}
 		else if ((wertSpieler1() < wertDealer())&& wertSpieler1()<22 && wertDealer() <22) {
 			winDealer = true;
@@ -252,13 +259,18 @@ public class Spiel {
 			pattSpieler1 = true;
 			return 3;
 		}
-		return -1;
+		else if (wertSpieler1() == 21 && wertDealer() == 21){
+			loseDealer = true;
+			pattSpieler1 = true;
+			return 3;
+		}
+		else return -1;
 
 	}
 
 	public int auswertenS2() {
-		
-		
+
+
 		winSpieler1 = false;
 		winSpieler2 = false;
 		winDealer = false;
@@ -269,17 +281,31 @@ public class Spiel {
 
 		pattSpieler1 = false;
 		pattSpieler2 = false;
-		
-		
-				
-		if ((wertSpieler2() > wertDealer())&& wertSpieler2()<22 && wertDealer() <22) {
+
+
+
+		if ((wertSpieler2() > wertDealer())&& wertSpieler2()<21 && wertDealer() <22) {
 			winSpieler2 = true;
 			loseDealer = true;
 			return 1;}
-		else if (wertSpieler2()<22 && wertDealer() >21) {
+		else if ((wertSpieler2() > wertDealer())&& wertSpieler2()==21 && wertDealer() <22) {
+			winSpieler2 = true;
+			loseDealer = true;
+			return 0;}
+		else if (wertSpieler2()<21 && wertDealer() >21) {
 			winSpieler2 = true;  
 			loseDealer = true;
 			return 1;
+		}
+		else if (wertSpieler2()==21 && wertDealer() >21) {
+			winSpieler2 = true;  
+			loseDealer = true;
+			return 0;
+		}
+		else if (wertSpieler2()==21 && wertDealer() <21) {
+			winSpieler2 = true;  
+			loseDealer = true;
+			return 0;
 		}
 		else if ((wertSpieler2() < wertDealer())&& wertSpieler2()<22 && wertDealer() <22) {
 			winDealer = true;
@@ -292,17 +318,21 @@ public class Spiel {
 			return 2;
 		}
 		else if (wertSpieler2()>22 && wertDealer() >22) {
-			
+
 			winDealer = true;
 			loseSpieler2 = true;
 			return 2;
 		}
-		else if (wertSpieler2() == wertDealer())
-		{
+		else if (wertSpieler2() == wertDealer()){
 			pattSpieler2 = true;
 			return 3;
 		}
-		return -1;
+		else if (wertSpieler2() == 21 && wertDealer() == 21){
+			loseDealer = true;
+			pattSpieler2 = true;
+			return 3;
+		}
+		else return -1;
 
 
 	}

@@ -193,7 +193,7 @@ public class Client2 implements Runnable {
 			client.wertSpieler1 = 0;
 			client.wertSpieler2 = 0;
 			client.wertSpieler2 = 0;
-			int z = 0; //Zähler. Zählt Anzahl der Spielzüge. (max 3 Karten aufnehmen)
+			int z = 2; //Zähler. Zählt Anzahl der Spielzüge. (max 3 Karten aufnehmen)
 
 			/**Gesetzter Betrag vom Server empfangen:*/
 			try {
@@ -299,16 +299,16 @@ public class Client2 implements Runnable {
 					e1.printStackTrace();
 				}
 				gewinnbenachrichtung(client);
-				
+
 				rundeZuAuswerten();
 				try {
-					Thread.sleep(10000);
+					Thread.sleep(15000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				auswertenZuEinsatz();
-				
+
 				continue newgame;
 			}
 
@@ -317,8 +317,8 @@ public class Client2 implements Runnable {
 
 				boolean hit1 = false;
 				boolean hit2 = false;
-				z++;
-				if (z>3) {
+
+				if (z>5) {
 					break newcard;
 				}
 				/**Spieler 1 Hit/Stay? empfangen"*/
@@ -350,12 +350,13 @@ public class Client2 implements Runnable {
 					e.printStackTrace(); }
 
 				/* Wenn kein Spieler eine Karte aufnehmen möchte*/
-				while((!hit1 || !hit2)) {
+				while((!hit1 && !hit2)) {
 
 					/**Karten für Dealer empfangen, sofern der Kartenwert unter 17 liegt*/
 					if (client.wertDealer() < 17) {
 						client.DeckDealer.add(karteEmpfangen());
 					}
+					kartenwertanzeigen(client);
 					kartenausgebenS_R234(client, z);
 
 					/**Auswertestatus der Spieler empfangen*/
@@ -373,20 +374,20 @@ public class Client2 implements Runnable {
 					}
 					/** Gewinner/Verlierernachricht ausgeben*/
 					gewinnbenachrichtung(client);	
-					
+
 					rundeZuAuswerten();
 					try {
-						Thread.sleep(10000);
+						Thread.sleep(15000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					auswertenZuEinsatz();
-					
+
 					continue newgame;
 				}
 
-				/* Wenn beide Spieler eine Karte aufnehmen möchten*/
+				/* Wenn beide oder ein Spieler eine Karte aufnehmen möchten*/
 				while((hit1 || hit2)) {
 					/**Karte für Spieler 1 empfangen*/
 					if (hit1) {
@@ -400,48 +401,76 @@ public class Client2 implements Runnable {
 					if (client.wertDealer() < 17) {
 						client.DeckDealer.add(karteEmpfangen());
 					}	
-					kartenausgebenS_R234(client, z);
 					kartenwertanzeigen(client);
+					kartenausgebenS_R234(client, z);
 
-					/** BlackJack/Überkauft Abfrage empfangen.*/
-					try {
-						client.winSpieler1 = dis.readBoolean();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					if (hit1 && hit2) {
+						/** BlackJack/Überkauft Abfrage empfangen.*/
+						try {
+							client.winSpieler1 = dis.readBoolean();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						try {
+							client.winSpieler2 = dis.readBoolean();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						try {
+							client.winDealer = dis.readBoolean();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						try {
+							client.loseSpieler1 = dis.readBoolean();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						try {
+							client.loseSpieler2 = dis.readBoolean();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						try {
+							client.loseDealer = dis.readBoolean();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						/* Wenn ein Spieler BlackJack oder Überkauft*/
+						if ((client.winSpieler1 || client.winSpieler2 || client.winDealer || client.winDealer || client.loseSpieler1 || client.loseSpieler2 || client.loseDealer)) {
+							/** Auswertestatus der Spieler empfangen*/
+							try {
+								auswertStatSp1 = dis.readInt();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							try {
+								auswertStatSp2 = dis.readInt();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							gewinnbenachrichtung(client);
+
+							rundeZuAuswerten();
+							try {
+								Thread.sleep(15000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							auswertenZuEinsatz();
+							continue newgame;
+						}
 					}
-					try {
-						client.winSpieler2 = dis.readBoolean();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						client.winDealer = dis.readBoolean();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						client.loseSpieler1 = dis.readBoolean();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						client.loseSpieler2 = dis.readBoolean();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						client.loseDealer = dis.readBoolean();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					/* Wenn ein Spieler BlackJack oder Überkauft*/
-					if ((client.winSpieler1 || client.winSpieler2 || client.winDealer || client.winDealer || client.loseSpieler1 || client.loseSpieler2 || client.loseDealer)) {
+					if ((hit1 && !hit2) || (!hit1 && hit2)) {
 						/** Auswertestatus der Spieler empfangen*/
 						try {
 							auswertStatSp1 = dis.readInt();
@@ -456,18 +485,18 @@ public class Client2 implements Runnable {
 							e1.printStackTrace();
 						}
 						gewinnbenachrichtung(client);
-						
 						rundeZuAuswerten();
 						try {
-							Thread.sleep(10000);
+							Thread.sleep(15000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						auswertenZuEinsatz();
-						
 						continue newgame;
 					}
+
+					z++;
 					continue newcard;
 				}
 
@@ -479,10 +508,10 @@ public class Client2 implements Runnable {
 
 
 
-	void gewinnbenachrichtung (Spiel s)
+	void gewinnbenachrichtung (Spiel s) {
 
 	/** Spieler 1*/
-	{ if (auswertStatSp1 == 0)
+	 if (auswertStatSp1 == 0)
 		ausgabetextS1C = "BlackJack";
 
 	if (auswertStatSp1 == 1)
@@ -833,26 +862,28 @@ public class Client2 implements Runnable {
 		cbo.buttonJeton25.setVisible(true);
 		cbo.buttonJeton50.setVisible(true);
 		cbo.buttonJeton100.setVisible(true);
-		cbo.karte1Spieler1.setVisible(true);
-		cbo.karte2Spieler1.setVisible(true);
-		cbo.karte3Spieler1.setVisible(true); 
-		cbo.karte4Spieler1.setVisible(true); 
-		cbo.karte5Spieler1.setVisible(true); 
-		cbo.karte1Spieler2.setVisible(true);
-		cbo.karte2Spieler2.setVisible(true);
-		cbo.karte3Spieler2.setVisible(true);
-		cbo.karte4Spieler2.setVisible(true);
-		cbo.karte5Spieler2.setVisible(true);
-		cbo.karte1Bank.setVisible(true);
-		cbo.karte2Bank.setVisible(true);
-		cbo.karte3Bank.setVisible(true);
-		cbo.karte4Bank.setVisible(true);
-		cbo.karte5Bank.setVisible(true);
+
+		cbo.karte1Spieler1.setVisible(false);
+		cbo.karte2Spieler1.setVisible(false);
+		cbo.karte3Spieler1.setVisible(false); 
+		cbo.karte4Spieler1.setVisible(false); 
+		cbo.karte5Spieler1.setVisible(false); 
+		cbo.karte1Spieler2.setVisible(false);
+		cbo.karte2Spieler2.setVisible(false);
+		cbo.karte3Spieler2.setVisible(false);
+		cbo.karte4Spieler2.setVisible(false);
+		cbo.karte5Spieler2.setVisible(false);
+		cbo.karte1Bank.setVisible(false);
+		cbo.karte2Bank.setVisible(false);
+		cbo.karte3Bank.setVisible(false);
+		cbo.karte4Bank.setVisible(false);
+		cbo.karte5Bank.setVisible(false);
+
 
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(true);
-		
+
 
 
 		cbo.kartenwertSpieler1.setVisible(true);
@@ -860,13 +891,13 @@ public class Client2 implements Runnable {
 		cbo.kartenwertDealer.setVisible(true);
 
 	}
-	
+
 	/*
 	public void kontostandanzeigen (Spiel s) {
 		bo.kontostandSpieler1.setText(("Kontostand beträgt"+ Integer.toString(playerS.getKontostand());
 		bo.kontostandSpieler2.setText(("Kontostand beträgt" + Integer.toString(playerC.getKontostand());
 	}
-	*/
+	 */
 
 
 	public void kartenwertanzeigen(Spiel s) {
@@ -928,6 +959,16 @@ public class Client2 implements Runnable {
 
 
 	public void kartenausgebenS_R1(Spiel s){
+
+		cbo.karte3Spieler1.setIcon(null);
+		cbo.karte3Spieler2.setIcon(null);
+		cbo.karte3Bank.setIcon(null);
+		cbo.karte4Spieler1.setIcon(null);
+		cbo.karte4Spieler2.setIcon(null);
+		cbo.karte4Bank.setIcon(null);
+		cbo.karte5Spieler1.setIcon(null);
+		cbo.karte5Spieler2.setIcon(null);
+		cbo.karte5Bank.setIcon(null);
 
 		//String farbek11 = s.DeckSpieler1.get(0).getFarbe();
 		String farbek11 = s.DeckSpieler1.get(0).getFarbe();
@@ -1042,20 +1083,28 @@ public class Client2 implements Runnable {
 			break;
 		} 
 
-
 		cbo.karte1Spieler1.setVisible(true);
 		cbo.karte2Spieler1.setVisible(true);
+		cbo.karte3Spieler1.setVisible(false);
+		cbo.karte4Spieler1.setVisible(false);
+		cbo.karte5Spieler1.setVisible(false);
 		cbo.karte1Spieler2.setVisible(true);
 		cbo.karte2Spieler2.setVisible(true);
+		cbo.karte3Spieler2.setVisible(false);
+		cbo.karte4Spieler2.setVisible(false);
+		cbo.karte5Spieler2.setVisible(false);
 		cbo.karte1Bank.setVisible(true);
 		cbo.karte1Bank.setIcon(cbo.rueckseite);
 		cbo.karte2Bank.setVisible(true); 
+		cbo.karte3Bank.setVisible(false); 
+		cbo.karte4Bank.setVisible(false); 
+		cbo.karte5Bank.setVisible(false); 
 	}
 
 	public void kartenausgebenS_R234(Spiel s, int runde){
-		String farbek11=null;
-		String farbek12=null;
-		String farbebank1=null;
+		String farbek11= "null";
+		String farbek12= "null";
+		String farbebank1= "null";
 		int nummerk11=-1;
 		int nummerk12=-1;
 		int nummerk1b=-1;
@@ -1088,63 +1137,64 @@ public class Client2 implements Runnable {
 		}
 		catch (Exception e){}
 
-		/**weitere Karte von Spieler1 anzeigen.*/
-		switch (farbek11) {
-		case "pik":
-			cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
-			break;
-		case "herz":
-			cbo.karte1Spieler1.setIcon(cbo.herz[nummerk11]);
-			break;
-		case "kreuz":
-			cbo.karte1Spieler1.setIcon(cbo.kreuz[nummerk11]);
-			break;
-		case "karo":
-			cbo.karte1Spieler1.setIcon(cbo.karo[nummerk11]);
-			break;
-		default:
-			break;
-		}
 
-
-		//Karte Spieler2
-		switch (farbek12) {
-		case "pik":
-			cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
-			break;
-		case "herz":
-			cbo.karte1Spieler2.setIcon(cbo.herz[nummerk12]);
-			break;
-		case "kreuz":
-			cbo.karte1Spieler2.setIcon(cbo.kreuz[nummerk12]);
-			break;
-		case "karo":
-			cbo.karte1Spieler2.setIcon(cbo.karo[nummerk12]);
-			break;
-		default:
-			break;
-		}
-
-
-		//Karte Bank
-		switch (farbebank1) {
-		case "pik":
-			cbo.karte2Bank.setIcon(cbo.pik[nummerk1b]);
-			break;
-		case "herz":
-			cbo.karte2Bank.setIcon(cbo.herz[nummerk1b]);
-			break;
-		case "kreuz":
-			cbo.karte2Bank.setIcon(cbo.kreuz[nummerk1b]);
-			break;
-		case "karo":
-			cbo.karte2Bank.setIcon(cbo.karo[nummerk1b]);
-			break;
-		default:
-			break;
-		} 
 
 		if (runde == 2) {
+			/**weitere Karte von Spieler1 anzeigen.*/
+			switch (farbek11) {
+			case "pik":
+				cbo.karte3Spieler1.setIcon(cbo.pik[nummerk11]);
+				break;
+			case "herz":
+				cbo.karte3Spieler1.setIcon(cbo.herz[nummerk11]);
+				break;
+			case "kreuz":
+				cbo.karte3Spieler1.setIcon(cbo.kreuz[nummerk11]);
+				break;
+			case "karo":
+				cbo.karte3Spieler1.setIcon(cbo.karo[nummerk11]);
+				break;
+			case "null":
+				break;
+			}
+
+
+			//Karte Spieler2
+			switch (farbek12) {
+			case "pik":
+				cbo.karte3Spieler2.setIcon(cbo.pik[nummerk12]);
+				break;
+			case "herz":
+				cbo.karte3Spieler2.setIcon(cbo.herz[nummerk12]);
+				break;
+			case "kreuz":
+				cbo.karte3Spieler2.setIcon(cbo.kreuz[nummerk12]);
+				break;
+			case "karo":
+				cbo.karte3Spieler2.setIcon(cbo.karo[nummerk12]);
+				break;
+			case "null":
+				break;
+			}
+
+
+			//Karte Bank
+			switch (farbebank1) {
+			case "pik":
+				cbo.karte3Bank.setIcon(cbo.pik[nummerk1b]);
+				break;
+			case "herz":
+				cbo.karte3Bank.setIcon(cbo.herz[nummerk1b]);
+				break;
+			case "kreuz":
+				cbo.karte3Bank.setIcon(cbo.kreuz[nummerk1b]);
+				break;
+			case "karo":
+				cbo.karte3Bank.setIcon(cbo.karo[nummerk1b]);
+				break;
+			case "null":
+				break;
+			} 
 			cbo.karte1Spieler1.setVisible(true);
 			cbo.karte2Spieler1.setVisible(true);
 			cbo.karte3Spieler1.setVisible(true);
@@ -1158,6 +1208,62 @@ public class Client2 implements Runnable {
 			cbo.karte2Bank.setVisible(true);
 			cbo.karte3Bank.setVisible(true);}
 		else if (runde == 3) {
+			/**weitere Karte von Spieler1 anzeigen.*/
+			switch (farbek11) {
+			case "pik":
+				cbo.karte4Spieler1.setIcon(cbo.pik[nummerk11]);
+				break;
+			case "herz":
+				cbo.karte4Spieler1.setIcon(cbo.herz[nummerk11]);
+				break;
+			case "kreuz":
+				cbo.karte4Spieler1.setIcon(cbo.kreuz[nummerk11]);
+				break;
+			case "karo":
+				cbo.karte4Spieler1.setIcon(cbo.karo[nummerk11]);
+				break;
+			case "null":
+				break;
+			}
+
+
+			//Karte Spieler2
+			switch (farbek12) {
+			case "pik":
+				cbo.karte4Spieler2.setIcon(cbo.pik[nummerk12]);
+				break;
+			case "herz":
+				cbo.karte4Spieler2.setIcon(cbo.herz[nummerk12]);
+				break;
+			case "kreuz":
+				cbo.karte4Spieler2.setIcon(cbo.kreuz[nummerk12]);
+				break;
+			case "karo":
+				cbo.karte4Spieler2.setIcon(cbo.karo[nummerk12]);
+				break;
+			case "null":
+				break;
+			}
+
+
+			//Karte Bank
+			switch (farbebank1) {
+			case "pik":
+				cbo.karte4Bank.setIcon(cbo.pik[nummerk1b]);
+				break;
+			case "herz":
+				cbo.karte4Bank.setIcon(cbo.herz[nummerk1b]);
+				break;
+			case "kreuz":
+				cbo.karte4Bank.setIcon(cbo.kreuz[nummerk1b]);
+				break;
+			case "karo":
+				cbo.karte4Bank.setIcon(cbo.karo[nummerk1b]);
+				break;
+			case "null":
+				break;
+			} 
+
 			cbo.karte1Spieler1.setVisible(true);
 			cbo.karte2Spieler1.setVisible(true);
 			cbo.karte3Spieler1.setVisible(true);
@@ -1174,6 +1280,61 @@ public class Client2 implements Runnable {
 			cbo.karte3Bank.setVisible(true);
 			cbo.karte4Bank.setVisible(true);}
 		else if (runde == 4) {
+
+			switch (farbek11) {
+			case "pik":
+				cbo.karte5Spieler1.setIcon(cbo.pik[nummerk11]);
+				break;
+			case "herz":
+				cbo.karte5Spieler1.setIcon(cbo.herz[nummerk11]);
+				break;
+			case "kreuz":
+				cbo.karte5Spieler1.setIcon(cbo.kreuz[nummerk11]);
+				break;
+			case "karo":
+				cbo.karte5Spieler1.setIcon(cbo.karo[nummerk11]);
+				break;
+			case "null":
+				break;
+			}
+
+
+			//Karte Spieler2
+			switch (farbek12) {
+			case "pik":
+				cbo.karte5Spieler2.setIcon(cbo.pik[nummerk12]);
+				break;
+			case "herz":
+				cbo.karte5Spieler2.setIcon(cbo.herz[nummerk12]);
+				break;
+			case "kreuz":
+				cbo.karte5Spieler2.setIcon(cbo.kreuz[nummerk12]);
+				break;
+			case "karo":
+				cbo.karte5Spieler2.setIcon(cbo.karo[nummerk12]);
+				break;
+			case "null":
+				break;
+			}
+
+
+			//Karte Bank
+			switch (farbebank1) {
+			case "pik":
+				cbo.karte5Bank.setIcon(cbo.pik[nummerk1b]);
+				break;
+			case "herz":
+				cbo.karte5Bank.setIcon(cbo.herz[nummerk1b]);
+				break;
+			case "kreuz":
+				cbo.karte5Bank.setIcon(cbo.kreuz[nummerk1b]);
+				break;
+			case "karo":
+				cbo.karte5Bank.setIcon(cbo.karo[nummerk1b]);
+				break;
+			case "null":
+				break;
+			} 
 			cbo.karte1Spieler1.setVisible(true);
 			cbo.karte2Spieler1.setVisible(true);
 			cbo.karte3Spieler1.setVisible(true);
@@ -1256,21 +1417,21 @@ public class Client2 implements Runnable {
 		cbo.buttonJeton25.setVisible(false);
 		cbo.buttonJeton50.setVisible(false);
 		cbo.buttonJeton100.setVisible(false);
-		cbo.karte1Spieler1.setVisible(true);
-		cbo.karte2Spieler1.setVisible(true);
-		cbo.karte3Spieler1.setVisible(true); 
-		cbo.karte4Spieler1.setVisible(true); 
-		cbo.karte5Spieler1.setVisible(true); 
-		cbo.karte1Spieler2.setVisible(true);
-		cbo.karte2Spieler2.setVisible(true);
-		cbo.karte3Spieler2.setVisible(true);
-		cbo.karte4Spieler2.setVisible(true);
-		cbo.karte5Spieler2.setVisible(true);
-		cbo.karte1Bank.setVisible(true);
-		cbo.karte2Bank.setVisible(true);
-		cbo.karte3Bank.setVisible(true);
-		cbo.karte4Bank.setVisible(true);
-		cbo.karte5Bank.setVisible(true);
+		cbo.karte1Spieler1.setVisible(false);
+		cbo.karte2Spieler1.setVisible(false);
+		cbo.karte3Spieler1.setVisible(false); 
+		cbo.karte4Spieler1.setVisible(false); 
+		cbo.karte5Spieler1.setVisible(false); 
+		cbo.karte1Spieler2.setVisible(false);
+		cbo.karte2Spieler2.setVisible(false);
+		cbo.karte3Spieler2.setVisible(false);
+		cbo.karte4Spieler2.setVisible(false);
+		cbo.karte5Spieler2.setVisible(false);
+		cbo.karte1Bank.setVisible(false);
+		cbo.karte2Bank.setVisible(false);
+		cbo.karte3Bank.setVisible(false);
+		cbo.karte4Bank.setVisible(false);
+		cbo.karte5Bank.setVisible(false);
 		cbo.einsatzSpieler1C.setVisible(true);
 		cbo.einsatzSpieler2C.setVisible(true);
 		//cbo.kontostandSpieler1C.setVisible(true);

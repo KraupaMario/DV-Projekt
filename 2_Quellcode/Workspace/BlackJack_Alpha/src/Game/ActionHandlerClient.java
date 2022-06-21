@@ -87,12 +87,7 @@ public void actionPerformed(ActionEvent e) {
 			spiel.portZuEinsatz(); 
 			break; */
 		case "Einsatz":
-			
-			
-			
-				spiel.einsatzZuJetons(); 
-			
-			 
+			spiel.einsatzZuJetons(); 
 			break; 
 		case "Jeton10": 
 			Client2.swischespeicher += 10;
