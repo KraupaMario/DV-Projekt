@@ -43,8 +43,9 @@ public class BenutzeroberflächeClient extends JFrame  {
 	//Label
 	 JLabel labelBenutzernameC = new JLabel ("Benutzername:");
 	 JLabel labelPasswortC = new JLabel("Passwort:");
-	// JLabel ueberschriftC = new JLabel("BLACK JACK"); 
+	 JLabel ueberschriftC = new JLabel("BLACK JACK"); 
 	 JLabel ueberschriftCSpielC = new JLabel ("BLACK JACK"); 
+	 JLabel unterueberschriftCSpielC = new JLabel ("Casino Las Vegas"); 
 	 JLabel labelSpieler1C = new JLabel ("Spieler1");
 	 JLabel labelSpieler2C = new JLabel ("Spieler2"); 
 	 JLabel labelBankC = new JLabel ("Bank"); 
@@ -55,7 +56,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel labelportC = new JLabel("Port:");
 	 JLabel einsatzSpieler1C = new JLabel ("Einsatz Spieler1:"); 
 	 JLabel einsatzSpieler2C = new JLabel ("Einsatz Spieler2:"); 
-	 //JLabel kontostandSpieler1C = new JLabel ("Kontostand Spieler1:"); 
+	 JLabel kontostandSpieler1 = new JLabel ("Kontostand Spieler1: privat!!!"); 
 	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
 	 JLabel einsatzausgabeSpieler1C = new JLabel();
 	 JLabel einsatzausgabeSpieler2C = new JLabel();
@@ -63,11 +64,11 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel kartenwertSpieler1 = new JLabel(); 
 	 JLabel kartenwertSpieler2 = new JLabel(); 
 	 JLabel kartenwertDealer = new JLabel(); 
-	 JLabel nachrichtS1 = new JLabel();
-	 JLabel nachrichtS2 = new JLabel();
+	 JLabel nachrichtS1C = new JLabel();
+	 JLabel nachrichtS2C = new JLabel();
 	 JLabel anmeldetext = new JLabel();
 	 JLabel registrierungtext = new JLabel();
-	 JLabel ueberschrift = new JLabel("BLACK JACK"); 
+	 
 	 JLabel wartenAufSpieler = new JLabel("Bitte warten...");
 	
 
@@ -78,23 +79,24 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
 	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
 	 Icon testkarte = new ImageIcon(getClass().getResource("testkarte.PNG"));
-	 Icon rückseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
+	 Icon rueckseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
 	 Icon lasvegas = new ImageIcon(getClass().getClassLoader().getResource("Karten/lasvegas.jpg"));
 	 Icon blackjack = new ImageIcon(getClass().getClassLoader().getResource("Karten/blackjacklogo.png"));
 	 Icon hintergrundtisch = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundtisch.jpg"));
-	 Icon hintergrundweiß = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundweiß.png"));
-	 Icon hintergrundgrün = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundgrün.png"));
+	 Icon hintergrundweiss = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundweiß.png"));
+	 Icon hintergrundgruen = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundgrün.png"));
 	 
 	 JLabel panelstart = new JLabel(hintergrundtisch);
 	 JLabel hintergrundmenu = new JLabel(lasvegas);
 	 JLabel bedienfeld = new JLabel();
 	 JLabel logo = new JLabel(blackjack);
-	 JLabel kartenfeldS1 = new JLabel(hintergrundweiß);
-	 JLabel kartenfeldS1g = new JLabel(hintergrundgrün);
-     JLabel kartenfeldS2 = new JLabel(hintergrundweiß);
-     JLabel kartenfeldS2g = new JLabel(hintergrundgrün);
-     JLabel kartenfeldbank = new JLabel(hintergrundweiß);
-     JLabel kartenfeldbankg = new JLabel(hintergrundgrün);
+	 JLabel kartenfeldS1 = new JLabel(hintergrundweiss);
+	 JLabel kartenfeldS1g = new JLabel(hintergrundgruen);
+     JLabel kartenfeldS2 = new JLabel(hintergrundweiss);
+     JLabel kartenfeldS2g = new JLabel(hintergrundgruen);
+     JLabel kartenfeldbank = new JLabel(hintergrundweiss);
+     JLabel kartenfeldbankg = new JLabel(hintergrundgruen);
+     JLabel menuleiste = new JLabel(testkarte);
 	 
 	 //PIK
 	 Icon pik[] = new ImageIcon[14];{
@@ -148,16 +150,16 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JButton buttonRegistrieren = new JButton("Registrieren");
 	 JButton buttonstart = new JButton("Start");
 	 JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
-	 JButton buttonZurück = new JButton("Zurück");
-	 JButton buttonZurückZuStart = new JButton("Zurück zum Start");
-	 JButton buttonIPAdresseBestätigen = new JButton ("IP Adresse bestätigen");
+	 JButton buttonZurueck = new JButton("Zurück");
+	 JButton buttonZurueckZuStart = new JButton("Zurück zum Start");
+	 JButton buttonIPAdresseBestaetigen = new JButton ("IP Adresse bestätigen");
 	 JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
 	 JButton buttonEinsatz = new JButton ("Einsatz");
 	 JButton buttonJeton10 = new JButton("Jeton10",jeton_10);
 	 JButton buttonJeton25 = new JButton("Jeton25", jeton_25);
 	 JButton buttonJeton50 = new JButton ("Jeton50", jeton_50);
 	 JButton buttonJeton100 = new JButton("Jeton100", jeton_100);
-	 JButton buttonEinsatzbestätigen = new JButton("Einsatz bestätigen");
+	 JButton buttonEinsatzbestaetigen = new JButton("Einsatz bestätigen");
 	 JButton buttonHit = new JButton ("Hit"); 
 	 JButton buttonStay = new JButton ("Stay"); 
 	 JButton buttonNaechsteRunde = new JButton ("Nächste Runde");
@@ -305,17 +307,17 @@ public class BenutzeroberflächeClient extends JFrame  {
 		panelstart.add(buttonRegistrieren);
 		
 
-		buttonZurückZuStart.setBounds(165,625,250,50);
-		buttonZurückZuStart.setFocusable(false);
-		buttonZurückZuStart.setBorder(null);
-		buttonZurückZuStart.setBackground(Color.gray);
-		buttonZurückZuStart.setFocusPainted(false);
-		buttonZurückZuStart.setForeground(Color.white);
-		buttonZurückZuStart.setFont(new Font("Book Antiqua", Font.PLAIN,30));
-		buttonZurückZuStart.setContentAreaFilled(false);
-		buttonZurückZuStart.addActionListener(spiel.cHandler);
-		buttonZurückZuStart.setVisible(false);
-		panelstart.add(buttonZurückZuStart);
+		buttonZurueckZuStart.setBounds(165,625,250,50);
+		buttonZurueckZuStart.setFocusable(false);
+		buttonZurueckZuStart.setBorder(null);
+		buttonZurueckZuStart.setBackground(Color.gray);
+		buttonZurueckZuStart.setFocusPainted(false);
+		buttonZurueckZuStart.setForeground(Color.white);
+		buttonZurueckZuStart.setFont(new Font("Book Antiqua", Font.PLAIN,30));
+		buttonZurueckZuStart.setContentAreaFilled(false);
+		buttonZurueckZuStart.addActionListener(spiel.cHandler);
+		buttonZurueckZuStart.setVisible(false);
+		panelstart.add(buttonZurueckZuStart);
 		
 
 	}
@@ -370,17 +372,17 @@ public class BenutzeroberflächeClient extends JFrame  {
 		panelstart.add(buttonstart);
 
 
-		buttonZurück.setBounds(380,610,150,50);
-		buttonZurück.setFocusable(false);
-		buttonZurück.setBorder(null);
-		buttonZurück.setBackground(Color.gray);
-		buttonZurück.setFocusPainted(false);
-		buttonZurück.setForeground(Color.white);
-		buttonZurück.setFont(new Font("Book Antiqua", Font.PLAIN,25));
-		buttonZurück.setContentAreaFilled(false);
-		buttonZurück.addActionListener(spiel.cHandler);
-		buttonZurück.setVisible(false);
-		panelstart.add(buttonZurück);
+		buttonZurueck.setBounds(380,610,150,50);
+		buttonZurueck.setFocusable(false);
+		buttonZurueck.setBorder(null);
+		buttonZurueck.setBackground(Color.gray);
+		buttonZurueck.setFocusPainted(false);
+		buttonZurueck.setForeground(Color.white);
+		buttonZurueck.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+		buttonZurueck.setContentAreaFilled(false);
+		buttonZurueck.addActionListener(spiel.cHandler);
+		buttonZurueck.setVisible(false);
+		panelstart.add(buttonZurueck);
 		
 		// TextField: Benutzername:
 		userText.setBounds(300,250,165,25);
@@ -393,15 +395,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 		passwordText.setVisible(false);
 		passwordText.addActionListener(spiel.cHandler);
 		panelstart.add(passwordText);
-		
-		
-
-		//Überschrift: 
-		ueberschrift.setBounds(400,100,1000,200);
-		Font schriftart = new Font ("Algerian",Font.PLAIN+Font.ITALIC,120);
-		ueberschrift.setFont(schriftart);
-		ueberschrift.setVisible(true);
-		this.add(ueberschrift); 
+		 
 
 
 	}
@@ -512,17 +506,17 @@ public void registrierfenster() {
 			panelstart.add(ipadresseText);
 
 			//Buttons:	
-			buttonIPAdresseBestätigen.setBounds(50,610,250,50);
-			buttonIPAdresseBestätigen.setFocusable(false);
-			buttonIPAdresseBestätigen.setBorder(null);
-			buttonIPAdresseBestätigen.setBackground(Color.gray);
-			buttonIPAdresseBestätigen.setFocusPainted(false);
-			buttonIPAdresseBestätigen.setForeground(Color.white);
-			buttonIPAdresseBestätigen.setFont(new Font("Book Antiqua", Font.PLAIN,25));
-			buttonIPAdresseBestätigen.setContentAreaFilled(false);
-			buttonIPAdresseBestätigen.addActionListener(spiel.cHandler);
-			buttonIPAdresseBestätigen.setVisible(false);
-			panelstart.add(buttonIPAdresseBestätigen);
+			buttonIPAdresseBestaetigen.setBounds(50,610,250,50);
+			buttonIPAdresseBestaetigen.setFocusable(false);
+			buttonIPAdresseBestaetigen.setBorder(null);
+			buttonIPAdresseBestaetigen.setBackground(Color.gray);
+			buttonIPAdresseBestaetigen.setFocusPainted(false);
+			buttonIPAdresseBestaetigen.setForeground(Color.white);
+			buttonIPAdresseBestaetigen.setFont(new Font("Book Antiqua", Font.PLAIN,25));
+			buttonIPAdresseBestaetigen.setContentAreaFilled(false);
+			buttonIPAdresseBestaetigen.addActionListener(spiel.cHandler);
+			buttonIPAdresseBestaetigen.setVisible(false);
+			panelstart.add(buttonIPAdresseBestaetigen);
 		}
 
 		public void portfenster() {
@@ -565,17 +559,23 @@ public void registrierfenster() {
 	
 		
 		public void einsatzfenster() {
+		
+		menuleiste.setBounds(0,700,1600,350);
+		menuleiste.setVisible(false);
+		this.add(menuleiste);
 			
 		
 		//Buttons:	
-		buttonEinsatz.setBounds(0,700,1600,100);
+		buttonEinsatz.setBounds(500,10,600,100);
 		buttonEinsatz.setFocusable(false);
 		buttonEinsatz.setBorder(null);
 		buttonEinsatz.setBackground(null);
 		buttonEinsatz.setForeground(Color.white);
+		buttonEinsatz.setContentAreaFilled(false);
+		buttonEinsatz.setFont(new Font("Calibri", Font.PLAIN,30));
 		buttonEinsatz.addActionListener(spiel.cHandler);
 		buttonEinsatz.setVisible(false);
-		this.add(buttonEinsatz);
+		menuleiste.add(buttonEinsatz);
 		
 		
 		//Bedienfeld: 
@@ -585,13 +585,21 @@ public void registrierfenster() {
 		this.add(bedienfeld);
 		
 		//Überschrift: 
-		ueberschriftCSpielC.setBounds(500,250,1000,200);
+		ueberschriftCSpielC.setBounds(525,300,1000,200);
 		Font schriftart = new Font ("Algerian",Font.PLAIN+Font.ITALIC,80);
 		ueberschriftCSpielC.setForeground(Color.yellow);
 		ueberschriftCSpielC.setFont(schriftart);
 		ueberschriftCSpielC.setVisible(false);
 		this.add(ueberschriftCSpielC); 
-		
+
+		//Überschrift: 
+		unterueberschriftCSpielC.setBounds(650,350,1000,200);
+		Font schriftart4 = new Font ("Algerian",Font.PLAIN+Font.ITALIC,25);
+		unterueberschriftCSpielC.setForeground(Color.yellow);
+		unterueberschriftCSpielC.setFont(schriftart4);
+		unterueberschriftCSpielC.setVisible(false);
+		this.add(unterueberschriftCSpielC);
+
 		//Überschrift: 
 		labelSpieler1C.setBounds(30,200,1000,200);
 		Font schriftart1 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
@@ -601,7 +609,7 @@ public void registrierfenster() {
 		this.add(labelSpieler1C); 
 		
 		//Überschrift: 
-		labelSpieler2C.setBounds(1050,200,1000,200);
+		labelSpieler2C.setBounds(1300,200,1000,200);
 		Font schriftart2 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelSpieler2C.setForeground(Color.yellow); 
 		labelSpieler2C.setFont(schriftart2);
@@ -609,7 +617,7 @@ public void registrierfenster() {
 		this.add(labelSpieler2C);
 
 		//Überschrift: 
-		labelBankC.setBounds(675,1,1000,100);
+		labelBankC.setBounds(725,1,1000,100);
 		Font schriftart3 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelBankC.setForeground(Color.yellow); 
 		labelBankC.setFont(schriftart3);
@@ -618,95 +626,95 @@ public void registrierfenster() {
 		
 	//Karten: 
 		
-		karte5Spieler1.setBounds(500,350,150,213);
+		karte5Spieler1.setBounds(200,0,150,213);
 		karte5Spieler1.setFocusable(false);
 		karte5Spieler1.setBorder(null);
 		karte5Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte5Spieler1);
 		
-		karte4Spieler1.setBounds(400,350,150,213);
+		karte4Spieler1.setBounds(150,0,150,213);
 		karte4Spieler1.setFocusable(false);
 		karte4Spieler1.setBorder(null);
 		karte4Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte4Spieler1);
 		
 		
-		karte3Spieler1.setBounds(300,350,150,213);
+		karte3Spieler1.setBounds(100,0,150,213);
 		karte3Spieler1.setFocusable(false);
 		karte3Spieler1.setBorder(null);
 		karte3Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte3Spieler1);
 		
-		karte2Spieler1.setBounds(200,350,150,213);
+		karte2Spieler1.setBounds(50,0,150,213);
 		karte2Spieler1.setFocusable(false);
 		karte2Spieler1.setBorder(null);
 		karte2Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte2Spieler1);
 		
-		karte1Spieler1.setBounds(100,350,150,213);
+		karte1Spieler1.setBounds(0,0,150,213);
 		karte1Spieler1.setFocusable(false);
 		karte1Spieler1.setBorder(null);
 		karte1Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte1Spieler1); 
 		
-		karte5Spieler2.setBounds(1400,350,150,213);
+		karte5Spieler2.setBounds(200,0,150,213);
 		karte5Spieler2.setFocusable(false);
 		karte5Spieler2.setBorder(null);
 		karte5Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte5Spieler2);
 		
 
-		karte4Spieler2.setBounds(1300,350,150,213);
+		karte4Spieler2.setBounds(150,0,150,213);
 		karte4Spieler2.setFocusable(false);
 		karte4Spieler2.setBorder(null);
 		karte4Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte4Spieler2);
 		
-		karte3Spieler2.setBounds(1200,350,150,213);
+		karte3Spieler2.setBounds(100,0,150,213);
 		karte3Spieler2.setFocusable(false);
 		karte3Spieler2.setBorder(null);
 		karte3Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte3Spieler2);
 		
-		karte2Spieler2.setBounds(1100,350,150,213);
+		karte2Spieler2.setBounds(50,0,150,213);
 		karte2Spieler2.setFocusable(false);
 		karte2Spieler2.setBorder(null);
 		karte2Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte2Spieler2);
 		
 		
-		karte1Spieler2.setBounds(1000,350,150,213);
+		karte1Spieler2.setBounds(0,0,150,213);
 		karte1Spieler2.setFocusable(false);
 		karte1Spieler2.setBorder(null);
 		karte1Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte1Spieler2);
 		
-		karte5Bank.setBounds(900,75,150,213);
+		karte5Bank.setBounds(200,0,150,213);
 		karte5Bank.setFocusable(false);
 		karte5Bank.setBorder(null);
 		karte5Bank.setVisible(false);
 		kartenfeldbankg.add(karte5Bank);
 
 		
-		karte4Bank.setBounds(800,75,150,213);
+		karte4Bank.setBounds(150,0,150,213);
 		karte4Bank.setFocusable(false);
 		karte4Bank.setBorder(null);
 		karte4Bank.setVisible(false);
 		kartenfeldbankg.add(karte4Bank);
 		
-		karte3Bank.setBounds(700,75,150,213);
+		karte3Bank.setBounds(100,0,150,213);
 		karte3Bank.setFocusable(false);
 		karte3Bank.setBorder(null);
 		karte3Bank.setVisible(false);
 		kartenfeldbankg.add(karte3Bank);
 		
-		karte2Bank.setBounds(600,75,150,213);
+		karte2Bank.setBounds(50,0,150,213);
 		karte2Bank.setFocusable(false);
 		karte2Bank.setBorder(null);
 		karte2Bank.setVisible(false);
 		kartenfeldbankg.add(karte2Bank);
 		
-		karte1Bank.setBounds(500,75,150,213);
+		karte1Bank.setBounds(0,0,150,213);
 		karte1Bank.setFocusable(false);
 		karte1Bank.setBorder(null);
 		karte1Bank.setVisible(false);
@@ -714,7 +722,7 @@ public void registrierfenster() {
 		
 		//Kartenfelder
 		
-		kartenfeldS1.setBounds(30,390,600,263);
+		kartenfeldS1.setBounds(30,430,600,263);
 		kartenfeldS1.setFocusable(false);
 		kartenfeldS1.setBorder(null);
 		kartenfeldS1.setForeground(Color.white);
@@ -730,7 +738,7 @@ public void registrierfenster() {
 		kartenfeldS1g.setVisible(true);
 		kartenfeldS1.add(kartenfeldS1g); 
 		
-		kartenfeldS2.setBounds(820,390,600,263);
+		kartenfeldS2.setBounds(900,430,600,263);
 		kartenfeldS2.setFocusable(false);
 		kartenfeldS2.setBorder(null);
 		kartenfeldS2.setForeground(Color.white);
@@ -746,7 +754,7 @@ public void registrierfenster() {
 		kartenfeldS2g.setVisible(true);
 		kartenfeldS2.add(kartenfeldS2g); 
 		
-		kartenfeldbank.setBounds(425,75,600,263);
+		kartenfeldbank.setBounds(475,75,600,263);
 		kartenfeldbank.setFocusable(false);
 		kartenfeldbank.setBorder(null);
 		kartenfeldbank.setForeground(Color.white);
@@ -765,53 +773,59 @@ public void registrierfenster() {
 		}
 		
 		public void jetonfenster() {
-			buttonJeton10.setBounds(350,700,100,100);
+			buttonJeton10.setBounds(250,0,115,100);
 			buttonJeton10.setFocusable(false);
 			buttonJeton10.setBorder(null);
 			buttonJeton10.setBackground(null);
-			buttonJeton10.setForeground(Color.white);
+			buttonJeton10.setForeground(Color.black);
 			buttonJeton10.addActionListener(spiel.cHandler);
+			buttonJeton10.setContentAreaFilled(false);
 			buttonJeton10.setVisible(false);
-			this.add(buttonJeton10);
+			menuleiste.add(buttonJeton10);
 			
-			buttonJeton25.setBounds(600,700,100,100);
+			buttonJeton25.setBounds(500,0,115,100);
 			buttonJeton25.setFocusable(false);
 			buttonJeton25.setBorder(null);
 			buttonJeton25.setBackground(null);
-			buttonJeton25.setForeground(Color.white);
+			buttonJeton25.setForeground(Color.black);
 			buttonJeton25.addActionListener(spiel.cHandler);
+			buttonJeton25.setContentAreaFilled(false);
 			buttonJeton25.setVisible(false);
-			this.add(buttonJeton25);
+			menuleiste.add(buttonJeton25);
 			
-			buttonJeton50.setBounds(850,700,100,100);
+			buttonJeton50.setBounds(1000,0,115,100);
 			buttonJeton50.setFocusable(false);
 			buttonJeton50.setBorder(null);
 			buttonJeton50.setBackground(null);
-			buttonJeton50.setForeground(Color.white);
+			buttonJeton50.setForeground(Color.black);
 			buttonJeton50.addActionListener(spiel.cHandler);
+			buttonJeton50.setContentAreaFilled(false);
 			buttonJeton50.setVisible(false);
-			this.add(buttonJeton50);
+			menuleiste.add(buttonJeton50);
 			
-			buttonJeton100.setBounds(1100,700,100,100);
+			buttonJeton100.setBounds(1250,0,115,100);
 			buttonJeton100.setFocusable(false);
 			buttonJeton100.setBorder(null);
 			buttonJeton100.setBackground(null);
-			buttonJeton100.setForeground(Color.white);
+			buttonJeton100.setForeground(Color.black);
 			buttonJeton100.addActionListener(spiel.cHandler);
+			buttonJeton100.setContentAreaFilled(false);
 			buttonJeton100.setVisible(false);
-			this.add(buttonJeton100);
+			menuleiste.add(buttonJeton100);
 			
-			buttonEinsatzbestätigen.setBounds(650,650,200,50);
-			buttonEinsatzbestätigen.setFocusable(false);
-			buttonEinsatzbestätigen.setBorder(null);
-			buttonEinsatzbestätigen.setBackground(null);
-			buttonEinsatzbestätigen.setForeground(Color.white);
-			buttonEinsatzbestätigen.addActionListener(spiel.cHandler);
-			buttonEinsatzbestätigen.setVisible(false);
-			this.add(buttonEinsatzbestätigen);
+			buttonEinsatzbestaetigen.setBounds(550,0,500,100);
+			buttonEinsatzbestaetigen.setFocusable(false);
+			buttonEinsatzbestaetigen.setBorder(null);
+			buttonEinsatzbestaetigen.setBackground(null);
+			buttonEinsatzbestaetigen.setForeground(Color.white);
+			buttonEinsatzbestaetigen.addActionListener(spiel.cHandler);
+			buttonEinsatzbestaetigen.setFont(new Font("Calibri", Font.PLAIN,30));
+			buttonEinsatzbestaetigen.setContentAreaFilled(false);
+			buttonEinsatzbestaetigen.setVisible(false);
+			menuleiste.add(buttonEinsatzbestaetigen);
 			
 			
-			einsatzausgabeSpieler1C.setBounds(10,650,165,25);
+			einsatzausgabeSpieler1C.setBounds(25,375,165,25);
 			einsatzausgabeSpieler1C.setFocusable(false);
 			einsatzausgabeSpieler1C.setBorder(null);
 			einsatzausgabeSpieler1C.setBackground(null);
@@ -820,7 +834,7 @@ public void registrierfenster() {
 			this.add(einsatzausgabeSpieler1C);
 			
 			
-			einsatzausgabeSpieler2C.setBounds(1350,650,165,25);
+			einsatzausgabeSpieler2C.setBounds(1300,375,165,25);
 			einsatzausgabeSpieler2C.setFocusable(false);
 			einsatzausgabeSpieler2C.setBorder(null);
 			einsatzausgabeSpieler2C.setBackground(null);
@@ -828,7 +842,7 @@ public void registrierfenster() {
 			einsatzausgabeSpieler2C.setVisible(false);
 			this.add(einsatzausgabeSpieler2C);
 			
-			einsatzSpieler1C.setBounds(10,600,165,25);
+			einsatzSpieler1C.setBounds(25,350,165,25);
 			einsatzSpieler1C.setFocusable(false);
 			einsatzSpieler1C.setBorder(null);
 			einsatzSpieler1C.setBackground(null);
@@ -836,7 +850,7 @@ public void registrierfenster() {
 			einsatzSpieler1C.setVisible(false);
 			this.add(einsatzSpieler1C);
 			
-			einsatzSpieler2C.setBounds(1350,600,165,25);
+			einsatzSpieler2C.setBounds(1300,350,165,25);
 			einsatzSpieler2C.setFocusable(false);
 			einsatzSpieler2C.setBorder(null);
 			einsatzSpieler2C.setBackground(null);
@@ -844,15 +858,15 @@ public void registrierfenster() {
 			einsatzSpieler2C.setVisible(false);
 			this.add(einsatzSpieler2C);
 			
-			/*kontostandSpieler1C.setBounds(10,10,165,25);
-			kontostandSpieler1C.setFocusable(false);
-			kontostandSpieler1C.setBorder(null);
-			kontostandSpieler1C.setBackground(null);
-			kontostandSpieler1C.setForeground(Color.white);
-			kontostandSpieler1C.setVisible(false);
-			this.add(kontostandSpieler1C);*/
+			kontostandSpieler1.setBounds(25,325,165,25);
+			kontostandSpieler1.setFocusable(false);
+			kontostandSpieler1.setBorder(null);
+			kontostandSpieler1.setBackground(null);
+			kontostandSpieler1.setForeground(Color.white);
+			kontostandSpieler1.setVisible(false);
+			this.add(kontostandSpieler1);
 			
-			kontostandSpieler2.setBounds(10,10,165,25);
+			kontostandSpieler2.setBounds(1300,325,165,25);
 			kontostandSpieler2.setFocusable(false);
 			kontostandSpieler2.setBorder(null);
 			kontostandSpieler2.setBackground(null);
@@ -886,23 +900,27 @@ public void registrierfenster() {
 			kartenwertDealer.setVisible(false);
 			this.add(kartenwertDealer);
 			
-			buttonHit.setBounds(400,700,200,100);
+			buttonHit.setBounds(400,0,200,100);
 			buttonHit.setFocusable(false);
 			buttonHit.setBorder(null);
 			buttonHit.setBackground(null);
 			buttonHit.setForeground(Color.white);
 			buttonHit.addActionListener(spiel.cHandler);
+			buttonHit.setFont(new Font("Calibri", Font.PLAIN,30));
+			buttonHit.setContentAreaFilled(false);
 			buttonHit.setVisible(false);
-			this.add(buttonHit);
+			menuleiste.add(buttonHit);
 			
-			buttonStay.setBounds(1000,700,200,100);
+			buttonStay.setBounds(1000,0,200,100);
 			buttonStay.setFocusable(false);
 			buttonStay.setBorder(null);
 			buttonStay.setBackground(null);
 			buttonStay.setForeground(Color.white);
 			buttonStay.addActionListener(spiel.cHandler);
+			buttonStay.setFont(new Font("Calibri", Font.PLAIN,30));
+			buttonStay.setContentAreaFilled(false);
 			buttonStay.setVisible(false);
-			this.add(buttonStay);
+			menuleiste.add(buttonStay);
 			
 		}
 		
@@ -917,16 +935,18 @@ public void registrierfenster() {
 			this.add(buttonNaechsteRunde);
 			
 			
-			nachrichtS1.setBounds(200,400,1000,100);
-			nachrichtS1.setForeground(Color.red); 
-			nachrichtS1.setVisible(false);
-			this.add(nachrichtS1);
+			nachrichtS1C.setBounds(200,500,1000,100);
+			nachrichtS1C.setForeground(Color.red); 
+			nachrichtS1C.setFont(new Font("Calibri", Font.PLAIN,40));
+			nachrichtS1C.setVisible(false);
+			this.add(nachrichtS1C);
 			
 			
-			nachrichtS2.setBounds(1100,400,1000,100);
-			nachrichtS2.setForeground(Color.red); 
-			nachrichtS2.setVisible(false);
-			this.add(nachrichtS2);
+			nachrichtS2C.setBounds(1100,500,1000,100);
+			nachrichtS2C.setForeground(Color.red); 
+			nachrichtS2C.setFont(new Font("Calibri", Font.PLAIN,40));
+			nachrichtS2C.setVisible(false);
+			this.add(nachrichtS2C);
 		}
 		public void wartefenster() {
 			wartenAufSpieler.setBounds(600,400,200,100);
@@ -934,6 +954,7 @@ public void registrierfenster() {
 			wartenAufSpieler.setVisible(false);
 			this.add(wartenAufSpieler);
 		}
+	
 		
 	
 	

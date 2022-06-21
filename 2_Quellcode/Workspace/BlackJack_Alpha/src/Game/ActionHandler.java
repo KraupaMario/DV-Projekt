@@ -127,15 +127,16 @@ public void actionPerformed(ActionEvent e) {
 			break;
 			
 
-		case "hit":
+		case "Hit":
 			Server2.hitostay=1;
 			Server2.klicks = true;
 			break;
 
 			
-		case "stay":
+		case "Stay":
 			Server2.hitostay=2;
 			Server2.klicks =true;
+			System.out.println("Srvr sagt Stay!!");
 			break;
 			
 			

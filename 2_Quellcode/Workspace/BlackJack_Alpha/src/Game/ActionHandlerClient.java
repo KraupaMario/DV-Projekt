@@ -87,13 +87,11 @@ public void actionPerformed(ActionEvent e) {
 			spiel.portZuEinsatz(); 
 			break; */
 		case "Einsatz":
-			/*
-			if (Client2.wartenAufSpielerClient= true) {
-			spiel.warteBildschirm(); 
-			}
-			else if (Client2.wartenAufSpielerClient = false) {
+			
+			
+			
 				spiel.einsatzZuJetons(); 
-			}*/
+			
 			 
 			break; 
 		case "Jeton10": 
@@ -127,6 +125,18 @@ public void actionPerformed(ActionEvent e) {
 			
 		case "Nächste Runde":
 			spiel.auswertenZuEinsatz();
+			break;
+			
+		case "Hit":
+			Client2.hitostay=1;
+			Client2.klicks = true;
+			break;
+
+			
+		case "Stay":
+			Client2.hitostay=2;
+			Client2.klicks =true;
+			System.out.println("Client sagt Stay!!");
 			break;
 			
 			

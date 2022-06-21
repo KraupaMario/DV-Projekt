@@ -141,8 +141,6 @@ public class Spiel {
 		for (int i = 0; i<DeckSpieler1.size();i++) {
 			int j = DeckSpieler1.get(i).getWert();
 			wert = wert + j;
-
-
 		}System.out.println("S1:" + wert);
 		return wert;
 	}
@@ -168,8 +166,20 @@ public class Spiel {
 	}
 
 	// Checkt ob Blackjack oder Überkauft
+	/** checkBJSpieler 1 muss immer als erstes aufgerufen werden!*/
 	public int checkBJSpieler1(){
+		winSpieler1 = false;
+		winSpieler2 = false;
+		winDealer = false;
+
+		loseSpieler1 = false;
+		loseSpieler2 = false;
+		loseDealer = false;
+
+		pattSpieler1 = false;
+		pattSpieler2 = false;
 		if (wertSpieler1() == 21) {
+			System.out.println("Hier true setzen!");
 			winSpieler1 = true;		      		
 			return 0;
 		}
@@ -233,7 +243,7 @@ public class Spiel {
 			return 2;
 		}
 		else if (wertSpieler1()>22 && wertDealer() >22) {
-			loseDealer = true;
+			winDealer = true;
 			loseSpieler1 = true;
 			return 2;
 		}
@@ -282,7 +292,8 @@ public class Spiel {
 			return 2;
 		}
 		else if (wertSpieler2()>22 && wertDealer() >22) {
-			loseDealer = true;
+			
+			winDealer = true;
 			loseSpieler2 = true;
 			return 2;
 		}
