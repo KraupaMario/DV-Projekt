@@ -1361,63 +1361,65 @@ public class Server2 implements Runnable {
 			}
 			catch (Exception e){}
 
-			/**weitere Karte von Spieler1 anzeigen.*/
-			switch (farbek11) {
-			case "pik":
-				bo.karte1Spieler1.setIcon(bo.pik[nummerk11]);
-				break;
-			case "herz":
-				bo.karte1Spieler1.setIcon(bo.herz[nummerk11]);
-				break;
-			case "kreuz":
-				bo.karte1Spieler1.setIcon(bo.kreuz[nummerk11]);
-				break;
-			case "karo":
-				bo.karte1Spieler1.setIcon(bo.karo[nummerk11]);
-				break;
-			default:
-				break;
-			}
+			
+
+			if (runde == 1) {
+				/**weitere Karte von Spieler1 anzeigen.*/
+				switch (farbek11) {
+				case "pik":
+					bo.karte3Spieler1.setIcon(bo.pik[nummerk11]);
+					break;
+				case "herz":
+					bo.karte3Spieler1.setIcon(bo.herz[nummerk11]);
+					break;
+				case "kreuz":
+					bo.karte3Spieler1.setIcon(bo.kreuz[nummerk11]);
+					break;
+				case "karo":
+					bo.karte3Spieler1.setIcon(bo.karo[nummerk11]);
+					break;
+				default:
+					break;
+				}
 
 
-			//Karte Spieler2
-			switch (farbek12) {
-			case "pik":
-				bo.karte1Spieler2.setIcon(bo.pik[nummerk12]);
-				break;
-			case "herz":
-				bo.karte1Spieler2.setIcon(bo.herz[nummerk12]);
-				break;
-			case "kreuz":
-				bo.karte1Spieler2.setIcon(bo.kreuz[nummerk12]);
-				break;
-			case "karo":
-				bo.karte1Spieler2.setIcon(bo.karo[nummerk12]);
-				break;
-			default:
-				break;
-			}
+				//Karte Spieler2
+				switch (farbek12) {
+				case "pik":
+					bo.karte3Spieler2.setIcon(bo.pik[nummerk12]);
+					break;
+				case "herz":
+					bo.karte3Spieler2.setIcon(bo.herz[nummerk12]);
+					break;
+				case "kreuz":
+					bo.karte3Spieler2.setIcon(bo.kreuz[nummerk12]);
+					break;
+				case "karo":
+					bo.karte3Spieler2.setIcon(bo.karo[nummerk12]);
+					break;
+				default:
+					break;
+				}
 
 
-			//Karte Bank
-			switch (farbebank1) {
-			case "pik":
-				bo.karte2Bank.setIcon(bo.pik[nummerk1b]);
-				break;
-			case "herz":
-				bo.karte2Bank.setIcon(bo.herz[nummerk1b]);
-				break;
-			case "kreuz":
-				bo.karte2Bank.setIcon(bo.kreuz[nummerk1b]);
-				break;
-			case "karo":
-				bo.karte2Bank.setIcon(bo.karo[nummerk1b]);
-				break;
-			default:
-				break;
-			} 
-
-			if (runde == 2) {
+				//Karte Bank
+				switch (farbebank1) {
+				case "pik":
+					bo.karte3Bank.setIcon(bo.pik[nummerk1b]);
+					break;
+				case "herz":
+					bo.karte3Bank.setIcon(bo.herz[nummerk1b]);
+					break;
+				case "kreuz":
+					bo.karte3Bank.setIcon(bo.kreuz[nummerk1b]);
+					break;
+				case "karo":
+					bo.karte3Bank.setIcon(bo.karo[nummerk1b]);
+					break;
+				default:
+					break;
+				} 
+				
 				bo.karte1Spieler1.setVisible(true);
 				bo.karte2Spieler1.setVisible(true);
 				bo.karte3Spieler1.setVisible(true);
@@ -1430,7 +1432,65 @@ public class Server2 implements Runnable {
 				bo.karte1Bank.setIcon(bo.rueckseite);
 				bo.karte2Bank.setVisible(true);
 				bo.karte3Bank.setVisible(true);}
-			else if (runde == 3) {
+			
+				
+			else if (runde == 2) {
+				/**weitere Karte von Spieler1 anzeigen.*/
+				switch (farbek11) {
+				case "pik":
+					bo.karte4Spieler1.setIcon(bo.pik[nummerk11]);
+					break;
+				case "herz":
+					bo.karte4Spieler1.setIcon(bo.herz[nummerk11]);
+					break;
+				case "kreuz":
+					bo.karte4Spieler1.setIcon(bo.kreuz[nummerk11]);
+					break;
+				case "karo":
+					bo.karte4Spieler1.setIcon(bo.karo[nummerk11]);
+					break;
+				default:
+					break;
+				}
+
+
+				//Karte Spieler2
+				switch (farbek12) {
+				case "pik":
+					bo.karte4Spieler2.setIcon(bo.pik[nummerk12]);
+					break;
+				case "herz":
+					bo.karte4Spieler2.setIcon(bo.herz[nummerk12]);
+					break;
+				case "kreuz":
+					bo.karte4Spieler2.setIcon(bo.kreuz[nummerk12]);
+					break;
+				case "karo":
+					bo.karte4Spieler2.setIcon(bo.karo[nummerk12]);
+					break;
+				default:
+					break;
+				}
+
+
+				//Karte Bank
+				switch (farbebank1) {
+				case "pik":
+					bo.karte4Bank.setIcon(bo.pik[nummerk1b]);
+					break;
+				case "herz":
+					bo.karte4Bank.setIcon(bo.herz[nummerk1b]);
+					break;
+				case "kreuz":
+					bo.karte4Bank.setIcon(bo.kreuz[nummerk1b]);
+					break;
+				case "karo":
+					bo.karte4Bank.setIcon(bo.karo[nummerk1b]);
+					break;
+				default:
+					break;
+				} 
+				
 				bo.karte1Spieler1.setVisible(true);
 				bo.karte2Spieler1.setVisible(true);
 				bo.karte3Spieler1.setVisible(true);
@@ -1446,7 +1506,62 @@ public class Server2 implements Runnable {
 				bo.karte2Bank.setVisible(true);
 				bo.karte3Bank.setVisible(true);
 				bo.karte4Bank.setVisible(true);}
-			else if (runde == 4) {
+			else if (runde == 3) {
+				/**weitere Karte von Spieler1 anzeigen.*/
+				switch (farbek11) {
+				case "pik":
+					bo.karte5Spieler1.setIcon(bo.pik[nummerk11]);
+					break;
+				case "herz":
+					bo.karte5Spieler1.setIcon(bo.herz[nummerk11]);
+					break;
+				case "kreuz":
+					bo.karte5Spieler1.setIcon(bo.kreuz[nummerk11]);
+					break;
+				case "karo":
+					bo.karte5Spieler1.setIcon(bo.karo[nummerk11]);
+					break;
+				default:
+					break;
+				}
+
+
+				//Karte Spieler2
+				switch (farbek12) {
+				case "pik":
+					bo.karte5Spieler2.setIcon(bo.pik[nummerk12]);
+					break;
+				case "herz":
+					bo.karte5Spieler2.setIcon(bo.herz[nummerk12]);
+					break;
+				case "kreuz":
+					bo.karte5Spieler2.setIcon(bo.kreuz[nummerk12]);
+					break;
+				case "karo":
+					bo.karte5Spieler2.setIcon(bo.karo[nummerk12]);
+					break;
+				default:
+					break;
+				}
+
+
+				//Karte Bank
+				switch (farbebank1) {
+				case "pik":
+					bo.karte5Bank.setIcon(bo.pik[nummerk1b]);
+					break;
+				case "herz":
+					bo.karte5Bank.setIcon(bo.herz[nummerk1b]);
+					break;
+				case "kreuz":
+					bo.karte5Bank.setIcon(bo.kreuz[nummerk1b]);
+					break;
+				case "karo":
+					bo.karte5Bank.setIcon(bo.karo[nummerk1b]);
+					break;
+				default:
+					break;
+				} 
 				bo.karte1Spieler1.setVisible(true);
 				bo.karte2Spieler1.setVisible(true);
 				bo.karte3Spieler1.setVisible(true);
