@@ -852,6 +852,7 @@ public class Client2 implements Runnable {
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(true);
+		
 
 
 		cbo.kartenwertSpieler1.setVisible(true);
@@ -859,6 +860,13 @@ public class Client2 implements Runnable {
 		cbo.kartenwertDealer.setVisible(true);
 
 	}
+	
+	/*
+	public void kontostandanzeigen (Spiel s) {
+		bo.kontostandSpieler1.setText(("Kontostand beträgt"+ Integer.toString(playerS.getKontostand());
+		bo.kontostandSpieler2.setText(("Kontostand beträgt" + Integer.toString(playerC.getKontostand());
+	}
+	*/
 
 
 	public void kartenwertanzeigen(Spiel s) {
@@ -1267,7 +1275,7 @@ public class Client2 implements Runnable {
 		cbo.einsatzSpieler2C.setVisible(true);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
-		cbo.buttonEinsatzbestaetigen.setVisible(true);
+		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(true);
 		cbo.buttonStay.setVisible(true);
 
@@ -1342,11 +1350,11 @@ public class Client2 implements Runnable {
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
 		cbo.kartenwertDealer.setVisible(true);
-		cbo.nachrichtS1.setText(ausgabetextS1C);
-		cbo.nachrichtS2.setText(ausgabetextS2C);
-		cbo.nachrichtS1.setVisible(true);
+		cbo.nachrichtS1C.setText(ausgabetextS1C);
+		cbo.nachrichtS2C.setText(ausgabetextS2C);
+		cbo.nachrichtS1C.setVisible(true);
 
-		cbo.nachrichtS2.setVisible(true);
+		cbo.nachrichtS2C.setVisible(true);
 		cbo.buttonNaechsteRunde.setVisible(true);
 	}
 
@@ -1415,8 +1423,8 @@ public class Client2 implements Runnable {
 		cbo.kartenwertSpieler1.setVisible(false);
 		cbo.kartenwertSpieler2.setVisible(false);
 		cbo.kartenwertDealer.setVisible(false);
-		cbo.nachrichtS1.setVisible(false);
-		cbo.nachrichtS2.setVisible(false);
+		cbo.nachrichtS1C.setVisible(false);
+		cbo.nachrichtS2C.setVisible(false);
 		cbo.buttonNaechsteRunde.setVisible(false);
 	}
 

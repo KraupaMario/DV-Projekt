@@ -1122,6 +1122,13 @@ public class Server2 implements Runnable {
 			bo.kartenwertDealer.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertDealer()));
 
 		}
+		
+		/*
+		public void kontostandanzeigen (Spiel s) {
+			bo.kontostandSpieler1.setText(("Kontostand beträgt"+ Integer.toString(playerS.getKontostand());
+			bo.kontostandSpieler2.setText(("Kontostand beträgt" + Integer.toString(playerC.getKontostand());
+		}
+		*/
 
 
 
