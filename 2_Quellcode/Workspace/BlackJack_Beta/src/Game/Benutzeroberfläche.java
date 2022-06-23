@@ -955,13 +955,13 @@ public class Benutzeroberfläche extends JFrame  {
 			buttonNaechsteRunde.setVisible(false);
 			this.add(buttonNaechsteRunde);
 			
-			nachrichtS1.setBounds(200,500,1000,100);
+			nachrichtS1.setBounds(200,700,1000,100);
 			nachrichtS1.setForeground(Color.red);
 			nachrichtS1.setFont(new Font("Calibri", Font.PLAIN,40));
 			nachrichtS1.setVisible(false);
 			this.add(nachrichtS1);
 			
-			nachrichtS2.setBounds(1100,500,1000,100);
+			nachrichtS2.setBounds(1100,700,1000,100);
 			nachrichtS2.setForeground(Color.red); 
 			nachrichtS2.setFont(new Font("Calibri", Font.PLAIN,40));
 			nachrichtS2.setVisible(false);

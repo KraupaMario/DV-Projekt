@@ -935,14 +935,14 @@ public void registrierfenster() {
 			this.add(buttonNaechsteRunde);
 			
 			
-			nachrichtS1C.setBounds(200,500,1000,100);
+			nachrichtS1C.setBounds(200,700,1000,100);
 			nachrichtS1C.setForeground(Color.red); 
 			nachrichtS1C.setFont(new Font("Calibri", Font.PLAIN,40));
 			nachrichtS1C.setVisible(false);
 			this.add(nachrichtS1C);
 			
 			
-			nachrichtS2C.setBounds(1100,500,1000,100);
+			nachrichtS2C.setBounds(1100,700,1000,100);
 			nachrichtS2C.setForeground(Color.red); 
 			nachrichtS2C.setFont(new Font("Calibri", Font.PLAIN,40));
 			nachrichtS2C.setVisible(false);

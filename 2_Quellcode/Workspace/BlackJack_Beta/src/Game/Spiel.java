@@ -17,43 +17,6 @@ import javax.swing.JOptionPane;
 
 public class Spiel {
 
-	private String ip = "localhost";
-	private int port = 22222;
-	private Scanner scanner = new Scanner(System.in);
-
-	private Thread thread;
-
-
-	private Socket socket;
-	private DataOutputStream dos;
-	private DataInputStream dis;
-
-	private ServerSocket serverSocket;
-
-
-
-	private String[] spaces = new String[9];
-
-	private boolean yourTurn = false; //bin ich an der Reihe?
-	private boolean client = true;	// Bin ich der Client?
-	private boolean host = false; // Bin ich der Host?
-	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
-	private boolean unableToCommunicateWithOpponent = false; // Verbindung abgebrochen?
-	private boolean won = false; //ich habe den Spielzug gewonnen
-	private boolean dealerWon = false; // der Dealer hat gewonnen
-
-
-
-	private int errors = 0;
-
-
-
-	private String waitingString = "Warten auf Mitspieler...";
-	private String unableToCommunicateWithOpponentString = "Kommunikation mit dem Spieler nicht möglich.";
-	private String wonString = "Du hast gewonnen!";
-	private String enemyWonString = "Dealer gewinnt!";
-	private String tieString = "Unentschieden!";
-
 	private static int gesetztSpieler1;
 	private static int gesetztSpieler2;
 
@@ -73,7 +36,7 @@ public class Spiel {
 	boolean pattSpieler2 = false;
 
 
-	//	class Spiel Variablen
+	/** Erstellung Array-Lists mit dem Typ Karten*/
 	ArrayList<Karten> kartenDeck = new ArrayList<Karten>();
 
 	ArrayList<Karten> DeckSpieler1 = new ArrayList<Karten>();
@@ -84,7 +47,7 @@ public class Spiel {
 
 
 
-
+/** Füllen der Array-List Karten*/
 	public void createDeck(){
 		String[] farben ={"kreuz","pik","herz","karo"};
 		int[] name ={1,13,12,11,10,9,8,7,6,5,4,3,2};
@@ -99,30 +62,27 @@ public class Spiel {
 
 	}
 
-
-
-	//public Karten( int w, String f, String n)
-
+/** Methode Manuell Karte ziehen durch @n*/
 	public Karten karteManuell(int n) {
 		Karten gezogeneKarte = kartenDeck.get(n);
 		kartenDeck.remove(n);
-		//wertgez = gezogeneKarte.getWert();
 		return gezogeneKarte;
 	}
-
+/**Methode Karten ziehen (ZUfall)*/
 	public Karten getKarte(){
-		//int random = (int)Math.random()*52*6;
-		int random = (int)(Math.random()*(kartenDeck.size()-1)); //Passt sich den verbleibenden Anzahl an Karten an. ?????????????????????? -1 oder nicht?????????
+		
+		int random = (int)(Math.random()*(kartenDeck.size()-1)); 
 		Karten gezogeneKarte = kartenDeck.get(random);
 		kartenDeck.remove(random);
-		//wertgez = gezogeneKarte.getWert();
+		
 		return gezogeneKarte; //gibt die Gezogene Karte Weiter (als Objekt)
 	}
 
 
 
-
-	public void austeilenKarteSp1 () { //gezogene Karte wird über getKarte als Rückgabewert in KartenArraylist von jedem spieler
+	/**Methode: gezogene Karte von dem jeweiligen Spieler wird in das jeweilige Deck Array abgespeichert*/
+	
+	public void austeilenKarteSp1 () { 
 		DeckSpieler1.add(getKarte());
 
 	}
@@ -135,8 +95,8 @@ public class Spiel {
 		DeckDealer.add(getKarte());
 
 	}
-
-	public int wertSpieler1() {		//aktueller Karten wert für jeden Spieler
+/** Methode: Abfrage Wert Deck*/
+	public int wertSpieler1() {		
 		int wert = 0;
 		for (int i = 0; i<DeckSpieler1.size();i++) {
 			int j = DeckSpieler1.get(i).getWert();
@@ -165,8 +125,8 @@ public class Spiel {
 		return wert;
 	}
 
-	// Checkt ob Blackjack oder Überkauft
-	/** checkBJSpieler 1 muss immer als erstes aufgerufen werden!*/
+	/** Methode: Check Blackjack oder Überkauft*/
+	
 	public void checkBJSpieler1(){
 		winSpieler1 = false;
 		winSpieler2 = false;
@@ -202,7 +162,7 @@ public class Spiel {
 			loseDealer = true;
 	}
 
-	/**Auswerten Methoden*/
+	/**Auswerten Methoden Spieler 1*/
 	/** 0 = BlackJack, 1 = Sieg Spieler, 2 = Sieg Dealer (Spieler verliert), 3 = unentschieden*/
 	public int auswertenS1() {
 		winSpieler1 = false;
@@ -267,7 +227,8 @@ public class Spiel {
 		else return -1;
 
 	}
-
+	
+	/**Auswerten Methoden Spieler 1*/
 	public int auswertenS2() {
 
 
@@ -346,28 +307,28 @@ public class Spiel {
 
 
 
-
+/**get gesetzt Spieler 1*/
 	public static int getGesetztSpieler2() {
 		return gesetztSpieler2;
 	}
 
 
 
-
+	/**set gesetzt Spieler 2*/
 	public static void setGesetztSpieler2(int gesetztSpieler2) {
 		Spiel.gesetztSpieler2 = gesetztSpieler2;
 	}
 
 
 
-
+	/**get gesetzt Spieler 2*/
 	public static int getGesetztSpieler1() {
 		return gesetztSpieler1;
 	}
 
 
 
-
+	/**set gesetzt Spieler 2 */
 	public static void setGesetztSpieler1(int gesetztSpieler1) {
 		Spiel.gesetztSpieler1 = gesetztSpieler1;
 	}

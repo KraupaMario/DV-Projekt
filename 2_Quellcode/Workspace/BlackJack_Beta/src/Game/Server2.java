@@ -40,9 +40,9 @@ public class Server2 implements Runnable {
 
 	private Socket socket;
 	private DataOutputStream dos;
-	private ObjectOutputStream oos;
+	
 	private DataInputStream dis;
-	private ObjectInputStream ois;
+	
 
 	private ServerSocket serverSocket;
 
@@ -53,15 +53,14 @@ public class Server2 implements Runnable {
 	static boolean wartenAufSpielerServer = false; 
 
 
-	private String[] spaces = new String[9];
+	
 
 	private boolean yourTurn = false; //bin ich an der Reihe?
 	private boolean client = true;	// Bin ich der Client?
 	private boolean host = false; // Bin ich der Host?
 	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
-	private boolean unableToCommunicateWithOpponent = false; // Verbindung abgebrochen?
-	private boolean won = false; //ich habe den Spielzug gewonnen
-	private boolean dealerWon = false; // der Dealer hat gewonnen
+
+	
 	int gesetztS; 
 	int gesetztC;
 	static int  hitostay;
@@ -75,15 +74,8 @@ public class Server2 implements Runnable {
 
 
 
-	private int errors = 0;
 
 
-
-	private String waitingString = "Warten auf Mitspieler...";
-	private String unableToCommunicateWithOpponentString = "Kommunikation mit dem Spieler nicht möglich.";
-	private String wonString = "Du hast gewonnen!";
-	private String enemyWonString = "Dealer gewinnt!";
-	private String tieString = "Unentschieden!";
 
 	public Server2() {
 
@@ -101,22 +93,19 @@ public class Server2 implements Runnable {
 		}
 
 		port = 8080;
-		while (port < 1 || port > 65535) {
-			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
-			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
-		}
+		
 
 		if (!verbunden())
 			initialisiereServer();
 
-		System.out.println("ok1");
+
 
 		thread = new Thread(this, "BlackJack");
 
-		System.out.println("ok2");
+
 		thread.start();
 
-		System.out.println("ok3");
+
 	}
 
 	public void run() {
@@ -125,9 +114,9 @@ public class Server2 implements Runnable {
 			//Programmcode welcher im "Thread" ausgeführt wird.
 
 			if (!client && !accepted) {
-				System.out.println("Jetzt!");
+				
 				wartenAufServer();
-				System.out.println("JEtzt!");
+			
 			}
 
 			aktion();
@@ -142,17 +131,17 @@ public class Server2 implements Runnable {
 	private void wartenAufServer() {
 		Socket socket = null;
 		try {
-			System.out.println("Jetzt2y");
+			
 			socket = serverSocket.accept();
 			dos = new DataOutputStream(socket.getOutputStream());
 			dis = new DataInputStream(socket.getInputStream());
 			accepted = true;
-			System.out.println("CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	/** Erstellung Socket mit Verbindung*/
 	private boolean verbunden() {
 		try {
 			socket = new Socket(ip, port);
@@ -160,13 +149,13 @@ public class Server2 implements Runnable {
 			dis = new DataInputStream(socket.getInputStream());
 			accepted = true;
 		} catch (IOException e) {
-			System.out.println("Meine IP Adresse und Port: " + ip + " : " + port + " | Eröffne einen Server.");
+			
 			return false;
 		}
-		System.out.println("Erfolgreich mit dem Server verbunden.");
+		
 		return true;
 	}
-
+	/** Server initialisieren*/
 	private void initialisiereServer() {
 		try {
 			serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ip));
@@ -178,34 +167,21 @@ public class Server2 implements Runnable {
 		host = true;
 		client = false;
 	}
-
+	/** Spielablauf*/
 	private void aktion()  {
 
 		/**Erstellen Spiel*/
-
 		Spiel server = new Spiel();
+		/**erstellen Karten Deck*/
 		server.createDeck();
 		Spielkarten Server = new Spielkarten();
-		//Spieler erstellen
-		/*	while (!anmelden) {
-				System.out.println(f"Warten");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 
-			Spieler playerS = aktuellerbenutzer; */
 		Spieler playerS = new Spieler ("jhg","76554");
 		kontomax = playerS.getKontostand();
 
 
 		newgame: while(true) {
-
-
-			/**Reset Array-Lists und Paramter*/
+			/**Reset Array-Lists, Variabeln (Wert-Abfragen), Rundenzähler*/
 
 			server.DeckSpieler1.clear();
 			server.DeckSpieler2.clear();
@@ -218,7 +194,7 @@ public class Server2 implements Runnable {
 			/** Warteschleife Einsatz setzen */
 
 			while (!klicks) {
-				System.out.println("Warten auf Einsatzbestätigenbutton");
+			
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -226,51 +202,50 @@ public class Server2 implements Runnable {
 					e.printStackTrace();
 				}
 			} klicks = false;
+			/**Gesetzter Beitrag auf Screen anzeigen von Spieler 1 (Server)*/
 			Spiel.setGesetztSpieler1(gesetztS);
 			gesetztS = 0;
 			playerS.abbuchen(Spiel.getGesetztSpieler1());
-			System.out.println("s/Mein gesetzter Betrag "+Spiel.getGesetztSpieler1());
 
-			/**Betrag übermitteln an Client*/
+			/**Gesetzt-Beitrag übermitteln von Spieler 1 (Server) an Client*/
 			try {
 				dos.writeInt(Spiel.getGesetztSpieler1());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			/**Gesetzter Betrag vom Client empfangen:*/
+			/**Gesetzter Betrag vom Spieler 2 (Client) empfangen:*/
 			try {
 				gesetztC = dis.readInt();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			/**Gesetzter Beitrag auf Screen anzeigen von Spieler 2 (Client)*/
 			Spiel.setGesetztSpieler2(gesetztC);
 			gesetztC = 0;
 			einsatzAnzeigenGegenspieler();
-			System.out.println("s/Der Client hat soviel gesetzt: "+Spiel.getGesetztSpieler2());
-
-
 
 			/** Ziehen der ersten 2 Karten*/
-			//Karte für Spieler 1 ziehen:
+			//1.Karte
+			/**Karte für Spieler 1 ziehen*/
 			server.austeilenKarteSp1();
-			//server.DeckSpieler1.add(server.karteManuell(0));
-			//server.DeckSpieler1.add(server.karteManuell(0));
-			//Karte für Spieler 2 ziehen:
+
+			/**Karte für Spieler 2 ziehen:*/
 			server.austeilenKarteSp2();
-			//Karten für Dealer ziehen:
-			//server.DeckDealer.add(server.getKarte());
+
+			/**Karten für Dealer ziehen:*/
 			server.austeilenKarteDealer();
 			//2. Karte:
+			/**Karte für Spieler 1 ziehen*/
 			server.austeilenKarteSp1();
+			/**Karte für Spieler 2 ziehen:*/
 			server.austeilenKarteSp2();
+			/**Karten für Dealer ziehen:*/
 			server.austeilenKarteDealer();
-			//server.DeckSpieler1.add(server.getKarte());
-			//server.DeckSpieler2.add(server.getKarte());
-			//server.DeckDealer.add(server.getKarte());
 
-			/**Karte verschicken Spieler 1*/
+			/**Karten verschicken an SPieler 2 (Client)*/
+			/**Karten verschicken Spieler 1 (server) */
 
 			for (int i = 0;i<server.DeckSpieler1.size();i++) {
 				try {
@@ -293,7 +268,7 @@ public class Server2 implements Runnable {
 				}	
 			}
 
-			/**Karte verschicken Spieler 2*/
+			/**Karte verschicken Spieler 2 (Server)*/
 
 			for (int i = 0;i<server.DeckSpieler2.size();i++) {
 				try {
@@ -339,8 +314,9 @@ public class Server2 implements Runnable {
 					e.printStackTrace();
 				}	
 			}
-			
-			kartenausgebenS_R1(server);//Karten anzeigen
+
+			/** Karten und Spielerwert anzeigen auf Screen*/
+			kartenausgebenS_R1(server);
 			kartenwertanzeigen(server);
 
 
@@ -350,7 +326,7 @@ public class Server2 implements Runnable {
 			server.checkBJDealer();
 
 
-			/** verschicken Status Spieler win...*/
+			/** verschicken Status Spieler win?*/
 			try {
 				dos.writeBoolean(server.winSpieler1);
 			} catch (IOException e) {
@@ -372,7 +348,7 @@ public class Server2 implements Runnable {
 			/** verschicken Status Spieler lose....*/
 
 
-
+			/** verschicken Status Spieler lose?*/
 			try {
 				dos.writeBoolean(server.loseSpieler1);
 			} catch (IOException e) {
@@ -391,17 +367,19 @@ public class Server2 implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();  } 
 
-			/**Wenn BJ = true oder Spieler überkauft, mach neues Spiel (gehe zu newgame)*/
+			/**Wenn BJ = true oder Spieler überkauft,werte aus und mach neues Spiel (gehe zu newgame)*/
 			while(server.winSpieler1 || server.winSpieler2 || server.winDealer||server.loseSpieler1||server.loseSpieler2||server.loseDealer) {
+
+				/**auswerten*/
 				auswerten(server);
-				/**verschicken Status Spieler 1*/
+				/**verschicken Auswerte Status Spieler 1*/
 				try {
 					dos.writeInt(auswertStatSp1);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();  }  
 
-				/**verschicken Status Spieler 2:*/
+				/**verschicken Auswerte Status Spieler 2:*/
 
 				try {
 					dos.writeInt(auswertStatSp2);
@@ -409,10 +387,8 @@ public class Server2 implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace(); } 
 
-
+				/** Auswerte Status auf Screen anzeigen*/
 				gewinnbenachrichtung(server);
-
-				/**Auswertung anzeigen*/
 				rundeZuAuswerten();
 				try {
 					Thread.sleep(15000);
@@ -434,9 +410,9 @@ public class Server2 implements Runnable {
 					break newcard;
 				}
 
-
+				/** Wählen hit oder stay*/
 				while (!klicks) {
-					System.out.println("Warten auf hit oder stay");
+					
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -467,7 +443,7 @@ public class Server2 implements Runnable {
 				/**wenn kein Spieler eine Karte aufnehmen möchte*/
 				while((!hit1 && !hit2)) {
 
-					//Karte verschicken Dealer
+					/**Dealer Karte wenn ja werte der Karte an CLient schicken*/
 
 					if (server.wertDealer()<17) {
 						server.austeilenKarteDealer();
@@ -492,7 +468,7 @@ public class Server2 implements Runnable {
 						}	
 
 					}
-
+					/** Karten und Spielerwert anzeigen auf Screen*/
 					kartenwertanzeigen(server);
 					kartenausgebenS_R234(server, z); //Karte anzeigen.
 
@@ -501,25 +477,25 @@ public class Server2 implements Runnable {
 					server.checkBJSpieler2();
 					server.checkBJDealer();
 
-
+					/**Auswerten*/
 					auswerten(server);
-					/**verschicken Status Spieler 1*/
+					/**verschicken Auswerte Status Spieler 1*/
 					try {
 						dos.writeInt(auswertStatSp1);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();  }  
 
-					/**verschicken Status Spieler 2:*/
+					/**verschicken Auswerte Status Spieler 2:*/
 
 					try {
 						dos.writeInt(auswertStatSp2);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace(); } 
-					gewinnbenachrichtung(server);
 
-					/**Auswertung anzeigen*/
+					/** Auswerte Status auf Screen anzeigen*/
+					gewinnbenachrichtung(server);
 					rundeZuAuswerten();
 					try {
 						Thread.sleep(15000);
@@ -532,12 +508,13 @@ public class Server2 implements Runnable {
 					continue newgame;
 				}
 
-				/**wenn beide oder ein Spieler eine Karte wollen*/
+				/** wenn einer oder beide hit drücken*/
 				while((hit1 || hit2)) {
 
-					//Karte für Spieler 1 ziehen:
+					/** Wenn Spieler 2 eine Karte will*/
 					if (hit1) {server.austeilenKarteSp1();
-					//Karte verschicken Spieler 1
+
+					/**Karte verschicken Spieler 1*/
 
 					int i = server.DeckSpieler1.size()-1;
 					try {
@@ -560,9 +537,10 @@ public class Server2 implements Runnable {
 					}
 
 					}
-
+					/** Wenn Spieler 2 eine Karte will*/
 					if (hit2) {
 						server.austeilenKarteSp2();
+						/**Karte verschicken Spieler 1*/
 						int j = server.DeckSpieler2.size()-1;
 						try {
 							dos.writeUTF(server.DeckSpieler2.get(j).getFarbe());
@@ -585,7 +563,7 @@ public class Server2 implements Runnable {
 					}
 
 
-					//Karte verschicken Dealer sofern unter 17
+					/**Dealer Karte wenn ja werte der Karte an CLient schicken*/
 
 					if (server.wertDealer()<17) {
 						server.austeilenKarteDealer();
@@ -610,16 +588,18 @@ public class Server2 implements Runnable {
 						}	
 
 					}
+					/** Spielerwert anzeigen und Karte ausgeben*/
 					kartenwertanzeigen(server);
 					kartenausgebenS_R234(server, z);
 
-					/**BlackJack und Überkauft Abfrage*/
+					/** Wenn beide Spieler eine Karte  wollen*/
 					if (hit1 && hit2) {
+						/**BlackJack und Überkauft Abfrage*/
 						server.checkBJSpieler1();
 						server.checkBJSpieler2();
 						server.checkBJDealer();
 
-						/** verschicken Status Spieler*/
+						/** verschicken Status Spieler win?*/
 						try {
 							dos.writeBoolean(server.winSpieler1);
 						} catch (IOException e) {
@@ -638,9 +618,7 @@ public class Server2 implements Runnable {
 							// TODO Auto-generated catch block
 							e.printStackTrace();  }  
 
-						/** vershicke Status Spieler lose....*/
-
-
+						/** verschike Status Spieler lose....*/
 
 						try {
 							dos.writeBoolean(server.loseSpieler1);
@@ -661,10 +639,10 @@ public class Server2 implements Runnable {
 							e.printStackTrace();  } 
 
 
-						/** wenn ein Spieler BJ hat oder sich überkauft*/
+						/** wenn ein Spieler BJ hat oder sich überkauft dann auswerten*/
 
 						if(server.winSpieler1 || server.winSpieler2 || server.winDealer||server.loseSpieler1||server.loseSpieler2||server.loseDealer) {
-
+							/**Auswerten*/
 							auswerten(server);
 							/**verschicken Status Spieler 1*/
 							try {
@@ -674,15 +652,16 @@ public class Server2 implements Runnable {
 								e.printStackTrace();  }  
 
 							/**verschicken Status Spieler 2:*/
-
 							try {
 								dos.writeInt(auswertStatSp2);
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace(); }
-							gewinnbenachrichtung(server);
 
 							/**Auswertung anzeigen*/
+							gewinnbenachrichtung(server);
+
+
 							rundeZuAuswerten();
 							try {
 								Thread.sleep(15000);
@@ -694,7 +673,9 @@ public class Server2 implements Runnable {
 							continue newgame; 
 						}
 					}
+					/** wenn einer eine Karte will und der andere nicht mehr dann soll die Runde noch zu ende geführt werden*/
 					if ((hit1 && !hit2) || (!hit1 && hit2)) {
+						/** Auswerten*/
 						auswerten(server);
 						/**verschicken Status Spieler 1*/
 						try {
@@ -710,10 +691,10 @@ public class Server2 implements Runnable {
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace(); } 
-
+						/** Auswerten Status auf Screen anzeigen*/
 						gewinnbenachrichtung(server);
 						rundeZuAuswerten();
-						System.out.println("Ich bin Dooooooooof");
+					
 						try {
 							Thread.sleep(15000);
 						} catch (InterruptedException e) {
@@ -739,93 +720,50 @@ public class Server2 implements Runnable {
 
 
 
-
+	/**Auswerten der Spieler + Dealer*/
 	void auswerten(Spiel server) {
 
-		/**Auswerten der Spieler + Dealer und verschicken der Statuse*/
 		/**Spieler Status Spieler 1*/
 		auswertStatSp1=server.auswertenS1();
 		auswertStatSp2=server.auswertenS2();
-		System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
-		System.out.println("AWert Spieler 1 = "+auswertStatSp1);
-		System.out.println("AWert Spieler 2 = "+auswertStatSp2);
-		/*
-		if(server.wertSpieler1()==21) {
-			auswertStatSp1 = 0;
-			auswertStatSp2 = server.auswertenS2();
-		}
 
-
-		if (server.loseSpieler1) {
-			auswertStatSp1 = 2; 
-			auswertStatSp2 = server.auswertenS2();
-		}
-
-
-		/**Spieler Status Spieler 2*/
-		/*if(server.winSpieler2) {
-			auswertStatSp2 = 0;
-			auswertStatSp1 = server.auswertenS1();
-		}
-
-
-		if (server.loseSpieler2) {
-			auswertStatSp2 = 2; 
-			auswertStatSp1 = server.auswertenS1();
-		}
-
-
-		/**Status Dealer*/
-		/*if(server.winDealer) {
-			if (auswertStatSp1 == 0) {
-				auswertStatSp1 = 3;
-			}
-			if (auswertStatSp2 == 0) {
-				auswertStatSp2 = 3;
-			}
-		}
-
-		if (server.loseDealer) {
-			auswertStatSp1 = 1;
-			auswertStatSp2 = 1;
-		}*/
 	}
 
-
+	/**Gewninnbenachrichtiung von Spiel s*/
 	void gewinnbenachrichtung (Spiel s){ 
 
-	/** Spieler 1*/
-	if (auswertStatSp1 == 0)
-		ausgabetextS1 = "BlackJack";
+		/** Spieler 1*/
+		if (auswertStatSp1 == 0)
+			ausgabetextS1 = "BlackJack";
 
-	if (auswertStatSp1 == 1)
-		ausgabetextS1 = "Gewonnen";
+		if (auswertStatSp1 == 1)
+			ausgabetextS1 = "Gewonnen";
 
-	if (auswertStatSp1 == 2)
-		ausgabetextS1 = "Verloren";
-	
-	if (auswertStatSp1 == 3)
-		ausgabetextS1 = "Unentschieden";
+		if (auswertStatSp1 == 2)
+			ausgabetextS1 = "Verloren";
 
-	/** Spieler 2*/
-	if (auswertStatSp2 == 0)
-		ausgabetextS2 = "BlackJack";
+		if (auswertStatSp1 == 3)
+			ausgabetextS1 = "Unentschieden";
 
-	if (auswertStatSp2 == 1)
-		ausgabetextS2 = "Gewonnen";
+		/** Spieler 2*/
+		if (auswertStatSp2 == 0)
+			ausgabetextS2 = "BlackJack";
 
-	if (auswertStatSp2 == 2)
-		ausgabetextS2 = "Verloren";
+		if (auswertStatSp2 == 1)
+			ausgabetextS2 = "Gewonnen";
 
-	if (auswertStatSp2 == 3)
-		ausgabetextS2 = "Unentschieden";
+		if (auswertStatSp2 == 2)
+			ausgabetextS2 = "Verloren";
 
-	/** 1.Karte Dealer umdrehen*/
-	dealerKarteAufdecken(s);
+		if (auswertStatSp2 == 3)
+			ausgabetextS2 = "Unentschieden";
+
+		/** 1.Karte Dealer umdrehen*/
+		dealerKarteAufdecken(s);
 
 
 	}
-
+	/** abbuchen Konto*/
 	boolean abbuchungOK(int m){
 
 		if ((swischespeicher)>kontomax) {
