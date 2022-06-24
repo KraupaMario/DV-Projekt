@@ -2,13 +2,15 @@ package Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 public class ActionHandlerClient implements ActionListener{
 
 	public static int betragsetzen = 0;
 	//boolean klick = false; 
 
-	Client2 spiel;
-	//Client2 spiel1;
+	Client spiel;
+	//Client spiel1;
 	
 	//Variablen Login und Registrierung
 	
@@ -24,9 +26,9 @@ public class ActionHandlerClient implements ActionListener{
 	
 	
 	
-	public ActionHandlerClient(Client2 client2) {
+	public ActionHandlerClient(Client Client) {
 		
-		this.spiel = client2;
+		this.spiel = Client;
 	}
 	
 	
@@ -60,7 +62,7 @@ public void actionPerformed(ActionEvent e) {
 			break; 
 		case "IP Adresse bestätigen": 
 			spiel.ipZuAuswahl(); 
-			Client2.klicks=true;
+			Client.klicks=true;
 			break;
 		case "Login": 
 			spiel.auswahlZuLogin();
@@ -77,8 +79,9 @@ public void actionPerformed(ActionEvent e) {
 			break;
 		case ("Start"):
 			spiel.setspielernameClient();
-		    spiel.setspielernameServer();
-			//if(spiel.passwordPruefen()==true) {
+			if (benutzername.equals("")) {
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie Ihren Namen ein.");
+				break;} //gehe nur weiter wenn ein Name eingegeben wurde.
 			spiel.logRegZuEinsatz(); 
 			//}
 			break; 
@@ -92,23 +95,23 @@ public void actionPerformed(ActionEvent e) {
 			spiel.einsatzZuJetons(); 
 			break; 
 		case "Jeton10": 
-			Client2.swischespeicher += 10;
+			Client.zwischenspeicher += 10;
 			
 			spiel.jeton10();
 			
 			break; 
 		case "Jeton25":
-			Client2.swischespeicher += 25;
+			Client.zwischenspeicher += 25;
 			spiel.jeton25(); 
 			
 			break; 
 		case "Jeton50":
-			Client2.swischespeicher += 50;
+			Client.zwischenspeicher += 50;
 			spiel.jeton50(); 
 			
 			break; 
 		case "Jeton100":
-			Client2.swischespeicher += 100;
+			Client.zwischenspeicher += 100;
 			spiel.jeton100();
 			
 			break; 
@@ -116,7 +119,7 @@ public void actionPerformed(ActionEvent e) {
 			spiel.einsatzAusrechnen();
 			//spiel.kartenausgebenS_R1(); 
 			
-			Client2.klicks = true; 
+			Client.klicks = true; 
 			spiel.jetonsZuHitundStay(); 
 			break;
 			
@@ -125,14 +128,14 @@ public void actionPerformed(ActionEvent e) {
 			break;
 			
 		case "Hit":
-			Client2.hitostay=1;
-			Client2.klicks = true;
+			Client.hitostay=1;
+			Client.klicks = true;
 			break;
 
 			
 		case "Stay":
-			Client2.hitostay=2;
-			Client2.klicks =true;
+			Client.hitostay=2;
+			Client.klicks =true;
 			System.out.println("Client sagt Stay!!");
 			break;
 			

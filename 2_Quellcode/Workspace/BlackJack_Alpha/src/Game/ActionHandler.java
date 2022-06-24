@@ -2,12 +2,14 @@ package Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 public class ActionHandler implements ActionListener{
 
 	public static int betragsetzen = 0;
 	//boolean klick = false; 
 
-	Server2 spiel;
+	Server spiel;
 	//Client2 spiel1;
 	
 	//Variablen Login und Registrierung
@@ -24,7 +26,7 @@ public class ActionHandler implements ActionListener{
 	
 	
 	
-	public ActionHandler(Server2 spiel) {
+	public ActionHandler(Server spiel) {
 		
 		this.spiel = spiel;
 	}
@@ -57,7 +59,7 @@ public void actionPerformed(ActionEvent e) {
 		case "Abbrechen": 
 			System.exit(0);
 			break; 
-		case "IP Adresse bestätigen": 
+		case "LOS!": 
 			spiel.IPZuAuswahl();
 			break;
 		case "Login": 
@@ -70,9 +72,11 @@ public void actionPerformed(ActionEvent e) {
 		case "Zurück":
 			spiel.logRegZuAuswahl();
 			break;	
-		case "Start": 
-			spiel.setspielernameClient();
+		case "Start":
 		    spiel.setspielernameServer();
+		    if (benutzername.equals("")) {
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie Ihren Namen ein.");
+				break;} //gehe nur weiter wenn ein Name eingegeben wurde.
 			spiel.logRegZuEinsatz(); 
 			break; 
 		case "Abschließen": 
@@ -93,23 +97,23 @@ public void actionPerformed(ActionEvent e) {
 			
 			break; 
 		case "Jeton10": 
-			Server2.swischespeicher += 10;
-			System.out.println("Server2 sw: "+ Server2.swischespeicher);
+			Server.zwischenspeicher += 10;
+			System.out.println("Server sw: "+ Server.zwischenspeicher);
 			spiel.jeton10();
 			
 			break; 
 		case "Jeton25":
-			Server2.swischespeicher += 25;
+			Server.zwischenspeicher += 25;
 			spiel.jeton25(); 
 			
 			break; 
 		case "Jeton50":
-			Server2.swischespeicher += 50;
+			Server.zwischenspeicher += 50;
 			spiel.jeton50(); 
 			
 			break; 
 		case "Jeton100":
-			Server2.swischespeicher += 100;
+			Server.zwischenspeicher += 100;
 			spiel.jeton100();
 			
 			break; 
@@ -117,7 +121,7 @@ public void actionPerformed(ActionEvent e) {
 			spiel.einsatzAusrechnen();
 			//Client2.wartenAufSpielerClient = false; 
 			
-			Server2.klicks = true; 
+			Server.klicks = true; 
 			
 			spiel.jetonsZuHitundStay(); 
 			break;
@@ -128,14 +132,14 @@ public void actionPerformed(ActionEvent e) {
 			
 
 		case "Hit":
-			Server2.hitostay=1;
-			Server2.klicks = true;
+			Server.hitostay=1;
+			Server.klicks = true;
 			break;
 
 			
 		case "Stay":
-			Server2.hitostay=2;
-			Server2.klicks =true;
+			Server.hitostay=2;
+			Server.klicks =true;
 			break;
 			
 			

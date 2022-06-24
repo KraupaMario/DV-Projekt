@@ -30,7 +30,7 @@ public class Benutzeroberfläche extends JFrame  {
 	private static final long serialVersionUID = 1L;
 
 
-	Server2 spiel;
+	Server spiel;
 	
 
 	 JFrame frame = new JFrame();
@@ -53,8 +53,8 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel labelport = new JLabel("Port:");
 	 JLabel einsatzSpieler1 = new JLabel ("Einsatz Spieler1:"); 
 	 JLabel einsatzSpieler2 = new JLabel ("Einsatz Spieler2:"); 
-	 JLabel kontostandSpieler1 = new JLabel ("Kontostand Spieler1:"); 
-	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2: privat!!!");
+	 JLabel kontostandSpieler1 = new JLabel (""); 
+	 JLabel kontostandSpieler2 = new JLabel (""); //Kontostand vom Gegner soll in Betaversion nicht mehr angezeigt werden.
 	 JLabel einsatzausgabeSpieler1 = new JLabel();
 	 JLabel einsatzausgabeSpieler2 = new JLabel();
 	 JLabel labelIPAdresse = new JLabel();
@@ -161,7 +161,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JButton buttonRegistrierenAbschließen = new JButton("Abschließen");
 	 JButton buttonZurueck = new JButton("Zurück");
 	 JButton buttonZurueckZuStart = new JButton("Zurück zum Start");
-	 JButton buttonIPAdresseBestaetigen = new JButton ("IP Adresse bestätigen");
+	 JButton buttonIPAdresseBestaetigen = new JButton ("LOS!");
 	 JButton buttonPortBestätigen = new JButton ("Port bestätigen"); 
 	 JButton buttonEinsatz = new JButton ("Einsatz");
 	 JButton buttonJeton10 = new JButton("Jeton10",jeton_10);
@@ -198,9 +198,9 @@ public class Benutzeroberfläche extends JFrame  {
 
 	//Konstruktor Fenster
 
-	public Benutzeroberfläche(Server2 server2) {
+	public Benutzeroberfläche(Server Server) {
 
-		this.spiel = server2;
+		this.spiel = Server;
 
 		this.setTitle("BlackJack");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Karten/casino-chip.png")).getImage());

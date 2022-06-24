@@ -24,7 +24,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 
 	//Variablen
 
-	Client2 spiel;
+	Client spiel;
 	
 
 	 JFrame frame = new JFrame();
@@ -56,8 +56,8 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel labelportC = new JLabel("Port:");
 	 JLabel einsatzSpieler1C = new JLabel ("Einsatz Spieler1:"); 
 	 JLabel einsatzSpieler2C = new JLabel ("Einsatz Spieler2:"); 
-	 JLabel kontostandSpieler1 = new JLabel ("Kontostand Spieler1: privat!!!"); 
-	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
+	 JLabel kontostandSpieler1 = new JLabel (""); //Kontostand vom Gegner soll in Betaversion nicht mehr angezeigt werden.
+	 JLabel kontostandSpieler2 = new JLabel ("");
 	 JLabel einsatzausgabeSpieler1C = new JLabel();
 	 JLabel einsatzausgabeSpieler2C = new JLabel();
 	 JLabel labelipadresseC2 = new JLabel(); 
@@ -188,9 +188,9 @@ public class BenutzeroberflächeClient extends JFrame  {
 
 	//Konstruktor Fenster
 
-	public BenutzeroberflächeClient(Client2 client2) {
+	public BenutzeroberflächeClient(Client client) {
 
-		this.spiel = client2;
+		this.spiel = client;
 
 		this.setTitle("BlackJack");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Karten/casino-chip.png")).getImage());

@@ -30,7 +30,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	private static final long serialVersionUID = 1L;
 
 
-	Client2 spiel;
+	Client spiel;
 	
 
 	 JFrame frame = new JFrame();
@@ -177,9 +177,9 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 * Konstruktor Fenster. 
 	 */
 
-	public BenutzeroberflächeClient(Client2 client2) {
+	public BenutzeroberflächeClient(Client Client) {
 
-		this.spiel = client2;
+		this.spiel = Client;
 
 		this.setTitle("BlackJack");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Karten/casino-chip.png")).getImage());
@@ -199,9 +199,6 @@ public class BenutzeroberflächeClient extends JFrame  {
 		portfenster();
 		einsatzfenster(); 
 		jetonfenster();
-		
-		wartefenster(); 
-		
 		 
 	}
 
