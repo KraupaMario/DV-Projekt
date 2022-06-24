@@ -70,10 +70,10 @@ public void actionPerformed(ActionEvent e) {
 		case "Zurück":
 			spiel.logRegZuAuswahl();
 			break;	
-		case ("Start"): 
-			//if(spiel.passwordPruefen()==true) {
+		case "Start": 
+			spiel.setspielernameClient();
+		    spiel.setspielernameServer();
 			spiel.logRegZuEinsatz(); 
-			//}
 			break; 
 		case "Abschließen": 
 			spiel.logRegZuEinsatz(); 

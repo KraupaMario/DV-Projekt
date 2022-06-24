@@ -55,10 +55,10 @@ public class Benutzeroberfl‰cheClient extends JFrame  {
 	 JLabel labelPasswortC2C = new JLabel("Passwort:");
 	 JLabel labelipadresseC = new JLabel ("IP-Adresse:");
 	 JLabel labelportC = new JLabel("Port:");
-	 JLabel einsatzSpieler1C = new JLabel ("Einsatz Spieler1:"); 
-	 JLabel einsatzSpieler2C = new JLabel ("Einsatz Spieler2:"); 
-	 JLabel kontostandSpieler1 = new JLabel ("Kontostand Spieler1: privat!!!"); 
-	 JLabel kontostandSpieler2 = new JLabel ("Kontostand Spieler2:");
+	 JLabel einsatzSpieler1C = new JLabel ("Einsatz: "); 
+	 JLabel einsatzSpieler2C = new JLabel ("Einsatz: "); 
+	 JLabel kontostandSpieler1 = new JLabel ("Kontostand: privat!!!"); 
+	 JLabel kontostandSpieler2 = new JLabel ("Kontostand: ");
 	 JLabel einsatzausgabeSpieler1C = new JLabel();
 	 JLabel einsatzausgabeSpieler2C = new JLabel();
 	 JLabel labelipadresseC2 = new JLabel(); 
@@ -66,7 +66,7 @@ public class Benutzeroberfl‰cheClient extends JFrame  {
 	 JLabel kartenwertSpieler2 = new JLabel(); 
 	 JLabel kartenwertDealer = new JLabel(); 
 	 JLabel anmeldetext = new JLabel();
-	 JLabel registrierungtext = new JLabel();
+	 JLabel ipAdressetext = new JLabel();
 	 
 	 JLabel wartenAufSpieler = new JLabel("Bitte warten...");
 	
@@ -281,7 +281,7 @@ public class Benutzeroberfl‰cheClient extends JFrame  {
 
 
 		//Buttons
-		buttonLogin.setBounds(80,550,200,50);
+		buttonLogin.setBounds(200,550,200,50);
 		buttonLogin.setFocusable(false);
 		buttonLogin.setBorder(null);
 		buttonLogin.setBackground(null);
@@ -355,7 +355,7 @@ public class Benutzeroberfl‰cheClient extends JFrame  {
 		anmeldetext.setForeground(Color.white);
 		anmeldetext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
 		anmeldetext.setVisible(false);
-		anmeldetext.setText("Bitte geben Sie Ihren Benutzernamen und Ihr Passwort ein!");
+		anmeldetext.setText("Bitte geben Sie Ihren Benutzernamen ein!");
 		panelstart.add(anmeldetext);
 		
 		//Button 3: Login:
@@ -435,15 +435,15 @@ public void registrierfenster() {
 	labelPasswortC2C.setVisible(false);
 	panelstart.add(labelPasswortC2C);
 		
-		registrierungtext.setBounds(100,150,500,25);
-		registrierungtext.setFocusable(false);
-		registrierungtext.setBorder(null);
-		registrierungtext.setBackground(null);
-		registrierungtext.setForeground(Color.white);
-		registrierungtext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
-		registrierungtext.setVisible(false);
-		registrierungtext.setText("Bitte w‰hlen Sie einen Benutzernamen und ein Passwort!");
-		panelstart.add(registrierungtext);
+	ipAdressetext.setBounds(50,500,500,25);
+	ipAdressetext.setFocusable(false);
+	ipAdressetext.setBorder(null);
+	ipAdressetext.setBackground(null);
+	ipAdressetext.setForeground(Color.white);
+	ipAdressetext.setFont(new Font("Book Antiqua", Font.PLAIN,20));
+	ipAdressetext.setVisible(false);
+	ipAdressetext.setText("Bitte geben Sie hier die IP-Adresse Ihres Mitspielers ein!");
+	panelstart.add(ipAdressetext);
 		
 		
 		buttonRegistrierenAbschlieﬂen.setBounds(100,610,150,50);
@@ -626,95 +626,95 @@ public void registrierfenster() {
 		
 	//Karten: 
 		
-		karte5Spieler1.setBounds(200,0,150,213);
+		karte5Spieler1.setBounds(200,10,150,213);
 		karte5Spieler1.setFocusable(false);
 		karte5Spieler1.setBorder(null);
 		karte5Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte5Spieler1);
 		
-		karte4Spieler1.setBounds(150,0,150,213);
+		karte4Spieler1.setBounds(150,10,150,213);
 		karte4Spieler1.setFocusable(false);
 		karte4Spieler1.setBorder(null);
 		karte4Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte4Spieler1);
 		
 		
-		karte3Spieler1.setBounds(100,0,150,213);
+		karte3Spieler1.setBounds(100,10,150,213);
 		karte3Spieler1.setFocusable(false);
 		karte3Spieler1.setBorder(null);
 		karte3Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte3Spieler1);
 		
-		karte2Spieler1.setBounds(50,0,150,213);
+		karte2Spieler1.setBounds(50,10,150,213);
 		karte2Spieler1.setFocusable(false);
 		karte2Spieler1.setBorder(null);
 		karte2Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte2Spieler1);
 		
-		karte1Spieler1.setBounds(0,0,150,213);
+		karte1Spieler1.setBounds(0,10,150,213);
 		karte1Spieler1.setFocusable(false);
 		karte1Spieler1.setBorder(null);
 		karte1Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte1Spieler1); 
 		
-		karte5Spieler2.setBounds(200,0,150,213);
+		karte5Spieler2.setBounds(200,10,150,213);
 		karte5Spieler2.setFocusable(false);
 		karte5Spieler2.setBorder(null);
 		karte5Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte5Spieler2);
 		
 
-		karte4Spieler2.setBounds(150,0,150,213);
+		karte4Spieler2.setBounds(150,10,150,213);
 		karte4Spieler2.setFocusable(false);
 		karte4Spieler2.setBorder(null);
 		karte4Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte4Spieler2);
 		
-		karte3Spieler2.setBounds(100,0,150,213);
+		karte3Spieler2.setBounds(100,10,150,213);
 		karte3Spieler2.setFocusable(false);
 		karte3Spieler2.setBorder(null);
 		karte3Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte3Spieler2);
 		
-		karte2Spieler2.setBounds(50,0,150,213);
+		karte2Spieler2.setBounds(50,10,150,213);
 		karte2Spieler2.setFocusable(false);
 		karte2Spieler2.setBorder(null);
 		karte2Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte2Spieler2);
 		
 		
-		karte1Spieler2.setBounds(0,0,150,213);
+		karte1Spieler2.setBounds(0,10,150,213);
 		karte1Spieler2.setFocusable(false);
 		karte1Spieler2.setBorder(null);
 		karte1Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte1Spieler2);
 		
-		karte5Bank.setBounds(200,0,150,213);
+		karte5Bank.setBounds(200,10,150,213);
 		karte5Bank.setFocusable(false);
 		karte5Bank.setBorder(null);
 		karte5Bank.setVisible(false);
 		kartenfeldbankg.add(karte5Bank);
 
 		
-		karte4Bank.setBounds(150,0,150,213);
+		karte4Bank.setBounds(150,10,150,213);
 		karte4Bank.setFocusable(false);
 		karte4Bank.setBorder(null);
 		karte4Bank.setVisible(false);
 		kartenfeldbankg.add(karte4Bank);
 		
-		karte3Bank.setBounds(100,0,150,213);
+		karte3Bank.setBounds(100,10,150,213);
 		karte3Bank.setFocusable(false);
 		karte3Bank.setBorder(null);
 		karte3Bank.setVisible(false);
 		kartenfeldbankg.add(karte3Bank);
 		
-		karte2Bank.setBounds(50,0,150,213);
+		karte2Bank.setBounds(50,10,150,213);
 		karte2Bank.setFocusable(false);
 		karte2Bank.setBorder(null);
 		karte2Bank.setVisible(false);
 		kartenfeldbankg.add(karte2Bank);
 		
-		karte1Bank.setBounds(0,0,150,213);
+		karte1Bank.setBounds(0,10,150,213);
 		karte1Bank.setFocusable(false);
 		karte1Bank.setBorder(null);
 		karte1Bank.setVisible(false);
@@ -773,7 +773,7 @@ public void registrierfenster() {
 		}
 		
 		public void jetonfenster() {
-			buttonJeton10.setBounds(250,0,115,100);
+			buttonJeton10.setBounds(250,10,115,100);
 			buttonJeton10.setFocusable(false);
 			buttonJeton10.setBorder(null);
 			buttonJeton10.setBackground(null);
@@ -783,7 +783,7 @@ public void registrierfenster() {
 			buttonJeton10.setVisible(false);
 			menuleiste.add(buttonJeton10);
 			
-			buttonJeton25.setBounds(500,0,115,100);
+			buttonJeton25.setBounds(500,10,115,100);
 			buttonJeton25.setFocusable(false);
 			buttonJeton25.setBorder(null);
 			buttonJeton25.setBackground(null);
@@ -793,7 +793,7 @@ public void registrierfenster() {
 			buttonJeton25.setVisible(false);
 			menuleiste.add(buttonJeton25);
 			
-			buttonJeton50.setBounds(1000,0,115,100);
+			buttonJeton50.setBounds(1000,10,115,100);
 			buttonJeton50.setFocusable(false);
 			buttonJeton50.setBorder(null);
 			buttonJeton50.setBackground(null);
@@ -803,7 +803,7 @@ public void registrierfenster() {
 			buttonJeton50.setVisible(false);
 			menuleiste.add(buttonJeton50);
 			
-			buttonJeton100.setBounds(1250,0,115,100);
+			buttonJeton100.setBounds(1250,10,115,100);
 			buttonJeton100.setFocusable(false);
 			buttonJeton100.setBorder(null);
 			buttonJeton100.setBackground(null);
@@ -813,7 +813,7 @@ public void registrierfenster() {
 			buttonJeton100.setVisible(false);
 			menuleiste.add(buttonJeton100);
 			
-			buttonEinsatzbestaetigen.setBounds(550,0,500,100);
+			buttonEinsatzbestaetigen.setBounds(550,10,500,100);
 			buttonEinsatzbestaetigen.setFocusable(false);
 			buttonEinsatzbestaetigen.setBorder(null);
 			buttonEinsatzbestaetigen.setBackground(null);
@@ -874,7 +874,7 @@ public void registrierfenster() {
 			kontostandSpieler2.setVisible(false);
 			this.add(kontostandSpieler2);
 			
-			kartenwertSpieler1.setBounds(10,50,165,25);
+			kartenwertSpieler1.setBounds(25,350,165,25);
 			kartenwertSpieler1.setFocusable(false);
 			kartenwertSpieler1.setBorder(null);
 			kartenwertSpieler1.setBackground(null);
@@ -883,7 +883,7 @@ public void registrierfenster() {
 			this.add(kartenwertSpieler1);
 			
 
-			kartenwertSpieler2.setBounds(1350,50,165,25);
+			kartenwertSpieler2.setBounds(1300,350,165,25);
 			kartenwertSpieler2.setFocusable(false);
 			kartenwertSpieler2.setBorder(null);
 			kartenwertSpieler2.setBackground(null);

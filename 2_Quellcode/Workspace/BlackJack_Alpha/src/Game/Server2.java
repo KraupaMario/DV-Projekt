@@ -846,13 +846,14 @@ public class Server2 implements Runnable {
 		bo.buttonIPAdresseBestaetigen.setVisible(true);
 		bo.labelipadresse.setVisible(true);
 		bo.labelIPAdresse.setVisible(true);
+		bo.ipAdressetext.setVisible(true);
 	}
 
 
 	public void IPZuAuswahl() {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(true);
-		bo.buttonRegistrieren.setVisible(true);
+		bo.buttonRegistrieren.setVisible(false);
 		bo.buttonZurueckZuStart.setVisible(true);
 
 		//Gemeinsame
@@ -864,6 +865,7 @@ public class Server2 implements Runnable {
 		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.labelIPAdresse.setVisible(false);
+		bo.ipAdressetext.setVisible(false);
 	}
 
 
@@ -878,13 +880,14 @@ public class Server2 implements Runnable {
 		bo.ueberschrift.setVisible(false);
 		bo.buttonZurueck.setVisible(true);
 		bo.logo.setVisible(false);
+		bo.ipAdressetext.setVisible(false);
 
 		//Loginfenster
 		bo.labelBenutzername.setVisible(true);
-		bo.labelPasswort.setVisible(true);
+		bo.labelPasswort.setVisible(false);
 		bo.buttonstart.setVisible(true);
 		bo.userText.setVisible(true);
-		bo.passwordText.setVisible(true);
+		bo.passwordText.setVisible(false);
 		bo.buttonZurueck.setVisible(true);
 		bo.anmeldetext.setVisible(true);
 
@@ -925,18 +928,18 @@ public class Server2 implements Runnable {
 		bo.labelBenutzernameErstellen.setVisible(true);
 		bo.labelPasswort1.setVisible(true);
 		bo.labelPasswort2.setVisible(true);
-		bo.buttonRegistrierenAbschließen.setVisible(true);
+		bo.buttonRegistrierenAbschließen.setVisible(false);
 		bo.userRegistText.setVisible(true);
 		bo.passwordText1.setVisible(true);
 		bo.passwordText2.setVisible(true);
-		bo.registrierungtext.setVisible(true);
+		
 
 	}
 
 	public void logRegZuAuswahl () {
 		//Startbildschirm
 		bo.buttonLogin.setVisible(true);
-		bo.buttonRegistrieren.setVisible(true);
+		bo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
 		bo.ueberschrift.setVisible(true);
@@ -960,7 +963,7 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		bo.registrierungtext.setVisible(false);
+	
 	}
 
 	public void zurückZuStart() {
@@ -994,7 +997,7 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		bo.registrierungtext.setVisible(false);
+		bo.ipAdressetext.setVisible(false);
 	}
 
 
@@ -1025,12 +1028,13 @@ public class Server2 implements Runnable {
 		bo.userRegistText.setVisible(false);
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
-		bo.registrierungtext.setVisible(false);
+	
 
 		//IPAdressefenster:
 		bo.buttonIPAdresseBestaetigen.setVisible(false);
 		bo.labelipadresse.setVisible(false);
 		bo.ipadresseText.setVisible(false);
+		bo.ipAdressetext.setVisible(false);
 
 		//Portfenster: 
 		bo.buttonPortBestätigen.setVisible(false);
@@ -1119,7 +1123,7 @@ public class Server2 implements Runnable {
 
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
-		bo.kartenwertDealer.setVisible(true);
+		bo.kartenwertDealer.setVisible(false);
 
 		bo.karte1Spieler1.setVisible(false);
 		bo.karte2Spieler1.setVisible(false);
@@ -1725,7 +1729,7 @@ public class Server2 implements Runnable {
 
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
-		bo.kartenwertDealer.setVisible(true);
+		bo.kartenwertDealer.setVisible(false);
 	}
 
 	public void rundeZuAuswerten() {
@@ -1792,12 +1796,12 @@ public class Server2 implements Runnable {
 		bo.buttonStay.setVisible(false);
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
-		bo.kartenwertDealer.setVisible(true);
+		bo.kartenwertDealer.setVisible(false);
 		bo.nachrichtS1.setText(ausgabetextS1);
 		bo.nachrichtS2.setText(ausgabetextS2);
 		bo.nachrichtS1.setVisible(true);
 		bo.nachrichtS2.setVisible(true);
-		bo.buttonNaechsteRunde.setVisible(true);
+		bo.buttonNaechsteRunde.setVisible(false);
 	}
 
 	public void auswertenZuEinsatz() {
@@ -1871,26 +1875,16 @@ public class Server2 implements Runnable {
 	}
 
 
+	public void setspielernameServer() {
+		bo.labelSpieler1.setText(aHandler.benutzername);
+	}
+	
+	public void setspielernameClient() {
+		bo.labelSpieler2.setText("Spieler 2");
+	}
 
 	/*
-	//Vector
-	private Vector<Spieler>players = new Vector<Spieler>();
 
-
-	public boolean logIn() {
-		int logIn = namePruefen();
-		if(logIn >= 0) {
-			if (passwordPruefen(logIn)) {
-
-				return true;
-			}
-			else 
-				return false;
-		}
-		else return false;
-
-
-	}
 
 
 	public void benutzerErstellen() {

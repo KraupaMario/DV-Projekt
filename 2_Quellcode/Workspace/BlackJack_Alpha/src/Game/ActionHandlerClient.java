@@ -75,7 +75,9 @@ public void actionPerformed(ActionEvent e) {
 		case "Zurück zum Start": 
 			spiel.zurückZuStart(); 
 			break;
-		case ("Start"): 
+		case ("Start"):
+			spiel.setspielernameClient();
+		    spiel.setspielernameServer();
 			//if(spiel.passwordPruefen()==true) {
 			spiel.logRegZuEinsatz(); 
 			//}

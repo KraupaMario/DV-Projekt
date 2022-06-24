@@ -599,7 +599,7 @@ public class Client2 implements Runnable {
 		cbo.buttonIPAdresseBestaetigen.setVisible(true);
 		cbo.labelipadresseC.setVisible(true);
 		cbo.ipadresseText.setVisible(true);
-
+		cbo.ipAdressetext.setVisible(true);
 
 	}
 
@@ -621,7 +621,8 @@ public class Client2 implements Runnable {
 
 		//Auswahlbildschirm
 		cbo.buttonLogin.setVisible(true);
-		cbo.buttonRegistrieren.setVisible(true);
+		cbo.buttonRegistrieren.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 
 	}
 	public void zurückZuStart() {
@@ -645,6 +646,7 @@ public class Client2 implements Runnable {
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
 		cbo.anmeldetext.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 
 
 		//Registrierfenster
@@ -655,7 +657,7 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		cbo.registrierungtext.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 	}
 
 	public void auswahlZuLogin() {
@@ -671,10 +673,10 @@ public class Client2 implements Runnable {
 
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(true);
-		cbo.labelPasswortC.setVisible(true);
+		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(true);
 		cbo.userText.setVisible(true);
-		cbo.passwordText.setVisible(true);
+		cbo.passwordText.setVisible(false);
 		cbo.buttonZurueck.setVisible(true);
 		cbo.anmeldetext.setVisible(true);
 
@@ -717,14 +719,14 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(true);
 		cbo.passwordText1.setVisible(true);
 		cbo.passwordText2.setVisible(true);
-		cbo.registrierungtext.setVisible(true);
+		cbo.ipAdressetext.setVisible(false);
 
 	}
 
 	public void logRegZuAuswahl () {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(true);
-		cbo.buttonRegistrieren.setVisible(true);
+		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
 		//cbo.ueberschriftC.setVisible(false);
@@ -749,7 +751,7 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		cbo.registrierungtext.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 
 	}
 
@@ -784,7 +786,7 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		cbo.registrierungtext.setVisible(false);
+		
 
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
@@ -884,7 +886,7 @@ public class Client2 implements Runnable {
 
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
-		cbo.kartenwertDealer.setVisible(true);
+		cbo.kartenwertDealer.setVisible(false);
 
 	}
 
@@ -1439,7 +1441,7 @@ public class Client2 implements Runnable {
 
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
-		cbo.kartenwertDealer.setVisible(true);
+		cbo.kartenwertDealer.setVisible(false);
 	}
 
 	public void rundeZuAuswerten() {
@@ -1506,13 +1508,13 @@ public class Client2 implements Runnable {
 		cbo.buttonStay.setVisible(false);
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
-		cbo.kartenwertDealer.setVisible(true);
+		cbo.kartenwertDealer.setVisible(false);
 		cbo.nachrichtS1C.setText(ausgabetextS1C);
 		cbo.nachrichtS2C.setText(ausgabetextS2C);
 		System.out.println("Hier sollte angzeigt werden: "+ausgabetextS1C);
 		cbo.nachrichtS1C.setVisible(true);
 		cbo.nachrichtS2C.setVisible(true);
-		cbo.buttonNaechsteRunde.setVisible(true);
+		cbo.buttonNaechsteRunde.setVisible(false);
 	}
 
 	public void auswertenZuEinsatz() {
@@ -1584,6 +1586,16 @@ public class Client2 implements Runnable {
 		cbo.nachrichtS2C.setVisible(false);
 		cbo.buttonNaechsteRunde.setVisible(false);
 	}
+	
+	
+	public void setspielernameClient() {
+		cbo.labelSpieler2C.setText(cHandler.benutzername);
+	}
+	
+	public void setspielernameServer() {
+		cbo.labelSpieler1C.setText("Spieler 1");
+	}
+	
 
 	public void warteBildschirm() {
 		cbo.wartenAufSpieler.setVisible(true);

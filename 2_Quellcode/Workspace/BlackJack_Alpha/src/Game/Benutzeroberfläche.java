@@ -65,7 +65,7 @@ public class Benutzeroberfl‰che extends JFrame  {
 	 JLabel nachrichtS1 = new JLabel();
 	 JLabel nachrichtS2 = new JLabel();
      JLabel anmeldetext = new JLabel();
-     JLabel registrierungtext = new JLabel();
+     JLabel ipAdressetext = new JLabel();
      JLabel IPText = new JLabel();
       
      
@@ -292,7 +292,7 @@ public class Benutzeroberfl‰che extends JFrame  {
 		
 		
 	//Buttons
-		buttonLogin.setBounds(80,550,200,50);
+		buttonLogin.setBounds(200,550,200,50);
 		buttonLogin.setFocusable(false);
 		buttonLogin.setBorder(null);
 		buttonLogin.setBackground(Color.gray);
@@ -363,9 +363,9 @@ public class Benutzeroberfl‰che extends JFrame  {
 		anmeldetext.setBorder(null);
 		anmeldetext.setBackground(null);
 		anmeldetext.setForeground(Color.white);
-		anmeldetext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
+		anmeldetext.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		anmeldetext.setVisible(false);
-		anmeldetext.setText("Bitte geben Sie Ihren Benutzernamen und Ihr Passwort ein!");
+		anmeldetext.setText("Bitte geben Sie Ihren Benutzernamen ein!");
 		panelstart.add(anmeldetext);
 		
 		//Button 3: Login:
@@ -455,15 +455,15 @@ public class Benutzeroberfl‰che extends JFrame  {
 		labelPasswort2.setVisible(false);
 		panelstart.add(labelPasswort2);
 		
-		registrierungtext.setBounds(100,150,500,25);
-		registrierungtext.setFocusable(false);
-		registrierungtext.setBorder(null);
-		registrierungtext.setBackground(null);
-		registrierungtext.setForeground(Color.white);
-		registrierungtext.setFont(new Font("Book Antiqua", Font.PLAIN,15));
-		registrierungtext.setVisible(false);
-		registrierungtext.setText("Bitte w‰hlen Sie einen Benutzernamen und ein Passwort!");
-		panelstart.add(registrierungtext);
+		ipAdressetext.setBounds(50,500,500,25);
+		ipAdressetext.setFocusable(false);
+		ipAdressetext.setBorder(null);
+		ipAdressetext.setBackground(null);
+		ipAdressetext.setForeground(Color.white);
+		ipAdressetext.setFont(new Font("Book Antiqua", Font.PLAIN,20));
+		ipAdressetext.setVisible(false);
+		ipAdressetext.setText("Bitte teilen Sie Ihrem Mitspieler Ihre IP-Adresse mit!");
+		panelstart.add(ipAdressetext);
 		
 		
 		buttonRegistrierenAbschlieﬂen.setBounds(100,610,150,50);

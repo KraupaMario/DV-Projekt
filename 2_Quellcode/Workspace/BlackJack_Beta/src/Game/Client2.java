@@ -603,7 +603,7 @@ public class Client2 implements Runnable {
 		cbo.buttonIPAdresseBestaetigen.setVisible(true);
 		cbo.labelipadresseC.setVisible(true);
 		cbo.ipadresseText.setVisible(true);
-
+		cbo.ipAdressetext.setVisible(true);
 
 	}
 
@@ -625,7 +625,8 @@ public class Client2 implements Runnable {
 
 		//Auswahlbildschirm
 		cbo.buttonLogin.setVisible(true);
-		cbo.buttonRegistrieren.setVisible(true);
+		cbo.buttonRegistrieren.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 
 	}
 	public void zurückZuStart() {
@@ -649,6 +650,7 @@ public class Client2 implements Runnable {
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
 		cbo.anmeldetext.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 
 
 		//Registrierfenster
@@ -659,7 +661,7 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		cbo.registrierungtext.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 	}
 
 	public void auswahlZuLogin() {
@@ -675,10 +677,10 @@ public class Client2 implements Runnable {
 
 		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(true);
-		cbo.labelPasswortC.setVisible(true);
+		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(true);
 		cbo.userText.setVisible(true);
-		cbo.passwordText.setVisible(true);
+		cbo.passwordText.setVisible(false);
 		cbo.buttonZurueck.setVisible(true);
 		cbo.anmeldetext.setVisible(true);
 
@@ -721,14 +723,14 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(true);
 		cbo.passwordText1.setVisible(true);
 		cbo.passwordText2.setVisible(true);
-		cbo.registrierungtext.setVisible(true);
+		cbo.ipAdressetext.setVisible(false);
 
 	}
 
 	public void logRegZuAuswahl () {
 		//Startbildschirm
 		cbo.buttonLogin.setVisible(true);
-		cbo.buttonRegistrieren.setVisible(true);
+		cbo.buttonRegistrieren.setVisible(false);
 
 		//Gemeinsame
 		//cbo.ueberschriftC.setVisible(false);
@@ -753,7 +755,7 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		cbo.registrierungtext.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
 
 	}
 
@@ -788,7 +790,7 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		cbo.registrierungtext.setVisible(false);
+		
 
 		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
@@ -813,8 +815,8 @@ public class Client2 implements Runnable {
 		cbo.kartenfeldbank.setVisible(true);
 		cbo.kartenfeldbankg.setVisible(true);
 
-		cbo.einsatzSpieler1C.setVisible(true);
-		cbo.einsatzSpieler2C.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(false);
+		cbo.einsatzSpieler2C.setVisible(false);
 		cbo.kontostandSpieler1.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 
@@ -888,7 +890,7 @@ public class Client2 implements Runnable {
 
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
-		cbo.kartenwertDealer.setVisible(true);
+		cbo.kartenwertDealer.setVisible(false);
 
 	}
 
@@ -902,9 +904,9 @@ public class Client2 implements Runnable {
 
 	public void kartenwertanzeigen(Spiel s) {
 
-		cbo.kartenwertSpieler1.setText("Kartenwert Spieler 1: "+Integer.toString(s.wertSpieler1()));
-		cbo.kartenwertSpieler2.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertSpieler2()));
-		cbo.kartenwertDealer.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertDealer()));
+		cbo.kartenwertSpieler1.setText("Kartenwert: "+Integer.toString(s.wertSpieler1()));
+		cbo.kartenwertSpieler2.setText("Kartenwert: "+Integer.toString(s.wertSpieler2()));
+		cbo.kartenwertDealer.setText("Kartenwert: "+Integer.toString(s.wertDealer()));
 
 	}
 
@@ -912,7 +914,7 @@ public class Client2 implements Runnable {
 		int j10 = 10;
 
 		String j11 = Integer.toString(j10);
-		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
 		cbo.einsatzausgabeSpieler2C.setVisible(true);
 
 		System.out.println(j10);
@@ -922,7 +924,7 @@ public class Client2 implements Runnable {
 		int j25 = 25;
 		String j26 = Integer.toString(j25);
 
-		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
 		cbo.einsatzausgabeSpieler2C.setVisible(true);
 
 		System.out.println(j25);
@@ -931,7 +933,7 @@ public class Client2 implements Runnable {
 	public void  jeton50() {
 		int j50 = 50;
 		String j51 = Integer.toString(j50);
-		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
 		cbo.einsatzausgabeSpieler2C.setVisible(true);
 		System.out.println(j50);
 		System.out.println("Immo:"+swischespeicher);
@@ -939,7 +941,7 @@ public class Client2 implements Runnable {
 	public void jeton100() {
 		int j100 = 100;
 		String j101 = Integer.toString(j100);
-		cbo.einsatzausgabeSpieler2C.setText("Der Einsatz beträgt:" +swischespeicher);
+		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
 		cbo.einsatzausgabeSpieler2C.setVisible(true); 
 		System.out.println(j100);
 		System.out.println("Immo:"+swischespeicher);
@@ -954,7 +956,7 @@ public class Client2 implements Runnable {
 
 	public void einsatzAnzeigenGegenspieler() {
 		cbo.einsatzausgabeSpieler1C.setVisible(true);
-		cbo.einsatzausgabeSpieler1C.setText("Der Einsatz beträgt:" + Spiel.getGesetztSpieler1());
+		cbo.einsatzausgabeSpieler1C.setText("Einsatz:" + Spiel.getGesetztSpieler1());
 	}
 
 
@@ -1432,8 +1434,8 @@ public class Client2 implements Runnable {
 		cbo.karte3Bank.setVisible(false);
 		cbo.karte4Bank.setVisible(false);
 		cbo.karte5Bank.setVisible(false);
-		cbo.einsatzSpieler1C.setVisible(true);
-		cbo.einsatzSpieler2C.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(false);
+		cbo.einsatzSpieler2C.setVisible(false);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
@@ -1443,7 +1445,7 @@ public class Client2 implements Runnable {
 
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
-		cbo.kartenwertDealer.setVisible(true);
+		cbo.kartenwertDealer.setVisible(false);
 	}
 
 	public void rundeZuAuswerten() {
@@ -1501,8 +1503,8 @@ public class Client2 implements Runnable {
 		cbo.karte3Bank.setVisible(true);
 		cbo.karte4Bank.setVisible(true);
 		cbo.karte5Bank.setVisible(true);
-		cbo.einsatzSpieler1C.setVisible(true);
-		cbo.einsatzSpieler2C.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(false);
+		cbo.einsatzSpieler2C.setVisible(false);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
@@ -1510,13 +1512,13 @@ public class Client2 implements Runnable {
 		cbo.buttonStay.setVisible(false);
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
-		cbo.kartenwertDealer.setVisible(true);
+		cbo.kartenwertDealer.setVisible(false);
 		cbo.nachrichtS1C.setText(ausgabetextS1C);
 		cbo.nachrichtS2C.setText(ausgabetextS2C);
+		System.out.println("Hier sollte angzeigt werden: "+ausgabetextS1C);
 		cbo.nachrichtS1C.setVisible(true);
-
 		cbo.nachrichtS2C.setVisible(true);
-		cbo.buttonNaechsteRunde.setVisible(true);
+		cbo.buttonNaechsteRunde.setVisible(false);
 	}
 
 	public void auswertenZuEinsatz() {
@@ -1588,6 +1590,16 @@ public class Client2 implements Runnable {
 		cbo.nachrichtS2C.setVisible(false);
 		cbo.buttonNaechsteRunde.setVisible(false);
 	}
+	
+	
+	public void setspielernameClient() {
+		cbo.labelSpieler2C.setText(cHandler.benutzername);
+	}
+	
+	public void setspielernameServer() {
+		cbo.labelSpieler1C.setText("Spieler 1");
+	}
+	
 
 	public void warteBildschirm() {
 		cbo.wartenAufSpieler.setVisible(true);
@@ -1608,11 +1620,6 @@ public class Client2 implements Runnable {
 	    }
 	 */
 }
-
-
-
-
-
 
 
 
