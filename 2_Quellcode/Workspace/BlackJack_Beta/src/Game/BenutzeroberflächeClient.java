@@ -36,10 +36,51 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JFrame frame = new JFrame();
 	 JPanel panel = new JPanel();
 	 
-	 //Menubar
-	// JMenuBar menu = new JMenuBar(); 
+	/**
+	 * Erstellen der Icon. 
+	 */
+
+	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
+	 Icon jeton_25 = new ImageIcon(getClass().getResource("Jeton_25.PNG"));
+	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
+	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
+	 Icon testkarte = new ImageIcon(getClass().getResource("testkarte.PNG"));
+	 Icon rueckseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
+	 Icon lasvegas = new ImageIcon(getClass().getClassLoader().getResource("Karten/lasvegas.jpg"));
+	 Icon blackjack = new ImageIcon(getClass().getClassLoader().getResource("Karten/blackjacklogo.png"));
+	 Icon hintergrundtisch = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundtisch.jpg"));
+	 Icon hintergrundweiss = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundweiß.png"));
+	 Icon hintergrundgruen = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundgrün.png"));
+	 
 	
-	//Label
+	 Icon pik[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				pik[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Pik.png"));
+			}
+	 }
+	 
+	 Icon herz[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				herz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Herz.png"));
+			}
+	 }
+	
+	 Icon kreuz[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				kreuz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Kreuz.png"));
+			}
+	 }
+	
+	 Icon karo[] = new ImageIcon[14];{
+		 for(int num=1; num<14; num++) {
+				karo[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Karo.png"));
+			}
+	 }
+
+	
+	 /**
+		 * Erstellen der Label. 
+		 */
 	 JLabel nachrichtS1C = new JLabel();
 	 JLabel nachrichtS2C = new JLabel();
 	 JLabel labelBenutzernameC = new JLabel ("Benutzername:");
@@ -67,24 +108,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JLabel kartenwertDealer = new JLabel(); 
 	 JLabel anmeldetext = new JLabel();
 	 JLabel ipAdressetext = new JLabel();
-	 
 	 JLabel wartenAufSpieler = new JLabel("Bitte warten...");
-	
-
-	 
-
-	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
-	 Icon jeton_25 = new ImageIcon(getClass().getResource("Jeton_25.PNG"));
-	 Icon jeton_50 = new ImageIcon(getClass().getResource("Jeton_50.PNG")); 
-	 Icon jeton_100 = new ImageIcon(getClass().getResource("Jeton_100.PNG"));
-	 Icon testkarte = new ImageIcon(getClass().getResource("testkarte.PNG"));
-	 Icon rueckseite =  new ImageIcon(getClass().getClassLoader().getResource("Karten/front.jpg"));
-	 Icon lasvegas = new ImageIcon(getClass().getClassLoader().getResource("Karten/lasvegas.jpg"));
-	 Icon blackjack = new ImageIcon(getClass().getClassLoader().getResource("Karten/blackjacklogo.png"));
-	 Icon hintergrundtisch = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundtisch.jpg"));
-	 Icon hintergrundweiss = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundweiß.png"));
-	 Icon hintergrundgruen = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundgrün.png"));
-	 
 	 JLabel panelstart = new JLabel(hintergrundtisch);
 	 JLabel hintergrundmenu = new JLabel(lasvegas);
 	 JLabel bedienfeld = new JLabel();
@@ -96,52 +120,25 @@ public class BenutzeroberflächeClient extends JFrame  {
      JLabel kartenfeldbank = new JLabel(hintergrundweiss);
      JLabel kartenfeldbankg = new JLabel(hintergrundgruen);
      JLabel menuleiste = new JLabel(testkarte);
-	 
-	 //PIK
-	 Icon pik[] = new ImageIcon[14];{
-		 for(int num=1; num<14; num++) {
-				pik[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Pik.png"));
-			}
-	 }
-	 //Herz
-	 Icon herz[] = new ImageIcon[14];{
-		 for(int num=1; num<14; num++) {
-				herz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Herz.png"));
-			}
-	 }
-	 //Kreuz
-	 Icon kreuz[] = new ImageIcon[14];{
-		 for(int num=1; num<14; num++) {
-				kreuz[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Kreuz.png"));
-			}
-	 }
-	 //Karo
-	 Icon karo[] = new ImageIcon[14];{
-		 for(int num=1; num<14; num++) {
-				karo[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Karo.png"));
-			}
-	 }
-	 
 	 JLabel karte1Spieler1 = new JLabel();
 	 JLabel karte2Spieler1 = new JLabel();
 	 JLabel karte3Spieler1 = new JLabel();
 	 JLabel karte4Spieler1 = new JLabel();
 	 JLabel karte5Spieler1 = new JLabel();
-	 
 	 JLabel karte1Spieler2 = new JLabel();
 	 JLabel karte2Spieler2 = new JLabel();
 	 JLabel karte3Spieler2 = new JLabel();
 	 JLabel karte4Spieler2 = new JLabel();
 	 JLabel karte5Spieler2 = new JLabel();
-	 
 	 JLabel karte1Bank = new JLabel(); 
 	 JLabel karte2Bank = new JLabel(); 
 	 JLabel karte3Bank = new JLabel(); 
 	 JLabel karte4Bank = new JLabel(); 
 	 JLabel karte5Bank = new JLabel(); 
 
-
-	//Buttons
+	 /**
+		 * Erstellen der Buttons. 
+		 */
 
 	 JButton buttonStartSpielC = new JButton ("Spiel starten"); 
 	 JButton buttonAbbrechenSpiel = new JButton ("Abbrechen"); 
@@ -163,13 +160,10 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JButton buttonStay = new JButton ("Stay"); 
 	 JButton buttonNaechsteRunde = new JButton ("Nächste Runde");
 	
+	 /**
+		 * Erstellen der TextFields. 
+		 */
 	 
-	 
-	 
-	 
-
-
-	// TextField
 	public JTextField userText = new JTextField(20);
 	public JTextField userRegistText = new JTextField(20);
 	public JPasswordField passwordText = new JPasswordField(); 
@@ -177,15 +171,11 @@ public class BenutzeroberflächeClient extends JFrame  {
 	public JPasswordField passwordText2 = new JPasswordField(); 
 	public JTextField ipadresseText = new JTextField(20); 
 	public JTextField portText = new JTextField(20);
-	
-	 //Icons
-	
-	
 
 
-
-
-	//Konstruktor Fenster
+	/**
+	 * Konstruktor Fenster. 
+	 */
 
 	public BenutzeroberflächeClient(Client2 client2) {
 
@@ -215,7 +205,9 @@ public class BenutzeroberflächeClient extends JFrame  {
 		 
 	}
 
-	//Startbildschirm
+	/**
+	 * Startfenster. 
+	 */
 	
 	public void startfenster() {
 	//hintergrundbild
@@ -228,8 +220,6 @@ public class BenutzeroberflächeClient extends JFrame  {
 		hintergrundmenu.setVisible(true);
 		this.add(hintergrundmenu); 
 
-		
-		
 		panelstart.setBounds(450,100,600,700);
 		panelstart.setFocusable(false);
 		panelstart.setBorder(null);
@@ -245,8 +235,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 		logo.setForeground(Color.white);
 		logo.setVisible(true);
 		panelstart.add(logo); 
-		
-		//Buttons: 
+ 
 		buttonStartSpielC.setBounds(80,550,200,50);
 		buttonStartSpielC.setFocusable(false);
 		buttonStartSpielC.setBorder(null);
@@ -273,14 +262,11 @@ public class BenutzeroberflächeClient extends JFrame  {
 		
 	}
 	
-	
-	
-	//Auswahlfenster
-
+	/**
+	 * Auswahlfenster. 
+	 */
 	public void auswahlfenster() {
 
-
-		//Buttons
 		buttonLogin.setBounds(200,550,200,50);
 		buttonLogin.setFocusable(false);
 		buttonLogin.setBorder(null);
@@ -293,7 +279,6 @@ public class BenutzeroberflächeClient extends JFrame  {
 		buttonLogin.setVisible(false);
 		panelstart.add(buttonLogin);
 
-
 		buttonRegistrieren.setBounds(300,550,200,50);
 		buttonRegistrieren.setFocusable(false);
 		buttonRegistrieren.setBorder(null);
@@ -305,7 +290,6 @@ public class BenutzeroberflächeClient extends JFrame  {
 		buttonRegistrieren.addActionListener(spiel.cHandler);
 		buttonRegistrieren.setVisible(false);
 		panelstart.add(buttonRegistrieren);
-		
 
 		buttonZurueckZuStart.setBounds(165,625,250,50);
 		buttonZurueckZuStart.setFocusable(false);
@@ -318,16 +302,15 @@ public class BenutzeroberflächeClient extends JFrame  {
 		buttonZurueckZuStart.addActionListener(spiel.cHandler);
 		buttonZurueckZuStart.setVisible(false);
 		panelstart.add(buttonZurueckZuStart);
-		
 
 	}
 
-	//Loginfenster
-
+	/**
+	 * Anmeldefenster. 
+	 */
 
 	public void anmeldefenster() {
-
-		//Button 1: Benutzername: 
+ 
 		labelBenutzernameC.setBounds(100,250,165,25);
 		labelBenutzernameC.setFocusable(false);
 		labelBenutzernameC.setBorder(null);
@@ -336,8 +319,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 		labelBenutzernameC.setFont(new Font("Book Antiqua", Font.PLAIN,20));
 		labelBenutzernameC.setVisible(false);
 		panelstart.add(labelBenutzernameC); 
-
-		//Button 2: Passwort: 
+ 
 		labelPasswortC.setBounds(100,350,165,25);
 		labelPasswortC.setFocusable(false);
 		labelPasswortC.setBorder(null);
@@ -347,7 +329,6 @@ public class BenutzeroberflächeClient extends JFrame  {
 		labelPasswortC.setVisible(false);
 		panelstart.add(labelPasswortC);
 
-		
 		anmeldetext.setBounds(100,150,500,25);
 		anmeldetext.setFocusable(false);
 		anmeldetext.setBorder(null);
@@ -357,8 +338,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 		anmeldetext.setVisible(false);
 		anmeldetext.setText("Bitte geben Sie Ihren Benutzernamen ein!");
 		panelstart.add(anmeldetext);
-		
-		//Button 3: Login:
+
 		buttonstart.setBounds(100,610,150,50);
 		buttonstart.setFocusable(false);
 		buttonstart.setBorder(null);
@@ -371,7 +351,6 @@ public class BenutzeroberflächeClient extends JFrame  {
 		buttonstart.setVisible(false);
 		panelstart.add(buttonstart);
 
-
 		buttonZurueck.setBounds(380,610,150,50);
 		buttonZurueck.setFocusable(false);
 		buttonZurueck.setBorder(null);
@@ -383,30 +362,25 @@ public class BenutzeroberflächeClient extends JFrame  {
 		buttonZurueck.addActionListener(spiel.cHandler);
 		buttonZurueck.setVisible(false);
 		panelstart.add(buttonZurueck);
-		
-		// TextField: Benutzername:
+	
 		userText.setBounds(300,250,165,25);
 		userText.setVisible(false);
 		userText.addActionListener(spiel.cHandler);
 		panelstart.add(userText);
 
-		//PasswordField: Passwort:
 		passwordText.setBounds(300,350,165,25);
 		passwordText.setVisible(false);
 		passwordText.addActionListener(spiel.cHandler);
 		panelstart.add(passwordText);
-		 
-
 
 	}
 
-	
-	
-	//Registrierungsfenster
+	/**
+	 * Registrierfenster. 
+	 */
 	
 public void registrierfenster() {
-
-		
+	
 	labelBenutzernameCErstellenC.setBounds(100,250,165,25);
 	labelBenutzernameCErstellenC.setFocusable(false);
 	labelBenutzernameCErstellenC.setBorder(null);
@@ -416,7 +390,6 @@ public void registrierfenster() {
 	labelBenutzernameCErstellenC.setVisible(false);
 	panelstart.add(labelBenutzernameCErstellenC); 
 
-		
 	labelPasswortC1C.setBounds(100,350,165,25);
 	labelPasswortC1C.setFocusable(false);
 	labelPasswortC1C.setBorder(null);
@@ -444,8 +417,7 @@ public void registrierfenster() {
 	ipAdressetext.setVisible(false);
 	ipAdressetext.setText("Bitte geben Sie hier die IP-Adresse Ihres Mitspielers ein!");
 	panelstart.add(ipAdressetext);
-		
-		
+	
 		buttonRegistrierenAbschließen.setBounds(100,610,150,50);
 		buttonRegistrierenAbschließen.setFocusable(false);
 		buttonRegistrierenAbschließen.setBorder(null);
@@ -458,13 +430,11 @@ public void registrierfenster() {
 		buttonRegistrierenAbschließen.setVisible(false);
 		panelstart.add(buttonRegistrierenAbschließen);
 
-		// TextField: Benutzername:
 		userRegistText.setBounds(300,250,165,25);
 		userRegistText.setVisible(false);
 		userRegistText.addActionListener(spiel.cHandler);
 		panelstart.add(userRegistText);
 
-		//PasswordField:
 		passwordText1.setBounds(300,350,165,25);
 		passwordText1.setVisible(false);
 		passwordText1.addActionListener(spiel.cHandler);
@@ -476,7 +446,9 @@ public void registrierfenster() {
 		panelstart.add(passwordText2);
 	}
 		
-		//ipadressefenster: 
+	/**
+	 * IP-Adresse-Fenster. 
+	 */
 		
 		public void ipadressefenster() {
 			
@@ -518,7 +490,10 @@ public void registrierfenster() {
 			buttonIPAdresseBestaetigen.setVisible(false);
 			panelstart.add(buttonIPAdresseBestaetigen);
 		}
-
+		/**
+		 * Portfenster. 
+		 */
+			
 		public void portfenster() {
 			
 			//Labels:
@@ -545,27 +520,17 @@ public void registrierfenster() {
 			buttonPortBestätigen.setVisible(false);
 			this.add(buttonPortBestätigen);
 
-
-
-
-	 
-
-
 	}
-
-	
-	//Spielfenster
-		
-	
+		/**
+		 * Einsatzfenster. 
+		 */
 		
 		public void einsatzfenster() {
 		
 		menuleiste.setBounds(0,700,1600,350);
 		menuleiste.setVisible(false);
 		this.add(menuleiste);
-			
-		
-		//Buttons:	
+	
 		buttonEinsatz.setBounds(500,10,600,100);
 		buttonEinsatz.setFocusable(false);
 		buttonEinsatz.setBorder(null);
@@ -576,15 +541,12 @@ public void registrierfenster() {
 		buttonEinsatz.addActionListener(spiel.cHandler);
 		buttonEinsatz.setVisible(false);
 		menuleiste.add(buttonEinsatz);
-		
-		
-		//Bedienfeld: 
+	
 		bedienfeld.setBounds(500,500,1600,200);
 		bedienfeld.setForeground(Color.black); 
 		bedienfeld.setVisible(false);
 		this.add(bedienfeld);
-		
-		//Überschrift: 
+	
 		ueberschriftCSpielC.setBounds(525,300,1000,200);
 		Font schriftart = new Font ("Algerian",Font.PLAIN+Font.ITALIC,80);
 		ueberschriftCSpielC.setForeground(Color.yellow);
@@ -592,7 +554,6 @@ public void registrierfenster() {
 		ueberschriftCSpielC.setVisible(false);
 		this.add(ueberschriftCSpielC); 
 
-		//Überschrift: 
 		unterueberschriftCSpielC.setBounds(650,350,1000,200);
 		Font schriftart4 = new Font ("Algerian",Font.PLAIN+Font.ITALIC,25);
 		unterueberschriftCSpielC.setForeground(Color.yellow);
@@ -600,15 +561,13 @@ public void registrierfenster() {
 		unterueberschriftCSpielC.setVisible(false);
 		this.add(unterueberschriftCSpielC);
 
-		//Überschrift: 
 		labelSpieler1C.setBounds(30,200,1000,200);
 		Font schriftart1 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelSpieler1C.setForeground(Color.yellow); 
 		labelSpieler1C.setFont(schriftart1);
 		labelSpieler1C.setVisible(false);
 		this.add(labelSpieler1C); 
-		
-		//Überschrift: 
+	 
 		labelSpieler2C.setBounds(1300,200,1000,200);
 		Font schriftart2 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelSpieler2C.setForeground(Color.yellow); 
@@ -616,15 +575,12 @@ public void registrierfenster() {
 		labelSpieler2C.setVisible(false);
 		this.add(labelSpieler2C);
 
-		//Überschrift: 
 		labelBankC.setBounds(725,1,1000,100);
 		Font schriftart3 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelBankC.setForeground(Color.yellow); 
 		labelBankC.setFont(schriftart3);
 		labelBankC.setVisible(false);
-		this.add(labelBankC);
-		
-	//Karten: 
+		this.add(labelBankC); 
 		
 		karte5Spieler1.setBounds(200,10,150,213);
 		karte5Spieler1.setFocusable(false);
@@ -637,7 +593,6 @@ public void registrierfenster() {
 		karte4Spieler1.setBorder(null);
 		karte4Spieler1.setVisible(false);
 		kartenfeldS1g.add(karte4Spieler1);
-		
 		
 		karte3Spieler1.setBounds(100,10,150,213);
 		karte3Spieler1.setFocusable(false);
@@ -662,7 +617,6 @@ public void registrierfenster() {
 		karte5Spieler2.setBorder(null);
 		karte5Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte5Spieler2);
-		
 
 		karte4Spieler2.setBounds(150,10,150,213);
 		karte4Spieler2.setFocusable(false);
@@ -682,7 +636,6 @@ public void registrierfenster() {
 		karte2Spieler2.setVisible(false);
 		kartenfeldS2g.add(karte2Spieler2);
 		
-		
 		karte1Spieler2.setBounds(0,10,150,213);
 		karte1Spieler2.setFocusable(false);
 		karte1Spieler2.setBorder(null);
@@ -694,7 +647,6 @@ public void registrierfenster() {
 		karte5Bank.setBorder(null);
 		karte5Bank.setVisible(false);
 		kartenfeldbankg.add(karte5Bank);
-
 		
 		karte4Bank.setBounds(150,10,150,213);
 		karte4Bank.setFocusable(false);
@@ -719,8 +671,6 @@ public void registrierfenster() {
 		karte1Bank.setBorder(null);
 		karte1Bank.setVisible(false);
 		kartenfeldbankg.add(karte1Bank);
-		
-		//Kartenfelder
 		
 		kartenfeldS1.setBounds(30,430,600,263);
 		kartenfeldS1.setFocusable(false);
@@ -771,6 +721,9 @@ public void registrierfenster() {
 		kartenfeldbank.add(kartenfeldbankg);
 		
 		}
+		/**
+		 * Jetonfenster. 
+		 */
 		
 		public void jetonfenster() {
 			buttonJeton10.setBounds(250,10,115,100);
@@ -823,8 +776,7 @@ public void registrierfenster() {
 			buttonEinsatzbestaetigen.setContentAreaFilled(false);
 			buttonEinsatzbestaetigen.setVisible(false);
 			menuleiste.add(buttonEinsatzbestaetigen);
-			
-			
+
 			einsatzausgabeSpieler1C.setBounds(25,375,165,25);
 			einsatzausgabeSpieler1C.setFocusable(false);
 			einsatzausgabeSpieler1C.setBorder(null);
@@ -832,8 +784,7 @@ public void registrierfenster() {
 			einsatzausgabeSpieler1C.setForeground(Color.white);
 			einsatzausgabeSpieler1C.setVisible(false);
 			this.add(einsatzausgabeSpieler1C);
-			
-			
+
 			einsatzausgabeSpieler2C.setBounds(1300,375,165,25);
 			einsatzausgabeSpieler2C.setFocusable(false);
 			einsatzausgabeSpieler2C.setBorder(null);
@@ -924,6 +875,10 @@ public void registrierfenster() {
 			
 		}
 		
+		/**
+		 * Auswertefenster. 
+		 */
+		
 		public void auswerteFenster() {
 			buttonNaechsteRunde.setBounds(650,650,200,50);
 			buttonNaechsteRunde.setFocusable(false);
@@ -949,6 +904,8 @@ public void registrierfenster() {
 			this.add(nachrichtS2C);
 		}
 		
+		/*
+		
 		public void wartefenster() {
 			wartenAufSpieler.setBounds(600,400,200,100);
 			wartenAufSpieler.setForeground(Color.red); 
@@ -956,7 +913,7 @@ public void registrierfenster() {
 			this.add(wartenAufSpieler);
 		}
 	
-		
+		*/
 	
 	
 	
