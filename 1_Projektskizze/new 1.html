@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Projektskizze</title>
+</head>
+<body>
+	<header>
+		<img src="images/HFU-Logo.png">
+		<h1>Projekt: Black Jack (22) </h1>		
+<h2>3. Architektur</h2>
+<p>TODO: Beschreibung der Software-Architektur inkl. Klassendiagramm z. B.:</p>
+<p>Das Klassendiagramm kann mit Hilfe von Pseudo Code (siehe HTML Quelltext) erstellt werden <a href="https://mermaid-js.github.io/mermaid/#/classDiagram">(Hilfe)</a>.
+<div class="diagram">
+			classDiagram
+			class Server {
+				spielablauf()
+				
+				
+			}
+			class Karten {	
+				Karten()
+				int wert
+				int name
+				String farbe
+				
+				String getFarbe()
+				int getWert()
+				int getName()
+			}
+			
+			class Spiel {
+				void createDeck()
+				Karten getKarten()
+				
+				int wertSpieler1()
+				int wertSpieler2()
+				int wertDealer()
+				void checkBJSpieler1()
+				void checkBJSpieler2()
+				int auswertenS1()
+				int auswertenS2()
+				
+			}
+			
+			class ActionHandler {
+				public void actionPerformed()
+				ActionHandler()
+				String benutzername
+				int betragsetzen			
+				
+			}
+			
+			class ActionHandlerClient {
+				String benutzername
+				String ipAdresse
+				int betragsetzen = 0
+				ActionHandlerClient()
+				void actionPerformed()
+				
+			}
+			class Spieler {
+				int kontostand
+				int getKontostand()
+				void einzahlen()
+			
+			}
+			
+			class Benutzeroberfläche {
+				void startfenster()
+				void auswahlfenster()
+				void anmeldefenster()
+				void registrierfenster()
+				void ipadressefenster()
+				void einsatzfenster()
+				void jetonfenster()
+				void auswerteFenster()
+				JFrame frame
+				JPanel panel
+				
+			}
+			
+			class BenutzeroberflächeClient {
+				BenutzeroberflächeClient()
+				auswerteFenster()
+				startfenster()
+				auswahlfenster()
+				anmeldefenster()
+				registrierfenster()
+				ipadressefenster()
+				portfenster()
+				einsatzfenster()
+				jetonfenster()
+				JFrame frame
+				JPanel panel
+				
+			}
+			
+			class Server {
+				Server()
+				void run()
+				void wartenAufServer()
+				boolean verbunden()
+				void initialisiereServer()
+				void spielablauf()
+				void gewinnbenachrichtung()
+				karteEmpfangen()
+				abbuchungOK()
+				void startZuIP()
+				static void main()
+				void ipZuAuswahl()
+				void zurückZuStart()
+				void auswahlZuLogin()
+				void auswahlZuRegistrier()
+				void logRegZuAuswahl ()
+				void logRegZuEinsatz()
+				void einsatzZuJetons()
+				void kontostandanzeigen ()
+				void kartenwertanzeigen()
+				void jeton10()
+				void jeton25()
+				void jeton50()
+				void jeton100()
+				void einsatzAusrechnen()
+				void einsatzAnzeigenGegenspieler()
+				void kartenausgebenS_R1()
+				void kartenausgebenS_R234()
+				void dealerKarteAufdecken ()
+				void jetonsZuHitundStay()
+				void rundeZuAuswerten()
+				void auswertenZuEinsatz()
+				void setSpielernameClient()
+				void setSpielernameServer()
+				
+				
+			}
+			
+			class Client {
+				Client()
+				void run()
+				void wartenAufServer()
+				boolean verbunden()
+				void initialisiereServer()
+				void spielablauf()
+				void gewinnbenachrichtung()
+				karteEmpfangen()
+				abbuchungOK()
+				void startZuIP()
+				static void main()
+				void ipZuAuswahl()
+				void zurückZuStart()
+				void auswahlZuLogin()
+				void auswahlZuRegistrier()
+				void logRegZuAuswahl ()
+				void logRegZuEinsatz()
+				void einsatzZuJetons()
+				void kontostandanzeigen ()
+				void kartenwertanzeigen()
+				void jeton10()
+				void jeton25()
+				void jeton50()
+				void jeton100()
+				void einsatzAusrechnen()
+				void einsatzAnzeigenGegenspieler()
+				void kartenausgebenS_R1()
+				void kartenausgebenS_R234()
+				void dealerKarteAufdecken ()
+				void jetonsZuHitundStay()
+				void rundeZuAuswerten()
+				void auswertenZuEinsatz()
+				void setSpielernameClient()
+				void setSpielernameServer()
+				
+				
+			}
+			
+			
+			Spiel <|--|> Spieler
+			Spiel <|--|> Server
+			Spiel <|--|> Client
+			Karten <|--|> Spiel
+			ActionHandler <|-- Server
+			Benutzeroberfläche <|-- Server 
+			ActionHandlerClient <|-- Client
+			BenutzeroberflächeClient <|-- Client
+			
+			
+			
+		</div>
+
+	</main>
+	<footer></footer>
+</body>
+</html>
+
+<!-- scripts to render diagrams (do not touch!) -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+	mermaid.initialize({startOnLoad:true});
+	let diagrams = document.querySelectorAll(".diagram")
+	mermaid.init({}, diagrams);
+</script>
