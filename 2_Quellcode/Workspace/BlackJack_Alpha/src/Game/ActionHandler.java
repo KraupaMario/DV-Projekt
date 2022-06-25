@@ -73,10 +73,12 @@ public void actionPerformed(ActionEvent e) {
 			spiel.logRegZuAuswahl();
 			break;	
 		case "Start":
-		    spiel.setspielernameServer();
+		    spiel.setSpielernameServer();
 		    if (benutzername.equals("")) {
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie Ihren Namen ein.");
 				break;} //gehe nur weiter wenn ein Name eingegeben wurde.
+		    Server.klicks = true;
+		    Server.spieler1LoggedIn = true;
 			spiel.logRegZuEinsatz(); 
 			break; 
 		case "Abschlieﬂen": 

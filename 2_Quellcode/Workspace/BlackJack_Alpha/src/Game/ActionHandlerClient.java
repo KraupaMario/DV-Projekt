@@ -78,10 +78,12 @@ public void actionPerformed(ActionEvent e) {
 			spiel.zurückZuStart(); 
 			break;
 		case ("Start"):
-			spiel.setspielernameClient();
+			spiel.setSpielernameClient();
 			if (benutzername.equals("")) {
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie Ihren Namen ein.");
 				break;} //gehe nur weiter wenn ein Name eingegeben wurde.
+			 Client.klicks = true;
+			 Client.spieler2LoggedIn = true;
 			spiel.logRegZuEinsatz(); 
 			//}
 			break; 

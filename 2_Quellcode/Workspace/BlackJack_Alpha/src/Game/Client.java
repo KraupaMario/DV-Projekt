@@ -53,8 +53,12 @@ public class Client implements Runnable {
 
 	int gesetztS; 
 	int gesetztC;
+	String nameSp1 = "Mitspieler";
+	String nameSp2 = "Ich";
 	int kontomax = 0;
 	static boolean klicks = false; 
+	static boolean spieler1LoggedIn = false;
+	static boolean spieler2LoggedIn = false;
 	public static int zwischenspeicher;
 
 	//static boolean wartenAufSpielerClient = false; 
@@ -103,7 +107,7 @@ public class Client implements Runnable {
 				wartenAufServer();
 			}
 
-			aktion();
+			spielablauf();
 
 			if (close) {
 				break;
@@ -149,13 +153,65 @@ public class Client implements Runnable {
 		client = false;
 	}
 
-	private void aktion()  {
+	private void spielablauf()  {
 
 		/**Spiel erstellen*/
 		Spiel client = new Spiel();
-		client.createDeck();
 		/**Spieler erstellen*/
 		Spieler playerC = new Spieler("Spieler2", "0000");
+		
+		while (!klicks) {
+			System.out.println("Warten auf LogIn Name.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} klicks = false;
+		
+		/**LogIn Bestätigung an Server senden.*/
+		try {
+			dos.writeBoolean(spieler2LoggedIn);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			spieler1LoggedIn = dis.readBoolean();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		/**Log In Routine im Server + Client beendet. Spieler 1 und Spieler 2 haben ihren Benutzernamen eingegeben:*/
+		while (!spieler1LoggedIn & !spieler2LoggedIn) {
+			System.out.println("Warten auf Login der Spieler");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		/**Benutzername vom Server empfangen.*/
+		try {
+			String nameMitSpieler = dis.readUTF();
+			setSpielernameServer(nameMitSpieler);
+			nameSp1 = nameMitSpieler;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		/**Benutzername an Server verschicken.*/
+		try {
+			dos.writeUTF(cHandler.benutzername);
+			nameSp2 = cHandler.benutzername;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		newgame: while(true) {			
 			/** Reset*/
@@ -893,9 +949,9 @@ public class Client implements Runnable {
 
 	public void kartenwertanzeigen(Spiel s) {
 
-		cbo.kartenwertSpieler1.setText("Kartenwert Spieler 1: "+Integer.toString(s.wertSpieler1()));
-		cbo.kartenwertSpieler2.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertSpieler2()));
-		cbo.kartenwertDealer.setText("Kartenwert Spieler 2: "+Integer.toString(s.wertDealer()));
+		cbo.kartenwertSpieler1.setText("Kartenwert von "+nameSp1+" :"+Integer.toString(s.wertSpieler1()));
+		cbo.kartenwertSpieler2.setText("Dein Kartenwert : "+Integer.toString(s.wertSpieler2()));
+		//cbo.kartenwertDealer.setText("Kartenwert Dealer: "+Integer.toString(s.wertDealer()));
 
 	}
 
@@ -957,7 +1013,7 @@ public class Client implements Runnable {
 
 	public void einsatzAnzeigenGegenspieler() {
 		cbo.einsatzausgabeSpieler1C.setVisible(true);
-		cbo.einsatzausgabeSpieler1C.setText("Dein Gegner setzt: " + Spiel.getGesetztSpieler1()+"$");
+		cbo.einsatzausgabeSpieler1C.setText(nameSp1+" setzt: " + Spiel.getGesetztSpieler1()+"$");
 	}
 
 
@@ -1593,11 +1649,11 @@ public class Client implements Runnable {
 	}
 
 
-	public void setspielernameClient() {
+	public void setSpielernameClient() {
 		cbo.labelSpieler2C.setText(cHandler.benutzername);
 	}
 
-	public void setspielernameServer(String str) {
+	public void setSpielernameServer(String str) {
 		cbo.labelSpieler1C.setText(str);
 	}
 

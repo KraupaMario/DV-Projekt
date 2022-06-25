@@ -51,8 +51,8 @@ public class Benutzeroberfläche extends JFrame  {
 	 JLabel labelPasswort2 = new JLabel("Passwort:");
 	 JLabel labelipadresse = new JLabel ("IP-Adresse:");
 	 JLabel labelport = new JLabel("Port:");
-	 JLabel einsatzSpieler1 = new JLabel ("Einsatz Spieler1:"); 
-	 JLabel einsatzSpieler2 = new JLabel ("Einsatz Spieler2:"); 
+	 JLabel einsatzSpieler1 = new JLabel (""); 
+	 JLabel einsatzSpieler2 = new JLabel (""); 
 	 JLabel kontostandSpieler1 = new JLabel (""); 
 	 JLabel kontostandSpieler2 = new JLabel (""); //Kontostand vom Gegner soll in Betaversion nicht mehr angezeigt werden.
 	 JLabel einsatzausgabeSpieler1 = new JLabel();
