@@ -1,22 +1,14 @@
 package Game;
-import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.net.InetAddress;
-import java.awt.*;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.Graphics; 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.Graphics;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Font;
 
 public class BenutzeroberflächeClient extends JFrame  {

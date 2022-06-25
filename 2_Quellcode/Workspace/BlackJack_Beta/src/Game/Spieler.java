@@ -1,12 +1,12 @@
 package Game;
-import javax.swing.JOptionPane;
+
 
 public class Spieler {
 
-	private String name; //Vorbereitung für Erweiterung
-    private String passwort; //Vorbereitung für Erweiterung
+	//private String name; //Vorbereitung für Erweiterung
+    //private String passwort; //Vorbereitung für Erweiterung
 	private int kontostand;
-	private long highscore; //Vorbereitung für Erweiterung
+	//private long highscore; //Vorbereitung für Erweiterung
 
 	int kartenwert;
 

@@ -1,23 +1,12 @@
 package Game;
 
-import java.awt.Font;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
-import java.util.Vector;
-import java.net.InetAddress;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //import jdk.internal.misc.FileSystemOption;
@@ -28,7 +17,6 @@ public class Server implements Runnable {
 
 	private String ip = "localhost";
 	private int port = 22222;
-	private Scanner scanner = new Scanner(System.in);
 
 	private Thread thread;
 
@@ -113,23 +101,18 @@ public class Server implements Runnable {
 		while (true) {
 
 			//Programmcode welcher im "Thread" ausgeführt wird.
-
-			if (!client && !accepted) {
-				
-				wartenAufServer();
-			
+			if (!client && !accepted) {	
+				neuerDataStream();	
 			}
-
 			spielablauf();
 
 			if (close) {
 				break;
 			}
-
 		}
 	}
 
-	private void wartenAufServer() {
+	private void neuerDataStream() {
 		Socket socket = null;
 		try {
 			
@@ -173,6 +156,7 @@ public class Server implements Runnable {
 		Spiel server = new Spiel();
 		/**erstellen Karten Deck*/
 		server.createDeck();
+		@SuppressWarnings("unused")
 		Spielkarten serverk = new Spielkarten();
 
 		Spieler playerS = new Spieler ("Spieler 1","0000");
@@ -831,6 +815,7 @@ public class Server implements Runnable {
 	}
 
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Server gamehost = new Server();
@@ -1242,14 +1227,12 @@ public class Server implements Runnable {
 		String farbek21 = s.DeckSpieler1.get(1).getFarbe();
 		String farbek12 = s.DeckSpieler2.get(0).getFarbe();
 		String farbek22 = s.DeckSpieler2.get(1).getFarbe();
-		String farbebank1= s.DeckDealer.get(0).getFarbe();
 		String farbebank2= s.DeckDealer.get(1).getFarbe();
 
 		int nummerk11 = s.DeckSpieler1.get(0).getName();
 		int nummerk21 = s.DeckSpieler1.get(1).getName();
 		int nummerk12 = s.DeckSpieler2.get(0).getName();
 		int nummerk22 = s.DeckSpieler2.get(1).getName();
-		int nummerk1b = s.DeckDealer.get(0).getName();
 		int nummerk2b = s.DeckDealer.get(1).getName();
 		
 		/**

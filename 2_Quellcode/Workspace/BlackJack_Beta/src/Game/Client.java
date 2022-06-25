@@ -1,22 +1,13 @@
 package Game;
 
-import java.awt.Font;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Scanner;
 import java.util.Vector;
-
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -104,7 +95,7 @@ public class Client implements Runnable {
 			//Programmcode welcher im "Thread" ausgeführt wird.
 
 			if (!client && !accepted) {
-				wartenAufServer();
+				neuerDataStream();
 			}
 
 			spielablauf();
@@ -116,7 +107,7 @@ public class Client implements Runnable {
 		}
 	}
 
-	private void wartenAufServer() {
+	private void neuerDataStream() {
 		Socket socket = null;
 		try {
 			socket = serverSocket.accept();
@@ -623,6 +614,7 @@ public class Client implements Runnable {
 	}
 
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Client gameclient = new Client();
@@ -1034,7 +1026,6 @@ public class Client implements Runnable {
 		String farbek21 = s.DeckSpieler1.get(1).getFarbe();
 		String farbek12 = s.DeckSpieler2.get(0).getFarbe();
 		String farbek22 = s.DeckSpieler2.get(1).getFarbe();
-		String farbebank1= s.DeckDealer.get(0).getFarbe();
 		String farbebank2= s.DeckDealer.get(1).getFarbe();
 
 		//int nummerk11 = s.DeckSpieler1.get(0).getName();
@@ -1042,7 +1033,6 @@ public class Client implements Runnable {
 		int nummerk21 = s.DeckSpieler1.get(1).getName();
 		int nummerk12 = s.DeckSpieler2.get(0).getName();
 		int nummerk22 = s.DeckSpieler2.get(1).getName();
-		int nummerk1b = s.DeckDealer.get(0).getName();
 		int nummerk2b = s.DeckDealer.get(1).getName();
 		//Karte1 Spieler1
 		switch (farbek11) {
