@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 
 
 
-public class Server2 implements Runnable {
+public class Server implements Runnable {
 
 	private String ip = "localhost";
 	private int port = 22222;
@@ -55,18 +55,19 @@ public class Server2 implements Runnable {
 
 	
 
-	private boolean yourTurn = false; //bin ich an der Reihe?
 	private boolean client = true;	// Bin ich der Client?
-	private boolean host = false; // Bin ich der Host?
 	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
 
-	
+	String nameSp1 = "Ich";
+	String nameSp2 = "Mitspieler";
+	static boolean spieler1LoggedIn = false;
+	static boolean spieler2LoggedIn = false;
 	int gesetztS; 
 	int gesetztC;
 	static int  hitostay;
 
 	static boolean klicks = false; 
-	public static int swischespeicher;
+	public static int zwischenspeicher;
 	int kontomax = 0;
 	Spieler aktuellerbenutzer;
 	boolean anmelden = false;
@@ -77,7 +78,7 @@ public class Server2 implements Runnable {
 
 
 
-	public Server2() {
+	public Server() {
 
 		InetAddress ia;
 		String serverIP;
@@ -119,7 +120,7 @@ public class Server2 implements Runnable {
 			
 			}
 
-			aktion();
+			spielablauf();
 
 			if (close) {
 				break;
@@ -163,22 +164,72 @@ public class Server2 implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		yourTurn = true;
-		host = true;
 		client = false;
 	}
 	/** Spielablauf*/
-	private void aktion()  {
+	private void spielablauf()  {
 
 		/**Erstellen Spiel*/
 		Spiel server = new Spiel();
 		/**erstellen Karten Deck*/
 		server.createDeck();
-		Spielkarten Server = new Spielkarten();
+		Spielkarten serverk = new Spielkarten();
 
-		Spieler playerS = new Spieler ("jhg","76554");
-		kontomax = playerS.getKontostand();
+		Spieler playerS = new Spieler ("Spieler 1","0000");
 
+		/**LogIn Bestätigung vom Client empfangen.*/
+		try {
+			spieler2LoggedIn = dis.readBoolean();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		while (!klicks) {
+			System.out.println("Warten auf LogIn Name.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} klicks = false;
+		
+		try {
+			dos.writeBoolean(spieler1LoggedIn);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/**Log In Routine im Server + Client beendet. Spieler 1 und Spieler 2 haben ihren Benutzernamen eingegeben:*/
+		while (!spieler1LoggedIn & !spieler2LoggedIn) {
+			System.out.println("Warten auf Login der Spieler");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		/**Benutzername an Client verschicken.*/
+		try {
+			dos.writeUTF(aHandler.benutzername);
+			nameSp1 = aHandler.benutzername;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/**Benutzername vom Client empfangen.*/
+		try {
+			String nameMitSpieler = dis.readUTF();
+			setSpielernameClient(nameMitSpieler);
+			nameSp2 = nameMitSpieler;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		newgame: while(true) {
 			/**Reset Array-Lists, Variabeln (Wert-Abfragen), Rundenzähler*/
@@ -190,6 +241,11 @@ public class Server2 implements Runnable {
 			server.wertSpieler2 =0;
 			server.wertDealer =0;
 			int z=2;
+			
+			/**Aktuellen Kontostand abfragen:*/
+			kontomax = playerS.getKontostand();
+			kontostandanzeigen(server, playerS);
+
 
 			/** Warteschleife Einsatz setzen */
 
@@ -388,7 +444,7 @@ public class Server2 implements Runnable {
 					e.printStackTrace(); } 
 
 				/** Auswerte Status auf Screen anzeigen*/
-				gewinnbenachrichtung(server);
+				gewinnbenachrichtung(server,playerS);
 				rundeZuAuswerten();
 				try {
 					Thread.sleep(15000);
@@ -495,7 +551,7 @@ public class Server2 implements Runnable {
 						e.printStackTrace(); } 
 
 					/** Auswerte Status auf Screen anzeigen*/
-					gewinnbenachrichtung(server);
+					gewinnbenachrichtung(server,playerS);
 					rundeZuAuswerten();
 					try {
 						Thread.sleep(15000);
@@ -659,7 +715,7 @@ public class Server2 implements Runnable {
 								e.printStackTrace(); }
 
 							/**Auswertung anzeigen*/
-							gewinnbenachrichtung(server);
+							gewinnbenachrichtung(server,playerS);
 
 
 							rundeZuAuswerten();
@@ -692,7 +748,7 @@ public class Server2 implements Runnable {
 							// TODO Auto-generated catch block
 							e.printStackTrace(); } 
 						/** Auswerten Status auf Screen anzeigen*/
-						gewinnbenachrichtung(server);
+						gewinnbenachrichtung(server,playerS);
 						rundeZuAuswerten();
 					
 						try {
@@ -730,7 +786,7 @@ public class Server2 implements Runnable {
 	}
 
 	/**Gewninnbenachrichtiung von Spiel s*/
-	void gewinnbenachrichtung (Spiel s){ 
+	void gewinnbenachrichtung (Spiel s, Spieler p){ 
 
 		/** Spieler 1*/
 		if (auswertStatSp1 == 0)
@@ -761,13 +817,14 @@ public class Server2 implements Runnable {
 		/** 1.Karte Dealer umdrehen*/
 		dealerKarteAufdecken(s);
 
-
+		/**ggfs. Einsatz auf Konto des Spielers buchen.*/
+		p.einzahlen(Spiel.getGesetztSpieler1(), auswertStatSp1);	
 	}
 	/** abbuchen Konto*/
 	boolean abbuchungOK(int m){
 
-		if ((swischespeicher)>kontomax) {
-			swischespeicher -= m;
+		if ((zwischenspeicher)>kontomax) {
+			zwischenspeicher -= m;
 			return false; }
 		else 
 			return true;
@@ -776,7 +833,7 @@ public class Server2 implements Runnable {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Server2 gameh = new Server2();
+		Server gamehost = new Server();
 
 	}
 	
@@ -1082,19 +1139,15 @@ public class Server2 implements Runnable {
 	 */
 	public void kartenwertanzeigen(Spiel s) {
 
-		bo.kartenwertSpieler1.setText("Kartenwert: "+Integer.toString(s.wertSpieler1()));
-		bo.kartenwertSpieler2.setText("Kartenwert: "+Integer.toString(s.wertSpieler2()));
-		bo.kartenwertDealer.setText("Kartenwert: "+Integer.toString(s.wertDealer()));
+		bo.kartenwertSpieler1.setText("Dein Kartenwert : "+Integer.toString(s.wertSpieler1()));
+		bo.kartenwertSpieler2.setText("Kartenwert von "+nameSp2+" :"+Integer.toString(s.wertSpieler2()));
+		//bo.kartenwertDealer.setText("Kartenwert Dealer: "+Integer.toString(s.wertDealer()));
 
 	}
 
-	/*
-		public void kontostandanzeigen (Spiel s) {
-			bo.kontostandSpieler1.setText(("Kontostand beträgt"+ Integer.toString(playerS.getKontostand());
-			bo.kontostandSpieler2.setText(("Kontostand beträgt" + Integer.toString(playerC.getKontostand());
-		}
-	 */
-
+	public void kontostandanzeigen (Spiel s, Spieler p) {
+		bo.kontostandSpieler1.setText(("Dein Kontostand: "+ Integer.toString(p.getKontostand())+"$"));
+	}
 
 
 	/**
@@ -1103,54 +1156,48 @@ public class Server2 implements Runnable {
 	public void jeton10() {
 		int j10 = 10;
 		if(abbuchungOK(10)) {
-			String j11 = Integer.toString(j10);
-			bo.einsatzausgabeSpieler1.setText("Einsatz:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
 			bo.einsatzausgabeSpieler1.setVisible(true);
 
 			System.out.println(j10);
-			System.out.println("Immo:"+swischespeicher);}
+			System.out.println("Immo:"+zwischenspeicher);}
 		else {
-			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
 		}
 	}
-	
 	public void jeton25() {
 		int j25 = 25;
 		if(abbuchungOK(25)) {
-			String j26 = Integer.toString(j25);
-
-			bo.einsatzausgabeSpieler1.setText("Einsatz:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
 			bo.einsatzausgabeSpieler1.setVisible(true);
 
 			System.out.println(j25);
-			System.out.println("Immo:"+swischespeicher);}
+			System.out.println("Immo:"+zwischenspeicher);}
 		else {
-			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
 		}
 	}
 	public void  jeton50() {
 		int j50 = 50;
 		if(abbuchungOK(50)) {
-			String j51 = Integer.toString(j50);
-			bo.einsatzausgabeSpieler1.setText("Einsatz:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
 			bo.einsatzausgabeSpieler1.setVisible(true);
 
 			System.out.println(j50);
-			System.out.println("Immo:"+swischespeicher);}
+			System.out.println("Immo:"+zwischenspeicher);}
 		else {
-			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
 		}
 	}
 	public void jeton100() {
 		int j100 = 100;
 		if(abbuchungOK(100)) {
-			String j101 = Integer.toString(j100);
-			bo.einsatzausgabeSpieler1.setText("Einsatz:" +swischespeicher);
+			bo.einsatzausgabeSpieler1.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
 			bo.einsatzausgabeSpieler1.setVisible(true); 
 			System.out.println(j100);
-			System.out.println("Immo:"+swischespeicher);}
+			System.out.println("Immo:"+zwischenspeicher);}
 		else {
-			JOptionPane.showMessageDialog(null, "Maximale Menge erreicht.");
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
 		}
 
 	}
@@ -1160,8 +1207,8 @@ public class Server2 implements Runnable {
 	 * Methode um den gesetzten Betrag des Spielers in einer Zwischenvariable zu speichern, und diese danach wieder zurück zu setzten.
 	 */
 	public void einsatzAusrechnen() {
-		gesetztS = swischespeicher;
-		swischespeicher = 0;
+		gesetztS = zwischenspeicher;
+		zwischenspeicher = 0;
 	}
 
 	
@@ -1170,8 +1217,7 @@ public class Server2 implements Runnable {
 	 */
 	public void einsatzAnzeigenGegenspieler() {
 		bo.einsatzausgabeSpieler2.setVisible(true);
-
-		bo.einsatzausgabeSpieler2.setText("Einsatz:" + Spiel.getGesetztSpieler2());
+		bo.einsatzausgabeSpieler2.setText(nameSp2+" setzt: " + Spiel.getGesetztSpieler2()+"$");
 	}
 
 
@@ -1825,15 +1871,15 @@ public class Server2 implements Runnable {
  * Methode zum Anzeigen des gewählten Benutzernamen des Spieler 1 (Server) auf dem Spielfeld.
  */
 	
-	public void setspielernameServer() {
+	public void setSpielernameServer() {
 		bo.labelSpieler1.setText(aHandler.benutzername);
 	}
 
 	/**
 	 * Methode zum Anzeigen des gewählten Benutzernamen des Spieler 2 (Client) auf dem Spielfeld.
 	 */
-	public void setspielernameClient() {
-		bo.labelSpieler2.setText("Spieler 2");
+	public void setSpielernameClient(String str) {
+		bo.labelSpieler2.setText(str);
 	}
 
 	/*

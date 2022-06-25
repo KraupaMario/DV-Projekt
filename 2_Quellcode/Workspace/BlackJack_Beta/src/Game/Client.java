@@ -25,24 +25,20 @@ import javax.swing.JOptionPane;
 
 
 
-public class Client2 implements Runnable {
+public class Client implements Runnable {
 
-	private String ip = "localhost";
-	private int port = 22222;
-	private Scanner scanner = new Scanner(System.in);
+	private String ip ;
+	private int port; //Port für TCP/IP Verbindung
+
 
 	private Thread thread;
 
 	private boolean close = false; //Schließt wenn true
 
-
+	private ServerSocket serverSocket;
 	private Socket socket;
 	private DataOutputStream dos;
-	private ObjectOutputStream oos;
-	private ObjectInputStream ois;
 	private DataInputStream dis;
-
-	private ServerSocket serverSocket;
 
 	int auswertStatSp1;
 	int auswertStatSp2;
@@ -51,39 +47,30 @@ public class Client2 implements Runnable {
 	public String ausgabetextS1C; 
 	public String ausgabetextS2C; 
 
-	private String[] spaces = new String[9];
+	private boolean client = true;	// Bin ich der Client? Ist aktuell deaktivert, da Server und Client getrennte Anwendungen sind.
 
-	private boolean yourTurn = false; //bin ich an der Reihe?
-	private boolean client = true;	// Bin ich der Client?
-	private boolean host = false; // Bin ich der Host?
 	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
-	private boolean unableToCommunicateWithOpponent = false; // Verbindung abgebrochen?
-	private boolean won = false; //ich habe den Spielzug gewonnen
-	private boolean dealerWon = false; // der Dealer hat gewonnen
+
 	int gesetztS; 
 	int gesetztC;
+	String nameSp1 = "Mitspieler";
+	String nameSp2 = "Ich";
 	int kontomax = 0;
 	static boolean klicks = false; 
-	public static int swischespeicher;
+	static boolean spieler1LoggedIn = false;
+	static boolean spieler2LoggedIn = false;
+	public static int zwischenspeicher;
 
-	static boolean wartenAufSpielerClient = false; 
-	static boolean wartenAufSpielerServer = false; 
-
-
-
-
-
-	private int errors = 0;
+	//static boolean wartenAufSpielerClient = false; 
+	//static boolean wartenAufSpielerServer = false; 
 
 
 
-	private String waitingString = "Warten auf Mitspieler...";
-	private String unableToCommunicateWithOpponentString = "Kommunikation mit dem Spieler nicht möglich.";
-	private String wonString = "Du hast gewonnen!";
-	private String enemyWonString = "Dealer gewinnt!";
-	private String tieString = "Unentschieden!";
 
-	public Client2() {
+
+
+
+	public Client() {
 		System.out.println("Bitte gib deine IP an: ");
 		while (!klicks) {
 
@@ -99,6 +86,7 @@ public class Client2 implements Runnable {
 		System.out.println("Die IP ist: " + ip);
 		port = 8080;
 
+		//falls Manuelle Porteingabe Vorgesehen:
 		while (port < 1 || port > 65535) {
 			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
 			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
@@ -106,15 +94,8 @@ public class Client2 implements Runnable {
 
 		if (!verbunden())
 			initialisiereServer();
-
-		System.out.println("ok1");
-
 		thread = new Thread(this, "BlackJack");
-
-		System.out.println("ok2");
 		thread.start();
-
-		System.out.println("ok3");
 	}
 
 	public void run() {
@@ -123,12 +104,10 @@ public class Client2 implements Runnable {
 			//Programmcode welcher im "Thread" ausgeführt wird.
 
 			if (!client && !accepted) {
-				System.out.println("Jetzt!");
 				wartenAufServer();
-				System.out.println("JEtzt!");
 			}
 
-			aktion();
+			spielablauf();
 
 			if (close) {
 				break;
@@ -140,12 +119,10 @@ public class Client2 implements Runnable {
 	private void wartenAufServer() {
 		Socket socket = null;
 		try {
-			System.out.println("Jetzt2y");
 			socket = serverSocket.accept();
 			dos = new DataOutputStream(socket.getOutputStream());
 			dis = new DataInputStream(socket.getInputStream());
 			accepted = true;
-			System.out.println("CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -158,7 +135,7 @@ public class Client2 implements Runnable {
 			dis = new DataInputStream(socket.getInputStream());
 			accepted = true;
 		} catch (IOException e) {
-			System.out.println("Meine IP Adresse und Port: " + ip + " : " + port + " | Eröffne einen Server.");
+			//System.out.println("Meine IP Adresse und Port: " + ip + " : " + port + " | Eröffne einen Server.");
 			return false;
 		}
 		System.out.println("Erfolgreich mit dem Server verbunden.");
@@ -172,18 +149,69 @@ public class Client2 implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		yourTurn = true;
-		host = true;
+
 		client = false;
 	}
 
-	private void aktion()  {
+	private void spielablauf()  {
 
 		/**Spiel erstellen*/
 		Spiel client = new Spiel();
-		client.createDeck();
 		/**Spieler erstellen*/
-		Spieler playerS = new Spieler("playerS", "1234");
+		Spieler playerC = new Spieler("Spieler2", "0000");
+		
+		while (!klicks) {
+			System.out.println("Warten auf LogIn Name.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} klicks = false;
+		
+		/**LogIn Bestätigung an Server senden.*/
+		try {
+			dos.writeBoolean(spieler2LoggedIn);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			spieler1LoggedIn = dis.readBoolean();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		/**Log In Routine im Server + Client beendet. Spieler 1 und Spieler 2 haben ihren Benutzernamen eingegeben:*/
+		while (!spieler1LoggedIn & !spieler2LoggedIn) {
+			System.out.println("Warten auf Login der Spieler");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		/**Benutzername vom Server empfangen.*/
+		try {
+			String nameMitSpieler = dis.readUTF();
+			setSpielernameServer(nameMitSpieler);
+			nameSp1 = nameMitSpieler;
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		/**Benutzername an Server verschicken.*/
+		try {
+			dos.writeUTF(cHandler.benutzername);
+			nameSp2 = cHandler.benutzername;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		newgame: while(true) {			
 			/** Reset*/
@@ -194,6 +222,10 @@ public class Client2 implements Runnable {
 			client.wertSpieler2 = 0;
 			client.wertSpieler2 = 0;
 			int z = 2; //Zähler. Zählt Anzahl der Spielzüge. (max 3 Karten aufnehmen)
+
+			/**Aktuellen Kontostand abfragen:*/
+			kontomax = playerC.getKontostand();
+			kontostandanzeigen(client, playerC);
 
 			/**Gesetzter Betrag vom Server empfangen:*/
 			try {
@@ -229,6 +261,8 @@ public class Client2 implements Runnable {
 			}
 			Spiel.setGesetztSpieler2(gesetztC);
 			gesetztC = 0;
+			playerC.abbuchen(Spiel.getGesetztSpieler2());
+			kontostandanzeigen(client, playerC);
 
 			/**Karten vom Server empfangen.*/
 			//Karte für Spieler 1 empfangen:
@@ -298,7 +332,7 @@ public class Client2 implements Runnable {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				gewinnbenachrichtung(client);
+				gewinnbenachrichtung(client,playerC);
 
 				rundeZuAuswerten();
 				try {
@@ -373,7 +407,7 @@ public class Client2 implements Runnable {
 						e1.printStackTrace();
 					}
 					/** Gewinner/Verlierernachricht ausgeben*/
-					gewinnbenachrichtung(client);	
+					gewinnbenachrichtung(client,playerC);	
 
 					rundeZuAuswerten();
 					try {
@@ -457,7 +491,7 @@ public class Client2 implements Runnable {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-							gewinnbenachrichtung(client);
+							gewinnbenachrichtung(client,playerC);
 
 							rundeZuAuswerten();
 							try {
@@ -484,7 +518,7 @@ public class Client2 implements Runnable {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						gewinnbenachrichtung(client);
+						gewinnbenachrichtung(client,playerC);
 						rundeZuAuswerten();
 						try {
 							Thread.sleep(15000);
@@ -508,36 +542,47 @@ public class Client2 implements Runnable {
 
 
 
-	void gewinnbenachrichtung (Spiel s) {
+	void gewinnbenachrichtung (Spiel s, Spieler p) {
 
-	/** Spieler 1*/
-	 if (auswertStatSp1 == 0)
-		ausgabetextS1C = "BlackJack";
+		/** Spieler 1*/
+		if (auswertStatSp1 == 0) {
+			ausgabetextS1C = "BlackJack";
+			System.out.println("Blackjack");}
 
-	if (auswertStatSp1 == 1)
-		ausgabetextS1C = "Gewonnen";
+		if (auswertStatSp1 == 1) {
+			ausgabetextS1C = "Gewonnen";
+			System.out.println("gew");}
 
-	if (auswertStatSp1 == 2)
-		ausgabetextS1C = "Verloren";
+		if (auswertStatSp1 == 2) {
+			ausgabetextS1C = "Verloren";
+			System.out.println("verl");}
 
-	if (auswertStatSp1 == 3)
-		ausgabetextS1C = "Unentschieden";
+		if (auswertStatSp1 == 3) {
+			ausgabetextS1C = "Unentschieden";
+			System.out.println("unent");}
 
-	/** Spieler 2*/
-	if (auswertStatSp2 == 0)
-		ausgabetextS2C = "BlackJack";
+		/** Spieler 2*/
+		if (auswertStatSp2 == 0)
+			ausgabetextS2C = "BlackJack";
+		System.out.println("Blackjack");
 
-	if (auswertStatSp2 == 1)
-		ausgabetextS2C = "Gewonnen";
+		if (auswertStatSp2 == 1)
+			ausgabetextS2C = "Gewonnen";
+		System.out.println("geww");
 
-	if (auswertStatSp2 == 2)
-		ausgabetextS2C = "Verloren";
+		if (auswertStatSp2 == 2)
+			ausgabetextS2C = "Verloren";
+		System.out.println("verl");
 
-	if (auswertStatSp1 == 3)
-		ausgabetextS1C = "Unentschieden";
+		if (auswertStatSp2 == 3)
+			ausgabetextS1C = "Unentschieden";
+		System.out.println("Unent");
 
-	/** 1. Karte von Dealer aufdecken*/
-	dealerKarteAufdecken(s);
+		/** 1. Karte von Dealer aufdecken*/
+		dealerKarteAufdecken(s);
+
+		/**ggfs. Einsatz auf Konto des Spielers buchen.*/
+		p.einzahlen(Spiel.getGesetztSpieler2(), auswertStatSp2);
 
 	}
 
@@ -567,10 +612,11 @@ public class Client2 implements Runnable {
 		return k;
 	}
 
+	/** Prüft ob genügend Geld vorhanden*/
 	boolean abbuchungOK(int m){
 
-		if ((swischespeicher)>kontomax) {
-			swischespeicher -= m;
+		if ((zwischenspeicher)>kontomax) {
+			zwischenspeicher -= m;
 			return false; }
 		else 
 			return true;
@@ -579,36 +625,27 @@ public class Client2 implements Runnable {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Client2 neu = new Client2();
+		Client gameclient = new Client();
 
 	}
-	
-	
-	/**
-	 * grafische Programmierung.
-	 */
+	//Grafische Programmierung
 
 
-	/**
-	 * Erstellen der Klassen für die grafische Programmierung. 
-	 */
 	ActionHandlerClient cHandler = new ActionHandlerClient(this); 
 	BenutzeroberflächeClient cbo = new BenutzeroberflächeClient(this);
 
 	//Vector
 	Vector<Spieler>player = new Vector<Spieler>();
 
-	
-	/**
-	 * Methode zum wechseln vom Startbildschirm zum IPfenster. 
-	 */
 	public void startZuIP() {
 		cbo.buttonStartSpielC.setVisible(false);
 		cbo.buttonAbbrechenSpiel.setVisible(false);
 
-		cbo.ueberschriftC.setVisible(false);
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(true);
 
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(true);
 		cbo.labelipadresseC.setVisible(true);
 		cbo.ipadresseText.setVisible(true);
@@ -616,33 +653,30 @@ public class Client2 implements Runnable {
 
 	}
 
-	
-	/**
-	 * Methode um von dem IP-Fenster zum Auswahlfenster zu gelangen.
-	 */
+
 	public void ipZuAuswahl() {
 
 		cbo.buttonStartSpielC.setVisible(false);
 		cbo.buttonAbbrechenSpiel.setVisible(false);
 
-		cbo.ueberschriftC.setVisible(false);
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 		cbo.buttonZurueckZuStart.setVisible(true);
 
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
 
+		//Auswahlbildschirm
 		cbo.buttonLogin.setVisible(true);
 		cbo.buttonRegistrieren.setVisible(false);
 		cbo.ipAdressetext.setVisible(false);
 
 	}
-	
-	/**
-	 * Methode um zurück zum Start fenster zu gelangen.
-	 */
 	public void zurückZuStart() {
+		//Startbildschirm
 		cbo.buttonStartSpielC.setVisible(true);
 		cbo.buttonAbbrechenSpiel.setVisible(true);
 		cbo.buttonZurueckZuStart.setVisible(false);
@@ -650,9 +684,12 @@ public class Client2 implements Runnable {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
+		//Gemeinsame
+		//cbo.ueberschrift.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 		cbo.logo.setVisible(true);
 
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -661,6 +698,8 @@ public class Client2 implements Runnable {
 		cbo.anmeldetext.setVisible(false);
 		cbo.ipAdressetext.setVisible(false);
 
+
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -671,18 +710,18 @@ public class Client2 implements Runnable {
 		cbo.ipAdressetext.setVisible(false);
 	}
 
-	/**
-	 * Methode um von dem Auswahlfenster zum Loginfenster zu gelangen.
-	 */
 	public void auswahlZuLogin() {
+		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
-		cbo.ueberschriftC.setVisible(false);
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(true);
 		cbo.logo.setVisible(false);
 		cbo.buttonZurueckZuStart.setVisible(false);
 
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(true);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(true);
@@ -691,6 +730,7 @@ public class Client2 implements Runnable {
 		cbo.buttonZurueck.setVisible(true);
 		cbo.anmeldetext.setVisible(true);
 
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -702,25 +742,26 @@ public class Client2 implements Runnable {
 
 	}
 
-	
-	/**
-	 * Methode um von dem Auswahlfenster zum Registrierfenster zu gelangen.
-	 */
 	public void auswahlZuRegistrier() {
+		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
-	    cbo.ueberschriftC.setVisible(false);
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(true);
 		cbo.logo.setVisible(false);
 		cbo.buttonZurueckZuStart.setVisible(false);
 
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
 		cbo.userText.setVisible(false);
 		cbo.passwordText.setVisible(false);
 
+
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(true);
 		cbo.labelPasswortC1C.setVisible(true);
 		cbo.labelPasswortC2C.setVisible(true);
@@ -732,17 +773,18 @@ public class Client2 implements Runnable {
 
 	}
 
-	/**
-	 * Methode um von dem Loginfenster und Registrierfenster zurück zum Auswahlfenster zu gelangen.
-	 */
 	public void logRegZuAuswahl () {
+		//Startbildschirm
 		cbo.buttonLogin.setVisible(true);
 		cbo.buttonRegistrieren.setVisible(false);
 
-		cbo.ueberschriftC.setVisible(false);
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 		cbo.logo.setVisible(true);
 
+
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -750,6 +792,8 @@ public class Client2 implements Runnable {
 		cbo.passwordText.setVisible(false);
 		cbo.anmeldetext.setVisible(false);
 
+
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -762,19 +806,20 @@ public class Client2 implements Runnable {
 	}
 
 
-	/**
-	 * Methode um von dem Loginfenster und Registrierfenster zum Einsatzfenster zu gelangen.
-	 */
+
 	public void logRegZuEinsatz() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
+		//Gemeinsame
 		cbo.ueberschriftCSpielC.setVisible(true);
 		cbo.unterueberschriftCSpielC.setVisible(true);
 		cbo.buttonZurueck.setVisible(false);
 		cbo.hintergrundmenu.setVisible(false);
 		cbo.panelstart.setVisible(false);
 
+
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -783,6 +828,7 @@ public class Client2 implements Runnable {
 		cbo.buttonZurueck.setVisible(false);
 		cbo.anmeldetext.setVisible(false);
 
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -790,18 +836,24 @@ public class Client2 implements Runnable {
 		cbo.userRegistText.setVisible(false);
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
-		
+
+
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
- 
+
+
+
+		//Spielfenster: 
 		cbo.menuleiste.setVisible(true);
 		cbo.buttonEinsatz.setVisible(true);
 		cbo.labelSpieler1C.setVisible(true);
 		cbo.labelSpieler2C.setVisible(true);
-		cbo.ueberschriftCSpielC.setVisible(false);
+		//cbo.ueberschriftCSpielC.setVisible(true);
 		cbo.labelBankC.setVisible(true);
 
+		//Kartenfenster
 		cbo.kartenfeldS1.setVisible(true);
 		cbo.kartenfeldS1g.setVisible(true);
 		cbo.kartenfeldS2.setVisible(true);
@@ -809,22 +861,23 @@ public class Client2 implements Runnable {
 		cbo.kartenfeldbank.setVisible(true);
 		cbo.kartenfeldbankg.setVisible(true);
 
-		cbo.einsatzSpieler1C.setVisible(false);
-		cbo.einsatzSpieler2C.setVisible(false);
+		cbo.einsatzSpieler1C.setVisible(true);
+		cbo.einsatzSpieler2C.setVisible(true);
 		cbo.kontostandSpieler1.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 
 
 	}
 
-	/**
-	 * Methode um nach betätigen des Einsatzbuttons die Jetons anzeigen zu lassen.
-	 */
 	public void einsatzZuJetons() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -832,6 +885,7 @@ public class Client2 implements Runnable {
 		cbo.passwordText.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -840,14 +894,17 @@ public class Client2 implements Runnable {
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
 
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
 
+		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(false);
 		cbo.labelportC.setVisible(false);
 		cbo.portText.setVisible(false);
 
+		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(false);
 		cbo.buttonJeton10.setVisible(true);
 		cbo.buttonJeton25.setVisible(true);
@@ -869,98 +926,96 @@ public class Client2 implements Runnable {
 		cbo.karte3Bank.setVisible(false);
 		cbo.karte4Bank.setVisible(false);
 		cbo.karte5Bank.setVisible(false);
-		
+
+
+		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(true);
-		
+
+
+
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
 		cbo.kartenwertDealer.setVisible(false);
 
 	}
 
-	/*
-	public void kontostandanzeigen (Spiel s) {
-		bo.kontostandSpieler1.setText(("Kontostand beträgt"+ Integer.toString(playerS.getKontostand());
-		bo.kontostandSpieler2.setText(("Kontostand beträgt" + Integer.toString(playerC.getKontostand());
-	}
-	 */
 
-	/**
-	 * Methode um die Kartenwerte der Spieler aazeigen zu lassen.
-	 */
+	public void kontostandanzeigen (Spiel s, Spieler p) {
+		cbo.kontostandSpieler2.setText(("Dein Kontostand: "+ Integer.toString(p.getKontostand())+"$"));
+	}
+
+
+
 	public void kartenwertanzeigen(Spiel s) {
 
-		cbo.kartenwertSpieler1.setText("Kartenwert: "+Integer.toString(s.wertSpieler1()));
-		cbo.kartenwertSpieler2.setText("Kartenwert: "+Integer.toString(s.wertSpieler2()));
-		cbo.kartenwertDealer.setText("Kartenwert: "+Integer.toString(s.wertDealer()));
+		cbo.kartenwertSpieler1.setText("Kartenwert von "+nameSp1+" :"+Integer.toString(s.wertSpieler1()));
+		cbo.kartenwertSpieler2.setText("Dein Kartenwert : "+Integer.toString(s.wertSpieler2()));
+		//cbo.kartenwertDealer.setText("Kartenwert Dealer: "+Integer.toString(s.wertDealer()));
+
 	}
 
-	
-	/**
-	 * Methoden um die Werte der Jetons festzulegen. die Werte des Jetons werden im Zwischenspeicher aufaddiert.
-	 */
 	public void jeton10() {
 		int j10 = 10;
+		if(abbuchungOK(10)) {
+			cbo.einsatzausgabeSpieler2C.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
+			cbo.einsatzausgabeSpieler2C.setVisible(true);
 
-		String j11 = Integer.toString(j10);
-		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
-		cbo.einsatzausgabeSpieler2C.setVisible(true);
-
-		System.out.println(j10);
-		System.out.println("Immo:"+swischespeicher);
+			System.out.println(j10);
+			System.out.println("Immo:"+zwischenspeicher);}
+		else {
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
+		}
 	}
 	public void jeton25() {
 		int j25 = 25;
-		String j26 = Integer.toString(j25);
+		if(abbuchungOK(25)) {
+			cbo.einsatzausgabeSpieler2C.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
+			cbo.einsatzausgabeSpieler2C.setVisible(true);
 
-		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
-		cbo.einsatzausgabeSpieler2C.setVisible(true);
-
-		System.out.println(j25);
-		System.out.println("Immo:"+swischespeicher);
+			System.out.println(j25);
+			System.out.println("Immo:"+zwischenspeicher);}
+		else {
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
+		}
 	}
 	public void  jeton50() {
 		int j50 = 50;
-		String j51 = Integer.toString(j50);
-		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
-		cbo.einsatzausgabeSpieler2C.setVisible(true);
-		System.out.println(j50);
-		System.out.println("Immo:"+swischespeicher);
+		if(abbuchungOK(50)) {
+			cbo.einsatzausgabeSpieler2C.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
+			cbo.einsatzausgabeSpieler2C.setVisible(true);
+
+			System.out.println(j50);
+			System.out.println("Immo:"+zwischenspeicher);}
+		else {
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
+		}
 	}
 	public void jeton100() {
 		int j100 = 100;
-		String j101 = Integer.toString(j100);
-		cbo.einsatzausgabeSpieler2C.setText("Einsatz:" +swischespeicher);
-		cbo.einsatzausgabeSpieler2C.setVisible(true); 
-		System.out.println(j100);
-		System.out.println("Immo:"+swischespeicher);
+		if(abbuchungOK(100)) {
+			cbo.einsatzausgabeSpieler2C.setText("Dein Einsatz beträgt: " +zwischenspeicher+"$");
+			cbo.einsatzausgabeSpieler2C.setVisible(true); 
+			System.out.println(j100);
+			System.out.println("Immo:"+zwischenspeicher);}
+		else {
+			JOptionPane.showMessageDialog(null, "Maximaler Geldbetrag erreicht.");
+		}
+
 	}
-	
-	
-	/**
-	 * Methode um den gesetzten Betrag des Spielers in einer Zwischenvariable zu speichern, und diese danach wieder zurück zu setzten.
-	 */
+
+
 	public void einsatzAusrechnen() {
-		gesetztC = swischespeicher; 
-		swischespeicher = 0;
+		gesetztC = zwischenspeicher; 
+		zwischenspeicher = 0;
 		einsatzAnzeigenGegenspieler(); 
 	}
 
-	/**
-	 * Methode um den Einsatz des Gegenspielers anzeigen zu lassen. 
-	 */
 	public void einsatzAnzeigenGegenspieler() {
 		cbo.einsatzausgabeSpieler1C.setVisible(true);
-		cbo.einsatzausgabeSpieler1C.setText("Einsatz:" + Spiel.getGesetztSpieler1());
+		cbo.einsatzausgabeSpieler1C.setText(nameSp1+" setzt: " + Spiel.getGesetztSpieler1()+"$");
 	}
 
-
-	
-	/**
-	 * Methode zum anzeigen der ersten zwei ausgegebenen Karten für den Spieler 1 (Server) und Spieler 2 (Client).
-	 * @param s
-	 */
 
 	public void kartenausgebenS_R1(Spiel s){
 
@@ -989,10 +1044,7 @@ public class Client2 implements Runnable {
 		int nummerk22 = s.DeckSpieler2.get(1).getName();
 		int nummerk1b = s.DeckDealer.get(0).getName();
 		int nummerk2b = s.DeckDealer.get(1).getName();
-		
-		/**
-		 * bestimmen der ersten Karte des Spieler 1.
-		 */
+		//Karte1 Spieler1
 		switch (farbek11) {
 		case "pik":
 			cbo.karte1Spieler1.setIcon(cbo.pik[nummerk11]);
@@ -1008,9 +1060,7 @@ public class Client2 implements Runnable {
 			break;
 		}
 
-		/**
-		 * bestimmen der zweiten Karte des Spieler 1.
-		 */
+		//Karte2 Spieler1
 		switch (farbek21) {
 		case "pik":
 			cbo.karte2Spieler1.setIcon(cbo.pik[nummerk21]);
@@ -1027,9 +1077,7 @@ public class Client2 implements Runnable {
 		}
 
 
-		/**
-		 * bestimmen der ersten Karte des Spieler 2.
-		 */
+		//Karte1 Spieler2
 		switch (farbek12) {
 		case "pik":
 			cbo.karte1Spieler2.setIcon(cbo.pik[nummerk12]);
@@ -1046,9 +1094,7 @@ public class Client2 implements Runnable {
 		}
 
 
-		/**
-		 * bestimmen der zweiten Karte des Spieler 2.
-		 */
+		//Karte2 Spieler2
 		switch (farbek22) {
 		case "pik":
 			cbo.karte2Spieler2.setIcon(cbo.pik[nummerk22]);
@@ -1080,9 +1126,7 @@ public class Client2 implements Runnable {
 						break;
 					} */
 
-		/**
-		 * bestimmen der zweiten Karte des Dealers.
-		 */
+		//Karte2 Bank
 		switch (farbebank2) {
 		case "pik":
 			cbo.karte2Bank.setIcon(cbo.pik[nummerk2b]);
@@ -1098,9 +1142,6 @@ public class Client2 implements Runnable {
 			break;
 		} 
 
-		/**
-		 * anzeigen der ersten und zweiten Karten der Spieler und Ausblendne der dritten, vierten und fünften Karten der Spieler.
-		 */
 		cbo.karte1Spieler1.setVisible(true);
 		cbo.karte2Spieler1.setVisible(true);
 		cbo.karte3Spieler1.setVisible(false);
@@ -1394,15 +1435,15 @@ public class Client2 implements Runnable {
 		cbo.karte1Bank.setVisible(true);
 	}
 
-	/**
-	 * Methode zum ausblenden der Jetons und anzeigen des Hitbutton und Staybutton.
-	 */
 	public void jetonsZuHitundStay() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -1410,6 +1451,7 @@ public class Client2 implements Runnable {
 		cbo.passwordText.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -1418,14 +1460,17 @@ public class Client2 implements Runnable {
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
 
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
 
+		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(false);
 		cbo.labelportC.setVisible(false);
 		cbo.portText.setVisible(false);
- 
+
+		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(false);
 		cbo.buttonJeton10.setVisible(false);
 		cbo.buttonJeton25.setVisible(false);
@@ -1446,27 +1491,29 @@ public class Client2 implements Runnable {
 		cbo.karte3Bank.setVisible(false);
 		cbo.karte4Bank.setVisible(false);
 		cbo.karte5Bank.setVisible(false);
-		cbo.einsatzSpieler1C.setVisible(false);
-		cbo.einsatzSpieler2C.setVisible(false);
+		cbo.einsatzSpieler1C.setVisible(true);
+		cbo.einsatzSpieler2C.setVisible(true);
+		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(true);
 		cbo.buttonStay.setVisible(true);
+
 
 		cbo.kartenwertSpieler1.setVisible(true);
 		cbo.kartenwertSpieler2.setVisible(true);
 		cbo.kartenwertDealer.setVisible(false);
 	}
 
-	/**
-	 * Methode zum Anzeigen der Gewonnen, Verloren, Unentschieden und BlackJack benachrichtigung.
-	 */
 	public void rundeZuAuswerten() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -1474,6 +1521,7 @@ public class Client2 implements Runnable {
 		cbo.passwordText.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -1482,14 +1530,16 @@ public class Client2 implements Runnable {
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
 
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
 
+		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(false);
 		cbo.labelportC.setVisible(false);
 		cbo.portText.setVisible(false);
-		
+		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(false);
 		cbo.buttonJeton10.setVisible(false);
 		cbo.buttonJeton25.setVisible(false);
@@ -1510,8 +1560,9 @@ public class Client2 implements Runnable {
 		cbo.karte3Bank.setVisible(true);
 		cbo.karte4Bank.setVisible(true);
 		cbo.karte5Bank.setVisible(true);
-		cbo.einsatzSpieler1C.setVisible(false);
-		cbo.einsatzSpieler2C.setVisible(false);
+		cbo.einsatzSpieler1C.setVisible(true);
+		cbo.einsatzSpieler2C.setVisible(true);
+		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(false);
@@ -1527,14 +1578,15 @@ public class Client2 implements Runnable {
 		cbo.buttonNaechsteRunde.setVisible(false);
 	}
 
-	/**
-	 * Methode zum zurückkehren zum Einsatzbildschirm.
-	 */
 	public void auswertenZuEinsatz() {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
+
+		//Gemeinsame
+		//cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -1542,6 +1594,7 @@ public class Client2 implements Runnable {
 		cbo.passwordText.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 
+		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -1550,14 +1603,16 @@ public class Client2 implements Runnable {
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
 
+		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
- 
+
+		//Portfenster: 
 		cbo.buttonPortBestätigen.setVisible(false);
 		cbo.labelportC.setVisible(false);
 		cbo.portText.setVisible(false);
-		
+		//Spielfenster: 
 		cbo.buttonEinsatz.setVisible(true);
 		cbo.buttonJeton10.setVisible(false);
 		cbo.buttonJeton25.setVisible(false);
@@ -1580,6 +1635,7 @@ public class Client2 implements Runnable {
 		cbo.karte5Bank.setVisible(false);
 		cbo.einsatzSpieler1C.setVisible(false);
 		cbo.einsatzSpieler1C.setVisible(false);
+		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(false); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(false);
@@ -1591,22 +1647,17 @@ public class Client2 implements Runnable {
 		cbo.nachrichtS2C.setVisible(false);
 		cbo.buttonNaechsteRunde.setVisible(false);
 	}
-	
-	/**
-	 * Methode zum Anzeigen des gewählten Benutzernamen des Spieler 2 (Client) auf dem Spielfeld.
-	 */
-	public void setspielernameClient() {
+
+
+	public void setSpielernameClient() {
 		cbo.labelSpieler2C.setText(cHandler.benutzername);
 	}
-	
-	/**
-	 * Methode zum Anzeigen des gewählten Benutzernamen des Spieler 1 (Server) auf dem Spielfeld.
-	 */
-	public void setspielernameServer() {
-		cbo.labelSpieler1C.setText("Spieler 1");
+
+	public void setSpielernameServer(String str) {
+		cbo.labelSpieler1C.setText(str);
 	}
-	
-/*
+
+
 	public void warteBildschirm() {
 		cbo.wartenAufSpieler.setVisible(true);
 	}
@@ -1615,7 +1666,7 @@ public class Client2 implements Runnable {
 		//Spieler s = new Spieler(aHandler.benutzernameLogin, aHandler.password1);
 		//player.addElement(s);			
 	}
-	
+	/*
 	    public boolean passwordPruefen() {;
 	    	 for (int i=0;i<player.size();i++) {
 	    		 if (Spieler.passwort.equals(aHandler.password)==true) {
@@ -1626,6 +1677,11 @@ public class Client2 implements Runnable {
 	    }
 	 */
 }
+
+
+
+
+
 
 
 

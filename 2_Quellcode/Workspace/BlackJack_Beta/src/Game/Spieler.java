@@ -3,16 +3,15 @@ import javax.swing.JOptionPane;
 
 public class Spieler {
 
-	private String name;
-    private String passwort;
-	private int kontostand =  500;
-	private long highscore;
+	private String name; //Vorbereitung für Erweiterung
+    private String passwort; //Vorbereitung für Erweiterung
+	private int kontostand;
+	private long highscore; //Vorbereitung für Erweiterung
 
 	int kartenwert;
-	int Gewinnstatus;
 
 	public Spieler(String n, String passwort) {
-		//..
+		//..Name und Passwort im Konstruktor dienen als Vorbereitung für eine Erweiterung mit einer Benutzerdatenbank die Benutzerkonten speichert.
 		kontostand = 500;
 	}
 
@@ -34,48 +33,26 @@ public class Spieler {
 		return kontostand;
 	}
 	
-	/**
-	 * Wie viel Geld der Spieler setzen will
-	 * @return Geldeinsatz
-	 */
-	public int geldsetzen() {
-		System.out.println("Wie viel Geld wollen sie setzen? "); // Port festlegen 8080?
-		int mony = Integer.parseInt(JOptionPane.showInputDialog("Wie viel Geld wollen sie setzen?"));
-		while ((mony < 1 || mony > 500001)&& mony<= kontostand) {
-			System.out.println("Sie kï¿½nnen nur bis zu 500000 Euro auf einmal setzen! Probieren Sie es nochmal");
-			mony = Integer.parseInt(JOptionPane.showInputDialog("mo?")); // ï¿½berprufen ob er genug auf dem Konto hat??
-		}
-		//this.rmveMoney(mony);
-		return mony;
-	}
-	
-
-	
+	/**Abbuchung von Spielgeld vom Spielerkonto.*/
+	/**@param Abzubuchender Betrag.*/
 	public void abbuchen(int g) {
 		kontostand = kontostand - g;
 	}
 	
-	void changeKontostand(int mony) {
+	/**@param Gesetzter Betrag des Spielers (mny) sowie Gewinnstatus.*/
+	void einzahlen(int mny, int gewinnstatus) {
 		//Geld zum Konto hinzufÃ¼gen oder abziehen
-			if (Gewinnstatus == 1) {
-				// wie kann man denn den "Gewinnstatus aus der Klasse Spiel herausziehen?"
-				kontostand = kontostand + mony*2;
+			if (gewinnstatus == 1 /*Gewonnen*/) {
+				kontostand = kontostand + mny*2;
 			}
-			else if (Gewinnstatus == 0) {
-				kontostand = kontostand - mony;
+			else if (gewinnstatus == 0 /*BlackJack*/) {
+				kontostand = (int)(kontostand - mny*2.5);
+			}
+			else if (gewinnstatus == 3 /*Patt/Unentschieden*/) {
+				kontostand = kontostand + mny;
 			}
 
 		}
-
-
-	void hit() {
-
-	}
-
-	void stay() {
-
-	}
-
 
 
 	public static void main(String[] args) {
