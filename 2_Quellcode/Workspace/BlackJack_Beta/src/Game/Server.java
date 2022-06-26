@@ -1050,7 +1050,6 @@ public class Server implements Runnable {
 
 		bo.einsatzSpieler1.setVisible(false);
 		bo.einsatzSpieler2.setVisible(false);
-
 		bo.kontostandSpieler1.setVisible(true);
 		bo.kontostandSpieler2.setVisible(true);
 	}
@@ -1116,11 +1115,13 @@ public class Server implements Runnable {
 		bo.karte3Bank.setVisible(false);
 		bo.karte4Bank.setVisible(false);
 		bo.karte5Bank.setVisible(false);
+		bo.einsatzSpieler1.setVisible(false);
+		bo.einsatzSpieler2.setVisible(false);
 	}
 
 
 	/**
-	 * Methode um die Kartenwerte der Spieler aazeigen zu lassen.
+	 * Methode um die Kartenwerte der Spieler anzeigen zu lassen.
 	 */
 	public void kartenwertanzeigen(Spiel s) {
 
@@ -1208,7 +1209,7 @@ public class Server implements Runnable {
 
 	/**
 	 * Methode zum anzeigen der ersten zwei ausgegebenen Karten für den Spieler 1 (Server) und Spieler 2 (Client).
-	 * @param s
+	 * @param s von der Klasse Spiel.
 	 */
 
 	public void kartenausgebenS_R1(Spiel s){
@@ -1365,7 +1366,13 @@ public class Server implements Runnable {
 		bo.karte5Bank.setVisible(false); 
 	}
 
-	
+	/**
+	 * /**
+	 * Methode zum anzeigen der dritten, vierten und fünften Karten für den Spieler 1 (Server) und Spieler 2 (Client).
+	 * @param s von der Klasse Spiel.
+	 * @param runde zum erhalten der aktuellen Spielrunde für die passende Switch Case Abfrage.
+	 */
+
 	public void kartenausgebenS_R234(Spiel s, int runde){
 		String farbek11="null"; //soll bewusst kein null sein sondern nur ein Text...
 		String farbek12="null";
@@ -1403,7 +1410,7 @@ public class Server implements Runnable {
 		catch (Exception e){}
 
 		if (runde == 2) {
-			/**weitere Karte von Spieler1 anzeigen.*/
+			/**Karte 3 von Spieler1 anzeigen.*/
 			switch (farbek11) {
 			case "pik":
 				bo.karte3Spieler1.setIcon(bo.pik[nummerk11]);
@@ -1422,7 +1429,7 @@ public class Server implements Runnable {
 			}
 
 
-			//Karte Spieler2
+			/**Karte 3 von Spieler2 anzeigen.*/
 			switch (farbek12) {
 			case "pik":
 				bo.karte3Spieler2.setIcon(bo.pik[nummerk12]);
@@ -1441,7 +1448,7 @@ public class Server implements Runnable {
 			}
 
 
-			//Karte Bank
+			/**Karte 3 von Dealer anzeigen.*/
 			switch (farbebank1) {
 			case "pik":
 				bo.karte3Bank.setIcon(bo.pik[nummerk1b]);
@@ -1458,6 +1465,10 @@ public class Server implements Runnable {
 			case "null":
 				break;
 			} 
+			
+			/**
+			 * anzeigen der ersten, zweiten und dritten Karte der Spieler und des Dealers.
+			 */
 			bo.karte1Spieler1.setVisible(true);
 			bo.karte2Spieler1.setVisible(true);
 			bo.karte3Spieler1.setVisible(true);
@@ -1469,9 +1480,12 @@ public class Server implements Runnable {
 			bo.karte1Bank.setVisible(true);
 			bo.karte1Bank.setIcon(bo.rueckseite);
 			bo.karte2Bank.setVisible(true);
-			bo.karte3Bank.setVisible(true);}
+			bo.karte3Bank.setVisible(true);
+			}
+		
+		
 		else if (runde == 3) {
-			/**weitere Karte von Spieler1 anzeigen.*/
+			/**Karte 4 von Spieler1 anzeigen.*/
 			switch (farbek11) {
 			case "pik":
 				bo.karte4Spieler1.setIcon(bo.pik[nummerk11]);
@@ -1490,7 +1504,7 @@ public class Server implements Runnable {
 			}
 
 
-			//Karte Spieler2
+			/**Karte 4 von Spieler2 anzeigen.*/
 			switch (farbek12) {
 			case "pik":
 				bo.karte4Spieler2.setIcon(bo.pik[nummerk12]);
@@ -1509,7 +1523,7 @@ public class Server implements Runnable {
 			}
 
 
-			//Karte Bank
+			/**Karte 4 von Dealer anzeigen.*/
 			switch (farbebank1) {
 			case "pik":
 				bo.karte4Bank.setIcon(bo.pik[nummerk1b]);
@@ -1527,6 +1541,9 @@ public class Server implements Runnable {
 				break;
 			} 
 
+			/**
+			 * anzeigen der ersten, zweiten, dritten und vierten Karte der Spieler und des Dealers.
+			 */
 			bo.karte1Spieler1.setVisible(true);
 			bo.karte2Spieler1.setVisible(true);
 			bo.karte3Spieler1.setVisible(true);
@@ -1541,9 +1558,11 @@ public class Server implements Runnable {
 			bo.karte1Bank.setIcon(bo.rueckseite);
 			bo.karte2Bank.setVisible(true);
 			bo.karte3Bank.setVisible(true);
-			bo.karte4Bank.setVisible(true);}
+			bo.karte4Bank.setVisible(true);
+			}
+		
 		else if (runde == 4) {
-
+			/**Karte 5 von Spieler2 anzeigen.*/
 			switch (farbek11) {
 			case "pik":
 				bo.karte5Spieler1.setIcon(bo.pik[nummerk11]);
@@ -1562,7 +1581,7 @@ public class Server implements Runnable {
 			}
 
 
-			//Karte Spieler2
+			/**Karte 5 von Spieler2 anzeigen.*/
 			switch (farbek12) {
 			case "pik":
 				bo.karte5Spieler2.setIcon(bo.pik[nummerk12]);
@@ -1581,7 +1600,7 @@ public class Server implements Runnable {
 			}
 
 
-			//Karte Bank
+			/**Karte 5 von Dealer anzeigen.*/
 			switch (farbebank1) {
 			case "pik":
 				bo.karte5Bank.setIcon(bo.pik[nummerk1b]);
@@ -1598,6 +1617,9 @@ public class Server implements Runnable {
 			case "null":
 				break;
 			} 
+			/**
+			 * anzeigen der ersten, zweiten, dritten, vierten und fünften Karte der Spieler und des Dealers.
+			 */
 			bo.karte1Spieler1.setVisible(true);
 			bo.karte2Spieler1.setVisible(true);
 			bo.karte3Spieler1.setVisible(true);
@@ -1707,7 +1729,7 @@ public class Server implements Runnable {
 		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(true);
 		bo.buttonStay.setVisible(true);
-
+        
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
 		bo.kartenwertDealer.setVisible(false);
@@ -1770,6 +1792,7 @@ public class Server implements Runnable {
 		bo.einsatzSpieler1.setVisible(false);
 		bo.einsatzSpieler2.setVisible(false);
 		bo.kontostandSpieler1.setVisible(true); 
+		bo.kontostandSpieler2.setVisible(true); 
 		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(false);
 		bo.buttonStay.setVisible(false);
@@ -1781,6 +1804,8 @@ public class Server implements Runnable {
 		bo.nachrichtS1.setVisible(true);
 		bo.nachrichtS2.setVisible(true);
 		bo.buttonNaechsteRunde.setVisible(false);
+		bo.einsatzausgabeSpieler1.setVisible(false);
+		bo.einsatzausgabeSpieler2.setVisible(false);
 	}
 
 	/**
@@ -1838,7 +1863,8 @@ public class Server implements Runnable {
 		bo.karte5Bank.setVisible(false);
 		bo.einsatzSpieler1.setVisible(false);
 		bo.einsatzSpieler2.setVisible(false);
-		bo.kontostandSpieler1.setVisible(false); 
+		bo.kontostandSpieler1.setVisible(true); 
+		bo.kontostandSpieler2.setVisible(true);
 		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(false);
 		bo.buttonStay.setVisible(false);

@@ -16,9 +16,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 
 	//Variablen
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
@@ -29,7 +27,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 JPanel panel = new JPanel();
 	 
 	/**
-	 * Erstellen der Icon. 
+	 * Erstellen der verschiedenen Icons.
 	 */
 
 	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
@@ -45,6 +43,10 @@ public class BenutzeroberflächeClient extends JFrame  {
 	 Icon hintergrundgruen = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundgrün.png"));
 	 
 	
+	 /**
+	   * Erstellen der Karten-Arrays.
+	   */
+	 
 	 Icon pik[] = new ImageIcon[14];{
 		 for(int num=1; num<14; num++) {
 				pik[num]  = new ImageIcon(getClass().getClassLoader().getResource("Karten/"+num+"Pik.png"));
@@ -195,7 +197,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	}
 
 	/**
-	 * Startfenster. 
+	 * Methode startfenster(). Anzeigen des Startfensters. 
 	 */
 	
 	public void startfenster() {
@@ -252,7 +254,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	}
 	
 	/**
-	 * Auswahlfenster. 
+	 * Methode auswahlfenster(). Anzeigen des Auswahlfensters. 
 	 */
 	public void auswahlfenster() {
 
@@ -295,7 +297,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	}
 
 	/**
-	 * Anmeldefenster. 
+	 * Methode anmeldefenster(). Anzeigen des Anmeldefensters. 
 	 */
 
 	public void anmeldefenster() {
@@ -365,7 +367,7 @@ public class BenutzeroberflächeClient extends JFrame  {
 	}
 
 	/**
-	 * Registrierfenster. 
+	 * Methode registrierfenster(). Anzeigen des Registrierfensters. Für eine mögliche Erweiterung kann ein Registrierfenster eingeblendet werden. Hier kann sich der Spieler, sofern er sich noch nie eingeloggt hat, registrieren.  
 	 */
 	
 public void registrierfenster() {
@@ -436,7 +438,7 @@ public void registrierfenster() {
 	}
 		
 	/**
-	 * IP-Adresse-Fenster. 
+	 * Methode ipadressefenster(). Anzeigen des IP-Adresse-Fensters.  
 	 */
 		
 		public void ipadressefenster() {
@@ -480,7 +482,7 @@ public void registrierfenster() {
 			panelstart.add(buttonIPAdresseBestaetigen);
 		}
 		/**
-		 * Portfenster. 
+		 * Methode portfenster(). Anzeigen des Portfensters. In unserem Spiel wurde der Port fest einprogrammiert, daher wurde das Portfenster ausgeblendet. Falls man später den Port wieder manuell eingeben möchte, muss man dies nur sichtbar machen. 
 		 */
 			
 		public void portfenster() {
@@ -511,7 +513,7 @@ public void registrierfenster() {
 
 	}
 		/**
-		 * Einsatzfenster. 
+		 * Methode einsatzfenster(). Anzeigen des Einsatzfensters.  
 		 */
 		
 		public void einsatzfenster() {
@@ -557,7 +559,7 @@ public void registrierfenster() {
 		labelSpieler1C.setVisible(false);
 		this.add(labelSpieler1C); 
 	 
-		labelSpieler2C.setBounds(1300,200,1000,200);
+		labelSpieler2C.setBounds(1250,200,1000,200);
 		Font schriftart2 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelSpieler2C.setForeground(Color.yellow); 
 		labelSpieler2C.setFont(schriftart2);
@@ -711,7 +713,7 @@ public void registrierfenster() {
 		
 		}
 		/**
-		 * Jetonfenster. 
+		 * Methode jetonfenster(). Anzeigen des Jetonfensters. 
 		 */
 		
 		public void jetonfenster() {
@@ -766,7 +768,7 @@ public void registrierfenster() {
 			buttonEinsatzbestaetigen.setVisible(false);
 			menuleiste.add(buttonEinsatzbestaetigen);
 
-			einsatzausgabeSpieler1C.setBounds(25,375,165,25);
+			einsatzausgabeSpieler1C.setBounds(25,375,200,25);
 			einsatzausgabeSpieler1C.setFocusable(false);
 			einsatzausgabeSpieler1C.setBorder(null);
 			einsatzausgabeSpieler1C.setBackground(null);
@@ -774,7 +776,7 @@ public void registrierfenster() {
 			einsatzausgabeSpieler1C.setVisible(false);
 			this.add(einsatzausgabeSpieler1C);
 
-			einsatzausgabeSpieler2C.setBounds(1300,375,165,25);
+			einsatzausgabeSpieler2C.setBounds(1250,375,200,25);
 			einsatzausgabeSpieler2C.setFocusable(false);
 			einsatzausgabeSpieler2C.setBorder(null);
 			einsatzausgabeSpieler2C.setBackground(null);
@@ -782,7 +784,7 @@ public void registrierfenster() {
 			einsatzausgabeSpieler2C.setVisible(false);
 			this.add(einsatzausgabeSpieler2C);
 			
-			einsatzSpieler1C.setBounds(25,350,165,25);
+			einsatzSpieler1C.setBounds(25,350,200,25);
 			einsatzSpieler1C.setFocusable(false);
 			einsatzSpieler1C.setBorder(null);
 			einsatzSpieler1C.setBackground(null);
@@ -790,7 +792,7 @@ public void registrierfenster() {
 			einsatzSpieler1C.setVisible(false);
 			this.add(einsatzSpieler1C);
 			
-			einsatzSpieler2C.setBounds(1300,350,165,25);
+			einsatzSpieler2C.setBounds(1250,350,200,25);
 			einsatzSpieler2C.setFocusable(false);
 			einsatzSpieler2C.setBorder(null);
 			einsatzSpieler2C.setBackground(null);
@@ -798,7 +800,7 @@ public void registrierfenster() {
 			einsatzSpieler2C.setVisible(false);
 			this.add(einsatzSpieler2C);
 			
-			kontostandSpieler1.setBounds(25,325,165,25);
+			kontostandSpieler1.setBounds(25,325,200,25);
 			kontostandSpieler1.setFocusable(false);
 			kontostandSpieler1.setBorder(null);
 			kontostandSpieler1.setBackground(null);
@@ -806,7 +808,7 @@ public void registrierfenster() {
 			kontostandSpieler1.setVisible(false);
 			this.add(kontostandSpieler1);
 			
-			kontostandSpieler2.setBounds(1300,325,165,25);
+			kontostandSpieler2.setBounds(1250,325,200,25);
 			kontostandSpieler2.setFocusable(false);
 			kontostandSpieler2.setBorder(null);
 			kontostandSpieler2.setBackground(null);
@@ -814,7 +816,7 @@ public void registrierfenster() {
 			kontostandSpieler2.setVisible(false);
 			this.add(kontostandSpieler2);
 			
-			kartenwertSpieler1.setBounds(25,350,165,25);
+			kartenwertSpieler1.setBounds(25,350,200,25);
 			kartenwertSpieler1.setFocusable(false);
 			kartenwertSpieler1.setBorder(null);
 			kartenwertSpieler1.setBackground(null);
@@ -823,7 +825,7 @@ public void registrierfenster() {
 			this.add(kartenwertSpieler1);
 			
 
-			kartenwertSpieler2.setBounds(1300,350,165,25);
+			kartenwertSpieler2.setBounds(1250,350,200,25);
 			kartenwertSpieler2.setFocusable(false);
 			kartenwertSpieler2.setBorder(null);
 			kartenwertSpieler2.setBackground(null);
@@ -865,7 +867,7 @@ public void registrierfenster() {
 		}
 		
 		/**
-		 * Auswertefenster. 
+		 * Methode auswertefenster(). Anzeigen des Auswertefensters.  
 		 */
 		
 		public void auswerteFenster() {
@@ -893,16 +895,7 @@ public void registrierfenster() {
 			this.add(nachrichtS2C);
 		}
 		
-		/*
 		
-		public void wartefenster() {
-			wartenAufSpieler.setBounds(600,400,200,100);
-			wartenAufSpieler.setForeground(Color.red); 
-			wartenAufSpieler.setVisible(false);
-			this.add(wartenAufSpieler);
-		}
-	
-		*/
 	
 	
 	
