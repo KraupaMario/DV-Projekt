@@ -13,38 +13,77 @@
 		<h2>Semester: SS 2022</h2>
 		<b>Teammitglieder:</b>
 		<ul>
-			<li>Dominik Riegger (d.riegger@hs-furtwangen.de)</li>
-			<li>Paul Kammerer (p.kammerer@hs-furtwangen.de)</li>
-			<li>Julian Hermle (j.hermle@hs-furtwangen.de)</li>
-			<li>Mario Kraupa (m.kraupa@hs-furtwangen.de)</li>
-			<li>Jannik Wäschle (j.waeschle@hs-furtwangen.de)</li>
+			<li>Dominik Riegger (rieggerd@hs-furtwangen.de)</li>
+			<li>Jannik Wäschle (waeschlj@hs-furtwangen.de)</li>
+			<li>Paul Kammerer (kammerer@hs-furtwangen.de)</li>
+			<li>Julian Hermle (hermleju@hs-furtwangen.de)</li>
+			<li>Mario Kraupa (kraupama@hs-furtwangen.de)</li>
 		</ul>
 	</header>
 	<main>
 		<h2>Einleitung</h2>
 		
-		<p>BlackJack ist ein beliebtes Kasinospiel. Es gilt als eines der einfachsten Glücksspiele der Welt und ist, anders als Poker z.B., international einheitlich.
-		Die Regeln sind sehr simpel: Ein oder mehrere Spieler spielen, voneinander unabhängig, gegen den Dealer. Es werden nacheinander Karten ausgeteilt,
-		die einen bestimmten Wert haben. Dabei dürfen beide Parteien den Wert von 21 überschreiten, da sie ansonsten verloren haben.
-		Hat eine der Parteien exakt 21, hat diese ein Black-Jack und gewinnt sofort. Wenn beide Parteien unter 21 sind gewinnt diejenige, die am nächsten an der 21 dran ist.</p>
+		
+		
+		<p> <img src="images/Startbildschirm.jpg" height="280"; width="514";> <br>
+		BlackJack ist ein beliebtes Kasinospiel. Es gilt als eines der einfachsten Glücksspiele der Welt und ist, anders als Poker z.B., international einheitlich. 
+		In unserem Fall haben wir einige Anpassungen an das Spiel veranlasst, da der Programmier-Aufwand sonst zu hoch wäre.</p>
+		<p>Die Regeln sind sehr simpel: Es spielen immer 2 Spieler, voneinander unabhängig, gegen den Dealer. Nach dem Setzen des Einsatzes werden nacheinander Karten ausgeteilt,
+		die einen bestimmten Wert haben. Dabei dürfen beide Parteien den Wert von 21 nicht überschreiten, da sie ansonsten verloren haben.
+		Hat eine der Parteien exakt 21, hat diese ein Black-Jack und gewinnt sofort. Wenn beide Parteien unter 21 sind gewinnt diejenige, die am nächsten an der 21 dran ist.
+		Sonderaktionen, wie z.B. splitten der Karten oder erhöhung des Einsatzes gibt es nicht.</p>
 		<p>Kartenwerte: Gespielt wird mit mehreren Decks mit je 52 Karten. Die Faben spielen keine Rolle. Alle Bilder zählen 10, alle Nummerkarten haben den Eigenwert nach ihrer Nummer.
-		Das Ass zählt entweder 11 oder 1, je nachdem ob man unter oder über 21 ist.</p>
+		Das Ass zählt anders als beim wirklichen Black-Jack immer 11.</p>
 		
 		<h2>Spielablauf</h2>
-		<p>Zu Beginn einer Spielrunde wird ein fester Einsatz von allen Spielern gesetzt. Anschließend wird jeder Partei eine Karte ausgeteilt, welche offen sichtbar liegt
-		und dem Dealer zusätzlich eine verdeckte. Danach bekommt der Spieler die Möglichkeit eine weitere Karte zu ziehen (hit/stay), der Dealer wartet zunächst mit ziehen.
-		Dieses Auteilen an jeden Spieler wiederholt sich so lange, bis die Spieler keine Karte mehr wollen. Der Dealer muss danach so lange Karten aufnehemen bis er zwischen 
-		Spielerwert und 21 ist oder sich überkauft und verloren hat.</p>
-		<p>Wenn der Dealer normal gewinnt oder ein Black Jack hat, bzw. der Spieler verloren hat, ist der gesammte Einsatz des Spielers verloren. 
-		Hat der Dealer verloren, bzw. der Spieler normal gewonnen, bekommt der Spieler einen Gewinn von 2x Einsatz. Wenn der Spieler ein Black Jack hat, 
-		gewinnt dieser sofort und bekommt einen Gewinn von 2.5x Einsatz</p>
+		<p>Wie bereits erwähnt gibt es 2 Spieler: einen Host und einen Client. Der eine Spieler öffnet das Programm und wird zum Host dessen. Der andere Spieler tritt diesem bei,
+		indem dieser die IP-Adresse des anderen in das Anmeldefenster eingibt.</p>
+		<p> Ansicht des Host: / Ansicht des Clients:<br> 
+		<img src="images/Loginansicht_Host.jpg" height="230"; width="422";>  <img src="images/Loginansicht_Client.jpg" height="230"; width="422";> <br> </p>
+		
+		<p>Nach dem einloggen geben beide Spieler Ihren Namen ins Anmeldefenster ein.</p>
+		<p>Ansicht beider Spieler:<br>
+		<img src="images/Namen_eingeben.jpg" height="230"; width="422";> <br> </p>
+		
+		<p>Nach dem Eingeben des Namens Starten beide Spieler das Spiel und starten eine Spielrunde gegen den Dealer, welcher ein programmierter Bot ist.
+		Zu Beginn einer Spielrunde wird ein fester Einsatz von allen Spielern gesetzt.</p>
+		<p>Ansicht beider Spieler:<br>
+		<img src="images/Spielrundenstart.jpg" height="230"; width="422";> <br> </p>
+
+		<p>Anschließend wird jeder Partei 2 Karten ausgeteilt, welche offen sichtbar liegen aber
+		bei dem Dealer eine davon verdeckt. Danach bekommt der Spieler die Möglichkeit eine weitere Karte zu ziehen (hit/stay), der Dealer wartet zunächst mit ziehen.
+		Dieses Auteilen an jeden Spieler wiederholt sich so lange, bis einer der beiden Spieler keine Karte mehr wollen oder bereits 3 weitere Karten ausgeteilt wurden.
+		Der Dealer muss danach so lange Karten aufnehemen bis er mindestens den Kartenwert 17 hat, danach zieht dieser keine mehr.</p>
+		<p>Ansicht der jeweiligen Spieler:<br>
+		<img src="images/Spielrundenansicht.jpg" height="230"; width="422";> <br> </p>
+		
+		<p> Es gibt beim Gewinnen 2 Möglichkeiten, entweder man liegt näher an dem Wert 21 als die gegnerische Partei, dann hat man "normal" gewonnen. Wenn eine Partei
+		genau 21 hat, dann hat man ein BlackJack gewonnen.
+		Beim Verlieren gibt es ebenfalls 2 Möglichkeiten, entweder man liegt entfernter am Wert 21 als die gegnerische Partei, dann hat man "normal" verloren. 
+		Oder man liegt über dem Wert 21, dann hat man sich "überkauft".
+		Wenn der Dealer normal gewinnt oder ein Black Jack hat, bzw. der Spieler normal verloren oder sich überkauft hat, verliert der Spieler seinen gesammten Einsatz.
+		Hat der Dealer normal verloren oder sich überkauft, bzw. der Spieler normal gewonnen, bekommt der jeweilige Spieler einen Gewinn von 2x dessen Einsatz.
+		Wenn der Spieler ein Black Jack hat, gewinnt dieser sofort und bekommt einen Gewinn von 2.5x dessen Einsatz. Wenn einer der Parteien ein BlackJack hat wird die Runde
+		zu Ende gespielt und die Kartenverteilung ausgewertet.</p>
+		<p>Sowohl der Einsatz der beiden Spieler, als auch deren Kartenwerte sind jederzeit unter deren Namen zu sehen. Der private Kontostand eines Spielers, kann aber nur 
+		der Spieler selbst sehen.</p>
 		
 		<h2>Beispiele</h2>
-		<p>1.Beispiel: Es gibt 3 Spieler. Die Runde beginnt: Die Spieler müssen alle setzen. Spieler 1 setzt 50€, Spieler 2 setzt 100€, Spieler 3 setzt 80€. Anschließend</p>
-		<p>2.Beispiel: Es gibt 2 Spieler.</p>
+		<p>1. Beispiel: Es gibt 2 Spieler. James und Bond wollen BlackJack spielen. James entscheidet sich der Host zu sein und startet das Programm "Server".
+		Bond tritt James bei indem er die angezeigte IP-Adresse von James eintippt. Anschließend müssen beide ihren Namen eingeben. Nach drücken beider von der Taste
+		Start beginnt schon die erste Spielrunde: Beide Spieler müssen setzen. Spieler 1 (James) setzt 150€, Spieler 2 (Bond) setzt 185€.</p>
+		<p>Anschließend werden die Karten ausgeteilt. James bekommt die Karten Pik_Dame und Kreuz_10 und hat somit den Kartenwert 20. Bond bekommt die Karten
+		Karo_Dame und Pik_10 und hat auch den Wert 20. Beide Spieler entscheiden sich dafür noch eine weitere Karte aufzunehmen: Dabei bekommt James eine Pik_9 (geammter Wert: 29)
+		und Bond bekommt eine Herz_5 (gesammter Wert: 25). Beide Spieler haben sich überkauft und somit beide verloren und die Runde wird beendet. Der Dealer hat eine Pik_10
+		zu Anfang bekommen und danach seine verdeckt liegende Karte aufgedeckt, was eine Karo_10 war. Da ein unter dem Wert 17 liegt, muss er eine weitere Karte aufnehmen.
+		Dies ist eine Karo_Dame. Somit hat dieser sich auch überkauft aber dadurch dass beide Spieler sich ebenfalls überkauft haben sind ihre Einsätze dahin.</p>
+		<p>Ansicht der jeweiligen Spieler:<br>
+		<img src="images/Spielrundenauswertung.jpg" height="230"; width="422";> <br> </p>
+		
+		<p>Das war das Handbuch unseres Spiels Black-Jack, wir wünschen euch Viel Spass beim spielen.</p>
 		
 		
-		TODO: Benutzerhandbuch zur Verwendung Ihrer Anwendung
+		
 		Quelle Karten: https://chicodeza.com/freeitems/torannpu-illust.html
 	</main>
 	<footer></footer>
