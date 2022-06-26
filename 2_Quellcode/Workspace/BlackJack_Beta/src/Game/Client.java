@@ -1550,9 +1550,9 @@ public class Client implements Runnable {
 		cbo.karte3Bank.setVisible(true);
 		cbo.karte4Bank.setVisible(true);
 		cbo.karte5Bank.setVisible(true);
-		cbo.einsatzSpieler1C.setVisible(true);
-		cbo.einsatzSpieler2C.setVisible(true);
-		//cbo.kontostandSpieler1C.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(false);
+		cbo.einsatzSpieler2C.setVisible(false);
+		cbo.kontostandSpieler1.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(false);
@@ -1625,8 +1625,8 @@ public class Client implements Runnable {
 		cbo.karte5Bank.setVisible(false);
 		cbo.einsatzSpieler1C.setVisible(false);
 		cbo.einsatzSpieler1C.setVisible(false);
-		//cbo.kontostandSpieler1C.setVisible(true);
-		cbo.kontostandSpieler2.setVisible(false); 
+		cbo.kontostandSpieler1.setVisible(true);
+		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(false);
 		cbo.buttonStay.setVisible(false);

@@ -1707,7 +1707,7 @@ public class Server implements Runnable {
 		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(true);
 		bo.buttonStay.setVisible(true);
-
+        
 		bo.kartenwertSpieler1.setVisible(true);
 		bo.kartenwertSpieler2.setVisible(true);
 		bo.kartenwertDealer.setVisible(false);
@@ -1770,6 +1770,7 @@ public class Server implements Runnable {
 		bo.einsatzSpieler1.setVisible(false);
 		bo.einsatzSpieler2.setVisible(false);
 		bo.kontostandSpieler1.setVisible(true); 
+		bo.kontostandSpieler2.setVisible(true); 
 		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(false);
 		bo.buttonStay.setVisible(false);
@@ -1838,7 +1839,8 @@ public class Server implements Runnable {
 		bo.karte5Bank.setVisible(false);
 		bo.einsatzSpieler1.setVisible(false);
 		bo.einsatzSpieler2.setVisible(false);
-		bo.kontostandSpieler1.setVisible(false); 
+		bo.kontostandSpieler1.setVisible(true); 
+		bo.kontostandSpieler2.setVisible(true);
 		bo.buttonEinsatzbestaetigen.setVisible(false);
 		bo.buttonHit.setVisible(false);
 		bo.buttonStay.setVisible(false);
