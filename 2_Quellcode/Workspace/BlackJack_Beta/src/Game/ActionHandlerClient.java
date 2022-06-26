@@ -72,6 +72,7 @@ public class ActionHandlerClient implements ActionListener{
 
 			/**
 			 * Fall 3: Wenn der Button "IP Adresse bestätigen" geklickt wird, wird die Methode IPZuAuswahl() aufgerufen. 
+			 * Client.klicks wird auf true gesetzt. 
 			 */
 
 		case "IP Adresse bestätigen": 
@@ -103,21 +104,23 @@ public class ActionHandlerClient implements ActionListener{
 		case "Zurück":
 			spiel.logRegZuAuswahl();
 			break;	
-
+			
 			/**
-			* Fall 7: Wenn der Button "Start" geklickt wird, wird die Methode logRegZuEinsatz() aufgerufen.
-			* Des Weiteren wird die Methode.setSpielernameServer() aufgerufen. Nur wenn der Spieler einen Namen eingegeben hat, geht das Spiel weiter.
-			* Server.klicks wird auf true gesetzt.
-			* Server.spieler1LoggedIn wird auf true gesetzt. 
-			*/
+			 * Fall 7: Wenn der Button "Zurück zum Start" geklickt wird, wird die Methode zurückZuStart() aufgerufen. 
+			 */
+
+			
 
 		case "Zurück zum Start": 
 			spiel.zurückZuStart(); 
 			break;
 
 			/**
-			 * Fall 8: Wenn der Button "Abschließen" geklickt wird, wird die Methode logRegZuEinsatz() aufgerufen. 
-			 */	
+			* Fall 8: Wenn der Button "Start" geklickt wird, wird die Methode logRegZuEinsatz() aufgerufen.
+			* Des Weiteren wird die Methode setSpielernameServer() aufgerufen. Nur wenn der Spieler einen Namen eingegeben hat, geht das Spiel weiter.
+			* Client.klicks wird auf true gesetzt.
+			* Client.spieler1LoggedIn wird auf true gesetzt. 
+			*/	
 
 		case ("Start"): 
 			spiel.setSpielernameClient();
@@ -130,8 +133,8 @@ public class ActionHandlerClient implements ActionListener{
 		//}
 		break; 
 		/**
-		 * Fall 9: Wenn der Button "Zurück zum Start" geklickt wird, wird die Methode zurückZuStart() aufgerufen. 
-		 */
+		 * Fall 9: Wenn der Button "Abschließen" geklickt wird, wird die Methode logRegZuEinsatz() aufgerufen. 
+		 */	
 
 		case "Abschließen": 
 			spiel.logRegZuEinsatz(); 
