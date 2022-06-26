@@ -24,9 +24,7 @@ public class Benutzeroberfläche extends JFrame  {
 
 	//Variablen
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
@@ -37,7 +35,7 @@ public class Benutzeroberfläche extends JFrame  {
 	 JPanel panel = new JPanel();
 	 
 	 /**
-	  * Erstellen der Icon.
+	  * Erstellen der verschiedenen Icons.
 	  */
 	 
 	 Icon jeton_10 = new ImageIcon(getClass().getResource("Jeton_10.PNG"));
@@ -54,8 +52,8 @@ public class Benutzeroberfläche extends JFrame  {
 	 Icon hintergrundgruen = new ImageIcon(getClass().getClassLoader().getResource("Karten/hintergrundgrün.png"));
 	 
 	  /**
-		  * Erstellen der Karten-Arrays.
-		  */
+	   * Erstellen der Karten-Arrays.
+	   */
 		
 		 Icon pik[] = new ImageIcon[14];{
 			 for(int num=1; num<14; num++) {
@@ -208,8 +206,8 @@ public class Benutzeroberfläche extends JFrame  {
 		
 	}
 	/**
-	  * Startfenster.
-	  */
+	 * Methode startfenster(). Anzeigen des Startfensters. 
+	 */
 	
 	public void startfenster() {
 
@@ -266,7 +264,7 @@ public class Benutzeroberfläche extends JFrame  {
 	
 	
 	/**
-	  * Auswahlfenster.
+	  * Methode auswahlfenster(). Anzeigen des Auswahlfensters. 
 	  */
 	public void auswahlfenster() {
 	
@@ -309,7 +307,7 @@ public class Benutzeroberfläche extends JFrame  {
 	}
 
 	/**
-	  * Anmeldefenster.
+	  * Methode anmeldefenster(). Anzeigen des Anmeldefensters. 
 	  */
 
 
@@ -388,7 +386,7 @@ public class Benutzeroberfläche extends JFrame  {
 	
 	
 	/**
-	  * Registierfenster.
+	  * Methode registrierfenster(). Anzeigen des Registrierfensters. Für eine mögliche Erweiterung kann ein Registrierfenster eingeblendet werden. Hier kann sich der Spieler, sofern er sich noch nie eingeloggt hat, registrieren. 
 	  */
 	
 	public void registrierfenster() {
@@ -460,7 +458,7 @@ public class Benutzeroberfläche extends JFrame  {
 	}
 		
 	/**
-	  * IP-Adresse-Fenster.
+	  * Methode ipadressefenster(). Anzeigen des IP-Adresse-Fensters. 
 	  */
 		
 		public void ipadressefenster() {
@@ -502,7 +500,7 @@ public class Benutzeroberfläche extends JFrame  {
 		}
 		
 		/**
-		  * Portfenster.
+		  * Methode portfenster(). Anzeigen des Portfensters. In unserem Spiel wurde der Port fest einprogrammiert, daher wurde das Portfenster ausgeblendet. Falls man später den Port wieder manuell eingeben möchte, muss man dies nur sichtbar machen.  
 		  */
 
 		public void portfenster() {
@@ -534,7 +532,7 @@ public class Benutzeroberfläche extends JFrame  {
 	}
 
 		/**
-		  * Einsatzfenster.
+		  * Methode einsatzfenster(). Anzeigen des Einsatzfensters. 
 		  */
 		
 		public void einsatzfenster() {
@@ -735,7 +733,7 @@ public class Benutzeroberfläche extends JFrame  {
 		}
 		
 		/**
-		  * Jetonfenster.
+		  * Methode jetonfenster(). Anzeigen des Jetonfensters. 
 		  */
 		
 		public void jetonfenster() {
@@ -888,7 +886,7 @@ public class Benutzeroberfläche extends JFrame  {
 		}
 		
 		/**
-		  * Auswertefenster.
+		  * Methode auswertefenster(). Anzeigen des Auswertefensters. 
 		  */
 		
 		public void auswerteFenster() {

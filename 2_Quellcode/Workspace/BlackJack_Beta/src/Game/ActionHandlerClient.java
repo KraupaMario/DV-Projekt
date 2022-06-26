@@ -88,7 +88,7 @@ public class ActionHandlerClient implements ActionListener{
 			break;
 
 			/**
-			 * Fall 5: Wenn der Button "Registrieren" geklickt wird, wird die Methode auswahlZuRegistrier() aufgerufen. 
+			 * Fall 5: Wenn der Button "Registrieren" geklickt wird, wird die Methode auswahlZuRegistrier() aufgerufen. Dies ist ein Fall für eine mögliche Erweiterung des Programms. 
 			 */
 
 		case "Registrieren":
@@ -105,8 +105,11 @@ public class ActionHandlerClient implements ActionListener{
 			break;	
 
 			/**
-			 * Fall 7: Wenn der Button "Start" geklickt wird, wird die Methode logRegZuEinsatz() aufgerufen. 
-			 */
+			* Fall 7: Wenn der Button "Start" geklickt wird, wird die Methode logRegZuEinsatz() aufgerufen.
+			* Des Weiteren wird die Methode.setSpielernameServer() aufgerufen. Nur wenn der Spieler einen Namen eingegeben hat, geht das Spiel weiter.
+			* Server.klicks wird auf true gesetzt.
+			* Server.spieler1LoggedIn wird auf true gesetzt. 
+			*/
 
 		case "Zurück zum Start": 
 			spiel.zurückZuStart(); 
@@ -114,7 +117,7 @@ public class ActionHandlerClient implements ActionListener{
 
 			/**
 			 * Fall 8: Wenn der Button "Abschließen" geklickt wird, wird die Methode logRegZuEinsatz() aufgerufen. 
-			 */
+			 */	
 
 		case ("Start"): 
 			spiel.setSpielernameClient();
@@ -143,8 +146,9 @@ public class ActionHandlerClient implements ActionListener{
 			break;
 
 			/**
-			 * Fall 11.1: Wenn der Button "Jeton10" geklickt wird, wird die Methode jeton10() aufgerufen. 
-			 */
+			* Fall 11.1: Wenn der Button "Jeton10" geklickt wird, wird die Methode jeton10() aufgerufen und der Zwischenspeicher wird um 10 erhöht. 
+			*/
+
 
 		case "Jeton10": 
 			Client.zwischenspeicher += 10;
@@ -154,8 +158,8 @@ public class ActionHandlerClient implements ActionListener{
 			break;
 
 			/**
-			 * Fall 11.2: Wenn der Button "Jeton25" geklickt wird, wird die Methode jeton25() aufgerufen. 
-			 */
+			* Fall 11.2: Wenn der Button "Jeton25" geklickt wird, wird die Methode jeton25() aufgerufen und der Zwischenspeicher wird um 25 erhöht. 
+			*/
 
 		case "Jeton25":
 			Client.zwischenspeicher += 25;
@@ -164,8 +168,8 @@ public class ActionHandlerClient implements ActionListener{
 			break; 
 
 			/**
-			 * Fall 11.3: Wenn der Button "Jeton50" geklickt wird, wird die Methode jeton50() aufgerufen. 
-			 */
+			* Fall 11.3: Wenn der Button "Jeton50" geklickt wird, wird die Methode jeton50() aufgerufen und der Zwischenspeicher wird um 50 erhöht. 
+			*/
 
 		case "Jeton50":
 			Client.zwischenspeicher += 50;
@@ -174,8 +178,8 @@ public class ActionHandlerClient implements ActionListener{
 			break; 
 
 			/**
-			 * Fall 11.4: Wenn der Button "Jeton100" geklickt wird, wird die Methode jeton100() aufgerufen. 
-			 */
+			* Fall 11.4: Wenn der Button "Jeton100" geklickt wird, wird die Methode jeton100() aufgerufen und der Zwischenspeicher wird um 100 erhöht. 
+			*/
 
 		case "Jeton100":
 			Client.zwischenspeicher += 100;
@@ -184,8 +188,10 @@ public class ActionHandlerClient implements ActionListener{
 			break; 
 
 			/**
-			 * Fall 12: Wenn der Button "Einsatz bestätigen" geklickt wird, wird die Methode einsatzAusrechnen() aufgerufen. 
-			 */
+			* Fall 12: Wenn der Button "Einsatz bestätigen" geklickt wird, wird die Methode einsatzAusrechnen() aufgerufen.
+			* Außerdem wird die Methode jetonsZuHitundStay aufgerufen.  
+			* Client.klicks wird auf true gesetzt.
+			*/
 
 		case "Einsatz bestätigen": 
 			spiel.einsatzAusrechnen();
@@ -196,16 +202,17 @@ public class ActionHandlerClient implements ActionListener{
 			break;
 
 			/**
-			 * Fall 13: Wenn der Button "Nächste Runde" geklickt wird, wird die Methode auswertenZuEinsatz() aufgerufen. 
-			 */
+			* Fall 13: Wenn der Button "Nächste Runde" geklickt wird, wird die Methode auswertenZuEinsatz() aufgerufen. 
+			*/
 
 		case "Nächste Runde":
 			spiel.auswertenZuEinsatz();
 			break;
 
 			/**
-			 * Fall 14.1: Wenn der Button "Hit" geklickt wird, wird  hitostay() auf 1 gesetzt. 
-			 */
+			* Fall 14.1: Wenn der Button "Hit" geklickt wird, wird  Client.hitostay auf 1 gesetzt.
+			* Client.klicks wird auf true gesetzt.  
+			*/
 
 		case "Hit":
 			Client.hitostay=1;
@@ -213,8 +220,9 @@ public class ActionHandlerClient implements ActionListener{
 			break;
 
 			/**
-			 * Fall 14.2: Wenn der Button "Stay" geklickt wird, wird hitostay() auf 2 gesetzt. 
-			 */
+			* Fall 14.2: Wenn der Button "Stay" geklickt wird, wird Client.hitostay auf 2 gesetzt.
+			* Client.klicks wird auf true gesetzt.  
+			*/
 
 		case "Stay":
 			Client.hitostay=2;
