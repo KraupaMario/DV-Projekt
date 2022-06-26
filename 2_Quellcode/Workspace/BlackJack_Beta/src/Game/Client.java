@@ -620,24 +620,29 @@ public class Client implements Runnable {
 		Client gameclient = new Client();
 
 	}
-	//Grafische Programmierung
+	/**
+	 * grafische Programmierung.
+	 */
 
-
+	/**
+	 * Erstellen der Klassen für die grafische Programmierung. 
+	 */
 	ActionHandlerClient cHandler = new ActionHandlerClient(this); 
 	BenutzeroberflächeClient cbo = new BenutzeroberflächeClient(this);
 
 	//Vector
-	Vector<Spieler>player = new Vector<Spieler>();
+	//Vector<Spieler>player = new Vector<Spieler>();
 
+	/**
+	 * Methode zum wechseln vom Startbildschirm zum IP-Fenster. 
+	 */
 	public void startZuIP() {
 		cbo.buttonStartSpielC.setVisible(false);
 		cbo.buttonAbbrechenSpiel.setVisible(false);
 
-		//Gemeinsame
-		//cbo.ueberschriftC.setVisible(false);
+		cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(true);
-
-		//IPAdressefenster:
+		
 		cbo.buttonIPAdresseBestaetigen.setVisible(true);
 		cbo.labelipadresseC.setVisible(true);
 		cbo.ipadresseText.setVisible(true);
@@ -645,30 +650,32 @@ public class Client implements Runnable {
 
 	}
 
-
+	/**
+	 * Methode um von dem IPfenster zum Auswahlfenster zu gelangen.
+	 */
 	public void ipZuAuswahl() {
 
 		cbo.buttonStartSpielC.setVisible(false);
 		cbo.buttonAbbrechenSpiel.setVisible(false);
 
-		//Gemeinsame
-		//cbo.ueberschriftC.setVisible(false);
+		cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 		cbo.buttonZurueckZuStart.setVisible(true);
 
-		//IPAdressefenster:
 		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 		cbo.labelipadresseC.setVisible(false);
 		cbo.ipadresseText.setVisible(false);
 
-		//Auswahlbildschirm
 		cbo.buttonLogin.setVisible(true);
 		cbo.buttonRegistrieren.setVisible(false);
 		cbo.ipAdressetext.setVisible(false);
 
 	}
+	
+	/**
+	 * Methode um zurück zum Startfenster zu gelangen.
+	 */
 	public void zurückZuStart() {
-		//Startbildschirm
 		cbo.buttonStartSpielC.setVisible(true);
 		cbo.buttonAbbrechenSpiel.setVisible(true);
 		cbo.buttonZurueckZuStart.setVisible(false);
@@ -676,12 +683,9 @@ public class Client implements Runnable {
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
-		//Gemeinsame
-		//cbo.ueberschrift.setVisible(false);
 		cbo.buttonZurueck.setVisible(false);
 		cbo.logo.setVisible(true);
 
-		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(false);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(false);
@@ -690,8 +694,6 @@ public class Client implements Runnable {
 		cbo.anmeldetext.setVisible(false);
 		cbo.ipAdressetext.setVisible(false);
 
-
-		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -702,18 +704,18 @@ public class Client implements Runnable {
 		cbo.ipAdressetext.setVisible(false);
 	}
 
+	/**
+	 * Methode um von dem Auswahlfenster zum Loginfenster zu gelangen.
+	 */
 	public void auswahlZuLogin() {
-		//Startbildschirm
 		cbo.buttonLogin.setVisible(false);
 		cbo.buttonRegistrieren.setVisible(false);
 
-		//Gemeinsame
-		//cbo.ueberschriftC.setVisible(false);
+		cbo.ueberschriftC.setVisible(false);
 		cbo.buttonZurueck.setVisible(true);
 		cbo.logo.setVisible(false);
 		cbo.buttonZurueckZuStart.setVisible(false);
 
-		//Loginfenster
 		cbo.labelBenutzernameC.setVisible(true);
 		cbo.labelPasswortC.setVisible(false);
 		cbo.buttonstart.setVisible(true);
@@ -722,7 +724,6 @@ public class Client implements Runnable {
 		cbo.buttonZurueck.setVisible(true);
 		cbo.anmeldetext.setVisible(true);
 
-		//Registrierfenster
 		cbo.labelBenutzernameCErstellenC.setVisible(false);
 		cbo.labelPasswortC1C.setVisible(false);
 		cbo.labelPasswortC2C.setVisible(false);
@@ -923,7 +924,8 @@ public class Client implements Runnable {
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(true);
-
+		cbo.einsatzSpieler1C.setVisible(true);
+		cbo.einsatzSpieler2C.setVisible(true);
 
 
 		cbo.kartenwertSpieler1.setVisible(true);
@@ -1481,8 +1483,8 @@ public class Client implements Runnable {
 		cbo.karte3Bank.setVisible(false);
 		cbo.karte4Bank.setVisible(false);
 		cbo.karte5Bank.setVisible(false);
-		cbo.einsatzSpieler1C.setVisible(true);
-		cbo.einsatzSpieler2C.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(false);
+		cbo.einsatzSpieler2C.setVisible(false);
 		//cbo.kontostandSpieler1C.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
@@ -1550,9 +1552,9 @@ public class Client implements Runnable {
 		cbo.karte3Bank.setVisible(true);
 		cbo.karte4Bank.setVisible(true);
 		cbo.karte5Bank.setVisible(true);
-		cbo.einsatzSpieler1C.setVisible(true);
-		cbo.einsatzSpieler2C.setVisible(true);
-		//cbo.kontostandSpieler1C.setVisible(true);
+		cbo.einsatzSpieler1C.setVisible(false);
+		cbo.einsatzSpieler2C.setVisible(false);
+		cbo.kontostandSpieler1.setVisible(true);
 		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(false);
@@ -1566,6 +1568,8 @@ public class Client implements Runnable {
 		cbo.nachrichtS1C.setVisible(true);
 		cbo.nachrichtS2C.setVisible(true);
 		cbo.buttonNaechsteRunde.setVisible(false);
+		cbo.einsatzausgabeSpieler1C.setVisible(false);
+		cbo.einsatzausgabeSpieler2C.setVisible(false);
 	}
 
 	public void auswertenZuEinsatz() {
@@ -1624,9 +1628,9 @@ public class Client implements Runnable {
 		cbo.karte4Bank.setVisible(false);
 		cbo.karte5Bank.setVisible(false);
 		cbo.einsatzSpieler1C.setVisible(false);
-		cbo.einsatzSpieler1C.setVisible(false);
-		//cbo.kontostandSpieler1C.setVisible(true);
-		cbo.kontostandSpieler2.setVisible(false); 
+		cbo.einsatzSpieler2C.setVisible(false);
+		cbo.kontostandSpieler1.setVisible(true);
+		cbo.kontostandSpieler2.setVisible(true); 
 		cbo.buttonEinsatzbestaetigen.setVisible(false);
 		cbo.buttonHit.setVisible(false);
 		cbo.buttonStay.setVisible(false);

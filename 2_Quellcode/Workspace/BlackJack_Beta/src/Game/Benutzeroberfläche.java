@@ -580,7 +580,7 @@ public class Benutzeroberfläche extends JFrame  {
 		labelSpieler1.setVisible(false);
 		this.add(labelSpieler1); 
 	 
-		labelSpieler2.setBounds(1300,200,1000,200);
+		labelSpieler2.setBounds(1250,200,1000,200);
 		Font schriftart2 = new Font("Algerian",Font.PLAIN+Font.ITALIC,40);
 		labelSpieler2.setForeground(Color.yellow); 
 		labelSpieler2.setFont(schriftart2);
@@ -798,7 +798,7 @@ public class Benutzeroberfläche extends JFrame  {
 			einsatzausgabeSpieler1.setVisible(false);
 			this.add(einsatzausgabeSpieler1);
 			
-			einsatzausgabeSpieler2.setBounds(1300,375,165,25);
+			einsatzausgabeSpieler2.setBounds(1250,375,200,25);
 			einsatzausgabeSpieler2.setFocusable(false);
 			einsatzausgabeSpieler2.setBorder(null);
 			einsatzausgabeSpieler2.setBackground(null);
@@ -806,7 +806,7 @@ public class Benutzeroberfläche extends JFrame  {
 			einsatzausgabeSpieler2.setVisible(false);
 			this.add(einsatzausgabeSpieler2);
 			
-			einsatzSpieler1.setBounds(25,350,165,25);
+			einsatzSpieler1.setBounds(25,350,200,25);
 			einsatzSpieler1.setFocusable(false);
 			einsatzSpieler1.setBorder(null);
 			einsatzSpieler1.setBackground(null);
@@ -814,7 +814,7 @@ public class Benutzeroberfläche extends JFrame  {
 			einsatzSpieler1.setVisible(false);
 			this.add(einsatzSpieler1);
 			
-			einsatzSpieler2.setBounds(1300,350,165,25);
+			einsatzSpieler2.setBounds(1250,350,200,25);
 			einsatzSpieler2.setFocusable(false);
 			einsatzSpieler2.setBorder(null);
 			einsatzSpieler2.setBackground(null);
@@ -822,7 +822,7 @@ public class Benutzeroberfläche extends JFrame  {
 			einsatzSpieler2.setVisible(false);
 			this.add(einsatzSpieler2);
 			
-			kontostandSpieler1.setBounds(25,325,165,25);
+			kontostandSpieler1.setBounds(25,325,200,25);
 			kontostandSpieler1.setFocusable(false);
 			kontostandSpieler1.setBorder(null);
 			kontostandSpieler1.setBackground(null);
@@ -830,7 +830,7 @@ public class Benutzeroberfläche extends JFrame  {
 			kontostandSpieler1.setVisible(false);
 			this.add(kontostandSpieler1);
 			
-			kontostandSpieler2.setBounds(1300,325,165,25);
+			kontostandSpieler2.setBounds(1250,325,200,25);
 			kontostandSpieler2.setFocusable(false);
 			kontostandSpieler2.setBorder(null);
 			kontostandSpieler2.setBackground(null);
@@ -838,7 +838,7 @@ public class Benutzeroberfläche extends JFrame  {
 			kontostandSpieler2.setVisible(false);
 			this.add(kontostandSpieler2);
 			
-			kartenwertSpieler1.setBounds(25,350,165,25);
+			kartenwertSpieler1.setBounds(25,350,200,25);
 			kartenwertSpieler1.setFocusable(false);
 			kartenwertSpieler1.setBorder(null);
 			kartenwertSpieler1.setBackground(null);
@@ -847,7 +847,7 @@ public class Benutzeroberfläche extends JFrame  {
 			this.add(kartenwertSpieler1);
 			
 
-			kartenwertSpieler2.setBounds(1300,350,165,25);
+			kartenwertSpieler2.setBounds(1250,350,200,25);
 			kartenwertSpieler2.setFocusable(false);
 			kartenwertSpieler2.setBorder(null);
 			kartenwertSpieler2.setBackground(null);
