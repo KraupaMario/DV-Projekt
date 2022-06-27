@@ -1126,7 +1126,7 @@ public class Server implements Runnable {
 	public void kartenwertanzeigen(Spiel s) {
 
 		bo.kartenwertSpieler1.setText("Dein Kartenwert : "+Integer.toString(s.wertSpieler1()));
-		bo.kartenwertSpieler2.setText("Kartenwert von "+nameSp2+" :"+Integer.toString(s.wertSpieler2()));
+		bo.kartenwertSpieler2.setText("Kartenwert von "+nameSp2+": "+Integer.toString(s.wertSpieler2()));
 		//bo.kartenwertDealer.setText("Kartenwert Dealer: "+Integer.toString(s.wertDealer()));
 
 	}

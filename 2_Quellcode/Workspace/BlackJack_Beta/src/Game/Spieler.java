@@ -46,7 +46,7 @@ public class Spieler {
 				kontostand = kontostand + mny*2;
 			}
 			else if (gewinnstatus == 0 /*BlackJack*/) {
-				kontostand = (int)(kontostand - mny*2.5);
+				kontostand = (int)(kontostand + mny*2.5);
 			}
 			else if (gewinnstatus == 3 /*Patt/Unentschieden*/) {
 				kontostand = kontostand + mny;

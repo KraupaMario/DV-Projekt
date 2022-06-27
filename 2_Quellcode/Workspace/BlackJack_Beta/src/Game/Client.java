@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 
 
@@ -77,7 +76,7 @@ public class Client implements Runnable {
 		System.out.println("Die IP ist: " + ip);
 		port = 8080;
 
-		//falls Manuelle Porteingabe Vorgesehen:
+		/**Üfalls Manuelle Porteingabe Vorgesehen:*/
 		while (port < 1 || port > 65535) {
 			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
 			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
@@ -92,7 +91,7 @@ public class Client implements Runnable {
 	public void run() {
 		while (true) {
 
-			//Programmcode welcher im "Thread" ausgeführt wird.
+			/**Programmcode welcher im "Thread" ausgeführt wird.*/
 
 			if (!client && !accepted) {
 				neuerDataStream();
@@ -243,7 +242,7 @@ public class Client implements Runnable {
 			}
 			klicks= false;
 			System.out.println("Mein gesetzter Betrag "+gesetztC);
-			//Betrag übermitteln
+			/**Betrag übermitteln*/
 			try {
 				dos.writeInt(gesetztC);
 			} catch (IOException e) {
@@ -337,7 +336,7 @@ public class Client implements Runnable {
 				continue newgame;
 			}
 
-			//Wenn kein BlackJack und nicht Überkauft, frag nach Hit oder Stay
+			/**Wenn kein BlackJack und nicht Überkauft, frag nach Hit oder Stay*/
 			newcard: while((!client.winSpieler1 && !client.winSpieler2 && !client.winDealer || client.loseSpieler1 || client.loseSpieler2 || client.loseDealer)) {
 
 				boolean hit1 = false;
@@ -374,7 +373,7 @@ public class Client implements Runnable {
 				} catch (IOException e) {
 					e.printStackTrace(); }
 
-				/* Wenn kein Spieler eine Karte aufnehmen möchte*/
+				/** Wenn kein Spieler eine Karte aufnehmen möchte*/
 				while((!hit1 && !hit2)) {
 
 					/**Karten für Dealer empfangen, sofern der Kartenwert unter 17 liegt*/
@@ -412,13 +411,13 @@ public class Client implements Runnable {
 					continue newgame;
 				}
 
-				/* Wenn beide oder ein Spieler eine Karte aufnehmen möchten*/
+				/** Wenn beide oder ein Spieler eine Karte aufnehmen möchten*/
 				while((hit1 || hit2)) {
 					/**Karte für Spieler 1 empfangen*/
 					if (hit1) {
 						client.DeckSpieler1.add(karteEmpfangen());
 					}
-					//Karte für Spieler 2 empfangen:
+					/**Karte für Spieler 2 empfangen:*/
 					if (hit2) {
 						client.DeckSpieler2.add(karteEmpfangen());
 					}
@@ -467,7 +466,7 @@ public class Client implements Runnable {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						/* Wenn ein Spieler BlackJack oder Überkauft*/
+						/** Wenn ein Spieler BlackJack oder Überkauft*/
 						if ((client.winSpieler1 || client.winSpieler2 || client.winDealer || client.winDealer || client.loseSpieler1 || client.loseSpieler2 || client.loseDealer)) {
 							/** Auswertestatus der Spieler empfangen*/
 							try {
@@ -576,7 +575,7 @@ public class Client implements Runnable {
 		p.einzahlen(Spiel.getGesetztSpieler2(), auswertStatSp2);
 
 	}
-
+ /**Methoden um die Spielkarten zu empfangen*/
 	Karten karteEmpfangen() {
 		String f = null;
 		try {
@@ -923,7 +922,7 @@ public class Client implements Runnable {
 
 	public void kartenwertanzeigen(Spiel s) {
 
-		cbo.kartenwertSpieler1.setText("Kartenwert von "+nameSp1+" :"+Integer.toString(s.wertSpieler1()));
+		cbo.kartenwertSpieler1.setText("Kartenwert von "+nameSp1+": "+Integer.toString(s.wertSpieler1()));
 		cbo.kartenwertSpieler2.setText("Dein Kartenwert : "+Integer.toString(s.wertSpieler2()));
 		//cbo.kartenwertDealer.setText("Kartenwert Dealer: "+Integer.toString(s.wertDealer()));
 
