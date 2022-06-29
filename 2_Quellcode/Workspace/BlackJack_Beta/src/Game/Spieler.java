@@ -5,10 +5,10 @@ public class Spieler {
 
 	//private String name; //Vorbereitung für Erweiterung
     //private String passwort; //Vorbereitung für Erweiterung
-	private int kontostand;
+	private int kontostand; /**Kontostand für den Spieler*/
 	//private long highscore; //Vorbereitung für Erweiterung
 
-	int kartenwert;
+	int kartenwert; /**Kartenwert auf der "Hand" der Spielers.*/
 
 	public Spieler(String n, String passwort) {
 		//..Name und Passwort im Konstruktor dienen als Vorbereitung für eine Erweiterung mit einer Benutzerdatenbank die Benutzerkonten speichert.
@@ -27,14 +27,14 @@ public class Spieler {
 	
 	/**
 	 * Kontostand abfragen 
-	 * @return den Betrag des Kontostands
+	 * @return getKontostand
 	 */
 	public int getKontostand() {
 		return kontostand;
 	}
 	
 	/**Abbuchung von Spielgeld vom Spielerkonto.*/
-	/**@param Abzubuchender Betrag.*/
+	/**@param g*/
 	public void abbuchen(int g) {
 		kontostand = kontostand - g;
 	}

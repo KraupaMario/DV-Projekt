@@ -17,39 +17,39 @@ import javax.swing.JOptionPane;
 
 public class Client implements Runnable {
 
-	private String ip ;
-	private int port; //Port für TCP/IP Verbindung
+	private String ip ; /**Ip Adresse aus Eingabefenster*/
+	private int port; /**Port für TCP/IP Verbindung*/
 
 
-	private Thread thread;
+	private Thread thread; /**Thread für Spielablauf*/
 
-	private boolean close = false; //Schließt wenn true
+	private boolean close = false; /**Schließt wenn true, nicht in Funktion*/
 
-	private ServerSocket serverSocket;
-	private Socket socket;
-	private DataOutputStream dos;
-	private DataInputStream dis;
+	private ServerSocket serverSocket; /**Server Socket*/
+	private Socket socket; /**socket*/
+	private DataOutputStream dos; /**Dient zum Verschicken des Datenverkehrs*/
+	private DataInputStream dis; /**Dient zum empfangen des Datenverkehrs*/
 
-	int auswertStatSp1;
-	int auswertStatSp2;
-	static int hitostay;
+	int auswertStatSp1; /**AuswerteStatus Spieler 1 Mögliche werte: -1 bis 3*/
+	int auswertStatSp2; /**AuswerteStatus Spieler 2 Mögliche werte: -1 bis 3*/
+	static int hitostay; /**Im Spielablauf zum Empfangen ob Spieler 1/2 Hit oder Stay*/
 
-	public String ausgabetextS1C; 
-	public String ausgabetextS2C; 
+	public String ausgabetextS1C; /**Anzeigetext Gewinnmeldung Spieler 1*/
+	public String ausgabetextS2C; /**Anzeigetext Gewinnmeldung Spieler 1*/
 
-	private boolean client = true;	// Bin ich der Client? Ist aktuell deaktivert, da Server und Client getrennte Anwendungen sind.
+	private boolean client = true;	/** Bin ich der Client? Ist aktuell deaktivert, da Server und Client getrennte Anwendungen sind. */
 
-	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
+	private boolean accepted = false;	/**Bin ich schon mit einem Server verbunden?*/
 
-	int gesetztS; 
-	int gesetztC;
-	String nameSp1 = "Mitspieler";
-	String nameSp2 = "Ich";
-	int kontomax = 0;
-	static boolean klicks = false; 
-	static boolean spieler1LoggedIn = false;
-	static boolean spieler2LoggedIn = false;
-	public static int zwischenspeicher;
+	int gesetztS; /**dient zum Verwalten des Einsatzes von Spieler 1*/
+	int gesetztC; /**dient zum Verwalten des Einsatzes von Spieler 2*/
+	String nameSp1 = "Mitspieler"; /**Init Bezeichnung Spieler 1*/
+	String nameSp2 = "Ich"; /**Init Bezeichnung Spieler 2*/
+	int kontomax = 0; /**Maximaler Kontostand*/
+	static boolean klicks = false; /*Hat ein Benutzer mit der Oberfläche interagiert. (Schaltfläche angeklickt)*/
+	static boolean spieler1LoggedIn = false; /**Spieler 1 eingeloggt?*/
+	static boolean spieler2LoggedIn = false; /**Spieler 2 eingeloggt?*/
+	public static int zwischenspeicher; /**Dient zum Verwalten von Int-Werten.*/
 
 	//static boolean wartenAufSpielerClient = false; 
 	//static boolean wartenAufSpielerServer = false; 
@@ -59,9 +59,11 @@ public class Client implements Runnable {
 
 
 
-
+	/**
+	 * Konstruktor Client (Methoden ähnlich/gleich zum Server, da ursprünglich Server und Client in Programm sollten.*/
 	public Client() {
 		System.out.println("Bitte gib deine IP an: ");
+		/**Ip Adresse eingeben*/
 		while (!klicks) {
 
 			try {
@@ -76,7 +78,7 @@ public class Client implements Runnable {
 		System.out.println("Die IP ist: " + ip);
 		port = 8080;
 
-		/**Üfalls Manuelle Porteingabe Vorgesehen:*/
+		/**Falls Manuelle Porteingabe Vorgesehen:*/
 		while (port < 1 || port > 65535) {
 			System.out.println("Dein Port war ungültig, bitte gib einen neuen ein: ");
 			port = Integer.parseInt(JOptionPane.showInputDialog("Port?"));
@@ -87,7 +89,7 @@ public class Client implements Runnable {
 		thread = new Thread(this, "BlackJack");
 		thread.start();
 	}
-
+	/**Startet Thread*/
 	public void run() {
 		while (true) {
 
@@ -96,7 +98,7 @@ public class Client implements Runnable {
 			if (!client && !accepted) {
 				neuerDataStream();
 			}
-
+			
 			spielablauf();
 
 			if (close) {
@@ -105,7 +107,9 @@ public class Client implements Runnable {
 
 		}
 	}
-
+	/**
+	 * Baut den den DataStream auf.*/
+	 
 	private void neuerDataStream() {
 		Socket socket = null;
 		try {
@@ -117,7 +121,9 @@ public class Client implements Runnable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Baut den den DataStream auf.*/
 	private boolean verbunden() {
 		try {
 			socket = new Socket(ip, port);
@@ -131,7 +137,8 @@ public class Client implements Runnable {
 		System.out.println("Erfolgreich mit dem Server verbunden.");
 		return true;
 	}
-
+	
+	/**Innitialisiere Socketverbindung.*/
 	private void initialisiereServer() {
 		try {
 			serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ip));
@@ -143,6 +150,9 @@ public class Client implements Runnable {
 		client = false;
 	}
 
+	/**
+	 * Hauptmethode für den Spielablauf. Dauerschleife.
+	 */
 	private void spielablauf()  {
 
 		/**Spiel erstellen*/
@@ -150,6 +160,7 @@ public class Client implements Runnable {
 		/**Spieler erstellen*/
 		Spieler playerC = new Spieler("Spieler2", "0000");
 		
+		/**Warte auf Interaktion mit Schaltfläche.*/
 		while (!klicks) {
 			System.out.println("Warten auf LogIn Name.");
 			try {
@@ -160,7 +171,7 @@ public class Client implements Runnable {
 			}
 		} klicks = false;
 		
-		/**LogIn Bestätigung an Server senden.*/
+		/**LogIn Bestätigung an Server senden/empfangen*/
 		try {
 			dos.writeBoolean(spieler2LoggedIn);
 		} catch (IOException e) {
@@ -202,7 +213,8 @@ public class Client implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		/**Neuer Spielzug beginnen*/
 		newgame: while(true) {			
 			/** Reset*/
 			client.DeckSpieler1.clear();
@@ -211,7 +223,7 @@ public class Client implements Runnable {
 			client.wertSpieler1 = 0;
 			client.wertSpieler2 = 0;
 			client.wertSpieler2 = 0;
-			int z = 2; //Zähler. Zählt Anzahl der Spielzüge. (max 3 Karten aufnehmen)
+			int z = 2; /**Zähler. Zählt Anzahl der Spielzüge. (max 3 Karten aufnehmen).*/
 
 			/**Aktuellen Kontostand abfragen:*/
 			kontomax = playerC.getKontostand();
@@ -255,16 +267,17 @@ public class Client implements Runnable {
 			kontostandanzeigen(client, playerC);
 
 			/**Karten vom Server empfangen.*/
-			//Karte für Spieler 1 empfangen:
+			/**Karte für Spieler 1 empfangen:*/
 			client.DeckSpieler1.add(karteEmpfangen());
 			client.DeckSpieler1.add(karteEmpfangen()); 	//2. Karte
-			//Karte für Spieler 2 empfangen:
+			/**Karte für Spieler 2 empfangen:*/
 			client.DeckSpieler2.add(karteEmpfangen());
 			client.DeckSpieler2.add(karteEmpfangen()); 	//2. Karte
-			//Karten für Dealer empfangen:
+			/**Karten für Dealer empfangen:*/
 			client.DeckDealer.add(karteEmpfangen());
 			client.DeckDealer.add(karteEmpfangen()); 	//2. Karte
-
+			
+			/**GUI Methoden(Kartenanzeigen+Wert anzeigen*/
 			kartenausgebenS_R1(client);
 			kartenwertanzeigen(client);
 
@@ -326,21 +339,21 @@ public class Client implements Runnable {
 
 				rundeZuAuswerten();
 				try {
-					Thread.sleep(15000);
+					Thread.sleep(15000); /**Wartezeit zum Gewinnbenachrichtigung anzeigen.*/
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				auswertenZuEinsatz();
 
-				continue newgame;
+				continue newgame; 
 			}
 
 			/**Wenn kein BlackJack und nicht Überkauft, frag nach Hit oder Stay*/
 			newcard: while((!client.winSpieler1 && !client.winSpieler2 && !client.winDealer || client.loseSpieler1 || client.loseSpieler2 || client.loseDealer)) {
 
-				boolean hit1 = false;
-				boolean hit2 = false;
+				boolean hit1 = false; /**Spieler 1 hit oder stay*/
+				boolean hit2 = false; /**Spieler 1 hit oder stay*/
 
 				if (z>5) {
 					break newcard;
@@ -373,7 +386,7 @@ public class Client implements Runnable {
 				} catch (IOException e) {
 					e.printStackTrace(); }
 
-				/** Wenn kein Spieler eine Karte aufnehmen möchte*/
+				/**Wenn kein Spieler eine Karte aufnehmen möchte*/
 				while((!hit1 && !hit2)) {
 
 					/**Karten für Dealer empfangen, sofern der Kartenwert unter 17 liegt*/
@@ -396,7 +409,7 @@ public class Client implements Runnable {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					/** Gewinner/Verlierernachricht ausgeben*/
+					/**Gewinner/Verlierernachricht ausgeben*/
 					gewinnbenachrichtung(client,playerC);	
 
 					rundeZuAuswerten();
@@ -494,6 +507,7 @@ public class Client implements Runnable {
 							continue newgame;
 						}
 					}
+					/**Wenn min. 1 Spieler eine Karte möchte*/
 					if ((hit1 && !hit2) || (!hit1 && hit2)) {
 						/** Auswertestatus der Spieler empfangen*/
 						try {
@@ -531,7 +545,9 @@ public class Client implements Runnable {
 	}
 
 
-
+/**
+ * Gewinnbenachrichtigung anzeigen, Karte beim Dealer umdrehen, ggfs. Einsatz auf Konto des Spielers buchen.
+ */
 	void gewinnbenachrichtung (Spiel s, Spieler p) {
 
 		/** Spieler 1*/
@@ -602,7 +618,7 @@ public class Client implements Runnable {
 		return k;
 	}
 
-	/** Prüft ob genügend Geld vorhanden*/
+	/** Prüft ob genügend Geld vorhanden, beim Einsatz platzieren.*/
 	boolean abbuchungOK(int m){
 
 		if ((zwischenspeicher)>kontomax) {

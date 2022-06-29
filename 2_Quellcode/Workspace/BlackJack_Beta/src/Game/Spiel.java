@@ -51,7 +51,11 @@ public class Spiel {
 
 	}
 
-/** Methode Manuell Karte ziehen durch @n*/
+	/**
+	 * Methode Manuell Karte ziehen durch.
+	 * @param n
+	 * @return gezogeneKarte
+	 */
 	public Karten karteManuell(int n) {
 		Karten gezogeneKarte = kartenDeck.get(n);
 		kartenDeck.remove(n);
