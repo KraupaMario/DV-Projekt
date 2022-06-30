@@ -1,0 +1,14 @@
+Hinweise:
+
+Unser aktuellster Programmstand befindet sich in Projekt "BlackJack_Beta" im Ordner Quellcode/Workspace.
+Die restlichen Projekte sind alte Stände oder waren zum ausprobieren. 
+
+Vielen Dank.
+
+Unserer Github - Namen
+
+Paule77 - Paul Kammerer
+rieggerd - Dominik Riegger
+Waeschlj - Jannik Wäschle
+KraupaMario - Mario Kraupa
+julibro1 - Julian Hermle
