@@ -5,10 +5,10 @@ Die restlichen Projekte sind alte Stände oder waren zum ausprobieren.
 
 Vielen Dank.
 
-Unserer Github - Namen
+Unsere Github - Namen:
 
 Paule77 - Paul Kammerer
 rieggerd - Dominik Riegger
-Waeschlj - Jannik Wäschle
+waeschlj - Jannik Wäschle
 KraupaMario - Mario Kraupa
-julibro1 - Julian Hermle
+Julibro1 - Julian Hermle
