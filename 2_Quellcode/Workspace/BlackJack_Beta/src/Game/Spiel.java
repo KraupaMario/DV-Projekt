@@ -6,23 +6,23 @@ import java.util.ArrayList;
 
 public class Spiel {
 
-	private static int gesetztSpieler1;
-	private static int gesetztSpieler2;
+	private static int gesetztSpieler1; /**Wert des gesetzen Beitrag Spieler 1*/
+	private static int gesetztSpieler2; /**Wert des gesetzen Beitrag Spieler 2*/
 
-	int wertSpieler1;
-	int wertSpieler2;
-	int wertDealer;
+	int wertSpieler1; /**Deckwert  auf der Hand von Spieler 1*/
+	int wertSpieler2; /**Deckwert  auf der Hand von Spieler 2*/
+	int wertDealer; /**Deckwert  auf der Hand Dealer*/
 
-	boolean winSpieler1 = false;
-	boolean winSpieler2 = false;
-	boolean winDealer = false;
+	boolean winSpieler1 = false; /**win- Spieler Status Spieler 1*/
+	boolean winSpieler2 = false; /**win- Spieler Status Spieler 2*/
+	boolean winDealer = false; /**win- Spieler Status Dealer*/
 
-	boolean loseSpieler1 = false;
-	boolean loseSpieler2 = false;
-	boolean loseDealer = false;
+	boolean loseSpieler1 = false; /**lose- Spieler Status Spieler 1*/
+	boolean loseSpieler2 = false; /**lose- Spieler Status Spieler 2*/
+	boolean loseDealer = false; /**lose- Spieler Status Dealer*/
 
-	boolean pattSpieler1 = false;
-	boolean pattSpieler2 = false;
+	boolean pattSpieler1 = false; /**Unentschieden- SPieler Stauts Spieler 1*/
+	boolean pattSpieler2 = false; /**Unentschieden- SPieler Stauts Spieler 2*/
 
 
 	/** Erstellung Array-Lists mit dem Typ Karten*/
@@ -61,7 +61,10 @@ public class Spiel {
 		kartenDeck.remove(n);
 		return gezogeneKarte;
 	}
-/**Methode Karten ziehen (ZUfall)*/
+/**Methode Karten ziehen 
+ * 
+ * @return gezogeneKarte
+ */
 	public Karten getKarte(){
 		
 		int random = (int)(Math.random()*(kartenDeck.size()-1)); 
@@ -88,7 +91,10 @@ public class Spiel {
 		DeckDealer.add(getKarte());
 
 	}
-/** Methode: Abfrage Wert Deck*/
+/** Methode: Abfrage Wert Deck Spieler 1
+ * 
+ * @return wert
+ */
 	public int wertSpieler1() {		
 		int wert = 0;
 		for (int i = 0; i<DeckSpieler1.size();i++) {
@@ -97,7 +103,10 @@ public class Spiel {
 		}System.out.println("S1:" + wert);
 		return wert;
 	}
-
+	/** Methode: Abfrage Wert Deck Spieler 2
+	 * 
+	 * @return wert
+	 */
 	public int wertSpieler2() {
 		int wert = 0;
 		for (int i = 0; i<DeckSpieler2.size();i++) {
@@ -107,7 +116,10 @@ public class Spiel {
 		}System.out.println("S2:" + wert);
 		return wert;
 	}
-
+	/** Methode: Abfrage Wert Deck Dealer
+	 * 
+	 * @return wert
+	 */
 	public int wertDealer() {
 		int wert = 0;
 		for (int i = 0; i<DeckDealer.size();i++) {
@@ -118,7 +130,7 @@ public class Spiel {
 		return wert;
 	}
 
-	/** Methode: Check Blackjack oder Überkauft*/
+	/** Methode: Check Blackjack oder Überkauft für SPieler 1*/
 	
 	public void checkBJSpieler1(){
 		winSpieler1 = false;
@@ -139,7 +151,7 @@ public class Spiel {
 		}
 	} 
 
-
+	/** Methode: Check Blackjack oder Überkauft für Spieler 2*/
 	public void checkBJSpieler2(){
 		if (wertSpieler2() == 21) 
 			winSpieler2 = true;
@@ -147,7 +159,7 @@ public class Spiel {
 			loseSpieler2 = true;
 	}
 
-
+	/** Methode: Check Blackjack oder Überkauft für Dealer*/
 	public void checkBJDealer(){
 		if (wertDealer() == 21) 
 			winDealer = true;
@@ -155,8 +167,13 @@ public class Spiel {
 			loseDealer = true;
 	}
 
-	/**Auswerten Methoden Spieler 1*/
-	/** 0 = BlackJack, 1 = Sieg Spieler, 2 = Sieg Dealer (Spieler verliert), 3 = unentschieden*/
+	/**Auswerten Spieler 1
+	 * @return 0
+	 * @return 1
+	 * @return 2
+	 * @return 3
+	 
+	 *0 = BlackJack, 1 = Sieg Spieler, 2 = Sieg Dealer (Spieler verliert), 3 = unentschieden*/
 	public int auswertenS1() {
 		winSpieler1 = false;
 		winSpieler2 = false;
@@ -221,7 +238,13 @@ public class Spiel {
 
 	}
 	
-	/**Auswerten Methoden Spieler 1*/
+	/**Auswerten Spieler 2
+	 * @return 0
+	 * @return 1
+	 * @return 2
+	 * @return 3
+	 
+	 *0 = BlackJack, 1 = Sieg Spieler, 2 = Sieg Dealer (Spieler verliert), 3 = unentschieden*/
 	public int auswertenS2() {
 
 
@@ -300,28 +323,40 @@ public class Spiel {
 
 
 
-/**get gesetzt Spieler 1*/
+/** get für Gesetzt Beitrag Spieler 2
+ * 
+ * @return gesetztSpieler2
+ */
 	public static int getGesetztSpieler2() {
 		return gesetztSpieler2;
 	}
 
 
 
-	/**set gesetzt Spieler 2*/
+	/**set für Gesetzt Beitrag Spieler 2
+	 * 
+	 * @param gesetztSpieler2
+	 */
 	public static void setGesetztSpieler2(int gesetztSpieler2) {
 		Spiel.gesetztSpieler2 = gesetztSpieler2;
 	}
 
 
 
-	/**get gesetzt Spieler 2*/
+	/**get für Gesetzt Beitrag Spieler 1
+	 * 
+	 * @return gesetztSpieler1
+	 */
 	public static int getGesetztSpieler1() {
 		return gesetztSpieler1;
 	}
 
 
 
-	/**set gesetzt Spieler 2 */
+	/**set für Gesetzt Beitrag Spieler 1
+	 * 
+	 * @param gesetztSpieler1
+	 */
 	public static void setGesetztSpieler1(int gesetztSpieler1) {
 		Spiel.gesetztSpieler1 = gesetztSpieler1;
 	}

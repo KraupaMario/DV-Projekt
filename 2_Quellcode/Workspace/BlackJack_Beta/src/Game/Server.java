@@ -15,57 +15,46 @@ import javax.swing.JOptionPane;
 
 public class Server implements Runnable {
 
-	private String ip = "localhost";
-	private int port = 22222;
+	private String ip = "localhost"; /**Ip Adresse aus Eingabefenster*/
+	private int port = 22222; /**Port für TCP/IP Verbindung*/
 
-	private Thread thread;
+	private Thread thread; /**Thread für Spielablauf*/
 
 	private boolean close = false; //Schließt wenn true
 
-	public String ausgabetextS1; 
-	public String ausgabetextS2; 
+	public String ausgabetextS1; /**Anzeigetext Gewinnmeldung Spieler 1*/
+	public String ausgabetextS2; /**Anzeigetext Gewinnmeldung Spieler 1*/
 
 
-	private Socket socket;
-	private DataOutputStream dos;
-	
-	private DataInputStream dis;
-	
-
-	private ServerSocket serverSocket;
-
-	int auswertStatSp1;
-	int auswertStatSp2;
-
-	static boolean wartenAufSpielerClient = false; 
-	static boolean wartenAufSpielerServer = false; 
-
-
+	private Socket socket; /**socket*/
+	private DataOutputStream dos; /**Dient zum Verschicken des Datenverkehrs*/
+	private DataInputStream dis; /**Dient zum Empfangen des Datenverkehrs*/
 	
 
-	private boolean client = true;	// Bin ich der Client?
-	private boolean accepted = false;	//Bin ich schon mit einem Server verbunden?
+	private ServerSocket serverSocket; /**Server Socket*/
 
-	String nameSp1 = "Ich";
-	String nameSp2 = "Mitspieler";
-	static boolean spieler1LoggedIn = false;
-	static boolean spieler2LoggedIn = false;
-	int gesetztS; 
-	int gesetztC;
-	static int  hitostay;
+	int auswertStatSp1; /**AuswerteStatus Spieler 1 Mögliche werte: -1 bis 3 (siehe KLasse Spiel)*/
+	int auswertStatSp2; /**AuswerteStatus Spieler 2 Mögliche werte: -1 bis 3*/
+	
 
-	static boolean klicks = false; 
-	public static int zwischenspeicher;
-	int kontomax = 0;
-	Spieler aktuellerbenutzer;
-	boolean anmelden = false;
+	private boolean client = true;	/**Bin ich der Client?*/
+	private boolean accepted = false;	/**Bin ich schon mit einem Server verbunden?*/
 
+	String nameSp1 = "Ich"; /**Init Bezeichnung Spieler 2*/
+	String nameSp2 = "Mitspieler"; /**Init Bezeichnung Spieler 1*/
+	static boolean spieler1LoggedIn = false; /**Spieler 1 eingeloggt?*/
+	static boolean spieler2LoggedIn = false; /**Spieler 2 eingeloggt?*/
+	int gesetztS; /**dient zum Verwalten des Einsatzes von Spieler 1*/
+	int gesetztC; /**dient zum Verwalten des Einsatzes von Spieler 2*/
+	static int  hitostay; /**Im Spielablauf zum Empfangen ob Spieler 1/2 Hit oder Stay*/
 
+	static boolean klicks = false; /*Hat ein Benutzer mit der Oberfläche interagiert. (Schaltfläche angeklickt)*/
+	public static int zwischenspeicher; /**Dient zum Verwalten von Int-Werten.*/
+	int kontomax = 0;/**initialsieren des Maximalen Kontostands*/
+	
+	boolean anmelden = false; /**Dient zur Überprüfung der ANmeldung des Spielers*/
 
-
-
-
-
+/**Konstruktor Server*/
 	public Server() {
 
 		InetAddress ia;
@@ -87,16 +76,12 @@ public class Server implements Runnable {
 		if (!verbunden())
 			initialisiereServer();
 
-
-
 		thread = new Thread(this, "BlackJack");
-
 
 		thread.start();
 
-
 	}
-
+	/**Startet Thread*/
 	public void run() {
 		while (true) {
 
@@ -111,7 +96,7 @@ public class Server implements Runnable {
 			}
 		}
 	}
-
+	/** Baut den den DataStream auf.*/
 	private void neuerDataStream() {
 		Socket socket = null;
 		try {
@@ -125,7 +110,7 @@ public class Server implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	/** Erstellung Socket mit Verbindung*/
+	/** Baut den den DataStream auf.*/
 	private boolean verbunden() {
 		try {
 			socket = new Socket(ip, port);
@@ -139,7 +124,7 @@ public class Server implements Runnable {
 		
 		return true;
 	}
-	/** Server initialisieren*/
+	/**Innitialisieren der Socketverbindung.*/
 	private void initialisiereServer() {
 		try {
 			serverSocket = new ServerSocket(port, 8, InetAddress.getByName(ip));
@@ -149,7 +134,9 @@ public class Server implements Runnable {
 		}
 		client = false;
 	}
-	/** Spielablauf*/
+	/**
+	 * Hauptmethode für den Spielablauf. Dauerschleife.
+	 */
 	private void spielablauf()  {
 
 		/**Erstellen Spiel*/
@@ -158,7 +145,7 @@ public class Server implements Runnable {
 		server.createDeck();
 		@SuppressWarnings("unused")
 		Spielkarten serverk = new Spielkarten();
-
+		/**Spieler erstellen*/
 		Spieler playerS = new Spieler ("Spieler 1","0000");
 
 		/**LogIn Bestätigung vom Client empfangen.*/
@@ -168,7 +155,7 @@ public class Server implements Runnable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		/**Warte auf Interaktion mit Schaltfläche.*/
 		while (!klicks) {
 			System.out.println("Warten auf LogIn Name.");
 			try {
@@ -231,8 +218,7 @@ public class Server implements Runnable {
 			kontostandanzeigen(server, playerS);
 
 
-			/** Warteschleife Einsatz setzen */
-
+			/**Warte auf Interaktion mit Schaltfläche.*/
 			while (!klicks) {
 			
 				try {
@@ -388,7 +374,7 @@ public class Server implements Runnable {
 			/** verschicken Status Spieler lose....*/
 
 
-			/** verschicken Status Spieler lose?*/
+			
 			try {
 				dos.writeBoolean(server.loseSpieler1);
 			} catch (IOException e) {
@@ -760,7 +746,9 @@ public class Server implements Runnable {
 
 
 
-	/**Auswerten der Spieler + Dealer*/
+	/**Auswerten der Spieler + Dealer
+	 * @param server
+	 */
 	void auswerten(Spiel server) {
 
 		/**Spieler Status Spieler 1*/
@@ -769,7 +757,11 @@ public class Server implements Runnable {
 
 	}
 
-	/**Gewninnbenachrichtiung von Spiel s*/
+	/**Gewninnbenachrichtigung über auswerte Statuse
+	 * 
+	 * @param s
+	 * @param p
+	 */
 	void gewinnbenachrichtung (Spiel s, Spieler p){ 
 
 		/** Spieler 1*/
@@ -804,7 +796,11 @@ public class Server implements Runnable {
 		/**ggfs. Einsatz auf Konto des Spielers buchen.*/
 		p.einzahlen(Spiel.getGesetztSpieler1(), auswertStatSp1);	
 	}
-	/** abbuchen Konto*/
+	/** abbuchen Konto
+	 * 
+	 * @param m
+	 * @return 
+	 */
 	boolean abbuchungOK(int m){
 
 		if ((zwischenspeicher)>kontomax) {
