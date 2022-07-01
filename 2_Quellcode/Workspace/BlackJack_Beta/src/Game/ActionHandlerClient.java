@@ -102,7 +102,7 @@ public class ActionHandlerClient implements ActionListener{
 			 */
 
 		case "Zurück":
-			spiel.logRegZuAuswahl();
+			spiel.zurueckZuStart();
 			break;	
 			
 			/**
@@ -112,7 +112,7 @@ public class ActionHandlerClient implements ActionListener{
 			
 
 		case "Zurück zum Start": 
-			spiel.zurückZuStart(); 
+			spiel.zurueckZuStart(); 
 			break;
 
 			/**

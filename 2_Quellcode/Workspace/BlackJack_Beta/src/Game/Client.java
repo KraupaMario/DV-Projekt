@@ -690,7 +690,7 @@ public class Client implements Runnable {
 	/**
 	 * Methode um zurück zum Startfenster zu gelangen.
 	 */
-	public void zurückZuStart() {
+	public void zurueckZuStart() {
 		cbo.buttonStartSpielC.setVisible(true);
 		cbo.buttonAbbrechenSpiel.setVisible(true);
 		cbo.buttonZurueckZuStart.setVisible(false);
@@ -717,6 +717,10 @@ public class Client implements Runnable {
 		cbo.passwordText1.setVisible(false);
 		cbo.passwordText2.setVisible(false);
 		cbo.ipAdressetext.setVisible(false);
+		cbo.ipAdressetext.setVisible(false);
+		cbo.ipadresseText.setVisible(false);
+		cbo.labelipadresseC.setVisible(false);
+		cbo.buttonIPAdresseBestaetigen.setVisible(false);
 	}
 
 	/**

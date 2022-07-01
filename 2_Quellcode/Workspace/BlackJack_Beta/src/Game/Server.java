@@ -959,7 +959,7 @@ public class Server implements Runnable {
 	/**
 	 * Methode um zurück zum Startfenster zu gelangen.
 	 */
-	public void zurückZuStart() {
+	public void zurueckZuStart() {
 		bo.buttonStartSpiel.setVisible(true);
 		bo.buttonAbbrechenSpiel.setVisible(true);
 		bo.buttonZurueckZuStart.setVisible(false);
@@ -986,6 +986,12 @@ public class Server implements Runnable {
 		bo.passwordText1.setVisible(false);
 		bo.passwordText2.setVisible(false);
 		bo.ipAdressetext.setVisible(false);
+		bo.ipadresseText.setVisible(false);
+		bo.IPText.setVisible(false);
+		bo.labelIPAdresse.setVisible(false);
+		bo.labelipadresse.setVisible(false);
+		bo.buttonIPAdresseBestaetigen.setVisible(false);
+		
 	}
 
 
